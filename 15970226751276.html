@@ -1,0 +1,805 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  三分钟上手java多线程控制技术 - xiaolin's blog
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="xiaolin's blog" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:neatlifecoco.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">about</a></li>
+        
+        <li id=""><a target="_self" href="all.html">blog</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">archive</a></li>
+        
+        <li id=""><a target="_self" href="tools.html">tools</a></li>
+        
+        <li id=""><a target="_self" href="pro.html">pros</a></li>
+        
+        <li id=""><a target="_self" href="pub.html">press</a></li>
+        
+        <li id=""><a target="_self" href="paper.html">paper</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; xiaolin's blog</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">about</a></li>
+        
+        <li><a target="_self" href="all.html">blog</a></li>
+        
+        <li><a target="_self" href="archives.html">archive</a></li>
+        
+        <li><a target="_self" href="tools.html">tools</a></li>
+        
+        <li><a target="_self" href="pro.html">pros</a></li>
+        
+        <li><a target="_self" href="pub.html">press</a></li>
+        
+        <li><a target="_self" href="paper.html">paper</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="macios.html">mac&ios</a></li>
+        
+            <li><a href="lc.html">leetcode</a></li>
+        
+            <li><a href="security.html">安全</a></li>
+        
+            <li><a href="business.html">业务</a></li>
+        
+            <li><a href="source-code.html">源码分析</a></li>
+        
+            <li><a href="redis.html">Redis</a></li>
+        
+            <li><a href="apache-nginx.html">Apache/Nginx</a></li>
+        
+            <li><a href="spring-boot.html">Spring Boot</a></li>
+        
+            <li><a href="pm.html">项目管理</a></li>
+        
+            <li><a href="sql.html">SQL</a></li>
+        
+            <li><a href="job-scheduler.html">任务调度</a></li>
+        
+            <li><a href="design-pattern.html">设计模式</a></li>
+        
+            <li><a href="mq.html">消息队列</a></li>
+        
+            <li><a href="rpc.html">RPC</a></li>
+        
+            <li><a href="laravel.html">LARAVEL</a></li>
+        
+            <li><a href="tcp-ip.html">TCP/IP</a></li>
+        
+            <li><a href="uml.html">UML</a></li>
+        
+            <li><a href="service-mesh.html">SERVICE MESH</a></li>
+        
+            <li><a href="ci-cd.html">CI/CD</a></li>
+        
+            <li><a href="ops.html">OPS</a></li>
+        
+            <li><a href="linux.html">LINUX</a></li>
+        
+            <li><a href="system-programming.html">系统编程</a></li>
+        
+            <li><a href="aws.html">AWS</a></li>
+        
+            <li><a href="lua.html">LUA</a></li>
+        
+            <li><a href="git.html">GIT</a></li>
+        
+            <li><a href="js.html">js</a></li>
+        
+            <li><a href="java.html">JAVA</a></li>
+        
+            <li><a href="monitor.html">监控</a></li>
+        
+            <li><a href="vim.html">VIM</a></li>
+        
+            <li><a href="php.html">PHP</a></li>
+        
+            <li><a href="openresty.html">OpenResty</a></li>
+        
+            <li><a href="swoole.html">SWOOLE</a></li>
+        
+            <li><a href="ons.html">消息队列</a></li>
+        
+            <li><a href="gdb.html">GDB</a></li>
+        
+            <li><a href="specification.html">规范</a></li>
+        
+            <li><a href="3-minutes.html">三分钟系列</a></li>
+        
+            <li><a href="1-pic.html">一图胜千言</a></li>
+        
+            <li><a href="account-system.html">帐号系统</a></li>
+        
+            <li><a href="interview.html">面试题</a></li>
+        
+            <li><a href="yii.html">Yii/Yii2</a></li>
+        
+            <li><a href="python.html">python</a></li>
+        
+            <li><a href="go.html">GO</a></li>
+        
+            <li><a href="ml.html">机器学习</a></li>
+        
+            <li><a href="emacs.html">emacs</a></li>
+        
+            <li><a href="bi.html">商业智能</a></li>
+        
+            <li><a href="mac.html">mac</a></li>
+        
+            <li><a href="editor.html">编辑器</a></li>
+        
+            <li><a href="productive-soft.html">生产力工具</a></li>
+        
+            <li><a href="driver-license.html">驾照</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>三分钟上手java多线程控制技术</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2020/8/10</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='java.html'>JAVA</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>java相比python、php等脚本语言一个非常重要的区别就是java拥有真正的多线程控制技术，掌握多线程技术对于使用java语言至关重要</p>
+
+<h2 id="toc_0">默认行为</h2>
+
+<ul>
+<li>主线程会等待所有子线程执行完成后退出</li>
+<li>多个线程无序执行</li>
+</ul>
+
+<h2 id="toc_1">创建线程</h2>
+
+<p>实现Runnable接口，在线程中执行的代码放到Runnable接口实现中，为实现类起个名字比如MyRunner：</p>
+
+<pre><code class="language-java">public class MyRunner implements Runnable {
+    @Override
+    public void run() {
+      // 在线程中执行的代码
+      System.out.println(&quot;running in a thread, name: &quot; + Thread.currentThread().getName());
+    }
+}
+</code></pre>
+
+<p>创建线程对象<code>java.lang.Thread</code>，并将MyRunner作为线程执行体，然后调用<code>Thread.start()</code>方法启动线程</p>
+
+<pre><code class="language-java">public class MyThread {
+    public static void main(String[] args) {
+      new Thread(new MyRunner()).start();
+      new Thread(new MyRunner()).start();
+      new Thread(new MyRunner()).start();
+      new Thread(new MyRunner()).start();
+
+      System.out.println(&quot;Main thread exit&quot;);
+    }
+}
+</code></pre>
+
+<p>执行效果参考如下<br/>
+<img src="media/15970226751276/15972843374540.jpg" alt=""/></p>
+
+<p>可以看到这里主线程代码先执行完毕然后进入等待，子线程执行完成后，主线程退出</p>
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_2">暂停线程</h2>
+
+<p>可以使用<code>Thread.sleep()</code>方法暂停线程的执行，比如暂停5秒</p>
+
+<pre><code class="language-java">  try {
+    Thread.sleep(5000);
+  } catch (InterruptedException e) {
+    e.printStackTrace();
+  }
+</code></pre>
+
+<p>可以看到线程调用Thread.sleep进入暂停状态后，可能在暂停过程中产生异常，这个异常表示收到了终止暂停状态的信号</p>
+
+<h2 id="toc_3">终止线程的暂停状态</h2>
+
+<p>调用线程对象(java.lang.Thread)的<code>interrupt()</code>方法可以终止处于暂停状态的线程，使其恢复成执行状态</p>
+
+<p>线程执行体MyRunner.java:</p>
+
+<pre><code class="language-java">public class MyRunner implements Runnable {
+    @Override
+    public void run() {
+      try {
+        Thread.sleep(5000);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+      // 在线程中执行的代码
+      System.out.println(&quot;running in a thread, name: &quot; + Thread.currentThread().getName());
+    }
+}
+</code></pre>
+
+<p>调用线程的interrupt方法终止线程的sleep状态MyThread.java</p>
+
+<pre><code class="language-java">public class MyThread {
+    public static void main(String[] args) {
+      Thread thread = new Thread(new MyRunner());
+      thread.start();
+      thread.interrupt();
+
+      System.out.println(&quot;Main thread exit&quot;);
+    }
+}
+</code></pre>
+
+<p>执行效果如下：<br/>
+<img src="media/15970226751276/15972856520631.jpg" alt=""/></p>
+
+<p>可以看到线程的sleep被终止，并收到了InterruptedException异常</p>
+
+<p>可以使用<code>Thread.currentThread().isInterrupted()</code>手动检查当前线程是否被中断过</p>
+
+<h2 id="toc_4">主动等待子线程执行完毕</h2>
+
+<p>使用线程去下载一个文件，然后主线程在执行完一段业务逻辑后，需要使用线程下载的文件，这个时候，线程不一定已经将文件下载完成，主线程就需要等待子线程执行完成了</p>
+
+<p>MyThread.java 模拟文件下载线程</p>
+
+<pre><code class="language-java">public class MyRunner implements Runnable {
+    @Override
+    public void run() {
+      System.out.println(&quot;1. start download file...&quot;);
+      try {
+        Thread.sleep(5000);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+      System.out.println(&quot;2. download file complete&quot;);
+    }
+}
+</code></pre>
+
+<p>主线程使用join()方法等待线程执行完成</p>
+
+<pre><code class="language-java">Thread thread = new Thread(new MyRunner());
+thread.start();
+
+try {
+  thread.join();
+} catch (InterruptedException e) {
+  e.printStackTrace();
+}
+System.out.println(&quot;3. process downloaded file&quot;);
+</code></pre>
+
+<p>执行效果参考如下：<br/>
+<img src="media/15970226751276/15972865347846.jpg" alt=""/></p>
+
+<h2 id="toc_5">线程间状态通知技术wait()和notify()</h2>
+
+<p>线程1: 下载文件<br/>
+线程2: 在文件下载完成后，对文件进行处理</p>
+
+<p>DownloadStatus.java在线程间传递文件下载状态</p>
+
+<pre><code class="language-java">public class DownloadStatus {
+  private boolean isFinish = false;
+
+  public boolean isFinish() {
+    return isFinish;
+  }
+
+  public void setFinish(boolean finish) {
+    isFinish = finish;
+  }
+}
+</code></pre>
+
+<p>下载文件线程 DownloadThread.java</p>
+
+<pre><code class="language-java">public class DownloadThread implements Runnable {
+
+  private DownloadStatus status;
+
+  public DownloadThread(DownloadStatus status) {
+    this.status = status;
+  }
+
+  @Override
+  public void run() {
+    try {
+      Thread.sleep(5000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    System.out.println(&quot;file in thread download finished.&quot;);
+    status.setFinish(true);
+    synchronized (status) {
+      status.notifyAll();
+    }
+  }
+}
+</code></pre>
+
+<p>可以看到文件下载完成后将下载完成标志isFinish置为true，并调用了状态对象的notifyAll()方法</p>
+
+<p>处理文件线程</p>
+
+<pre><code class="language-java">DownloadStatus status = new DownloadStatus();
+
+Thread thread = new Thread(new DownloadThread(status));
+thread.start();
+new Thread(() -&gt; {
+  while (!status.isFinish()) {
+    synchronized (status) {
+      try {
+        status.wait();
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+    }
+  }
+  System.out.println(&quot;process download file&quot;);
+}).start();
+</code></pre>
+
+<p>文件线程中启动死循环检测文件是否下载完成 while !status.isFinish()，并在循环体中调用wait()方法等待下载状态对象的通知</p>
+
+<p>使用notifyAll()和wait()进行状态变更通知是为了避免死循环占用过多的cpu资源</p>
+
+<h2 id="toc_6">多线程保证变量安全技术</h2>
+
+<p>多线程变量安全指多个线程对同一个变量进行修改，其修改后的结果符合预期</p>
+
+<p>1. 每个线程使用独立的变量，在全部线程执行完成后，对每个线程中的变量进行汇总<br/>
+2. 对变量进行加锁，加可重入锁</p>
+
+<pre><code class="language-java">lock = new ReentrantLock();
+lock.lock();
+// 对变量进行修改的code
+lock.unlock();
+</code></pre>
+
+<p>3. 使用synchronized关键字</p>
+
+<pre><code class="language-java">synchronized(需要检测的对象) {
+    // 对变量进行修改的code
+}
+</code></pre>
+
+<p>4. volatile关键字：使cpu不将内存中的变量放到cpu缓存中，避免多线程变量可见性问题</p>
+
+<pre><code class="language-java">private volatile bool isFinished;
+</code></pre>
+
+<p>5. atomic系列类， java.util.concurrent.atomic</p>
+
+<pre><code class="language-java">private AtomicInteger count;
+</code></pre>
+
+<h2 id="toc_7">一些注意的点</h2>
+
+<ol>
+<li>notify通知一个wait()的线程，notifyAll通知所有wait的线程</li>
+<li>多线程集合对象可以使用synchronized集合保证线程安全 <code>Collection&lt;Integer&gt; intList = Collections.synchronizedCollection(new ArrayList&lt;&gt;())</code></li>
+<li>多线程hash表对象可以使用ConcurrentHashMap保证线程安全 <code>Map&lt;Integer, String&gt; map = new ConcurrentHashMap&lt;&gt;()</code></li>
+</ol>
+
+<h2 id="toc_8">参考资料</h2>
+
+<ol>
+<li><a href="https://www.cnblogs.com/duanxz/p/5038471.html">https://www.cnblogs.com/duanxz/p/5038471.html</a></li>
+<li><a href="https://blog.csdn.net/onlybless/article/details/79881536">https://blog.csdn.net/onlybless/article/details/79881536</a></li>
+<li><a href="https://www.cnblogs.com/mengdd/archive/2013/02/16/2913806.html">https://www.cnblogs.com/mengdd/archive/2013/02/16/2913806.html</a></li>
+</ol>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="16005640944829.html" 
+          title="Previous Post: linux系统编程之多进程和管道（pip）">&laquo; linux系统编程之多进程和管道（pip）</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15864793262262.html" 
+          title="Next Post: 14/24 设计模式之状态模式 State Pattern">14/24 设计模式之状态模式 State Pattern &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          <script src="https://utteranc.es/client.js"
+        repo="neatlife/neatlife.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>xiaolin's blog</h1>
+                <div class="site-des">core tech share blog</div>
+                <div class="social">
+                  <a target="_blank" class="juejin" href="https://juejin.im/user/5c409f86e51d4551c88027a2/posts" title="Juejin">juejin</a>
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/neatlife" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="macios.html"><strong>mac&ios</strong></a>
+        
+            <a href="lc.html"><strong>leetcode</strong></a>
+        
+            <a href="security.html"><strong>安全</strong></a>
+        
+            <a href="business.html"><strong>业务</strong></a>
+        
+            <a href="source-code.html"><strong>源码分析</strong></a>
+        
+            <a href="redis.html"><strong>Redis</strong></a>
+        
+            <a href="apache-nginx.html"><strong>Apache/Nginx</strong></a>
+        
+            <a href="spring-boot.html"><strong>Spring Boot</strong></a>
+        
+            <a href="pm.html"><strong>项目管理</strong></a>
+        
+            <a href="sql.html"><strong>SQL</strong></a>
+        
+            <a href="job-scheduler.html"><strong>任务调度</strong></a>
+        
+            <a href="design-pattern.html"><strong>设计模式</strong></a>
+        
+            <a href="mq.html"><strong>消息队列</strong></a>
+        
+            <a href="rpc.html"><strong>RPC</strong></a>
+        
+            <a href="laravel.html"><strong>LARAVEL</strong></a>
+        
+            <a href="tcp-ip.html"><strong>TCP/IP</strong></a>
+        
+            <a href="uml.html"><strong>UML</strong></a>
+        
+            <a href="service-mesh.html"><strong>SERVICE MESH</strong></a>
+        
+            <a href="ci-cd.html"><strong>CI/CD</strong></a>
+        
+            <a href="ops.html"><strong>OPS</strong></a>
+        
+            <a href="linux.html"><strong>LINUX</strong></a>
+        
+            <a href="system-programming.html"><strong>系统编程</strong></a>
+        
+            <a href="aws.html"><strong>AWS</strong></a>
+        
+            <a href="lua.html"><strong>LUA</strong></a>
+        
+            <a href="git.html"><strong>GIT</strong></a>
+        
+            <a href="js.html"><strong>js</strong></a>
+        
+            <a href="java.html"><strong>JAVA</strong></a>
+        
+            <a href="monitor.html"><strong>监控</strong></a>
+        
+            <a href="vim.html"><strong>VIM</strong></a>
+        
+            <a href="php.html"><strong>PHP</strong></a>
+        
+            <a href="openresty.html"><strong>OpenResty</strong></a>
+        
+            <a href="swoole.html"><strong>SWOOLE</strong></a>
+        
+            <a href="ons.html"><strong>消息队列</strong></a>
+        
+            <a href="gdb.html"><strong>GDB</strong></a>
+        
+            <a href="specification.html"><strong>规范</strong></a>
+        
+            <a href="3-minutes.html"><strong>三分钟系列</strong></a>
+        
+            <a href="1-pic.html"><strong>一图胜千言</strong></a>
+        
+            <a href="account-system.html"><strong>帐号系统</strong></a>
+        
+            <a href="interview.html"><strong>面试题</strong></a>
+        
+            <a href="yii.html"><strong>Yii/Yii2</strong></a>
+        
+            <a href="python.html"><strong>python</strong></a>
+        
+            <a href="go.html"><strong>GO</strong></a>
+        
+            <a href="ml.html"><strong>机器学习</strong></a>
+        
+            <a href="emacs.html"><strong>emacs</strong></a>
+        
+            <a href="bi.html"><strong>商业智能</strong></a>
+        
+            <a href="mac.html"><strong>mac</strong></a>
+        
+            <a href="editor.html"><strong>编辑器</strong></a>
+        
+            <a href="productive-soft.html"><strong>生产力工具</strong></a>
+        
+            <a href="driver-license.html"><strong>驾照</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="16081898834624.html">OSX使用代码代替storyboard构建项目，并添加NSSplitView组件</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16005640944829.html">linux系统编程之多进程和管道（pip）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15970226751276.html">三分钟上手java多线程控制技术</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15864793262262.html">14/24 设计模式之状态模式 State Pattern</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15880004262195.html">python高性能之路:使用C/C++编写扩展</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.
+<span id="busuanzi_container_site_uv">访问<span id="busuanzi_value_site_uv"></span>人</span>/
+        <span id="busuanzi_container_site_pv"><span id="busuanzi_value_site_pv"></span>次</span>
+    </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138141150-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138141150-1');
+</script>
+
+<canvas class="fireworks" 
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999999; pointer-events: none; width: 1158px; height: 916px;" 
+        width="2316" 
+        height="1832">
+</canvas>
+    <script src="asset/js/anime.min.js"></script>
+    <script src="asset/js/fireworks.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </body>
+</html>

@@ -1,0 +1,659 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  互联网程序员能力模型设计 - xiaolin's blog
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="xiaolin's blog" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:neatlifecoco.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">about</a></li>
+        
+        <li id=""><a target="_self" href="all.html">blog</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">archive</a></li>
+        
+        <li id=""><a target="_self" href="tools.html">tools</a></li>
+        
+        <li id=""><a target="_self" href="pro.html">pros</a></li>
+        
+        <li id=""><a target="_self" href="pub.html">press</a></li>
+        
+        <li id=""><a target="_self" href="paper.html">paper</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; xiaolin's blog</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">about</a></li>
+        
+        <li><a target="_self" href="all.html">blog</a></li>
+        
+        <li><a target="_self" href="archives.html">archive</a></li>
+        
+        <li><a target="_self" href="tools.html">tools</a></li>
+        
+        <li><a target="_self" href="pro.html">pros</a></li>
+        
+        <li><a target="_self" href="pub.html">press</a></li>
+        
+        <li><a target="_self" href="paper.html">paper</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="macios.html">mac&ios</a></li>
+        
+            <li><a href="lc.html">leetcode</a></li>
+        
+            <li><a href="security.html">安全</a></li>
+        
+            <li><a href="business.html">业务</a></li>
+        
+            <li><a href="source-code.html">源码分析</a></li>
+        
+            <li><a href="redis.html">Redis</a></li>
+        
+            <li><a href="apache-nginx.html">Apache/Nginx</a></li>
+        
+            <li><a href="spring-boot.html">Spring Boot</a></li>
+        
+            <li><a href="pm.html">项目管理</a></li>
+        
+            <li><a href="sql.html">SQL</a></li>
+        
+            <li><a href="job-scheduler.html">任务调度</a></li>
+        
+            <li><a href="design-pattern.html">设计模式</a></li>
+        
+            <li><a href="mq.html">消息队列</a></li>
+        
+            <li><a href="rpc.html">RPC</a></li>
+        
+            <li><a href="laravel.html">LARAVEL</a></li>
+        
+            <li><a href="tcp-ip.html">TCP/IP</a></li>
+        
+            <li><a href="uml.html">UML</a></li>
+        
+            <li><a href="service-mesh.html">SERVICE MESH</a></li>
+        
+            <li><a href="ci-cd.html">CI/CD</a></li>
+        
+            <li><a href="ops.html">OPS</a></li>
+        
+            <li><a href="linux.html">LINUX</a></li>
+        
+            <li><a href="system-programming.html">系统编程</a></li>
+        
+            <li><a href="aws.html">AWS</a></li>
+        
+            <li><a href="lua.html">LUA</a></li>
+        
+            <li><a href="git.html">GIT</a></li>
+        
+            <li><a href="js.html">js</a></li>
+        
+            <li><a href="java.html">JAVA</a></li>
+        
+            <li><a href="monitor.html">监控</a></li>
+        
+            <li><a href="vim.html">VIM</a></li>
+        
+            <li><a href="php.html">PHP</a></li>
+        
+            <li><a href="openresty.html">OpenResty</a></li>
+        
+            <li><a href="swoole.html">SWOOLE</a></li>
+        
+            <li><a href="ons.html">消息队列</a></li>
+        
+            <li><a href="gdb.html">GDB</a></li>
+        
+            <li><a href="specification.html">规范</a></li>
+        
+            <li><a href="3-minutes.html">三分钟系列</a></li>
+        
+            <li><a href="1-pic.html">一图胜千言</a></li>
+        
+            <li><a href="account-system.html">帐号系统</a></li>
+        
+            <li><a href="interview.html">面试题</a></li>
+        
+            <li><a href="yii.html">Yii/Yii2</a></li>
+        
+            <li><a href="python.html">python</a></li>
+        
+            <li><a href="go.html">GO</a></li>
+        
+            <li><a href="ml.html">机器学习</a></li>
+        
+            <li><a href="emacs.html">emacs</a></li>
+        
+            <li><a href="bi.html">商业智能</a></li>
+        
+            <li><a href="mac.html">mac</a></li>
+        
+            <li><a href="editor.html">编辑器</a></li>
+        
+            <li><a href="productive-soft.html">生产力工具</a></li>
+        
+            <li><a href="driver-license.html">驾照</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>互联网程序员能力模型设计</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2020/3/17</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='pm.html'>项目管理</a></span>
+          
+              <span class="posted-in"><a href='business.html'>业务</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>互联网是高科技/崇尚技术的公司，意味着所有问题都可以通过/间接通过技术来解决，遇到问题后，优先选择技术方式进行处理</p>
+
+<p>人是不可靠的，尽可能使用规则和制度进行限定，保证稳定的产出质量</p>
+
+<h2 id="toc_0">理解需求的能力</h2>
+
+<p>通常产品经理会把需求落实为文字+图片的形式即PRD（Product Requirement Document）放在wiki上让程序员先预习</p>
+
+<p>预习的质量直接决定着理解需求的能力，从技术角度有以下方式提高预习的质量</p>
+
+<ol>
+<li><p>站在产品角度思考问题，思考产品在写下这个wiki时的状态，估算出wiki中缺少的信息，并自行进行查找相关资料进行验证</p></li>
+<li><p>熟悉wiki系统的使用，比如confluence这个wiki系统的收藏功能</p></li>
+</ol>
+
+<p><img src="media/15844164176189/15844169312272.jpg" alt=""/></p>
+
+<p>点击头像下拉菜单中的收藏即可进入收藏列表<br/>
+<img src="media/15844164176189/15844169950869.jpg" alt=""/></p>
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_1">编码能力</h2>
+
+<p>熟悉公司框架，但实际编码并不需要占用太多时间，约20%，剩下时间都是在确定需求细节/技术实现方案、数据表设计等</p>
+
+<p>所以业务开发对技术要求并不需要太深入，如果想深入技术开发，可以走技术专家路线</p>
+
+<ol>
+<li>能够使用高效的编码工具提高工作效率，比如Jetbrain Idea等</li>
+<li>了解通用问题解决的技术栈</li>
+</ol>
+
+<h2 id="toc_2">运营能力</h2>
+
+<p>大部分需求的直接来源是来自公司运营，所以理解运营工作的目标和方式对程序开发也是至关重要的</p>
+
+<p>运营的首要目标就是提高产品的人流量，并增加产品的用户留存率，<strong>一切以此为目的的需求都是合理的</strong></p>
+
+<p>通常是通过提高产品内容质量(文章质量、商品质量）来达到目标的，达到这个目标通常有技术和非技术手段两个方式来解决，但是总的目标是提高运营人员的工作效率，因为技术手段的规则是运营定的</p>
+
+<h2 id="toc_3">产品能力</h2>
+
+<ol>
+<li>能够用axure画简单的产品原型图</li>
+<li>能够使用omnigraffle等流程图工具画清楚产品的逻辑关系图</li>
+</ol>
+
+<h3 id="toc_4">竞品分析能力</h3>
+
+<p>互联网产品通常有很多竞品，多了解这些竞品，对产品接下来产品变化的趋势判断很有帮助</p>
+
+<p>比如流量型的产品，多参考业务成功的产品，比如 抖音、火山小视频、今日头条等的做法</p>
+
+<h2 id="toc_5">统计能力</h2>
+
+<ol>
+<li>对比理想产出和实际产出、判断产品变化趋势</li>
+<li>统计程序bug量、评估工资性价比（工资/公时)</li>
+</ol>
+
+<h2 id="toc_6">协调能力</h2>
+
+<p><img src="media/15844164176189/15844177939864.jpg" alt=""/></p>
+
+<p>充分利用公司内部通讯软件，尽量减少当面沟通，可以间接提高工作效率，有以下几个原因</p>
+
+<ol>
+<li>所有内容都在通讯软件上有记录，方便后期查找核对</li>
+<li>不用预约时间、会议室（会议多方同时在场成本比较高)</li>
+</ol>
+
+<h2 id="toc_7">一些工具</h2>
+
+<p>在工作过程中，有些至关重要的内容无法落实/延迟落实为文字，比如需求细节变更，有些内容作为旁听者很难一次全部理解，可以采用录音/录像的方式进行回放：</p>
+
+<ol>
+<li><p>录音笔：推荐sony A10<br/>
+<img src="media/15844164176189/15844183166108.jpg" alt=""/></p></li>
+<li><p>相机：推荐Canon M6 Mark 二代<br/>
+<img src="media/15844164176189/15844219219823.jpg" alt=""/></p></li>
+</ol>
+
+<h2 id="toc_8">一些注意的点</h2>
+
+<p>永远以工作产出为导向，一切偏离产出的行为都是需要避免的</p>
+
+<p>把人当工具、高效的利用在公司可以接触到的人，物尽其用，互为工具，在公司，所有的设备、人都是公司的资源。</p>
+
+<h2 id="toc_9">参考资料</h2>
+
+<ol>
+<li><a href="https://www.axure.com/">https://www.axure.com/</a></li>
+<li><a href="https://helpguide.sony.net/icd/pcma10/v1/en2/index.html">https://helpguide.sony.net/icd/pcma10/v1/en2/index.html</a></li>
+<li><a href="https://www.omnigroup.com/omnigraffle">https://www.omnigroup.com/omnigraffle</a></li>
+<li><a href="https://www.atlassian.com/zh/software/confluence">https://www.atlassian.com/zh/software/confluence</a></li>
+<li><a href="http://www.woshipm.com/pmd/192826.html">http://www.woshipm.com/pmd/192826.html</a></li>
+<li><a href="https://helpguide.sony.net/icd/pcma10/v1/zh-tw/index.html">https://helpguide.sony.net/icd/pcma10/v1/zh-tw/index.html</a></li>
+</ol>
+
+<p>持续更新中...</p>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15845099482085.html" 
+          title="Previous Post: 8/24 设计模式之观察者模式 Observer Pattern">&laquo; 8/24 设计模式之观察者模式 Observer Pattern</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15843642142462.html" 
+          title="Next Post: 7/24 设计模式之中介者模式 Mediator Pattern">7/24 设计模式之中介者模式 Mediator Pattern &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          <script src="https://utteranc.es/client.js"
+        repo="neatlife/neatlife.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>xiaolin's blog</h1>
+                <div class="site-des">core tech share blog</div>
+                <div class="social">
+                  <a target="_blank" class="juejin" href="https://juejin.im/user/5c409f86e51d4551c88027a2/posts" title="Juejin">juejin</a>
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/neatlife" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="macios.html"><strong>mac&ios</strong></a>
+        
+            <a href="lc.html"><strong>leetcode</strong></a>
+        
+            <a href="security.html"><strong>安全</strong></a>
+        
+            <a href="business.html"><strong>业务</strong></a>
+        
+            <a href="source-code.html"><strong>源码分析</strong></a>
+        
+            <a href="redis.html"><strong>Redis</strong></a>
+        
+            <a href="apache-nginx.html"><strong>Apache/Nginx</strong></a>
+        
+            <a href="spring-boot.html"><strong>Spring Boot</strong></a>
+        
+            <a href="pm.html"><strong>项目管理</strong></a>
+        
+            <a href="sql.html"><strong>SQL</strong></a>
+        
+            <a href="job-scheduler.html"><strong>任务调度</strong></a>
+        
+            <a href="design-pattern.html"><strong>设计模式</strong></a>
+        
+            <a href="mq.html"><strong>消息队列</strong></a>
+        
+            <a href="rpc.html"><strong>RPC</strong></a>
+        
+            <a href="laravel.html"><strong>LARAVEL</strong></a>
+        
+            <a href="tcp-ip.html"><strong>TCP/IP</strong></a>
+        
+            <a href="uml.html"><strong>UML</strong></a>
+        
+            <a href="service-mesh.html"><strong>SERVICE MESH</strong></a>
+        
+            <a href="ci-cd.html"><strong>CI/CD</strong></a>
+        
+            <a href="ops.html"><strong>OPS</strong></a>
+        
+            <a href="linux.html"><strong>LINUX</strong></a>
+        
+            <a href="system-programming.html"><strong>系统编程</strong></a>
+        
+            <a href="aws.html"><strong>AWS</strong></a>
+        
+            <a href="lua.html"><strong>LUA</strong></a>
+        
+            <a href="git.html"><strong>GIT</strong></a>
+        
+            <a href="js.html"><strong>js</strong></a>
+        
+            <a href="java.html"><strong>JAVA</strong></a>
+        
+            <a href="monitor.html"><strong>监控</strong></a>
+        
+            <a href="vim.html"><strong>VIM</strong></a>
+        
+            <a href="php.html"><strong>PHP</strong></a>
+        
+            <a href="openresty.html"><strong>OpenResty</strong></a>
+        
+            <a href="swoole.html"><strong>SWOOLE</strong></a>
+        
+            <a href="ons.html"><strong>消息队列</strong></a>
+        
+            <a href="gdb.html"><strong>GDB</strong></a>
+        
+            <a href="specification.html"><strong>规范</strong></a>
+        
+            <a href="3-minutes.html"><strong>三分钟系列</strong></a>
+        
+            <a href="1-pic.html"><strong>一图胜千言</strong></a>
+        
+            <a href="account-system.html"><strong>帐号系统</strong></a>
+        
+            <a href="interview.html"><strong>面试题</strong></a>
+        
+            <a href="yii.html"><strong>Yii/Yii2</strong></a>
+        
+            <a href="python.html"><strong>python</strong></a>
+        
+            <a href="go.html"><strong>GO</strong></a>
+        
+            <a href="ml.html"><strong>机器学习</strong></a>
+        
+            <a href="emacs.html"><strong>emacs</strong></a>
+        
+            <a href="bi.html"><strong>商业智能</strong></a>
+        
+            <a href="mac.html"><strong>mac</strong></a>
+        
+            <a href="editor.html"><strong>编辑器</strong></a>
+        
+            <a href="productive-soft.html"><strong>生产力工具</strong></a>
+        
+            <a href="driver-license.html"><strong>驾照</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="16081898834624.html">OSX使用代码代替storyboard构建项目，并添加NSSplitView组件</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16005640944829.html">linux系统编程之多进程和管道（pip）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15970226751276.html">三分钟上手java多线程控制技术</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15864793262262.html">14/24 设计模式之状态模式 State Pattern</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15880004262195.html">python高性能之路:使用C/C++编写扩展</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.
+<span id="busuanzi_container_site_uv">访问<span id="busuanzi_value_site_uv"></span>人</span>/
+        <span id="busuanzi_container_site_pv"><span id="busuanzi_value_site_pv"></span>次</span>
+    </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138141150-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138141150-1');
+</script>
+
+<canvas class="fireworks" 
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999999; pointer-events: none; width: 1158px; height: 916px;" 
+        width="2316" 
+        height="1832">
+</canvas>
+    <script src="asset/js/anime.min.js"></script>
+    <script src="asset/js/fireworks.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </body>
+</html>

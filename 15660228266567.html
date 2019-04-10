@@ -1,0 +1,691 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  三分钟上手linux系统开发 - xiaolin's blog
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="xiaolin's blog" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:neatlifecoco.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">about</a></li>
+        
+        <li id=""><a target="_self" href="all.html">blog</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">archive</a></li>
+        
+        <li id=""><a target="_self" href="tools.html">tools</a></li>
+        
+        <li id=""><a target="_self" href="pro.html">pros</a></li>
+        
+        <li id=""><a target="_self" href="pub.html">press</a></li>
+        
+        <li id=""><a target="_self" href="paper.html">paper</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; xiaolin's blog</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">about</a></li>
+        
+        <li><a target="_self" href="all.html">blog</a></li>
+        
+        <li><a target="_self" href="archives.html">archive</a></li>
+        
+        <li><a target="_self" href="tools.html">tools</a></li>
+        
+        <li><a target="_self" href="pro.html">pros</a></li>
+        
+        <li><a target="_self" href="pub.html">press</a></li>
+        
+        <li><a target="_self" href="paper.html">paper</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="macios.html">mac&ios</a></li>
+        
+            <li><a href="lc.html">leetcode</a></li>
+        
+            <li><a href="security.html">安全</a></li>
+        
+            <li><a href="business.html">业务</a></li>
+        
+            <li><a href="source-code.html">源码分析</a></li>
+        
+            <li><a href="redis.html">Redis</a></li>
+        
+            <li><a href="apache-nginx.html">Apache/Nginx</a></li>
+        
+            <li><a href="spring-boot.html">Spring Boot</a></li>
+        
+            <li><a href="pm.html">项目管理</a></li>
+        
+            <li><a href="sql.html">SQL</a></li>
+        
+            <li><a href="job-scheduler.html">任务调度</a></li>
+        
+            <li><a href="design-pattern.html">设计模式</a></li>
+        
+            <li><a href="mq.html">消息队列</a></li>
+        
+            <li><a href="rpc.html">RPC</a></li>
+        
+            <li><a href="laravel.html">LARAVEL</a></li>
+        
+            <li><a href="tcp-ip.html">TCP/IP</a></li>
+        
+            <li><a href="uml.html">UML</a></li>
+        
+            <li><a href="service-mesh.html">SERVICE MESH</a></li>
+        
+            <li><a href="ci-cd.html">CI/CD</a></li>
+        
+            <li><a href="ops.html">OPS</a></li>
+        
+            <li><a href="linux.html">LINUX</a></li>
+        
+            <li><a href="system-programming.html">系统编程</a></li>
+        
+            <li><a href="aws.html">AWS</a></li>
+        
+            <li><a href="lua.html">LUA</a></li>
+        
+            <li><a href="git.html">GIT</a></li>
+        
+            <li><a href="js.html">js</a></li>
+        
+            <li><a href="java.html">JAVA</a></li>
+        
+            <li><a href="monitor.html">监控</a></li>
+        
+            <li><a href="vim.html">VIM</a></li>
+        
+            <li><a href="php.html">PHP</a></li>
+        
+            <li><a href="openresty.html">OpenResty</a></li>
+        
+            <li><a href="swoole.html">SWOOLE</a></li>
+        
+            <li><a href="ons.html">消息队列</a></li>
+        
+            <li><a href="gdb.html">GDB</a></li>
+        
+            <li><a href="specification.html">规范</a></li>
+        
+            <li><a href="3-minutes.html">三分钟系列</a></li>
+        
+            <li><a href="1-pic.html">一图胜千言</a></li>
+        
+            <li><a href="account-system.html">帐号系统</a></li>
+        
+            <li><a href="interview.html">面试题</a></li>
+        
+            <li><a href="yii.html">Yii/Yii2</a></li>
+        
+            <li><a href="python.html">python</a></li>
+        
+            <li><a href="go.html">GO</a></li>
+        
+            <li><a href="ml.html">机器学习</a></li>
+        
+            <li><a href="emacs.html">emacs</a></li>
+        
+            <li><a href="bi.html">商业智能</a></li>
+        
+            <li><a href="mac.html">mac</a></li>
+        
+            <li><a href="editor.html">编辑器</a></li>
+        
+            <li><a href="productive-soft.html">生产力工具</a></li>
+        
+            <li><a href="driver-license.html">驾照</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>三分钟上手linux系统开发</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2019/8/17</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='3-minutes.html'>三分钟系列</a></span>
+          
+              <span class="posted-in"><a href='1-pic.html'>一图胜千言</a></span>
+          
+              <span class="posted-in"><a href='source-code.html'>源码分析</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>linux系统编程，主要使用c语言，c++是c的超集，也是可以的</p>
+
+<p>完整项目代码已上传github：<a href="https://github.com/neatlife/my-tlpi-book">https://github.com/neatlife/my-tlpi-book</a></p>
+
+<h2 id="toc_0">获取可用环境</h2>
+
+<p>可以使用虚拟机安装一个linux系统进行linux系统开发，虽然mac os和linux非常相似，但是和linux还是有很多小区别的，装虚拟机是最省事的<br/>
+这里使用elementary os，下载地址参考：<a href="https://elementary.io/zh_CN/">https://elementary.io/zh_CN/</a></p>
+
+<p>安装时，选linux 4.x以上的内核版本即可<br/>
+<img src="media/15660228266567/15660420929694.jpg" alt=""/></p>
+
+<span id="more"></span><!-- more -->
+
+<p>界面效果如下：<br/>
+<img src="media/15660228266567/15661032812791.jpg" alt=""/><br/>
+安装时可以选英文，安装后再改成中文</p>
+
+<h2 id="toc_1">C语言标准库</h2>
+
+<p>标准库中包含下面的库</p>
+
+<ul>
+<li>assert.h</li>
+<li>ctype.h</li>
+<li>errno.h</li>
+<li>float.h</li>
+<li>limits.h</li>
+<li>locale.h</li>
+<li>math.h</li>
+<li>setjmp.h</li>
+<li>signal.h</li>
+<li>stdarg.h</li>
+<li>stddef.h</li>
+<li>stdio.h</li>
+<li>stdlib.h</li>
+<li>string.h</li>
+<li>time.h</li>
+</ul>
+
+<p><img src="media/15660228266567/c%E6%A0%87%E5%87%86%E5%BA%93.png" alt="c标准库"/><br/>
+这些库中一般都包含一些结构体和几个函数，其中输入输出库stdio.h, 一般函数库（malloc、free等）stdlib.h,字符串处理库string.h最常用了</p>
+
+<p>线程库pthread.h默认支持linux，windows需要额外安装，参考：<a href="https://sourceforge.net/projects/pthreads4w/">https://sourceforge.net/projects/pthreads4w/</a></p>
+
+<p>进程创建销毁(fork、wait)等在unistd.h库，默认支持linux</p>
+
+<h2 id="toc_2">一个例子-替换信号处理</h2>
+
+<p>对一个运行中的程序执行快捷键 Ctrl + C 默认会中断程序的运行，并使得程序退出</p>
+
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;signal.h&gt;
+
+int
+main(int argc, char *argv[])
+{
+    printf(&quot;Hello World!&quot;);
+    sleep(300);
+}
+</code></pre>
+
+<p>效果如下<br/>
+<img src="media/15660228266567/15661106918454.jpg" alt=""/></p>
+
+<p>可以看到当按下ctrl c的时候，程序立马就退出了，这是因为当按下ctrl c时shell终端向程序发送了SIGINT信号。<br/>
+默认SIGINT信号的处理是终止程序的运行，可以通过signal.h库中的signal函数注册一个新的SIGINT信号的处理程序替代默认行为，比如受到SIGINT时，简单打印一个字符串</p>
+
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;signal.h&gt;
+#include &lt;unistd.h&gt;
+
+static void
+mySigHandler(int sig)
+{
+    printf(&quot;in signal handler\n&quot;);
+}
+
+int
+main(int argc, char *argv[])
+{
+    if (signal(SIGINT, mySigHandler) == SIG_ERR) {
+        printf(&quot;替换信号处理器异常\n&quot;);
+        exit(1);
+    }
+
+    printf(&quot;Hello World!\n&quot;);
+
+    while (1) {
+        sleep(300);
+    }
+}
+</code></pre>
+
+<p>效果如下<br/>
+<img src="media/15660228266567/15661114486408.jpg" alt=""/><br/>
+可以看到已经成功接管了程序对SIGINT信号的默认处理了</p>
+
+<p>也可以使用kill命令对一个程序发送SIGINT信号，SIGINT常理定义再signum-generic.h头文件中<br/>
+<img src="media/15660228266567/15661137138017.jpg" alt=""/><br/>
+对应的数字是2，对应的kill命令就是 kill -2 进程id<br/>
+<img src="media/15660228266567/15661139836961.jpg" alt=""/><br/>
+可以看到通过kill工具把SIGINT信号传给进程了</p>
+
+<h2 id="toc_3">一些注意的点</h2>
+
+<p>对程序发送SIGINT信号时，程序会从sleep状态中醒过来，可以通过无限循环让程序持续运行</p>
+
+<pre><code class="language-c">while (1) {
+    sleep(300);
+}
+</code></pre>
+
+<p>关闭虚拟机的节能选项，防止虚拟机经常进入随眠/退出状态<br/>
+<img src="media/15660228266567/15661112964830.jpg" alt=""/></p>
+
+<pre><code class="language-shell">gsettings reset org.gnome.desktop.interface monospace-font-name
+gsettings set org.gnome.desktop.interface cursor-blink false
+gsettings set io.elementary.files.preferences single-click false
+</code></pre>
+
+<p>SIGINT信号被替换了，ctrl c 无法终止程序了，可以使用SIGKILL信号(代号9)终止即kill -9 pid，SIGKILL信号的处理函数是无法替换的，放心使用。</p>
+
+<p>可以选择ubuntu作为开发环境，这样环境问题会比较少</p>
+
+<h2 id="toc_4">参考资料</h2>
+
+<ol>
+<li><a href="https://blog.csdn.net/u012422855/article/details/78794324">https://blog.csdn.net/u012422855/article/details/78794324</a></li>
+</ol>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15663558931611.html" 
+          title="Previous Post: 三分钟上手禅道项目任务管理系统">&laquo; 三分钟上手禅道项目任务管理系统</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15655033189527.html" 
+          title="Next Post: memcached网络通信模块设计与实现分析">memcached网络通信模块设计与实现分析 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          <script src="https://utteranc.es/client.js"
+        repo="neatlife/neatlife.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>xiaolin's blog</h1>
+                <div class="site-des">core tech share blog</div>
+                <div class="social">
+                  <a target="_blank" class="juejin" href="https://juejin.im/user/5c409f86e51d4551c88027a2/posts" title="Juejin">juejin</a>
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/neatlife" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="macios.html"><strong>mac&ios</strong></a>
+        
+            <a href="lc.html"><strong>leetcode</strong></a>
+        
+            <a href="security.html"><strong>安全</strong></a>
+        
+            <a href="business.html"><strong>业务</strong></a>
+        
+            <a href="source-code.html"><strong>源码分析</strong></a>
+        
+            <a href="redis.html"><strong>Redis</strong></a>
+        
+            <a href="apache-nginx.html"><strong>Apache/Nginx</strong></a>
+        
+            <a href="spring-boot.html"><strong>Spring Boot</strong></a>
+        
+            <a href="pm.html"><strong>项目管理</strong></a>
+        
+            <a href="sql.html"><strong>SQL</strong></a>
+        
+            <a href="job-scheduler.html"><strong>任务调度</strong></a>
+        
+            <a href="design-pattern.html"><strong>设计模式</strong></a>
+        
+            <a href="mq.html"><strong>消息队列</strong></a>
+        
+            <a href="rpc.html"><strong>RPC</strong></a>
+        
+            <a href="laravel.html"><strong>LARAVEL</strong></a>
+        
+            <a href="tcp-ip.html"><strong>TCP/IP</strong></a>
+        
+            <a href="uml.html"><strong>UML</strong></a>
+        
+            <a href="service-mesh.html"><strong>SERVICE MESH</strong></a>
+        
+            <a href="ci-cd.html"><strong>CI/CD</strong></a>
+        
+            <a href="ops.html"><strong>OPS</strong></a>
+        
+            <a href="linux.html"><strong>LINUX</strong></a>
+        
+            <a href="system-programming.html"><strong>系统编程</strong></a>
+        
+            <a href="aws.html"><strong>AWS</strong></a>
+        
+            <a href="lua.html"><strong>LUA</strong></a>
+        
+            <a href="git.html"><strong>GIT</strong></a>
+        
+            <a href="js.html"><strong>js</strong></a>
+        
+            <a href="java.html"><strong>JAVA</strong></a>
+        
+            <a href="monitor.html"><strong>监控</strong></a>
+        
+            <a href="vim.html"><strong>VIM</strong></a>
+        
+            <a href="php.html"><strong>PHP</strong></a>
+        
+            <a href="openresty.html"><strong>OpenResty</strong></a>
+        
+            <a href="swoole.html"><strong>SWOOLE</strong></a>
+        
+            <a href="ons.html"><strong>消息队列</strong></a>
+        
+            <a href="gdb.html"><strong>GDB</strong></a>
+        
+            <a href="specification.html"><strong>规范</strong></a>
+        
+            <a href="3-minutes.html"><strong>三分钟系列</strong></a>
+        
+            <a href="1-pic.html"><strong>一图胜千言</strong></a>
+        
+            <a href="account-system.html"><strong>帐号系统</strong></a>
+        
+            <a href="interview.html"><strong>面试题</strong></a>
+        
+            <a href="yii.html"><strong>Yii/Yii2</strong></a>
+        
+            <a href="python.html"><strong>python</strong></a>
+        
+            <a href="go.html"><strong>GO</strong></a>
+        
+            <a href="ml.html"><strong>机器学习</strong></a>
+        
+            <a href="emacs.html"><strong>emacs</strong></a>
+        
+            <a href="bi.html"><strong>商业智能</strong></a>
+        
+            <a href="mac.html"><strong>mac</strong></a>
+        
+            <a href="editor.html"><strong>编辑器</strong></a>
+        
+            <a href="productive-soft.html"><strong>生产力工具</strong></a>
+        
+            <a href="driver-license.html"><strong>驾照</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="16081898834624.html">OSX使用代码代替storyboard构建项目，并添加NSSplitView组件</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16005640944829.html">linux系统编程之多进程和管道（pip）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15970226751276.html">三分钟上手java多线程控制技术</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15864793262262.html">14/24 设计模式之状态模式 State Pattern</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15880004262195.html">python高性能之路:使用C/C++编写扩展</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.
+<span id="busuanzi_container_site_uv">访问<span id="busuanzi_value_site_uv"></span>人</span>/
+        <span id="busuanzi_container_site_pv"><span id="busuanzi_value_site_pv"></span>次</span>
+    </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138141150-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138141150-1');
+</script>
+
+<canvas class="fireworks" 
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999999; pointer-events: none; width: 1158px; height: 916px;" 
+        width="2316" 
+        height="1832">
+</canvas>
+    <script src="asset/js/anime.min.js"></script>
+    <script src="asset/js/fireworks.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </body>
+</html>

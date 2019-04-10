@@ -1,0 +1,808 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  在spring boot中消息推送系统设计与实现 - xiaolin's blog
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="xiaolin's blog" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:neatlifecoco.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">about</a></li>
+        
+        <li id=""><a target="_self" href="all.html">blog</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">archive</a></li>
+        
+        <li id=""><a target="_self" href="tools.html">tools</a></li>
+        
+        <li id=""><a target="_self" href="pro.html">pros</a></li>
+        
+        <li id=""><a target="_self" href="pub.html">press</a></li>
+        
+        <li id=""><a target="_self" href="paper.html">paper</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; xiaolin's blog</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">about</a></li>
+        
+        <li><a target="_self" href="all.html">blog</a></li>
+        
+        <li><a target="_self" href="archives.html">archive</a></li>
+        
+        <li><a target="_self" href="tools.html">tools</a></li>
+        
+        <li><a target="_self" href="pro.html">pros</a></li>
+        
+        <li><a target="_self" href="pub.html">press</a></li>
+        
+        <li><a target="_self" href="paper.html">paper</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="macios.html">mac&ios</a></li>
+        
+            <li><a href="lc.html">leetcode</a></li>
+        
+            <li><a href="security.html">安全</a></li>
+        
+            <li><a href="business.html">业务</a></li>
+        
+            <li><a href="source-code.html">源码分析</a></li>
+        
+            <li><a href="redis.html">Redis</a></li>
+        
+            <li><a href="apache-nginx.html">Apache/Nginx</a></li>
+        
+            <li><a href="spring-boot.html">Spring Boot</a></li>
+        
+            <li><a href="pm.html">项目管理</a></li>
+        
+            <li><a href="sql.html">SQL</a></li>
+        
+            <li><a href="job-scheduler.html">任务调度</a></li>
+        
+            <li><a href="design-pattern.html">设计模式</a></li>
+        
+            <li><a href="mq.html">消息队列</a></li>
+        
+            <li><a href="rpc.html">RPC</a></li>
+        
+            <li><a href="laravel.html">LARAVEL</a></li>
+        
+            <li><a href="tcp-ip.html">TCP/IP</a></li>
+        
+            <li><a href="uml.html">UML</a></li>
+        
+            <li><a href="service-mesh.html">SERVICE MESH</a></li>
+        
+            <li><a href="ci-cd.html">CI/CD</a></li>
+        
+            <li><a href="ops.html">OPS</a></li>
+        
+            <li><a href="linux.html">LINUX</a></li>
+        
+            <li><a href="system-programming.html">系统编程</a></li>
+        
+            <li><a href="aws.html">AWS</a></li>
+        
+            <li><a href="lua.html">LUA</a></li>
+        
+            <li><a href="git.html">GIT</a></li>
+        
+            <li><a href="js.html">js</a></li>
+        
+            <li><a href="java.html">JAVA</a></li>
+        
+            <li><a href="monitor.html">监控</a></li>
+        
+            <li><a href="vim.html">VIM</a></li>
+        
+            <li><a href="php.html">PHP</a></li>
+        
+            <li><a href="openresty.html">OpenResty</a></li>
+        
+            <li><a href="swoole.html">SWOOLE</a></li>
+        
+            <li><a href="ons.html">消息队列</a></li>
+        
+            <li><a href="gdb.html">GDB</a></li>
+        
+            <li><a href="specification.html">规范</a></li>
+        
+            <li><a href="3-minutes.html">三分钟系列</a></li>
+        
+            <li><a href="1-pic.html">一图胜千言</a></li>
+        
+            <li><a href="account-system.html">帐号系统</a></li>
+        
+            <li><a href="interview.html">面试题</a></li>
+        
+            <li><a href="yii.html">Yii/Yii2</a></li>
+        
+            <li><a href="python.html">python</a></li>
+        
+            <li><a href="go.html">GO</a></li>
+        
+            <li><a href="ml.html">机器学习</a></li>
+        
+            <li><a href="emacs.html">emacs</a></li>
+        
+            <li><a href="bi.html">商业智能</a></li>
+        
+            <li><a href="mac.html">mac</a></li>
+        
+            <li><a href="editor.html">编辑器</a></li>
+        
+            <li><a href="productive-soft.html">生产力工具</a></li>
+        
+            <li><a href="driver-license.html">驾照</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>在spring boot中消息推送系统设计与实现</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2019/5/6</span>
+
+          
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>推送系统作为通用的组件，存在的价值主要有以下几点</p>
+
+<ol>
+<li>会被多个业务项目使用，推送系统独立维护可降低维护成本</li>
+<li>推送系统一般都是调用三方api进行推送，三方api一般会有调用频率/次数限制，被推送的消息需要走队列来合理调用三方api，控制调用的频率和次数</li>
+<li>业务无关，一般推送系统设计成不需要关心业务逻辑</li>
+</ol>
+
+<h3 id="toc_0">核心技术</h3>
+
+<ol>
+<li>消息队列</li>
+<li>三方服务api调用
+<ol>
+<li>安卓app推送</li>
+<li>苹果app推送</li>
+<li>微信小程序推送</li>
+<li>邮件推送</li>
+<li>钉钉推送</li>
+<li>短信推送</li>
+</ol></li>
+</ol>
+
+<p>消息队列选用阿里云提供的rocketmq，官方文档：<a href="https://help.aliyun.com/document_detail/55385.html">https://help.aliyun.com/document_detail/55385.html</a></p>
+
+<p>推送时序图<br/>
+<img src="media/15564316231506/15571188425671.jpg" alt="推送系统交互时序图"/></p>
+
+<span id="more"></span><!-- more -->
+
+<p>右键新窗口打开可以查看高清大图</p>
+
+<p>可以看到消息推送系统接入的第三方服务比较多，三方推送的质量很难统一，就需要考虑消息的推送的重试了</p>
+
+<h3 id="toc_1">思路流程</h3>
+
+<p>为了控制并发，所有的推送都先发到rocketmq队列里，每次推送的个数通过控制队列的消费的客户端的数量来实现</p>
+
+<p>安卓和苹果都可以使用信鸽的推送服务<br/>
+<img src="media/15564316231506/15571057859088.jpg" alt=""/></p>
+
+<p>信鸽推送需要客户端进行集成，客户端sdk参考：<a href="https://xg.qq.com/xg/ctr_index/download">https://xg.qq.com/xg/ctr_index/download</a></p>
+
+<p>目前信鸽个人开发者仍然是可以申请的，账号建立后，创建andorid和ios项目<br/>
+<img src="media/15564316231506/15571063291395.jpg" alt=""/><br/>
+记录下这里的 APP ID和SECRET KEY，服务端进行推送时需要这两个参数</p>
+
+<p>推送异常处理，推送异常时，需要重试，重试可以利用消息队列本身的重试机制，也可以自行实现重试逻辑</p>
+
+<h3 id="toc_2">安卓app推送</h3>
+
+<p>官方文档：<a href="https://xg.qq.com/docs/android_access/jcenter.html">https://xg.qq.com/docs/android_access/jcenter.html</a></p>
+
+<p>代码库：<a href="https://github.com/xingePush/xinge-api-java">https://github.com/xingePush/xinge-api-java</a></p>
+
+<pre><code class="language-markup">&lt;!-- 信鸽推送客户端 --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;com.github.xingePush&lt;/groupId&gt;
+    &lt;artifactId&gt;xinge&lt;/artifactId&gt;
+    &lt;version&gt;1.2.1&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<p>核心代码如下</p>
+
+<pre><code class="language-java">Map&lt;String, Object&gt; messagePayload = new HashMap&lt;String, Object&gt;(1);
+messagePayload.put(&quot;user_id&quot;, 1);
+messagePayload.put(&quot;msg_title&quot;, &quot;消息标题&quot;);
+messagePayload.put(&quot;msg_content&quot;, &quot;消息内容&quot;);
+messagePayload.put(&quot;msg_type&quot;, 1);
+messagePayload.put(&quot;data&quot;, Lists.newHashMap(&quot;order_id&quot;, 1));
+
+XingeApp xinge = new XingeApp(androidAccessId, androidSecretKey);
+MessageAndroid message = new MessageAndroid();
+ClickAction action = new ClickAction();
+action.setActionType(ClickAction.TYPE_ACTIVITY);
+message.setAction(action);
+message.setContent(JsonUtil.toJsonString(messagePayload));
+message.setType(MessageAndroid.TYPE_MESSAGE);
+message.setExpireTime(86400);
+message.setCustom(new HashMap&lt;String, Object&gt;(1));
+JSONObject response = xinge.pushSingleDevice(&quot;用户的PushToken&quot;, message);
+if (response.getInt(RET_CODE) != 0) {
+    // 推送异常了，进行日志记录等
+}
+</code></pre>
+
+<h3 id="toc_3">苹果app推送</h3>
+
+<h4 id="toc_4">使用pushy库进行推送</h4>
+
+<pre><code class="language-markup">&lt;!-- IOS推送客户端 --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;com.turo&lt;/groupId&gt;
+    &lt;artifactId&gt;pushy&lt;/artifactId&gt;
+    &lt;version&gt;0.13.3&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<pre><code class="language-java">Map&lt;String, Object&gt; aps = new HashMap&lt;String, Object&gt;(1);
+aps.put(&quot;alert&quot;, &quot;推送内容&quot;);
+aps.put(&quot;sound&quot;, &quot;default&quot;);
+aps.put(&quot;badge&quot;, 1);
+
+Map&lt;String, Object&gt; data = new HashMap&lt;String, Object&gt;(1);
+data.put(&quot;msgTitle&quot;, &quot;推送标题&quot;);
+data.put(&quot;msgContent&quot;, &quot;推送内容&quot;);
+data.put(&quot;msgType&quot;, &quot;1&quot;);
+data.put(&quot;userId&quot;, &quot;13288888888&quot;);
+data.put(&quot;data&quot;, Lists.newHashMap(&quot;order_id&quot;, 1));
+
+Map&lt;String, Object&gt; messagePayload = new HashMap&lt;String, Object&gt;(1);
+messagePayload.put(&quot;aps&quot;, aps);
+messagePayload.put(&quot;data&quot;, data);
+
+ApnsClient apnsClient = new ApnsClientBuilder()
+        .setApnsServer(ApnsClientBuilder.PRODUCTION_APNS_HOST)
+        .setClientCredentials(this.getClass().getClassLoader().getResourceAsStream(&quot;推送证书相对resources目录的路径&quot;), &quot;&quot;)
+        .build();
+
+String payload = JsonUtil.toJsonString(messagePayload);
+String token = TokenUtil.sanitizeTokenString(&quot;app用户的pushToken&quot;);
+
+SimpleApnsPushNotification pushNotification = new SimpleApnsPushNotification(token, &quot;com.suxiaolin.app1&quot;, payload);
+
+PushNotificationFuture&lt;SimpleApnsPushNotification, PushNotificationResponse&lt;SimpleApnsPushNotification&gt;&gt;
+        sendNotificationFuture = apnsClient.sendNotification(pushNotification);
+
+final PushNotificationResponse&lt;SimpleApnsPushNotification&gt; pushNotificationResponse =
+        sendNotificationFuture.get();
+
+if (pushNotificationResponse.isAccepted()) {
+    System.out.println(&quot;Push notification accepted by APNs gateway.&quot;);
+} else {
+    System.out.println(&quot;Notification rejected by the APNs gateway: &quot; +
+            pushNotificationResponse.getRejectionReason());
+
+    if (pushNotificationResponse.getTokenInvalidationTimestamp() != null) {
+        System.out.println(&quot;\t…and the token is invalid as of &quot; +
+                pushNotificationResponse.getTokenInvalidationTimestamp());
+    }
+}
+</code></pre>
+
+<h4 id="toc_5">使用信鸽库进行推送</h4>
+
+<p>当然也可以使用信鸽提供的ios推送，逻辑和安卓app的推送差不多</p>
+
+<p>ios的信鸽客户端可以和android的客户端共用，不需要引入新的jar包了</p>
+
+<pre><code class="language-java">JSONObject messagePayload = new JSONObject();
+Map&lt;String, Object&gt; custom = new HashMap&lt;String, Object&gt;();
+
+messagePayload.put(&quot;title&quot;, &quot;推送标题&quot;);
+messagePayload.put(&quot;body&quot;, &quot;推送内容&quot;);
+
+messagePayload.put(&quot;user_id&quot;, 1);
+messagePayload.put(&quot;msg_type&quot;, 1);
+messagePayload.put(&quot;data&quot;, Lists.newArrayList(&quot;orderId&quot;, 1));
+
+XingeApp xinge = new XingeApp(iosAccessId, iosSecretKey);
+MessageIOS message = new MessageIOS();
+message.setType(MessageIOS.TYPE_APNS_NOTIFICATION);
+message.setExpireTime(86400);
+message.setAlert(content);
+message.setBadge(1);
+message.setCategory(&quot;INVITE_CATEGORY&quot;);
+message.setCustom(messagePayload);
+
+response = xinge.pushSingleDevice(&quot;app用户的pushToken&quot;, message, XingeApp.IOSENV_PROD);
+if (response.getInt(RET_CODE) != 0) {
+    // 推送异常了
+}
+</code></pre>
+
+<h3 id="toc_6">小程序推送</h3>
+
+<p>官方文档：<a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1433751277">https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1433751277</a><br/>
+<img src="media/15564316231506/15571188425670.jpg" alt=""/><br/>
+可以看到微信小程序推送接口是普通的post请求</p>
+
+<p>小程序api地址：<a href="https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send">https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send</a></p>
+
+<p>http请求，http请求库可以参考：<a href="https://github.com/neatlife/jframework/blob/master/src/main/java/com/github/neatlife/jframework/util/HttpUtil.java">HttpUtil</a></p>
+
+<h3 id="toc_7">钉钉推送</h3>
+
+<p>官方文档：<a href="https://open-doc.dingtalk.com/microapp/serverapi2/qf2nxq#-2">https://open-doc.dingtalk.com/microapp/serverapi2/qf2nxq#-2</a><br/>
+代码示例</p>
+
+<pre><code class="language-java">public static boolean send(String content, String title, Set&lt;String&gt; receivers) {
+    try {
+        HttpUtil.ResponseWrap result = HttpUtil.postWrap(ddUrl,
+                &quot;{\n&quot;
+                        + &quot;     \&quot;msgtype\&quot;: \&quot;text\&quot;,\n&quot;
+                        + &quot;     \&quot;text\&quot;: {\&quot;content\&quot;:\&quot;&quot; + title + &quot;\r\n&quot; + content + &quot;\n|&quot;
+                        + receivers.stream().map(r -&gt; &quot;@&quot; + r).collect(Collectors.joining(&quot; &quot;)) + &quot;\&quot;},\n&quot;
+                        + &quot;    \&quot;at\&quot;: {\n&quot;
+                        + &quot;        \&quot;atMobiles\&quot;: [&quot; + receivers.stream().map(r -&gt; &quot;\&quot;&quot; + r + &quot;\&quot;&quot;).collect(Collectors.joining(&quot;,&quot;)) + &quot;], \n&quot;
+                        + &quot;        \&quot;isAtAll\&quot;: false\n&quot;
+                        + &quot;    }\n&quot;
+                        + &quot; }&quot;);
+        return result.getStatusCode() == 200;
+    } catch (Exception e) {
+        return false;
+    }
+}
+</code></pre>
+
+<p>完整代码参考 <a href="https://raw.githubusercontent.com/neatlife/jframework/master/src/main/java/com/github/neatlife/jframework/util/DingTalkUtil.java">DingTalkUtil.java</a></p>
+
+<p>使用http请求就可以请求了</p>
+
+<h3 id="toc_8">邮件推送</h3>
+
+<p>发送邮件可以使用java的javax.mail库，smtp协议发送邮件</p>
+
+<pre><code class="language-markup">&lt;dependency&gt;
+    &lt;groupId&gt;javax.mail&lt;/groupId&gt;
+    &lt;artifactId&gt;mail&lt;/artifactId&gt;
+    &lt;version&gt;1.4.7&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<p>示例代码参考：<a href="https://github.com/Clans/JavaMail/blob/master/src/main/java/com/github/clans/javamail/EmailSender.java">EmailSender.java</a></p>
+
+<h3 id="toc_9">短信推送</h3>
+
+<p>短信服务商众多，邮件一般有统一的smtp协议可以使用，短信没有协议，但是一般使用http发送短信<br/>
+比如以下的短信服务商</p>
+
+<ol>
+<li>253云通讯：<a href="https://zz.253.com/api_doc/kai-fa-yin-dao.html">https://zz.253.com/api_doc/kai-fa-yin-dao.html</a></li>
+<li>短信服务- 又拍云: <a href="https://www.upyun.com/products/sms">https://www.upyun.com/products/sms</a></li>
+<li>消息&amp;短信_MSGSMS_云通信_短信- 华为云: <a href="https://www.huaweicloud.com/product/msgsms.html">https://www.huaweicloud.com/product/msgsms.html</a></li>
+</ol>
+
+<h3 id="toc_10">消息队列的特性</h3>
+
+<p>消息队列消费异常后会自动进行重试</p>
+
+<h3 id="toc_11">一些注意的点</h3>
+
+<p>微信小程序每次支付可以生成一个推送码，需要保存到数据库或者缓存里，并且每个码只能推送3条消息</p>
+
+<p>因为消息队列的消费在消息量大的时候具有一定的延时，这就为取消消息推送提供了可能，可以为每条消息生成一个唯一的uuid，取消的时候把这个uuid设计进redis里，推送时检查这个uuid是否在redis里决定推送与否</p>
+
+<p>虽然推送存在不可控制的异常，比如三方推送服务出现了异常，但是也存在调用方传递参数异常，可以推送接口调用的返回值判断是否调用推送系统成功，也可以记录到日志里，这样在调查异常原因时就比较容易</p>
+
+<p>消息队列默认的重试次数，消费时长是无法控制的，可以对消息队列的客户端进行修改支持这个特性，参考：<a href="https://github.com/jibaole/spring-boot-starter-alimq/pull/6/files">https://github.com/jibaole/spring-boot-starter-alimq/pull/6/files</a><br/>
+核心逻辑是先给消息设置一个最大消费次数和消费时长，然后当消息消费次数和消费时长达到阈值时，直接置为成功</p>
+
+<p>ios使用信鸽推送时，需要上传开发证书和生产证书，这两个证书至少需要上传一个<br/>
+<img src="media/15564316231506/15571067519365.jpg" alt=""/></p>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15570208988742.html" 
+          title="Previous Post: 思普瑞特，小票打印机和标签打印机java网络驱动设计与实现">&laquo; 思普瑞特，小票打印机和标签打印机java网络驱动设计与实现</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15567828554310.html" 
+          title="Next Post: php微服务，在laravel中集成nacos配置中心">php微服务，在laravel中集成nacos配置中心 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          <script src="https://utteranc.es/client.js"
+        repo="neatlife/neatlife.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>xiaolin's blog</h1>
+                <div class="site-des">core tech share blog</div>
+                <div class="social">
+                  <a target="_blank" class="juejin" href="https://juejin.im/user/5c409f86e51d4551c88027a2/posts" title="Juejin">juejin</a>
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/neatlife" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="macios.html"><strong>mac&ios</strong></a>
+        
+            <a href="lc.html"><strong>leetcode</strong></a>
+        
+            <a href="security.html"><strong>安全</strong></a>
+        
+            <a href="business.html"><strong>业务</strong></a>
+        
+            <a href="source-code.html"><strong>源码分析</strong></a>
+        
+            <a href="redis.html"><strong>Redis</strong></a>
+        
+            <a href="apache-nginx.html"><strong>Apache/Nginx</strong></a>
+        
+            <a href="spring-boot.html"><strong>Spring Boot</strong></a>
+        
+            <a href="pm.html"><strong>项目管理</strong></a>
+        
+            <a href="sql.html"><strong>SQL</strong></a>
+        
+            <a href="job-scheduler.html"><strong>任务调度</strong></a>
+        
+            <a href="design-pattern.html"><strong>设计模式</strong></a>
+        
+            <a href="mq.html"><strong>消息队列</strong></a>
+        
+            <a href="rpc.html"><strong>RPC</strong></a>
+        
+            <a href="laravel.html"><strong>LARAVEL</strong></a>
+        
+            <a href="tcp-ip.html"><strong>TCP/IP</strong></a>
+        
+            <a href="uml.html"><strong>UML</strong></a>
+        
+            <a href="service-mesh.html"><strong>SERVICE MESH</strong></a>
+        
+            <a href="ci-cd.html"><strong>CI/CD</strong></a>
+        
+            <a href="ops.html"><strong>OPS</strong></a>
+        
+            <a href="linux.html"><strong>LINUX</strong></a>
+        
+            <a href="system-programming.html"><strong>系统编程</strong></a>
+        
+            <a href="aws.html"><strong>AWS</strong></a>
+        
+            <a href="lua.html"><strong>LUA</strong></a>
+        
+            <a href="git.html"><strong>GIT</strong></a>
+        
+            <a href="js.html"><strong>js</strong></a>
+        
+            <a href="java.html"><strong>JAVA</strong></a>
+        
+            <a href="monitor.html"><strong>监控</strong></a>
+        
+            <a href="vim.html"><strong>VIM</strong></a>
+        
+            <a href="php.html"><strong>PHP</strong></a>
+        
+            <a href="openresty.html"><strong>OpenResty</strong></a>
+        
+            <a href="swoole.html"><strong>SWOOLE</strong></a>
+        
+            <a href="ons.html"><strong>消息队列</strong></a>
+        
+            <a href="gdb.html"><strong>GDB</strong></a>
+        
+            <a href="specification.html"><strong>规范</strong></a>
+        
+            <a href="3-minutes.html"><strong>三分钟系列</strong></a>
+        
+            <a href="1-pic.html"><strong>一图胜千言</strong></a>
+        
+            <a href="account-system.html"><strong>帐号系统</strong></a>
+        
+            <a href="interview.html"><strong>面试题</strong></a>
+        
+            <a href="yii.html"><strong>Yii/Yii2</strong></a>
+        
+            <a href="python.html"><strong>python</strong></a>
+        
+            <a href="go.html"><strong>GO</strong></a>
+        
+            <a href="ml.html"><strong>机器学习</strong></a>
+        
+            <a href="emacs.html"><strong>emacs</strong></a>
+        
+            <a href="bi.html"><strong>商业智能</strong></a>
+        
+            <a href="mac.html"><strong>mac</strong></a>
+        
+            <a href="editor.html"><strong>编辑器</strong></a>
+        
+            <a href="productive-soft.html"><strong>生产力工具</strong></a>
+        
+            <a href="driver-license.html"><strong>驾照</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="16081898834624.html">OSX使用代码代替storyboard构建项目，并添加NSSplitView组件</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16005640944829.html">linux系统编程之多进程和管道（pip）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15970226751276.html">三分钟上手java多线程控制技术</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15864793262262.html">14/24 设计模式之状态模式 State Pattern</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15880004262195.html">python高性能之路:使用C/C++编写扩展</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.
+<span id="busuanzi_container_site_uv">访问<span id="busuanzi_value_site_uv"></span>人</span>/
+        <span id="busuanzi_container_site_pv"><span id="busuanzi_value_site_pv"></span>次</span>
+    </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138141150-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138141150-1');
+</script>
+
+<canvas class="fireworks" 
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999999; pointer-events: none; width: 1158px; height: 916px;" 
+        width="2316" 
+        height="1832">
+</canvas>
+    <script src="asset/js/anime.min.js"></script>
+    <script src="asset/js/fireworks.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </body>
+</html>

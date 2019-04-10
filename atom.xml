@@ -1,0 +1,3977 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[xiaolin's blog]]></title>
+  <link href="https://neatlifecoco.com/atom.xml" rel="self"/>
+  <link href="https://neatlifecoco.com/"/>
+  <updated>2020-12-17T16:21:47+08:00</updated>
+  <id>https://neatlifecoco.com/</id>
+  <author>
+    <name><![CDATA[小林的博客]]></name>
+
+  </author>
+  <generator uri="http://www.mweb.im/">MWeb</generator>
+  
+  <entry>
+    <title type="html"><![CDATA[OSX使用代码代替storyboard构建项目，并添加NSSplitView组件]]></title>
+    <link href="https://neatlifecoco.com/16081898834624.html"/>
+    <updated>2020-12-17T15:24:43+08:00</updated>
+    <id>https://neatlifecoco.com/16081898834624.html</id>
+    <content type="html"><![CDATA[
+<p>众所周知，storyboard能够加速界面开发，但在项目变大时，其会出现难以维护的窘境，这种情况下去storyboard就是必经之路了</p>
+
+<h2 id="toc_0">创建案例项目</h2>
+
+<p><img src="media/16081898834624/16081899652915.jpg" alt=""/></p>
+
+<h2 id="toc_1">删除项目设置中引用的Main.storyboard</h2>
+
+<p><img src="media/16081898834624/16081902030552.jpg" alt=""/></p>
+
+<p>删除Main.storyboard文件，效果如下</p>
+
+<span id="more"></span><!-- more -->
+
+<p><img src="media/16081898834624/16081902333983.jpg" alt=""/></p>
+
+<h2 id="toc_2">创建main.swift文件作为项目入口</h2>
+
+<p>参考代码如下</p>
+
+<pre><code class="language-swift">import Cocoa
+
+let delegate = AppDelegate()
+
+NSApplication.shared.delegate = delegate
+_ = NSApplicationMain(CommandLine.argc, CommandLine.unsafeArgv)
+</code></pre>
+
+<h2 id="toc_3">从AppDelegate.swift中删除NSApplicationMain注解</h2>
+
+<p>参考效果如下</p>
+
+<p><img src="media/16081898834624/16081903718181.jpg" alt=""/></p>
+
+<h2 id="toc_4">在AppDelegate.swift中创建项目启动时进入的窗口(Window)文件</h2>
+
+<p>在AppDelegate.swift中创建一个属性来存放这个window</p>
+
+<pre><code class="language-swift">private var window: NSWindow?
+</code></pre>
+
+<p>在<code>applicationDidFinishLaunching</code>中执行初始化代码如下</p>
+
+<pre><code class="language-swift">let styleMask: NSWindow.StyleMask = [
+    .miniaturizable,
+    .closable,
+    .resizable,
+    .titled,
+]
+
+window = NSWindow(
+    contentRect: NSMakeRect(0, 0, 1400, 960),
+    styleMask: styleMask,
+    backing: .buffered,
+    defer: false
+)
+
+window?.title = &quot;A No Storyboard App&quot;
+window?.makeKeyAndOrderFront(nil)
+window?.contentViewController = MainSplitViewController()
+</code></pre>
+
+<h2 id="toc_5">创建MainSplitViewController.swift作为窗口内的入口视图控制器</h2>
+
+<pre><code class="language-swift">import Cocoa
+
+class MainSplitViewController: NSSplitViewController {
+    private let splitViewResorationIdentifier = &quot;com.company.restorationId:mainSplitViewController1&quot;
+
+    lazy var vcA = ViewController(backgroundColor: .red)
+    lazy var vcB = ViewController(backgroundColor: .green)
+    lazy var vcC = ViewController(backgroundColor: .blue)
+
+    override func viewDidLoad() {
+        setupUI()
+        setupLayout()
+    }
+}
+
+extension MainSplitViewController {
+    private func setupUI() {
+        view.wantsLayer = true
+
+        splitView.dividerStyle = .thin
+        splitView.autosaveName = NSSplitView.AutosaveName(splitViewResorationIdentifier)
+        splitView.identifier = NSUserInterfaceItemIdentifier(rawValue: splitViewResorationIdentifier)
+    }
+
+    private func setupLayout() {
+        minimumThicknessForInlineSidebars = 180
+
+        let itemA = NSSplitViewItem(sidebarWithViewController: vcA)
+        itemA.minimumThickness = 80
+        addSplitViewItem(itemA)
+
+        let itemB = NSSplitViewItem(contentListWithViewController: vcB)
+        itemB.minimumThickness = 100
+        addSplitViewItem(itemB)
+
+        let itemC = NSSplitViewItem(viewController: vcC)
+        itemC.minimumThickness = 80
+        addSplitViewItem(itemC)
+    }
+}
+</code></pre>
+
+<h2 id="toc_6">创建ViewController显示参照容器</h2>
+
+<pre><code class="language-swift">import Cocoa
+
+class ViewController: NSViewController {
+    private let backgroundColor: NSColor
+
+    init(backgroundColor: NSColor) {
+        self.backgroundColor = backgroundColor
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
+        fatalError(&quot;init(coder:) has not been implemented&quot;)
+    }
+
+    override func loadView() {
+        view = NSView()
+        view.wantsLayer = true
+        view.layer?.backgroundColor = backgroundColor.cgColor
+    }
+}
+</code></pre>
+
+<p>保存项目，运行参考效果如下</p>
+
+<p><img src="media/16081898834624/16081927272255.jpg" alt=""/></p>
+
+<p>自此就完成了一款无storyboard的macos app项目基础结构的搭建</p>
+
+<h2 id="toc_7">参考资料</h2>
+
+<ol>
+<li><a href="https://medium.com/@theboi/creating-macos-apps-without-a-storyboard-or-xib-file-516115ee9d26">https://medium.com/@theboi/creating-macos-apps-without-a-storyboard-or-xib-file-516115ee9d26</a></li>
+<li><a href="https://nshipster.com/swift-format/">https://nshipster.com/swift-format/</a></li>
+<li><a href="https://stackoverflow.com/questions/44309088/nssplitviewcontroller-programmatically/46756790">https://stackoverflow.com/questions/44309088/nssplitviewcontroller-programmatically/46756790</a></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[linux系统编程之多进程和管道（pip）]]></title>
+    <link href="https://neatlifecoco.com/16005640944829.html"/>
+    <updated>2020-09-20T09:08:14+08:00</updated>
+    <id>https://neatlifecoco.com/16005640944829.html</id>
+    <content type="html"><![CDATA[
+<p>管道一般用于linux程序进程间通信</p>
+
+<h2 id="toc_0">创建进程</h2>
+
+<p>fork()函数</p>
+
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+void main()
+{
+    if (fork())
+      printf(&quot;PARENT\n&quot;);                                                                                                         
+    else
+      printf(&quot;CHILD\n&quot;);
+}
+</code></pre>
+
+<p>fork()执行后，当前进程将被复制出一个新的进程，返回值非0表示仍在父进程执行，返回0表示程序执行已进入子进程内，执行效果参考如下<br/>
+<img src="media/16005640944829/16005657017180.jpg" alt="" style="width:705px;"/><br/>
+可以看到父子进程的代码都被执行了</p>
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_1">父进程等待子进程执行完成</h2>
+
+<p>wait()</p>
+
+<p>执行fork（）后生成了子进程，如果需要在父进程中等待子进程执行完成，比如子进程下载文件，下载完成后父进程需要使用这个文件，可以使用wait()函数等待子进程执行完成</p>
+
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+  int status;
+  if (fork()) {
+    printf(&quot;parent waiting for child ...\n&quot;);
+    wait(&amp;status);
+    if (WIFEXITED(status))
+      printf(&quot;child ended normally, exit status = %d\n&quot;, WEXITSTATUS(status));
+    if (WIFSIGNALED(status))
+      printf(&quot;child terminated by signal %d\n&quot;, WTERMSIG(status));
+  } else {
+    printf(&quot;child running -- PID is %d\n&quot;, getpid());                                                                             
+    sleep(5);
+    exit(3);
+  }
+}
+</code></pre>
+
+<p>执行效果参考如下<br/>
+<img src="media/16005640944829/16005664642695.jpg" alt="" style="width:510px;"/><br/>
+可以看到父进程等到了子进程退出，并获得了子进程退出代码值3</p>
+
+<h2 id="toc_2">匿名管道</h2>
+
+<p><img src="media/16005640944829/16005681036768.jpg" alt="" style="width:339px;"/></p>
+
+<p>pip()</p>
+
+<p>管道端点</p>
+
+<ul>
+<li>0是读取端</li>
+<li>1是写入端</li>
+</ul>
+
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+void main()
+{
+    int p[2];
+    pipe(p);
+
+    if (fork() == 0) { // 子进程写入数据
+        // 关闭管道读取端
+            close(p[0]);
+        char* str1 = &quot;a string write to pip&quot;;
+        write(p[1], str1, strlen(str1)+1);
+        close(p[1]);
+    } else { // 父进程读取数据
+        // 关闭管道写入端
+        close(p[1]);
+        char str2[100];
+        read(p[0], str2, 100);
+        close(p[0]);
+        printf(&quot;read a string from pip: %s\n&quot;, str2);
+    }
+}
+</code></pre>
+
+<p>执行效果参考如下<br/>
+<img src="media/16005640944829/16005674092375.jpg" alt="" style="width:507px;"/></p>
+
+<h2 id="toc_3">命名管道</h2>
+
+<p>mkfifo()</p>
+
+<p>可以使用mkfifo函数创建一个使用文件表示的管道，读写数据使用这个文件名即可</p>
+
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;fcntl.h&gt;
+
+void main()
+{
+    char * myfifo = &quot;/tmp/myfifo&quot;;
+    mkfifo(myfifo, 0666);
+
+    if (fork() == 0) { // 子进程写入数据
+        int fd = open(myfifo, O_WRONLY);
+        char* str1 = &quot;a string write to pip&quot;;
+        write(fd, str1, strlen(str1)+1);
+        close(fd);
+    } else { // 父进程读取数据
+        int fd = open(myfifo, O_RDONLY);
+        char str2[100];
+        read(fd, str2, sizeof(str2));
+        printf(&quot;read a string from pip: %s\n&quot;, str2);
+        close(fd);
+    }
+}
+</code></pre>
+
+<p>执行效果参考如下<br/>
+<img src="media/16005640944829/16005678025685.jpg" alt="" style="width:545px;"/><br/>
+可以看到，通过管道文件名就可以读取数据了</p>
+
+<h2 id="toc_4">一些注意的点</h2>
+
+<p>linux默认的进程调度是没有固定顺序的，父进程和子进程同时执行的代码没有先后顺序之分</p>
+
+<p>文件描述符</p>
+
+<ul>
+<li>0是标准输入</li>
+<li>1是标准输出</li>
+</ul>
+
+<p>可以使用dup、dup2函数将管道链接到标准输入、输出流中</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[三分钟上手java多线程控制技术]]></title>
+    <link href="https://neatlifecoco.com/15970226751276.html"/>
+    <updated>2020-08-10T09:24:35+08:00</updated>
+    <id>https://neatlifecoco.com/15970226751276.html</id>
+    <content type="html"><![CDATA[
+<p>java相比python、php等脚本语言一个非常重要的区别就是java拥有真正的多线程控制技术，掌握多线程技术对于使用java语言至关重要</p>
+
+<h2 id="toc_0">默认行为</h2>
+
+<ul>
+<li>主线程会等待所有子线程执行完成后退出</li>
+<li>多个线程无序执行</li>
+</ul>
+
+<h2 id="toc_1">创建线程</h2>
+
+<p>实现Runnable接口，在线程中执行的代码放到Runnable接口实现中，为实现类起个名字比如MyRunner：</p>
+
+<pre><code class="language-java">public class MyRunner implements Runnable {
+    @Override
+    public void run() {
+      // 在线程中执行的代码
+      System.out.println(&quot;running in a thread, name: &quot; + Thread.currentThread().getName());
+    }
+}
+</code></pre>
+
+<p>创建线程对象<code>java.lang.Thread</code>，并将MyRunner作为线程执行体，然后调用<code>Thread.start()</code>方法启动线程</p>
+
+<pre><code class="language-java">public class MyThread {
+    public static void main(String[] args) {
+      new Thread(new MyRunner()).start();
+      new Thread(new MyRunner()).start();
+      new Thread(new MyRunner()).start();
+      new Thread(new MyRunner()).start();
+
+      System.out.println(&quot;Main thread exit&quot;);
+    }
+}
+</code></pre>
+
+<p>执行效果参考如下<br/>
+<img src="media/15970226751276/15972843374540.jpg" alt=""/></p>
+
+<p>可以看到这里主线程代码先执行完毕然后进入等待，子线程执行完成后，主线程退出</p>
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_2">暂停线程</h2>
+
+<p>可以使用<code>Thread.sleep()</code>方法暂停线程的执行，比如暂停5秒</p>
+
+<pre><code class="language-java">  try {
+    Thread.sleep(5000);
+  } catch (InterruptedException e) {
+    e.printStackTrace();
+  }
+</code></pre>
+
+<p>可以看到线程调用Thread.sleep进入暂停状态后，可能在暂停过程中产生异常，这个异常表示收到了终止暂停状态的信号</p>
+
+<h2 id="toc_3">终止线程的暂停状态</h2>
+
+<p>调用线程对象(java.lang.Thread)的<code>interrupt()</code>方法可以终止处于暂停状态的线程，使其恢复成执行状态</p>
+
+<p>线程执行体MyRunner.java:</p>
+
+<pre><code class="language-java">public class MyRunner implements Runnable {
+    @Override
+    public void run() {
+      try {
+        Thread.sleep(5000);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+      // 在线程中执行的代码
+      System.out.println(&quot;running in a thread, name: &quot; + Thread.currentThread().getName());
+    }
+}
+</code></pre>
+
+<p>调用线程的interrupt方法终止线程的sleep状态MyThread.java</p>
+
+<pre><code class="language-java">public class MyThread {
+    public static void main(String[] args) {
+      Thread thread = new Thread(new MyRunner());
+      thread.start();
+      thread.interrupt();
+
+      System.out.println(&quot;Main thread exit&quot;);
+    }
+}
+</code></pre>
+
+<p>执行效果如下：<br/>
+<img src="media/15970226751276/15972856520631.jpg" alt=""/></p>
+
+<p>可以看到线程的sleep被终止，并收到了InterruptedException异常</p>
+
+<p>可以使用<code>Thread.currentThread().isInterrupted()</code>手动检查当前线程是否被中断过</p>
+
+<h2 id="toc_4">主动等待子线程执行完毕</h2>
+
+<p>使用线程去下载一个文件，然后主线程在执行完一段业务逻辑后，需要使用线程下载的文件，这个时候，线程不一定已经将文件下载完成，主线程就需要等待子线程执行完成了</p>
+
+<p>MyThread.java 模拟文件下载线程</p>
+
+<pre><code class="language-java">public class MyRunner implements Runnable {
+    @Override
+    public void run() {
+      System.out.println(&quot;1. start download file...&quot;);
+      try {
+        Thread.sleep(5000);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+      System.out.println(&quot;2. download file complete&quot;);
+    }
+}
+</code></pre>
+
+<p>主线程使用join()方法等待线程执行完成</p>
+
+<pre><code class="language-java">Thread thread = new Thread(new MyRunner());
+thread.start();
+
+try {
+  thread.join();
+} catch (InterruptedException e) {
+  e.printStackTrace();
+}
+System.out.println(&quot;3. process downloaded file&quot;);
+</code></pre>
+
+<p>执行效果参考如下：<br/>
+<img src="media/15970226751276/15972865347846.jpg" alt=""/></p>
+
+<h2 id="toc_5">线程间状态通知技术wait()和notify()</h2>
+
+<p>线程1: 下载文件<br/>
+线程2: 在文件下载完成后，对文件进行处理</p>
+
+<p>DownloadStatus.java在线程间传递文件下载状态</p>
+
+<pre><code class="language-java">public class DownloadStatus {
+  private boolean isFinish = false;
+
+  public boolean isFinish() {
+    return isFinish;
+  }
+
+  public void setFinish(boolean finish) {
+    isFinish = finish;
+  }
+}
+</code></pre>
+
+<p>下载文件线程 DownloadThread.java</p>
+
+<pre><code class="language-java">public class DownloadThread implements Runnable {
+
+  private DownloadStatus status;
+
+  public DownloadThread(DownloadStatus status) {
+    this.status = status;
+  }
+
+  @Override
+  public void run() {
+    try {
+      Thread.sleep(5000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    System.out.println(&quot;file in thread download finished.&quot;);
+    status.setFinish(true);
+    synchronized (status) {
+      status.notifyAll();
+    }
+  }
+}
+</code></pre>
+
+<p>可以看到文件下载完成后将下载完成标志isFinish置为true，并调用了状态对象的notifyAll()方法</p>
+
+<p>处理文件线程</p>
+
+<pre><code class="language-java">DownloadStatus status = new DownloadStatus();
+
+Thread thread = new Thread(new DownloadThread(status));
+thread.start();
+new Thread(() -&gt; {
+  while (!status.isFinish()) {
+    synchronized (status) {
+      try {
+        status.wait();
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+    }
+  }
+  System.out.println(&quot;process download file&quot;);
+}).start();
+</code></pre>
+
+<p>文件线程中启动死循环检测文件是否下载完成 while !status.isFinish()，并在循环体中调用wait()方法等待下载状态对象的通知</p>
+
+<p>使用notifyAll()和wait()进行状态变更通知是为了避免死循环占用过多的cpu资源</p>
+
+<h2 id="toc_6">多线程保证变量安全技术</h2>
+
+<p>多线程变量安全指多个线程对同一个变量进行修改，其修改后的结果符合预期</p>
+
+<p>1. 每个线程使用独立的变量，在全部线程执行完成后，对每个线程中的变量进行汇总<br/>
+2. 对变量进行加锁，加可重入锁</p>
+
+<pre><code class="language-java">lock = new ReentrantLock();
+lock.lock();
+// 对变量进行修改的code
+lock.unlock();
+</code></pre>
+
+<p>3. 使用synchronized关键字</p>
+
+<pre><code class="language-java">synchronized(需要检测的对象) {
+    // 对变量进行修改的code
+}
+</code></pre>
+
+<p>4. volatile关键字：使cpu不将内存中的变量放到cpu缓存中，避免多线程变量可见性问题</p>
+
+<pre><code class="language-java">private volatile bool isFinished;
+</code></pre>
+
+<p>5. atomic系列类， java.util.concurrent.atomic</p>
+
+<pre><code class="language-java">private AtomicInteger count;
+</code></pre>
+
+<h2 id="toc_7">一些注意的点</h2>
+
+<ol>
+<li>notify通知一个wait()的线程，notifyAll通知所有wait的线程</li>
+<li>多线程集合对象可以使用synchronized集合保证线程安全 <code>Collection&lt;Integer&gt; intList = Collections.synchronizedCollection(new ArrayList&lt;&gt;())</code></li>
+<li>多线程hash表对象可以使用ConcurrentHashMap保证线程安全 <code>Map&lt;Integer, String&gt; map = new ConcurrentHashMap&lt;&gt;()</code></li>
+</ol>
+
+<h2 id="toc_8">参考资料</h2>
+
+<ol>
+<li><a href="https://www.cnblogs.com/duanxz/p/5038471.html">https://www.cnblogs.com/duanxz/p/5038471.html</a></li>
+<li><a href="https://blog.csdn.net/onlybless/article/details/79881536">https://blog.csdn.net/onlybless/article/details/79881536</a></li>
+<li><a href="https://www.cnblogs.com/mengdd/archive/2013/02/16/2913806.html">https://www.cnblogs.com/mengdd/archive/2013/02/16/2913806.html</a></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[14/24 设计模式之状态模式 State Pattern]]></title>
+    <link href="https://neatlifecoco.com/15864793262262.html"/>
+    <updated>2020-04-10T08:42:06+08:00</updated>
+    <id>https://neatlifecoco.com/15864793262262.html</id>
+    <content type="html"><![CDATA[
+<p>类别：行为型设计模式</p>
+
+<p>目的：对象在不同状态下表现出一组不同的行为，运行状态可以进行切换</p>
+
+<p>完整代码参考：<a href="https://ct0-my.sharepoint.com/:u:/g/personal/neatlife_ct0_onmicrosoft_com/EdRVuEVbcBhDtqc8HEttwCMBcOSst1opDQw02Wfbqhah0Q?e=pnYxZx">https://ct0-my.sharepoint.com/:u:/g/personal/neatlife_ct0_onmicrosoft_com/EdRVuEVbcBhDtqc8HEttwCMBcOSst1opDQw02Wfbqhah0Q?e=pnYxZx</a></p>
+
+<h2 id="toc_0">典型场景</h2>
+
+<p>角色：护士、患者<br/>
+场景：患者会根据自生的状态对护士的照顾做出不同的行为</p>
+
+<p>患者处于稳定状态</p>
+
+<ol>
+<li>护士带患者去散步，患者将处于稳定状态</li>
+<li>给稳定患者供氧，患者将从稳定状态转为不稳定状态</li>
+</ol>
+
+<p>患者处于不稳定状态</p>
+
+<ol>
+<li>护士带患者去散步，患者将继续处于不稳定状态，情况可能家中</li>
+<li>给稳定患者供氧，患者将从不稳定状态转为稳定状态</li>
+</ol>
+
+<h2 id="toc_1">模式实现</h2>
+
+<p>护士类Nurse.java</p>
+
+<pre><code class="language-java">public class Nurse {
+
+    PatientStateBehavior state;
+    StablePatientStateBehavior stablePatientState = new StablePatientStateBehavior(this);
+    UnStablePatientStateBehavior unStablePatientState = new UnStablePatientStateBehavior(this);
+
+    public void setState (PatientStateBehavior state) {
+        this.state = state;
+    }
+
+    public void supplyOxygen () {
+        state.supplyOxygen();
+    }
+
+    public void walking() {
+        state.walking();
+    }
+}
+</code></pre>
+
+<span id="more"></span><!-- more -->
+
+<p>患者行为类，稳定状态患者行为StablePatientStateBehavior.java，不稳定患者行为UnStablePatientStateBehavior.java</p>
+
+<pre><code class="language-java">public interface PatientStateBehavior {
+
+    void supplyOxygen ();
+
+    void walking();
+
+}
+
+class StablePatientStateBehavior implements PatientStateBehavior {
+
+    private Nurse context;
+
+    public StablePatientStateBehavior (Nurse context) {
+        this.context = context;
+    }
+
+    @Override
+    public void supplyOxygen () {
+        System.out.println(&quot;给稳定的患者供氧可能导致患者变得不稳定&quot;);
+        context.setState(context.unStablePatientState);
+    }
+
+    @Override
+    public void walking() {
+        System.out.println(&quot;让稳定的患者散步可以提高抵抗力&quot;);
+        context.setState(context.stablePatientState);
+    }
+}
+
+class UnStablePatientStateBehavior implements PatientStateBehavior {
+
+    private Nurse context;
+
+    public UnStablePatientStateBehavior (Nurse context) {
+        this.context = context;
+    }
+
+    @Override
+    public void supplyOxygen () {
+        System.out.println(&quot;给不稳定的患者供氧可以让患者变得稳定&quot;);
+        context.setState(context.stablePatientState);
+    }
+
+    @Override
+    public void walking() {
+        System.out.println(&quot;不稳定的患者不需要散步&quot;);
+        context.setState(context.unStablePatientState);
+    }
+
+}
+</code></pre>
+
+<p>可以看到，给患者执行不同的操作时，患者稳定、不稳定状态之间会根据行为是否合适而发生切换</p>
+
+<p>执行效果如下</p>
+
+<pre><code class="language-java">var nurse = new Nurse();
+System.out.println(&quot;初始不稳定的患者:&quot;);
+nurse.setState(nurse.unStablePatientState);
+nurse.supplyOxygen(); // 患者发生状态切换, 不稳定 -&gt; 稳定
+nurse.walking();
+
+System.out.println(&quot;\n初始稳定的患者:&quot;);
+nurse.setState(nurse.stablePatientState);
+nurse.supplyOxygen(); // 患者发生状态切换, 稳定 -&gt; 不稳定
+nurse.walking();
+</code></pre>
+
+<p><img src="media/15864793262262/15897629221546.jpg" alt="" style="width:460px;"/></p>
+
+<h2 id="toc_2">UML</h2>
+
+<p><img src="media/15864793262262/15897632309394.jpg" alt="" style="width:659px;"/></p>
+
+<h2 id="toc_3">一些注意的点</h2>
+
+<p>如果不会扩展新的状态，可以使用简单的if else结构</p>
+
+<p>实现同一个接口的对象实际运行的实现可以发生改变而呈现出不同的行为</p>
+
+<p>策略模式执行时自身策略对象不会发生改变，状态模式执行时，自生状态对象会发生改变</p>
+
+<p>状态模式可以处理所有状态的行为，策略模式一般只处理一种行为的不同策略</p>
+
+<h2 id="toc_4">参考资料</h2>
+
+<ol>
+<li><a href="https://www.geeksforgeeks.org/state-design-pattern/">https://www.geeksforgeeks.org/state-design-pattern/</a></li>
+<li><a href="https://stackoverflow.com/questions/1658192/what-is-the-difference-between-strategy-design-pattern-and-state-design-pattern">https://stackoverflow.com/questions/1658192/what-is-the-difference-between-strategy-design-pattern-and-state-design-pattern</a></li>
+<li><a href="https://javarevisited.blogspot.com/2014/04/difference-between-state-and-strategy-design-pattern-java.html">https://javarevisited.blogspot.com/2014/04/difference-between-state-and-strategy-design-pattern-java.html</a></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[python高性能之路:使用C/C++编写扩展]]></title>
+    <link href="https://neatlifecoco.com/15880004262195.html"/>
+    <updated>2020-04-27T23:13:46+08:00</updated>
+    <id>https://neatlifecoco.com/15880004262195.html</id>
+    <content type="html"><![CDATA[
+<p>脚本语言一般使用c等静态语言编写扩展提高性能，下面使用cpp编写一个实现两数之和的python扩展函数</p>
+
+<p>完成案例代码参考：<a href="https://1drv.ms/u/s!AquRvPzqx59RjAZ3wk6qpzqEDgF9?e=jZe5hu">https://1drv.ms/u/s!AquRvPzqx59RjAZ3wk6qpzqEDgF9?e=jZe5hu</a></p>
+
+<h2 id="toc_0">构建python环境</h2>
+
+<p>减少扩展开发对系统python的影响，建议使用venv创建一个新的python开发环境</p>
+
+<pre><code class="language-shell">virtualenv ~/develop/venvpy3
+</code></pre>
+
+<p>操作效果如下<br/>
+<img src="media/15880004262195/15880037312425.jpg" alt="" style="width:482px;"/></p>
+
+<p>使用命令<code>source ~/develop/venvpy3/bin/activate</code>激活即可</p>
+
+<h2 id="toc_1">创建扩展文件sumext.cpp</h2>
+
+<p>sumext.cpp</p>
+
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;stdio.h&gt;
+#include &lt;Python.h&gt;
+
+using namespace std;
+</code></pre>
+
+<p>主要是引入依赖的Python.h文件头即可，其它头文件按需引入使用</p>
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_2">实现两数相加函数</h2>
+
+<pre><code class="language-cpp">static PyObject* sum(PyObject* Self, PyObject *args)
+{
+    int a, b, s;
+    if (!PyArg_ParseTuple(args, &quot;ii&quot;, &amp;a, &amp;b)) {
+        return NULL;
+    }
+
+    s = a + b;
+
+    return Py_BuildValue(&quot;i&quot;, s);
+}
+</code></pre>
+
+<p>这个函数接受两个int类型的参数，有一个int类型的返回值</p>
+
+<h3 id="toc_3">函数参数解析</h3>
+
+<p>PyArg_ParseTuple将python脚本中传入的参数解析为cpp本地数据类型，i表示解析为int类型，两个i：&quot;ii&quot;表示有两个int类型的参数</p>
+
+<p>支持解析的数据类型列表参考：<a href="https://docs.python.org/3/c-api/arg.html">https://docs.python.org/3/c-api/arg.html</a></p>
+
+<h3 id="toc_4">函数返回值定义</h3>
+
+<p>Py_BuildValue用于将cpp本地数据类型转为python脚本数据类型，i表示将cpp中int类型转为python脚本变量</p>
+
+<p>支持解析的数据类型列表参考：<a href="https://docs.python.org/2.0/ext/buildValue.html">https://docs.python.org/2.0/ext/buildValue.html</a></p>
+
+<h2 id="toc_5">定义函数为python扩展函数</h2>
+
+<pre><code class="language-cpp">static PyMethodDef module_methods[] = {
+    {&quot;sum&quot;, (PyCFunction) sum, METH_VARARGS, NULL},
+    {NULL, NULL, 0, NULL}
+};
+</code></pre>
+
+<h2 id="toc_6">定义扩展基础信息</h2>
+
+<pre><code class="language-cpp">static struct PyModuleDef sumext = {
+    PyModuleDef_HEAD_INIT,
+    &quot;sumext&quot;,
+    &quot;extension for add two number&quot;,
+    -1,
+    module_methods
+};
+</code></pre>
+
+<h2 id="toc_7">在扩展钩子中注册扩展&amp;扩展函数</h2>
+
+<pre><code class="language-cpp">PyMODINIT_FUNC PyInit_sumext(void) {
+    return PyModule_Create(&amp;sumext);
+}
+
+PyMODINIT_FUNC PyInit_sum(void) {
+    return PyModule_Create(&amp;sumext);
+}
+</code></pre>
+
+<p>格式：PyInit_模块名/函数名<br/>
+作用：python加载模块/模块函数时的初始化函数，可以在模块/函数初始化函数中执行自定义钩子逻辑，最后返回扩展信息sumext即可</p>
+
+<h2 id="toc_8">编译扩展</h2>
+
+<p>setup.py:</p>
+
+<pre><code class="language-python">from distutils.core import setup, Extension
+
+setup(name=&#39;sumext&#39;, version=&#39;1.0&#39;, ext_modules=[Extension(&#39;sumext&#39;, [&#39;sumext.cpp&#39;])])
+</code></pre>
+
+<p>然后使用命令<code>python setup.py install</code>编译，效果参考如下<br/>
+<img src="media/15880004262195/15880041878967.jpg" alt="" style="width:810px;"/></p>
+
+<h2 id="toc_9">使用扩展</h2>
+
+<p>action.py</p>
+
+<pre><code class="language-python">import sumext
+
+sum=sumext.sum(1, 2)
+
+print(&quot;Sum is :&quot;, sum)
+</code></pre>
+
+<p>然后使用命令<code>python action.py</code>执行，执行效果如下：<br/>
+<img src="media/15880004262195/15880042867490.jpg" alt="" style="width:336px;"/></p>
+
+<p>可以看到扩展已经成功加载执行了</p>
+
+<h2 id="toc_10">参考资料</h2>
+
+<ol>
+<li><a href="https://docs.python.org/3/extending/extending.html">https://docs.python.org/3/extending/extending.html</a></li>
+<li><a href="https://docs.python.org/3/extending/building.html">https://docs.python.org/3/extending/building.html</a></li>
+<li><a href="https://www.tutorialspoint.com/python/python_further_extensions.htm">https://www.tutorialspoint.com/python/python_further_extensions.htm</a></li>
+<li><a href="https://docs.python.org/3/c-api/arg.html">https://docs.python.org/3/c-api/arg.html</a></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[mysql查询优化相关技术]]></title>
+    <link href="https://neatlifecoco.com/15870941721023.html"/>
+    <updated>2020-04-17T11:29:32+08:00</updated>
+    <id>https://neatlifecoco.com/15870941721023.html</id>
+    <content type="html"><![CDATA[
+<ol>
+<li>查询优化
+<ol>
+<li>SQL查询执行顺序</li>
+<li>Where条件相关性能问题</li>
+<li>子查询(in/exist)相关</li>
+<li>分组排序相关</li>
+</ol></li>
+<li>索引优化</li>
+<li>事务</li>
+</ol>
+
+<h2 id="toc_0">0x01 SQL查询执行顺序</h2>
+
+<table>
+<thead>
+<tr>
+<th>执行顺序</th>
+<th>SQL关键字</th>
+<th>执行内容</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>8</td>
+<td>SELECT</td>
+<td>根据选择的字段,结果写入虚拟表T8</td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td>DISTINCT 字段</td>
+<td>对SELECT的结果T8执行去重后, 写入虚拟表T9</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>FROM 左表 as a</td>
+<td>对FROM中的左表与右表执行笛卡尔积,生成虚拟表T1</td>
+<td>每步操作结果都会生成一个虚拟表, 这里用T加执行顺序号来命名</td>
+</tr>
+<tr>
+<td>3</td>
+<td>LEFT JOIN 右表 as b</td>
+<td>如指定了左外连接,会将左表中存在,但右表不存在的行,添加到T2表,生成虚拟表T3; 如果FROM中包含多个表, 则会将T3与下一表重复执行步骤1~3</td>
+<td>Join类型:  Inner: 内联接, 等值连接  Outer: 外连接, 常用的Left join(以左表记录为基准),   Right join(以右表记录为基准)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>ON a.id = b.id</td>
+<td>对T1表应用on条件筛选, 符合条件的行写入虚拟表T2</td>
+<td>Inner jojn中on 与where条件效果相同;   left join中on与where条件效果不同;</td>
+</tr>
+<tr>
+<td>4</td>
+<td>WHERE 条件</td>
+<td>对T3表应用where条件过滤, 符合条件的记录写入T4表</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>GROUP BY 字段</td>
+<td>根据group by中字段 , 对T4执行分组,生成虚拟表T5</td>
+<td>注意:不在GROUP BY中的字段,如果出现在SELECT中,都要使用聚合类函数,不推荐下面的写法:  Select a,b, sum(c) from t  Group by a</td>
+</tr>
+<tr>
+<td>6</td>
+<td>WITH ROLLUP [CUBE]</td>
+<td>对T5结果,按不同维度执行统计,生成虚拟表T6</td>
+<td>GROUP BY ROLLUP(A,B,C) 结果  (A,B,C),(A,B), (A)  GROUP BY CUBE(A,B,C)结果  (A,B,C),(A,B)(A,C),(B,C)(A),(B),(C)</td>
+</tr>
+<tr>
+<td>7</td>
+<td>HAVING 条件</td>
+<td>对T6结果执行过滤,结果写入虚拟表T7</td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td>ORDER BY 字段</td>
+<td>对DISTINCT后的结果T9, 执行排序后写入虚拟表T10</td>
+<td>这部分可以使用字段别名, 字段运算或按字段顺序号执行排序操作</td>
+</tr>
+<tr>
+<td>11</td>
+<td>LIMIT</td>
+<td>对T10取出指定行数据记录后,返回最终结果</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_1">0x02 数据类型隐式转换</h2>
+
+<p>如果where条件中的字段是varchar, 查询时传入的是int或int,varchar混用方式,  即使字段上有索引 ，仍然会执行全表扫描(特别要注意大表的查询或更新); <br/>
+简单取巧的方式： 如果字段上有索引 ，但不确认字段是int或varchar,  可以全按字段串方式传入 ，这样不会有性能问题</p>
+
+<pre><code class="language-sql">SELECT
+    *
+FROM
+    tb_example
+WHERE
+    uid IN ( 17467432, 1617938, &#39;15698321&#39; );
+</code></pre>
+
+<p>正确写法：</p>
+
+<pre><code class="language-sql">SELECT
+*
+FROM
+    tb_example
+WHERE
+    uid IN ( &#39;17467432&#39;, &#39;1617938&#39;, &#39;15698321&#39; );
+</code></pre>
+
+<p>注意:  当字段类型为int时, 传入数字, 加不加引号都能正常使用索引; 但是, 当传入字符数据时, 由于找不到对应的数值, 系统会将其转化为0来处理, 遇到表中0值较多时, 会出现全表扫描问题</p>
+
+<pre><code class="language-sql">SELECT
+    *
+FROM
+    tb_example
+WHERE
+    device_id = &#39;unknown&#39;
+ORDER BY
+    `id` DESC
+</code></pre>
+
+<p>等价于: </p>
+
+<pre><code class="language-sql">SELECT
+    *
+FROM
+    `tb_example`
+WHERE
+    device_id = 0
+ORDER BY
+    `id` DESC
+</code></pre>
+
+<h2 id="toc_2">0x03 字段做函数类运算</h2>
+
+<p>由于语句对字段use_date做了日期转换，导致复合索引(xxx_status ,use_date)只能用到xxx_status , 无法利用use_date进行过滤</p>
+
+<pre><code class="language-sql">SELECT
+    COUNT( 1 ) AS cnt
+FROM
+    tb_xxx
+WHERE
+    xxx_status = 2 AND  DATE_FORMAT( use_date, &#39;%Y%m%d&#39; ) = DATE_FORMAT( &#39;2019-06-01&#39;, &#39;%Y%m%d&#39; )
+</code></pre>
+
+<p>正确写法：<br/>
+取消对字段的函数转换， 将日期转为对应的时间段， 修改后查询用时在13毫秒(修改前用时在1.2秒+)</p>
+
+<pre><code class="language-sql">SELECT
+    COUNT( 1 ) AS cnt
+FROM
+    tb_xxx
+WHERE
+    xxx_status = 2 AND    ( use_date &gt;= &#39;2019-06-01&#39; AND use_date &lt; &#39;2019-06-02&#39; )
+</code></pre>
+
+<h2 id="toc_3">0x04 字符集不同引发性能异常</h2>
+
+<p>tb_example 两表join时，会提示错误：Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) AND (utf8mb4_unicode_ci,IMPLICIT) FOR operation &#39;=&#39;, 所以开发同事添加了convert保持字符集一致， 但这样会导致全表数据的字符集转换问题</p>
+
+<pre><code class="language-sql">SELECT  i.example_column
+FROM
+    tb_example i
+    LEFT JOIN tb_example a ON  i.example_column =  CONVERT ( a.example_column USING utf8mb4 )
+WHERE
+    i.create_time BETWEEN &#39;2019-05-27 00:00:00&#39; 
+    AND &#39;2019-05-27 23:59:59&#39; 
+    AND l.create_time &lt; i.create_time AND a.create_time &gt; i.create_time ORDER BY  i.example_column DESC
+</code></pre>
+
+<h3 id="toc_4">优化方式:</h3>
+
+<p>(1)统一字符集比较规则<br/>
+tb_example 表的数据比较规则修改为utf8mb4_general_ci（utf8mb4_general_ci性能要高于utf8mb4_unicode_ci)</p>
+
+<pre><code class="language-sql">ALTER TABLE tb_example CONVERT TO CHARSET utf8mb4 COLLATE utf8mb4_general_ci;
+</code></pre>
+
+<p>(2)表间关联字段添加索引</p>
+
+<pre><code class="language-sql">ALTER TABLE tb_example ADD INDEX (create_time);
+ALTER TABLE tb_example ADD INDEX (example_column);
+</code></pre>
+
+<h3 id="toc_5">正确写法: </h3>
+
+<pre><code class="language-sql">SELECT  i.example_column  
+FROM
+    tb_example i
+    LEFT JOIN tb_example a ON  i.example_column =   a.example_column 
+WHERE
+    i.create_time BETWEEN &#39;2019-05-27 00:00:00&#39;
+    AND &#39;2019-05-27 23:59:59&#39; a.create_time &gt; i.create_time ORDER BY  i.example_column DESC
+</code></pre>
+
+<h2 id="toc_6">0x05 字符集补充说明</h2>
+
+<p>字符集按库-&gt;表-&gt;字段 ，从上到下的顺序继承， 即建库时指定了utf8mb4, 表与字段未指定字符集时，会继承库的字符集ut8mb4;<br/>
+反过来则是覆盖关系 ，如果指定库字符集为utf8mb4, 多人同时开发时, 如果建表时有指定utf8, 那么表使用utf8字符集，如果在修改字段时指定为gbk,则此字段实际存储数据时按gbk存储，<br/>
+这种情况会导致乱码产生或多表join时的性能问题，需要特别注意</p>
+
+<h2 id="toc_7">0x06 or与union all</h2>
+
+<p>建议将or条件转换为union all，充分利用多个or条件上的索引以提高性能</p>
+
+<pre><code class="language-sql">select count(id) as num_count from tb_example where uid = 8212123 and (type = 1 or type  = 2 or type = 3) and read_yn = 0
+</code></pre>
+
+<p>正确写法:</p>
+
+<pre><code class="language-sql">SELECT SUM(id) FROM (
+SELECT COUNT(id) AS id FROM tb_example WHERE uid=8212123 AND read_yn=0 AND TYPE=1 UNION ALL
+SELECT COUNT(id) FROM tb_example WHERE uid=8212123 AND read_yn=0 AND NAME=2 UNION ALL
+SELECT COUNT(id) FROM tb_example WHERE uid=8212123 AND read_yn=0 AND TYPE=3) t
+</code></pre>
+
+<p>注意:<br/>
+Union对结果集执行去重操作,而Union all不去重复, 所以后者性能较高,可以根据业务需要选择使用</p>
+
+<h2 id="toc_8">0x07 NULL与DEFAULT使用</h2>
+
+<p>(1)建议表字段定义为NOT NULL, 尽量设置默认值(如int默认为0, varchar默认为’’，date默认为1000-01-01等), 将读写时的True, False, NULL三值判断变为True,False两值判断,方便代码中处理<br/>
+注意: NOT NULL 与 DEFAULT要同时设置才能取消NULL值写入</p>
+
+<p>例: 字段允许NULL时, 查询所有数据</p>
+
+<pre><code class="language-sql">select … from ... where username = &#39;a&#39; or username != &#39;a&#39; or username is null
+</code></pre>
+
+<p>字段NOT NULL时,查询所有数据</p>
+
+<pre><code class="language-sql">select … from ... where username = &#39;a&#39; or username != &#39;a&#39;
+</code></pre>
+
+<p>  (2)select/update语句的where条件中使用 is null 判断null, 不能使用 =null,  update中更新字段部分可以使用 set 字段= null</p>
+
+<pre><code class="language-sql">Update … set name = null where name is null ?
+Select … from … where name is null ?
+</code></pre>
+
+<h2 id="toc_9">0x08 LEFT JOIN中ON与WHERE差异</h2>
+
+<p>(1)LEFT JOIN中ON不起过滤作用, 实际执行时会将两表join时的相等记录与<br/>
+左表中存在但右表不存在的记录组合在一起</p>
+
+<pre><code class="language-sql">SELECT a.uid AS a_uid, b.uid AS b_uid  FROM tb_example a
+LEFT JOIN tb_example b ON a.uid = b.uid
+AND a.uid = 12547784
+</code></pre>
+
+<p><img src="media/15870941721023/15870961823359.jpg" alt=""/></p>
+
+<p>(2)LEFT JOIN中WHERE才起到真正的过滤作用<br/>
+   INNER JOIN:内联接, 可简写为JOIN, 无论使用ON还是WHERE结果都一样</p>
+
+<pre><code class="language-sql">SELECT a.uid AS a_uid, b.uid AS b_uid  FROMtb_example a
+LEFT JOIN tb_example b ON a.uid = b.uid
+WHERE a.uid = 12547784
+</code></pre>
+
+<p><img src="media/15870941721023/15870962258071.jpg" alt=""/></p>
+
+<h2 id="toc_10">0x09 in子查询列表值数量</h2>
+
+<p>当in子查询列表值数量&gt;=1000时(不同版本会有差异), mysql会使用到临时表不降低性能,    注意控制传值数量, </p>
+
+<pre><code class="language-sql">SELECT * FROM tb_order_detailed
+WHERE child_oid IN(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18…)
+</code></pre>
+
+<h2 id="toc_11">0x0A not exists 与 not in</h2>
+
+<p>(1)当外部表A数据量明显大于子查询内部表B时使用in</p>
+
+<pre><code class="language-sql">SELECT A.name FROM A 
+WHERE NAME in(SELECT NAME FROM B)
+</code></pre>
+
+<p>(2)当外部表A数据量明显小于子查询内部表B时, 使用exists</p>
+
+<pre><code class="language-sql">SELECT A.name FROM A 
+WHERE EXISTS(SELECT NAME FROM B WHERE B.id = A.id)
+</code></pre>
+
+<p>当使用not in时注意,如果子查询的结果中包含null时,  实际返回结果为空, not exits没有这问题<br/>
+例:  当业务上确认以下查询有结果返回时,  如果B表中name有一行null记录存在时,  实际会出现没记录返回的情况</p>
+
+<pre><code class="language-sql">SELECT * FROM A WHERE name NOT IN (SELECT NAME FROM B)   # 无结果
+SELECT * FROM A WHERE name NOT EXISTS(SELECT NAME FROM B WHERE A.id = B.id)   # 正常返回结果
+</code></pre>
+
+<h2 id="toc_12">0x0B order by...limit分页</h2>
+
+<p>MySQL中的order by ...limit通常适用于查首页，最后页，数据量大时查中间页性能非常差 查前10条用时 0.001s SELECT * FROM tb_example ORDER BY id LIMIT 0,10 查10万条开始的前10条:　0.07s SELECT * FROM tb_example ORDER BY id LIMIT 100000,10</p>
+
+<p>常见优化方式：<br/>
+(1)借助主键<br/>
+如果是批量拉取数据, 可以先通过条件获取对应的主键 , 通过主键字段关联来取中间页数据;前端页面上的分页优化方法较多, 主要原则也是避开随机查询中间页数据</p>
+
+<pre><code class="language-sql"> SELECT a.* FROM tb_example a, (SELECT id FROM tb_example ORDER BY id LIMIT 10000,10) b WHERE a.id = b.id
+</code></pre>
+
+<p>(2) 使用分析函数生成序号 CTE<br/>
+注意:  数量过千万的大表, 排序时会比较慢, 要限制并发执行次数</p>
+
+<pre><code class="language-sql">WITH tmp AS (
+    SELECT
+        ROW_NUMBER ( ) OVER ( ORDER BY post_id ) AS rn,
+        post_id
+    FROM
+        tb_post
+    WHERE
+        create_date &lt;= &#39;2019-08-15 00:00:00&#39;
+        AND post_type = 5
+    ) SELECT
+    a.post_id,
+    a.cover_img
+FROM
+    tb_example a,
+    tmp b
+WHERE
+    b.rn &gt;= 6000
+    AND b.rn &lt; 8000
+    AND a.post_id = b.post_id;
+</code></pre>
+
+<h2 id="toc_13">0x0C 排序索引选择</h2>
+
+<p>mysql是基于成本选择的执行计划, 以下语句中create_date字段有索引, 但执行计划认为排序成本较高, 所以会优先选择order by 中的id主键索引, 导致实际用时在10s以上</p>
+
+<pre><code class="language-sql">SELECT * FROM `tb_example `t` WHERE (create_date &gt;= &#39;2020-02-25 00:00:00&#39;)) AND create_date &lt;= &#39;2020-02-25 23:59:59&#39;) AND (STATUS = 1) ORDER BY id DESC LIMIT 100
+</code></pre>
+
+<p>优化写法:<br/>
+通常情况日期随着自增id增长不断顺序写入, 可以将order by中的id更换为create_date , 充分利用时间索引, 可将耗时下降到10ms+<br/>
+如果日期字段与自增id不是这种关系或业务上验证两者返回结果有差异时, 不能使用此方法</p>
+
+<pre><code class="language-sql">SELECT
+    *
+FROM
+    `tb_example `t`
+WHERE
+    ( create_date &gt;= &#39;2020-02-25 00:00:00&#39; AND create_date &lt;= &#39;2020-02-25 23:59:59&#39; )
+    AND ( STATUS = 1 )  
+ORDER BY
+    create_date  DESC
+    LIMIT 100
+</code></pre>
+
+<h2 id="toc_14">0x0D group by用法及误区</h2>
+
+<p>以下group by写法是msyql扩展语法, 新版本中默认启用full group by限制, 执行会报语法错误, 由于咱们这边早期没做这方面限制, 现在限制会影响很多业务,  强制不推荐使用</p>
+
+<pre><code class="language-sql">SELECT
+    relate_order_id,
+    COUNT( * ),
+    create_date,
+    SUM( price_deposit ) 
+FROM
+    `tb_example WHERE create_date &gt;&#39;2020-02-01&#39; GROUP BY relate_order_id
+</code></pre>
+
+<p>正确写法:<br/>
+不在GROUP BY中的字段 , 在SELECT中都要使用聚合类函数, 如SUM,MAX,COUNT....等等, 按上面的写法, 不同relate_order_id分组取出来的create_date,对应的只是其中的第一条件记录对应的日期 , 在汇总统计运算中,大多没有实际参考意义</p>
+
+<pre><code class="language-sql">SELECT relate_order_id,COUNT(*), MAX(create_date),SUM(price_deposit) FROM `tb_example WHERE create_date &gt;&#39;2020-02-01&#39; GROUP BY relate_order_id
+</code></pre>
+
+<p>补充说明: <br/>
+mysql中group by默认会执行排序操作, 如果不是必须, 可以添加 order by null取消在数据库端排序, 减少数据库中的运算, 取到结果后在应用中再做排序</p>
+
+<h2 id="toc_15">0x0E 组合索引</h2>
+
+<pre><code class="language-sql">SELECT COUNT(*) AS cnt FROM tb_example WHERE update_date &gt;= &#39;2020-01-19&#39; AND last_city_id =19 AND es_update=0
+</code></pre>
+
+<p>针对上面sql, 新建索引参考:  where条件中last_city_id数据的唯一性高于 es_update,  而update_date是范围条件, 按先等值, 再范围条件的顺序建立, 如果都是等值条件, 唯一性高的字段在前, 添加组合索引如下:</p>
+
+<pre><code class="language-sql">ALTER TABLE tb_example ADD INDEX idx_last_city_id (last_city_id, es_update, update_date)
+</code></pre>
+
+<p>说明: 索引是最左前缀匹配, 除了上面sql, 以下语句也能用上新建索引,  语句中where条件不包含last_city_id字段, 都无法使用此索引</p>
+
+<pre><code class="language-sql">SELECT COUNT(*) AS cnt FROM tb_example WHERE   last_city_id =19 AND es_update=0
+SELECT COUNT(*) AS cnt FROM tb_example WHERE   last_city_id =19 AND update_date &gt;= &#39;2020-01-19&#39;
+SELECT COUNT(*) AS cnt FROM tb_example WHERE   last_city_id =19 
+</code></pre>
+
+<h2 id="toc_16">0x0F 强制索引</h2>
+
+<p>force index: <br/>
+当mysql默认的执行计划选择错误时, 可以通过force index指定过滤性更好的索引提升性能</p>
+
+<p>缺点: 当索引名称修改时, 应用代码中也要同步修改;<br/>
+当数据大量删除或跟之前相比有明显变化时,  如果mysql默认执行计划选择正确 , 那么强制索引也要跟着变化或取消</p>
+
+<pre><code class="language-sql">SELECT
+    count( 1 ) AS total
+FROM
+    `tb_example FORCE INDEX ( idx_uid_date )  
+WHERE
+    uid = 1785334
+    AND inverse_date &gt;- 1579366800
+    AND inverse_date &lt;- 1579363200 
+</code></pre>
+
+<h2 id="toc_17">0x10 Explain性能分析简介</h2>
+
+<p><img src="media/15870941721023/15870966502049.jpg" alt=""/></p>
+
+<ol>
+<li>Type<br/>
+当type出现ALL时, 表示实际执行时会有全表扫描问题, 需要尽力避免</li>
+<li>Key<br/>
+表示语句实际用到的索引, 索引效率差时,可以新增或强制索引</li>
+<li>Rows<br/>
+表示获取结果前需要过滤的行数, 越小越好</li>
+<li>key_len<br/>
+实际使用索引的字节长度, 通过这个值,可以了解多列组合索引中各字段是否完全使用</li>
+</ol>
+
+<h2 id="toc_18">0x11 判断组合索引使用的字段</h2>
+
+<p>例: 表tb_example 有索引idx_pid_edate(pid, type_id, status, end_date)<br/>
+索引中各字段数据类型:<br/>
+pid           INT   4<br/>
+type_id    TINYINT  1<br/>
+status      TINYINT  1<br/>
+end_date DATE  3</p>
+
+<p>说明: where条件有3个字段, 执行计划显示用到了idx_pid_edate 索引, 但key_len显示为5,  表示实际执行时, 只用到了索引中的前两列 pid, type_id (4+1=5bytes); 如果索引中有varchar型字段, key_len要相应增加1-2bytes, 如果允许为NULL, 增加1bytes</p>
+
+<p><img src="media/15870941721023/15870967042850.jpg" alt=""/></p>
+
+<h2 id="toc_19">0x12 mysq中实现事务的常见方式</h2>
+
+<p>方法1:start transaction; sql语句...;commit;说明: 在sql脚本,存储过程, 客户端工具,应用代码中都能通用, 推荐使用</p>
+
+<p>方法2:begin; sql语句...;commit;限制: 关键字包含begin,  在存储过程中不能使用<br/>
+方法3:set autocommit = 0; sql语句...;commit;说明: 借助mysql变量实现事务 , 通常应用框架中会使用aucommit来控制提交或回滚, 使用这种方式, 每执行一条语句就表示隐含开了个事务, 在读写语句执行完后,都要加commit, 另外, 通过日志排查问题不是很方便</p>
+
+<h2 id="toc_20">0x13 select ... for update使用误区</h2>
+
+<p>部分开发同事认为select ... for update语句默认会启用事务加锁,真实情况是, 除非显示地启用事务, 否则这个语句与普通select语句执行没有差异, 无法实现加锁功能; </p>
+
+<p>例:以下事务中的 for update语句, 实现对id=1的记录加意向更新锁,  在事务提交前, 其他会话会无法更新这条记录</p>
+
+<pre><code class="language-sql">start transaction;  
+select ... from tb where id = 1 for update;  
+update....commit;
+</code></pre>
+
+<h2 id="toc_21">0x14 使用事务注意事项</h2>
+
+<p>(1)代码中同一会话多次启用事务<br/>
+If条件处理逻辑,导致并发执行时,执行到这部分就return退出,并未执行到后面的commit语句,这种情况会出现一个长时间不提交的大事务,日志中会出现很多不同用户的访问全在同一线程中,<br/>
+由于事务长时间不提交也未回滚, 当有并发更新时, 会出现大量锁等待超时报错现象</p>
+
+<p>(2)MySQL中同一会话中多次启用事务</p>
+
+<p>start transaction;  <br/>
+  update tb_example set total_amount = 1000  where id = 1;  </p>
+
+<p>再次启用事务时, 会将前面未提交的事务执行自动提交</p>
+
+<p>start transaction; <br/>
+  insert into tb_example (uid, ukey, uvalue) VALUES(1, 5,203); <br/>
+commit;</p>
+
+<h3 id="toc_22">事务简单总结:</h3>
+
+<p>1.代码中避免<br/>
+确保事务短小,代码中做好各类异常判断处理, 及时提交或回滚语句,避免并发时,事务加锁时间过长影响业务正常运行</p>
+
+<p>2.proxy层限制<br/>
+通过max_transaction_time(可动态设置),强制中止超时的事务执行</p>
+
+<p>3.数据库限制<br/>
+通过innodb_rollback_on_timeout参数(重启实例生效),在实例级回滚所有未提交的异常事务, 适用于代码中事务问题少,回滚影响面较小时启用</p>
+
+<h2 id="toc_23">一些注意的点</h2>
+
+<p>是否遵守上面规则根据项目实际情况进行选择</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[13/24 设计模式之装饰器模式 Decorator Pattern]]></title>
+    <link href="https://neatlifecoco.com/15860923540802.html"/>
+    <updated>2020-04-05T21:12:34+08:00</updated>
+    <id>https://neatlifecoco.com/15860923540802.html</id>
+    <content type="html"><![CDATA[
+<p>类别：结构型设计模式</p>
+
+<p>目的：在不改变对象对外接口的限定下，动态对对象的行为(方法)进行一次/多次增强</p>
+
+<p>完整代码参考：<a href="https://1drv.ms/u/s!AquRvPzqx59RjABb2hfszxx7JUQu?e=5pPGPv">https://1drv.ms/u/s!AquRvPzqx59RjABb2hfszxx7JUQu?e=5pPGPv</a></p>
+
+<h2 id="toc_0">典型场景</h2>
+
+<p><img src="media/15860923540802/15863057953344.jpg" alt=""/></p>
+
+<p>蛋糕上需要添加一些装饰，这里假设蛋糕10块钱，每个装饰品的添加都需要支付一些额外的费用，比如添加添加糖果需要加2块钱，添加蜡烛需要1.5，既要加糖果、又要蜡烛就要多支付3.5元(2+1.5)</p>
+
+<p>用代码表示这些不同状态的蛋糕很容易想到使用class表示，一个class表示一种蛋糕:</p>
+
+<table>
+<thead>
+<tr>
+<th>class</th>
+<th>作用</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>BaseCake.java</td>
+<td>基本蛋糕 10块</td>
+</tr>
+<tr>
+<td>CakeWithCandy.java</td>
+<td>加糖果的蛋糕 10+2=12块</td>
+</tr>
+<tr>
+<td>CakeWithCandle.java</td>
+<td>加蜡烛的蛋糕 10+1.5=11.5块</td>
+</tr>
+<tr>
+<td>CakeWithCandyAndCandle.java</td>
+<td>加糖果和蜡烛的蛋糕 10+2+1.5=13.5块</td>
+</tr>
+</tbody>
+</table>
+
+<span id="more"></span><!-- more -->
+
+<p>代码参考如下：</p>
+
+<pre><code class="language-java">public interface Cake {
+    abstract double getCost();
+}
+
+public class BaseCake implements Cake {
+    @Override
+    public double getCost() {
+        return 10;
+    }
+}
+
+public class CakeWithCandy implements Cake {
+    @Override
+    public double getCost() {
+        return 12;
+    }
+}
+
+public class CakeWithCandle implements Cake {
+    @Override
+    public double getCost() {
+        return 11.5;
+    }
+}
+
+public class CakeWithCandyAndCandle implements Cake {
+    @Override
+    public double getCost() {
+        return 13.5;
+    }
+}
+</code></pre>
+
+<h2 id="toc_1">基本事实</h2>
+
+<p>蛋糕的装饰品之间可以任意组合（比如可以选加其中几个装饰品或者都加），在蛋糕的装饰品很少，比如两个，枚举蛋糕的装饰品是ok的，比如上面的代码中有2个装饰品，组合结果产生3个class<br/>
+但是如果装饰品数量有多个，由这个装饰产生的class组合的数量就会剧增，比如再增加一个奶酪装饰品达到3个装饰品，对应的class数量将会骤增到6个</p>
+
+<pre><code class="language-text">x
+a b c
+
+xa xb xc
+xab xac xbc
+xabc
+</code></pre>
+
+<p>不同装饰的蛋糕是在基础蛋糕上应用不同的行为，比如这里是价格的修改，这种情况就可以使用装饰模式实现了</p>
+
+<h2 id="toc_2">模式实现</h2>
+
+<p>新增一个抽象装饰持有一个蛋糕对象的引用用来动态给蛋糕添加装饰，参考 Decoration.java</p>
+
+<pre><code class="language-java">public abstract class Decoration implements Cake{
+    private Cake cake;
+    
+    public Decoration(Cake cake) {
+        this.cake = cake;
+    }
+}
+</code></pre>
+
+<p>给蛋糕装饰糖果和蜡烛</p>
+
+<pre><code class="language-java">class CandyDecoration extends Decoration{
+    public CandyDecoration(Cake cake) {
+        super(cake);
+    }
+    
+    @Override
+    public double getCost () {
+        return cake.getCost() + 2;
+    }
+}
+
+
+class CandleDecoration extends Decoration{
+    public CandleDecoration(Cake cake) {
+        super(cake);
+    }
+
+    @Override
+    public double getCost () {
+        return cake.getCost() + 1.5;
+    }
+}
+</code></pre>
+
+<p>然后由使用方在程序执行期间选择是否使用某个装饰</p>
+
+<pre><code class="language-java">var cake = new BaseCake();
+System.out.println(&quot;base cake: &quot; + cake.getCost());
+var cakeWithCandy = new CandyDecoration(cake);
+System.out.println(&quot;cake with candy: &quot; + cakeWithCandy.getCost());
+var cakeWithCandle = new CandleDecoration(cake);
+System.out.println(&quot;cake with candle: &quot; + cakeWithCandle.getCost());
+var cakeWithCandyAndCandle = new CandleDecoration(new CandyDecoration(cake));
+System.out.println(&quot;cake with candy and candle: &quot; + cakeWithCandyAndCandle.getCost());
+</code></pre>
+
+<p>执行效果如下：<br/>
+<img src="media/15860923540802/15863298701017.jpg" alt="" style="width:535px;"/></p>
+
+<h2 id="toc_3">为什么装饰模式更好</h2>
+
+<p>动态给对象增加多个可选的行为，减少用class来描述产生的大量组合的class</p>
+
+<h2 id="toc_4">UML</h2>
+
+<p><img src="media/15860923540802/15863086590003.jpg" alt="" style="width:562px;"/></p>
+
+<h2 id="toc_5">一些注意的点</h2>
+
+<p>装饰使用组合具体的Cake对象来实现</p>
+
+<h2 id="toc_6">参考资料</h2>
+
+<ol>
+<li><a href="https://www.geeksforgeeks.org/decorator-pattern/">https://www.geeksforgeeks.org/decorator-pattern/</a></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[12/24 设计模式之适配器模式 Adapter Pattern]]></title>
+    <link href="https://neatlifecoco.com/15853623269736.html"/>
+    <updated>2020-03-28T10:25:26+08:00</updated>
+    <id>https://neatlifecoco.com/15853623269736.html</id>
+    <content type="html"><![CDATA[
+<p>类别：结构型设计模式</p>
+
+<p>目的：将历史遗留代码（通常是一个library)/三方代码转换成一个新接口，使得可以在使用这个新接口的项目中使用</p>
+
+<p>完整代码参考：<a href="https://1drv.ms/u/s!AquRvPzqx59Ri3_qC9egk9qojRQp?e=oiO1Jh">https://1drv.ms/u/s!AquRvPzqx59Ri3_qC9egk9qojRQp?e=oiO1Jh</a></p>
+
+<h2 id="toc_0">典型场景</h2>
+
+<p>这里拿一个系统中的支付模块举例，一个支付模块会对接多个支付比如微信，支付宝等</p>
+
+<h3 id="toc_1">基本事实</h3>
+
+<p>在现有代码中，<strong>已在使用一种支付方式</strong>处理订单，对应的支付接口Pay.java参考如下</p>
+
+<pre><code class="language-java">public interface Pay {
+    void setAmount(Integer amount);
+    void makePayment();
+}
+</code></pre>
+
+<p>上面这个接口的实现<code>PayImpl.java</code></p>
+
+<pre><code class="language-java">public class PayImpl implements Pay {
+    @Override
+    public void setAmount(Integer amount) {
+        System.out.println(&quot;set pay impl&quot;);
+    }
+
+    @Override
+    public void makePayment() {
+        System.out.println(&quot;make payment&quot;);
+    }
+}
+</code></pre>
+
+<p>service<code>MyService.java</code>中使用支付方式处理订单，参考如下：</p>
+
+<span id="more"></span><!-- more -->
+
+<pre><code class="language-java">public class MyService {
+    public void processOrder(Pay pay) {
+        pay.setAmount(1);
+        pay.makePayment();
+    }
+}
+</code></pre>
+
+<p>调用参考</p>
+
+<pre><code class="language-java">var myservice = new MyService();
+var pay = new PayImpl();
+myservice.processOrder(pay);
+</code></pre>
+
+<p>运行效果如下：<br/>
+<img src="media/15853623269736/15858733209991.jpg" alt="" style="width:323px;"/><br/>
+可以看到现有支付调用是ok的</p>
+
+<h3 id="toc_2">接入一个新的支付方式</h3>
+
+<p>新的支付方式比如Pay1的接口<code>Pay1.service</code>参考如下：</p>
+
+<pre><code class="language-java">public interface Pay1 {
+    void init();
+    void setPrice(Integer amount);
+    void processPay();
+}
+</code></pre>
+
+<p>对应实现Pay1Impl.java</p>
+
+<pre><code class="language-java">public class Pay1Impl implements Pay1 {
+    @Override
+    public void init() {
+        System.out.println(&quot;pay1 init&quot;);
+    }
+
+    @Override
+    public void setPrice(Integer amount) {
+        System.out.println(&quot;pay1 set amount&quot;);
+    }
+
+    @Override
+    public void processPay() {
+        System.out.println(&quot;pay1 make payment&quot;);
+    }
+}
+</code></pre>
+
+<p>和现存支付接口对比</p>
+
+<table>
+<thead>
+<tr>
+<th>Pay1.java</th>
+<th>Pay.java</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>init</td>
+<td>不存在</td>
+</tr>
+<tr>
+<td>setPrice</td>
+<td>setAmount</td>
+</tr>
+<tr>
+<td>processPay</td>
+<td>makePayment</td>
+</tr>
+</tbody>
+</table>
+
+<p>可以看到被使用的第三方支付方式的接口和项目中现存的不一样，这样就不能在MyService中直接使用了（参考编辑器的提示）<br/>
+<img src="media/15853623269736/15858744898858.jpg" alt="" style="width:745px;"/><br/>
+这种情况就可以使用适配模式了</p>
+
+<h2 id="toc_3">模式实现</h2>
+
+<p>就是将需要新增的三方支付方式Pay1适配成目前项目需要的Pay，新增一个类比如Pay1Adapter进行接口转换</p>
+
+<p>Pay1Adapter.java参考如下：</p>
+
+<pre><code class="language-java">public class Pay1Adapter implements Pay {
+    private Pay1 pay1;
+    
+    public Pay1Adapter(Pay1 pay1) {
+        this.pay1 = pay1;
+    }
+
+    @Override
+    public void setAmount(Integer amount) {
+        pay1.init();
+        pay1.setPrice(amount);
+    }
+
+    @Override
+    public void makePayment() {
+        pay1.processPay();
+    }
+}
+</code></pre>
+
+<p>适配效果如下<br/>
+<img src="media/15853623269736/15858746741871.jpg" alt="" style="width:551px;"/></p>
+
+<p>可以看到经过适配后，Pay1可以在需要Pay接口的项目中使用了</p>
+
+<p>这个将Pay1接口转成Pay接口的Pay1Adapter就是适配器</p>
+
+<h2 id="toc_4">UML</h2>
+
+<p><img src="media/15853623269736/15858752163747.jpg" alt="" style="width:721px;"/></p>
+
+<h2 id="toc_5">为什么要使用适配器</h2>
+
+<ol>
+<li>尽可能使用最少的代码复用三方代码</li>
+<li>避免直接修改三方代码</li>
+</ol>
+
+<h2 id="toc_6">一些注意的点</h2>
+
+<p>一般三方sdk不会为某个系统单独进行适配，就需要自行进行适配了</p>
+
+<h2 id="toc_7">参考资料</h2>
+
+<ol>
+<li><a href="https://www.geeksforgeeks.org/adapter-pattern/">https://www.geeksforgeeks.org/adapter-pattern/</a></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[11/24 设计模式之模板方法模式 Template Method Pattern]]></title>
+    <link href="https://neatlifecoco.com/15852043608231.html"/>
+    <updated>2020-03-26T14:32:40+08:00</updated>
+    <id>https://neatlifecoco.com/15852043608231.html</id>
+    <content type="html"><![CDATA[
+<p>类别：行为型设计模式</p>
+
+<p>目的：定一个代码模板，确保代码执行时会把模板中的代码一并执行，降低漏写约定代码的可能</p>
+
+<p>完整代码参考：<a href="https://1drv.ms/u/s!AquRvPzqx59Ri3796seig6pm77ZO?e=gYrllO">https://1drv.ms/u/s!AquRvPzqx59Ri3796seig6pm77ZO?e=gYrllO</a></p>
+
+<h2 id="toc_0">典型场景</h2>
+
+<p>这里拿集成支付网关举例，比如业务中对支付的抽象如下</p>
+
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>作用</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>create</td>
+<td>发起支付</td>
+</tr>
+<tr>
+<td>query</td>
+<td>查询订单</td>
+</tr>
+<tr>
+<td>refund</td>
+<td>退款</td>
+</tr>
+</tbody>
+</table>
+
+<p>在上面执行的每一步进行日志记录</p>
+
+<p>对应的接口Pay.java参考如下</p>
+
+<pre><code class="language-java">public interface Pay {
+    void create();
+
+    void query();
+
+    void refund();
+}
+</code></pre>
+
+<p>实现一个支付方式，比如支付宝支付，<strong>在每一个支付步骤进行日志记录</strong>，参考如下：</p>
+
+<span id="more"></span><!-- more -->
+
+<pre><code class="language-java">import java.util.logging.Logger;
+
+public class AliPay implements Pay {
+    Logger logger = Logger.getLogger(Pay.class.getName());
+
+    @Override
+    public void create() {
+        logger.info(&quot;alipay create&quot;);
+        System.out.println(&quot;call alipay create api&quot;);
+    }
+
+    @Override
+    public void query() {
+        logger.info(&quot;alipay query&quot;);
+        System.out.println(&quot;call alipay query api&quot;);
+    }
+
+    @Override
+    public void refund() {
+        logger.info(&quot;alipay refund&quot;);
+        System.out.println(&quot;call alipay refund api&quot;);
+    }
+}
+</code></pre>
+
+<p>上面代码由一个人维护是ok的，但是如果由另一个人新增一个支付（即实现另一个Pay接口）比如微信支付，可能无法保证日志记录相关代码会被编码了，这种情况就可以使用模板方法模式</p>
+
+<h2 id="toc_1">模式实现</h2>
+
+<p>Pay接口修改抽象类，并把日志记录相关代码移入Pay抽象类中，参考如下：</p>
+
+<pre><code class="language-java">public abstract class Pay {
+    Logger logger = Logger.getLogger(Pay.class.getName());
+
+    public void create() {
+        logger.info(&quot;alipay create&quot;);
+        doCreate();
+    }
+
+    public void query() {
+        logger.info(&quot;alipay query&quot;);
+        doQuery();
+    }
+
+    public void refund() {
+        logger.info(&quot;alipay refund&quot;);
+        doRefund();
+    }
+
+    abstract protected void doCreate();
+
+    abstract protected void doQuery();
+
+    abstract protected void doRefund();
+}
+</code></pre>
+
+<p>可以看到</p>
+
+<ol>
+<li>把Pay接口改为Pay抽象类后，不改变这个抽象类对外暴露的接口</li>
+<li>日志记录代码编码在了抽象类中</li>
+<li>具体发起支付的相关代码抽象在了doxxx方法中</li>
+<li>这样在实现一个新的支付方式时，实现protected的doxxx系列方法记录，调用方使用create, query, refund进行支付操作</li>
+<li>确保日志记录代码(模板代码)一定会被执行</li>
+</ol>
+
+<p>上面这个Pay抽象类中的create, query, refund中会被执行的日志记录相关代码即使模板，doxxx系列方法就是需要用户填充到模板中的代码</p>
+
+<p>比如实现一个新的微信支付，参考如下</p>
+
+<pre><code class="language-java">public class WechatPay extends Pay {
+    @Override
+    public void doCreate() {
+        System.out.println(&quot;call wechatpay create api&quot;);
+    }
+
+    @Override
+    public void doQuery() {
+        System.out.println(&quot;call wechatpay query api&quot;);
+    }
+
+    @Override
+    public void doRefund() {
+        System.out.println(&quot;call wechatpay refund api&quot;);
+    }
+}
+</code></pre>
+
+<p>可以看到实现一个新的微信支付不用关心前置的日志操作了</p>
+
+<p>对应的调用代码参考如下：</p>
+
+<pre><code class="language-java">var wechatPay = new WechatPay();
+wechatPay.create();
+wechatPay.query();
+wechatPay.refund();
+</code></pre>
+
+<p>执行效果如下：<br/>
+<img src="media/15852043608231/15856158587764.jpg" alt="" style="width:544px;"/><br/>
+可以看到模板代码执行了</p>
+
+<h2 id="toc_2">UML</h2>
+
+<p><img src="media/15852043608231/15856165699251.jpg" alt="" style="width:644px;"/></p>
+
+<h2 id="toc_3">为什么组合优于继承</h2>
+
+<p>这里模板方法模式使用了抽象类Pay来定义模板代码，抽象类的使用需要通过继承来实现比如<code>WechatPay extends Pay</code>，因为很多语言是单继承的，java也是，这个时候WechatPay因为已经使用了继承，就不能再继承另一个类来增强其自生的功能了，即这种情况 组合优于继承，实际编码中，大部分都是这种情况，即变成了<strong>组合优于继承</strong>这种说法</p>
+
+<h2 id="toc_4">为什么模板方法模式更好</h2>
+
+<ol>
+<li>通用模板代码只需在抽象类中维护一份</li>
+<li>确保模板代码执行了，确保收集到了需要的数据</li>
+</ol>
+
+<h2 id="toc_5">一些注意的点</h2>
+
+<p>模板代码这种存在部分具体实现，部分抽象实现的代码适合使用抽象类来实现</p>
+
+<h2 id="toc_6">参考资料</h2>
+
+<ol>
+<li><a href="https://www.geeksforgeeks.org/template-method-design-pattern/">https://www.geeksforgeeks.org/template-method-design-pattern/</a></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[10/24 设计模式之桥接模式 Bridge Pattern]]></title>
+    <link href="https://neatlifecoco.com/15850081985199.html"/>
+    <updated>2020-03-24T08:03:18+08:00</updated>
+    <id>https://neatlifecoco.com/15850081985199.html</id>
+    <content type="html"><![CDATA[
+<p>类别：结构型设计模式</p>
+
+<p>目的：将抽象和实现按维度拆分成两部分（通常两类接口），使得两部分都可以独立的进行迭代（变化），防止类数量爆发式增长</p>
+
+<p>完整代码参考：<a href="https://1drv.ms/u/s!AquRvPzqx59Ri33d5NhvwuPkHa8F?e=LLClnq">https://1drv.ms/u/s!AquRvPzqx59Ri33d5NhvwuPkHa8F?e=LLClnq</a></p>
+
+<h2 id="toc_0">典型场景</h2>
+
+<p>被抽象数量比较多时，新增特性导致抽象数量可能会骤增（比如一个特性就增加2-3个类）就可以考虑使用桥接模式了</p>
+
+<p>比如抽象万能电视机遥控场景、存在多个遥控场景(每个场景功能不一样)，以及要适配多种电视类型<br/>
+再比如造车，存在多种类型的车（卡车、公交车、小轿车等），每种类型的车的生产过程不尽相同</p>
+
+<p>这里拿万能遥控器场景举例，场景参考如下：</p>
+
+<ol>
+<li>基本遥控场景：开机、关机</li>
+<li>看电视台场景：选择电视台、同时也可以开关机</li>
+<li>看电影场景：播放、暂停、开关机等</li>
+</ol>
+
+<p>可以看到这个场景是有层级结构的，比如电视台场景就涵盖了基本的开关机场景</p>
+
+<p>目前举例适配的电视类型参考如下：</p>
+
+<ol>
+<li>索尼电视</li>
+<li>三星电视</li>
+</ol>
+
+<p>可以看到这个电视类型的适配可能会更多</p>
+
+<span id="more"></span><!-- more -->
+
+<h3 id="toc_1">抽象场景</h3>
+
+<p>这里使用抽象类来抽象遥控场景</p>
+
+<h4 id="toc_2">1. 基本遥控场景</h4>
+
+<pre><code class="language-java">abstract public class CommonScenes {
+    abstract public void turnOn();
+
+    abstract public void tureOff();
+}
+</code></pre>
+
+<h4 id="toc_3">2. 看电视台场景</h4>
+
+<pre><code class="language-java">abstract public class TvScenes extends CommonScenes {
+    abstract void setChannel();
+}
+</code></pre>
+
+<h4 id="toc_4">3. 看电影场景</h4>
+
+<pre><code class="language-java">abstract public class MovieScenes extends CommonScenes {
+    abstract void pause();
+
+    abstract void play();
+}
+</code></pre>
+
+<h3 id="toc_5">实现不同类型电视的场景操作对应的具体代码</h3>
+
+<p>然后对抽象进行具体的实现，可以估计到实现数量会比较多：比如场景有n个，电视机类型有m个，每个电视机类型都把n个场景实现一遍，那么实现的数量就是n*m个，随着n或者m的增加，具体实现的数量会骤增，参考如下：</p>
+
+<table>
+<thead>
+<tr>
+<th>实现</th>
+<th>class</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>三星基本遥控场景实现</td>
+<td>SamsungTvCommonScenes.java</td>
+</tr>
+<tr>
+<td>三星电影场景实现</td>
+<td>SamsungTvMovieScenes.java</td>
+</tr>
+<tr>
+<td>三星看电视场景实现</td>
+<td>SamsungTvTvScenes.java</td>
+</tr>
+<tr>
+<td>索尼基本遥控场景实现</td>
+<td>SonyTvCommonScenes.java</td>
+</tr>
+<tr>
+<td>索尼电影场景实现</td>
+<td>SonyTvMovieScenes.java</td>
+</tr>
+<tr>
+<td>索尼看电视场景实现</td>
+<td>SonyTvTvScenes.java</td>
+</tr>
+</tbody>
+</table>
+
+<p>这里拿<strong>三星看电视场景实现</strong>举例实现参考如下：</p>
+
+<pre><code class="language-java">public class SamsungTvTvScenes extends TvScenes {
+    @Override
+    void setChannel() {
+        // 使用三星电视sdk操作三星电视切换电视台
+        System.out.println(&quot;samsung tv set channel&quot;);
+    }
+
+    @Override
+    public void turnOn() {
+        // 使用三星电视sdk开机
+        System.out.println(&quot;samsung tv turn on&quot;);
+    }
+
+    @Override
+    public void tureOff() {
+        // 使用三星电视sdk关机
+        System.out.println(&quot;samsung tv turn off&quot;);
+    }
+}
+</code></pre>
+
+<p>代码层级结构参考如下：<br/>
+<img src="media/15850081985199/15851835522460.jpg" alt="" style="width:813px;"/></p>
+
+<p>可以看到随着场景/电视机类型的增加，实现的具体数量将会骤增，不利于扩展，这时候就可以使用桥接设计模式了</p>
+
+<h2 id="toc_6">模式实现</h2>
+
+<p>将上面的场景和电视机类型这两个维度进行拆分成两个抽象：场景抽象和电视机抽象，职责参考如下：</p>
+
+<ol>
+<li>电视机抽象：只负责抽象电视机、并实现抽象里的功能</li>
+<li>场景抽象：只负责抽象场景、控制电视机的具体逻辑交给电视机抽象的实现</li>
+</ol>
+
+<p>电视机抽象接口如下</p>
+
+<pre><code class="language-java">public interface Television {
+    void turnOn();
+
+    void tureOff();
+
+    void setChannel();
+}
+</code></pre>
+
+<p>不同的电视机类型实现这个电视机接口即可，比如三星电视参考如下：</p>
+
+<pre><code class="language-java">public class SamsungTelevision implements Television {
+    @Override
+    public void turnOn() {
+        System.out.println(&quot;samsung tv turn on&quot;);
+    }
+
+    @Override
+    public void tureOff() {
+        System.out.println(&quot;samsung tv turn off&quot;);
+    }
+
+    @Override
+    public void setChannel() {
+        System.out.println(&quot;samsung tv set channel&quot;);
+    }
+}
+</code></pre>
+
+<p>这样场景只需要持有不同电视机类型的引用即可，不需要为不同的电视机类型单独抽象了，参考如下</p>
+
+<pre><code class="language-java">public class CommonScenes {
+    private Television television; // 持有电视机的引用
+
+    public CommonScenes(Television television) {
+        this.television = television;
+    }
+
+    public void turnOn() {
+        television.turnOn();
+    }
+
+    public void tureOff() {
+        television.tureOff();
+    }
+}
+</code></pre>
+
+<h2 id="toc_7">UML</h2>
+
+<p><img src="media/15850081985199/15851847245907.jpg" alt="" style="width:841px;"/></p>
+
+<h2 id="toc_8">为什么桥接模式更好</h2>
+
+<p>两个维度都可以单独进行扩展了，比如新增加一个场景或者新增加一个电视机类型，不会造成类数量骤增了，场景和电视机这两个维度通过组合实现完整的场景，比如三星电视看电影场景组合代码参考如下：</p>
+
+<pre><code class="language-java">Television samsumngTelevision = new SamsungTelevision();
+MovieScenes movieScenes = new MovieScenes(samsumngTelevision);// 组合
+    
+movieScenes.pause();
+movieScenes.play();
+</code></pre>
+
+<h2 id="toc_9">一些注意的点</h2>
+
+<p>通过桥接按维度拆分成可独立扩展的部分，然后通过组合形成完整的使用场景</p>
+
+<h2 id="toc_10">参考资料</h2>
+
+<ol>
+<li><a href="https://www.geeksforgeeks.org/bridge-design-pattern/">https://www.geeksforgeeks.org/bridge-design-pattern/</a></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[9/24 设计模式之迭代器者模式 Iterator Pattern]]></title>
+    <link href="https://neatlifecoco.com/15846628308871.html"/>
+    <updated>2020-03-20T08:07:10+08:00</updated>
+    <id>https://neatlifecoco.com/15846628308871.html</id>
+    <content type="html"><![CDATA[
+<p>类别：行为型设计模式</p>
+
+<p>目的：在改变对象内部数据结构时，不改变外部对该对象的迭代行为，从而减少因数据结构改变带来的外部代码改变</p>
+
+<p>完整代码参考：<a href="https://1drv.ms/u/s!AquRvPzqx59Ri3wVBHQNkHkAz7ci?e=bO7hoD">https://1drv.ms/u/s!AquRvPzqx59Ri3wVBHQNkHkAz7ci?e=bO7hoD</a></p>
+
+<h2 id="toc_0">典型场景</h2>
+
+<p>比如保存历史内容的编辑器Editor, 业务场景中需要取出所有的历史记录进行循环处理，一般是在Editor中提供一个方法返回所有的历史内容</p>
+
+<p><strong>Editor.java参考如下：</strong></p>
+
+<pre><code class="language-java">public class Editor {
+    private List&lt;String&gt; contentHistory = new ArrayList&lt;&gt;();
+
+    public void push(String content) {
+        contentHistory.add(content);
+    }
+
+    public String pop() {
+        return contentHistory.remove(contentHistory.size() - 1);
+    }
+    
+    public List&lt;String&gt; getContentHistory() {
+        return contentHistory;
+    }
+}
+</code></pre>
+
+<p>对应的循环历史记录的代码参考如下：</p>
+
+<span id="more"></span><!-- more -->
+
+<pre><code class="language-java">var editor = new Editor();
+
+for (int i = 0; i &lt; editor.getContentHistory().size(); i ++) {
+    System.out.println(&quot;content: &quot; + editor.getContentHistory().get(i));
+}
+</code></pre>
+
+<p>此时，上面的方式都是ok的，但是如果<code>List&lt;String&gt; contentHistory</code>因为业务需求变更了数据类型为<code>private String[] contentHistory = new String[10]</code></p>
+
+<pre><code class="language-java">public class Editor {
+    // ...
+    private String[] contentHistory = new String[10];
+    public String[] getContentHistory() {
+        return contentHistory;
+    }
+    // ...
+}
+</code></pre>
+
+<p>那上面的循环就会因为数据类型改变而需要相应的调整为：</p>
+
+<pre><code class="language-java">var editor = new Editor();
+for (int i = 0; i &lt; editor.getCount(); i ++) {
+    System.out.println(&quot;content: &quot; + editor.getContentHistory()[i]);
+}
+</code></pre>
+
+<p>在编辑器历史记录被引用次数很多时，比如数十次，这个相关代码调整的成本是非常大的，这时候就可以使用迭代器模式了</p>
+
+<h2 id="toc_1">模式实现</h2>
+
+<p>定义迭代器接口</p>
+
+<pre><code class="language-java">public interface Iterator {
+    boolean hasNext(); // 判断被循环的数据结构是否循环到末尾了
+
+    String current(); // 获取当前循环到的数据
+
+    void next(); // 准备获取下一个数据
+}
+</code></pre>
+
+<p>然后把这个contentHistory数据结构使用这个迭代器接口的实现类进行包装返回，使用时用这个迭代器循环contentHistory，比如<code>private String[] contentHistory = new String[10]</code>实现迭代器参考如下</p>
+
+<pre><code class="language-java">public class ArrayIterator implements Iterator {
+    private Editor editor;
+    private int count;
+
+    public ArrayIterator(Editor editor) {
+        this.editor = editor;
+    }
+
+    @Override
+    public boolean hasNext() {
+        return (count &lt; editor.getCount());
+    }
+
+    @Override
+    public String current() {
+        return editor.getContentHistory()[count];
+    }
+
+    @Override
+    public void next() {
+        count++;
+    }
+}
+</code></pre>
+
+<p>使用方式参考如下：</p>
+
+<pre><code class="language-java">var editor = new Editor();
+Iterator iterator = editor.createIterator(); // 注意这里的迭代器接口Iterator
+
+while (iterator.hasNext()) {
+    System.out.println(&quot;content: &quot; + iterator.current());
+    iterator.next();
+}
+</code></pre>
+
+<p>可以看到循环contentHistory使用iterator迭代器进行代替了，这时如果contentHistory数据结构发生改变，只需要修改迭代器内部对新数据结构进行适配，不会影响使用Iterator接口的调用方，这样就减少了重复的代码修改了</p>
+
+<p>比如<code>List&lt;String&gt; contentHistory</code>迭代器核心代码参考如下：</p>
+
+<pre><code class="language-java">public class ListIterator implements Iterator {
+    private Editor editor;
+    private int count;
+
+    public ListIterator(Editor editor) {
+        this.editor = editor;
+    }
+
+    @Override
+    public boolean hasNext() {
+        return count &lt; editor.getContentHistory().size();
+    }
+
+    @Override
+    public String current() {
+        return editor.getContentHistory().get(count);
+    }
+
+    @Override
+    public void next() {
+        count++;
+    }
+}
+</code></pre>
+
+<p>可以看到使用数据结构的地方依赖了Iterator接口，只要数据结构实现了Iterator接口，使用方就无需改动了</p>
+
+<h2 id="toc_2">UML</h2>
+
+<p><img src="media/15846628308871/15849264388969.jpg" alt="" style="width:705px;"/></p>
+
+<h2 id="toc_3">为什么迭代器模式更好</h2>
+
+<p>解偶因为数据结构变化而需要调整的代码到迭代器接口中，降低数据结构改变的维护成本</p>
+
+<h2 id="toc_4">一些注意的点</h2>
+
+<p>迭代器实现可以使用内部类</p>
+
+<h2 id="toc_5">参考资料</h2>
+
+<ol>
+<li><a href="https://java-design-patterns.com/patterns/iterator/">https://java-design-patterns.com/patterns/iterator/</a></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[佛系Xcode开发（一）从"0"构建一个mac菜单栏应用]]></title>
+    <link href="https://neatlifecoco.com/15847851899680.html"/>
+    <updated>2020-03-21T18:06:29+08:00</updated>
+    <id>https://neatlifecoco.com/15847851899680.html</id>
+    <content type="html"><![CDATA[
+<p>苹果作为世界市值最高的公司，即使它的商店对卖出的app提取30%的销售额，为其开发软件仍然是有价值的，研究学习mac和ios软件开发环境xcode就很有必要了</p>
+
+<p>完整代码参考：<a href="https://1drv.ms/u/s!AquRvPzqx59Ri3sBDF9hUZc71YmZ?e=TI6OeP">https://1drv.ms/u/s!AquRvPzqx59Ri3sBDF9hUZc71YmZ?e=TI6OeP</a></p>
+
+<h2 id="toc_0">创建项目</h2>
+
+<p>在File菜单中选择New -&gt; Project创建项目<br/>
+<img src="media/15847851899680/15847868094797.jpg" alt="" style="width:596px;"/></p>
+
+<p>选择macOS应用分类下的App即可，操作效果如下<br/>
+<img src="media/15847851899680/15847856026822.jpg" alt="" style="width:730px;"/></p>
+
+<p>然后xcode要求输入应用基础设计，一切从简参考如下：</p>
+
+<span id="more"></span><!-- more -->
+
+<p><img src="media/15847851899680/15847855687577.jpg" alt="" style="width:730px;"/></p>
+
+<h2 id="toc_1">导入菜单栏图标</h2>
+
+<p><img src="media/15847851899680/15847857478778.jpg" alt="" style="width:799px;"/></p>
+
+<p><img src="media/15847851899680/15847854787162.jpg" alt="" style="width:1400px;"/><br/>
+可以调整右边的Render As选项为Render As Template Image可以适配Mojave黑色模式的系统</p>
+
+<h2 id="toc_2">隐藏窗口</h2>
+
+<p>xcode默认创建的mac os应用运行后默认带个应用窗口如下：<br/>
+<img src="media/15847851899680/15847869901101.jpg" alt="" style="width:480px;"/><br/>
+菜单栏应用在Info.plist隐藏窗口</p>
+
+<ol>
+<li>设置Application is agent (UIElement)的类型为Boolean，值为True，操作效果如下：</li>
+<li>在Main.storyboard删掉Window Controller Scene</li>
+</ol>
+
+<p><img src="media/15847851899680/15847872092072.jpg" alt="" style="width:920px;"/></p>
+
+<p><img src="media/15847851899680/15847878983449.jpg" alt="" style="width:552px;"/></p>
+
+<p>然后在运行这个应用就只剩菜单了</p>
+
+<h2 id="toc_3">点击菜单按钮出来一个盒子</h2>
+
+<p>创建代表盒子的控制器：BoxViewController，核心代码如下</p>
+
+<pre><code class="language-swift">class BoxViewController: NSViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do view setup here.
+    }
+
+}
+
+extension BoxViewController {
+  static func freshController() -&gt; BoxViewController {
+    //获取对Main.storyboard的引用
+    let storyboard = NSStoryboard(name: NSStoryboard.Name(&quot;Main&quot;), bundle: nil)
+    // 为PopoverViewController创建一个标识符
+    let identifier = NSStoryboard.SceneIdentifier(&quot;BoxViewController&quot;)
+    // 实例化PopoverViewController并返回
+    guard let viewcontroller = storyboard.instantiateController(withIdentifier: identifier) as? BoxViewController else {
+      fatalError(&quot;Something Wrong with Main.storyboard&quot;)
+    }
+    return viewcontroller
+  }
+}
+</code></pre>
+
+<p>将默认的ViewController改为新增的BoxViewController<br/>
+<img src="media/15847851899680/15847902728358.jpg" alt="" style="width:1400px;"/></p>
+
+<p>然后在<code>AppDelegate.swift</code>中的applicationDidFinishLaunching方法中注册单击菜单栏按钮后调起上面盒子，核心代码如下</p>
+
+<pre><code class="language-swift">class AppDelegate: NSObject, NSApplicationDelegate {
+    // ...
+    let boxPopover = NSPopover()
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
+        // ...
+        // 注册点击菜单按钮后的盒子、使得点击生效
+        button.action = #selector(togglePopover(_:))
+        // 注册盒子控制器到当前盒子对象上
+        boxPopover.contentViewController = BoxViewController.freshController()
+    }
+    // ...
+    
+    @objc func togglePopover(_ sender: Any?) {
+        if boxPopover.isShown {
+            ​closePopover(sender: sender)
+        } else {
+            ​showPopover(sender: sender)
+        }
+    }
+
+    func ​showPopover(sender: Any?) {
+        if let button = statusItem.button {
+            boxPopover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
+        }
+    }
+
+    func ​closePopover(sender: Any?) {
+        boxPopover.performClose(sender)
+    }
+}
+</code></pre>
+
+<p>重新运行单击菜单栏按钮就可以出来上面新建的盒子了，效果如下<br/>
+<img src="media/15847851899680/15847905326539.jpg" alt="" style="width:511px;"/></p>
+
+<h3 id="toc_4">点击窗口任意地方、关闭盒子</h3>
+
+<p>现在这个新建的盒子只能再次点击菜单栏按钮消失、可以创建系统事件监视器，监控到任意鼠标操作，自动关闭菜单栏上面的盒子</p>
+
+<p>创建Cocoa类型的事件监控器EventMonitor.swift，核心代码如下</p>
+
+<pre><code class="language-swift">public class EventMonitor {
+  private var monitor: Any?
+  private let mask: NSEvent.EventTypeMask
+  private let handler: (NSEvent?) -&gt; Void
+
+  public init(mask: NSEvent.EventTypeMask, handler: @escaping (NSEvent?) -&gt; Void) {
+    self.mask = mask
+    self.handler = handler
+  }
+
+  deinit {
+    stop()
+  }
+
+  public func start() { //开启监视器
+    monitor = NSEvent.addGlobalMonitorForEvents(matching: mask, handler: handler)
+  }
+
+  public func stop() { //关闭监视器
+    if monitor != nil {
+      NSEvent.removeMonitor(monitor!)
+      monitor = nil
+    }
+  }
+}
+</code></pre>
+
+<p>然后在AppDelegate.swift注册这个监视器</p>
+
+<pre><code class="language-swift">// 申明应用全局监视器对象
+var eventMonitor: EventMonitor?
+    
+// 创建监视器
+eventMonitor = EventMonitor(mask: [.leftMouseDown, .rightMouseDown]) {
+    [weak self] event in
+    
+    if let strongSelf = self, strongSelf.boxPopover.isShown {
+        strongSelf.​closePopover(sender: event)
+    }
+}
+</code></pre>
+
+<p>然后就可以在任意位置单击鼠标关闭盒子了</p>
+
+<h2 id="toc_5">右键弹出功能菜单</h2>
+
+<p>在StoryBoard中添加一个表示点击右键后出现的下拉按钮组，操作流程如下：</p>
+
+<p><img src="media/15847851899680/15847916143674.jpg" alt="" style="width:1400px;"/></p>
+
+<p>然后打开Assistent，把这个下拉菜单拖到AppDelegate.swift中进行引用绑定，操作效果如下<br/>
+<img src="media/15847851899680/15847920283357.jpg" alt="" style="width:1103px;"/><br/>
+然后给这个引用一个名字，比如这里使用dropbox，在AppDelegate.swift生成的引用代码参考如下</p>
+
+<pre><code class="language-swift">@IBOutlet weak var dropbox: NSMenu!
+</code></pre>
+
+<p>然后接管在菜单栏按钮上的鼠标右键操作</p>
+
+<pre><code class="language-swift">@objc func mouseClickHandler() {
+    if let event = NSApp.currentEvent {
+        switch event.type {
+        case .leftMouseUp:
+            togglePopover(boxPopover)
+        default:
+            statusItem.menu = dropbox
+            statusItem.button?.performClick(nil)
+        }
+    }
+}
+</code></pre>
+
+<p>然后将之前的菜单栏按钮点击相应改为上面的方法：<br/>
+即</p>
+
+<pre><code class="language-swift">// 注册点击菜单按钮后的盒子、使得点击生效
+button.action = #selector(togglePopover(_:))
+</code></pre>
+
+<p>修改为</p>
+
+<pre><code class="language-swift">button.action = #selector(mouseClickHandler)
+button.sendAction(on: [.leftMouseUp, .rightMouseUp])
+</code></pre>
+
+<p>然后就可以使用右键点击出现下拉按钮组了，效果如下<br/>
+<img src="media/15847851899680/15847925556090.jpg" alt="" style="width:143px;"/><br/>
+然后，会发现再次点击左键，第一个做的盒子出不来了，这是因为执行<code>statusItem.menu = dropbox</code>代码后，这个菜单栏就用dropbox代替了盒子，可以在每次下拉菜单关闭后把状态栏上的引用删掉</p>
+
+<p>AppDelegate.swift末尾增加</p>
+
+<pre><code class="language-swift">extension AppDelegate: NSMenuDelegate {
+    // 为了保证按钮的单击事件设置有效，menu要去除
+    func menuDidClose(_ menu: NSMenu) {
+        self.statusItem.menu = nil
+    }
+}
+</code></pre>
+
+<p>applicationDidFinishLaunching末尾增加</p>
+
+<pre><code class="language-swift">// 让右键下拉菜单组关闭后调用AppDelegate: NSMenuDelegate方法删除对下拉菜单组的引用，使得左键盒子能够正常工作
+dropbox.delegate = self
+</code></pre>
+
+<p>即可实现左右点击都有效果了，最终效果参考如下：<br/>
+<img src="media/15847851899680/2020-03-21_05-17-30%20-1-.gif" alt="2020-03-21_05-17-30 -1-"/></p>
+
+<h2 id="toc_6">一些注意的点</h2>
+
+<ol>
+<li>StoryBoard绑定了ViewController可以更改StoryBoard绑定的Controller</li>
+</ol>
+
+<h2 id="toc_7">参考资料</h2>
+
+<ol>
+<li>svg图片：<a href="https://www.onlinewebfonts.com/icon/529609">https://www.onlinewebfonts.com/icon/529609</a></li>
+<li>svg转png：<a href="https://svgtopng.com/">https://svgtopng.com/</a></li>
+<li>svg尺寸调整：<a href="https://www.iloveimg.com/resize-image/resize-svg">https://www.iloveimg.com/resize-image/resize-svg</a></li>
+<li>png尺寸调整：<a href="https://onlinepngtools.com/resize-png">https://onlinepngtools.com/resize-png</a></li>
+<li><a href="https://www.onlinewebfonts.com/icon/426886">https://www.onlinewebfonts.com/icon/426886</a></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[8/24 设计模式之观察者模式 Observer Pattern]]></title>
+    <link href="https://neatlifecoco.com/15845099482085.html"/>
+    <updated>2020-03-18T13:39:08+08:00</updated>
+    <id>https://neatlifecoco.com/15845099482085.html</id>
+    <content type="html"><![CDATA[
+<p>类别：行为型设计模式</p>
+
+<p>目的：在对象自身状态发生变化时，立刻通知需要知道这个新状态的对象（们）</p>
+
+<p>完整代码参考：<a href="https://1drv.ms/u/s!AquRvPzqx59Ri3dNicP8EQjwPUw_?e=klJYWD">https://1drv.ms/u/s!AquRvPzqx59Ri3dNicP8EQjwPUw_?e=klJYWD</a></p>
+
+<h2 id="toc_0">典型场景</h2>
+
+<p>表格中的数字由5改为500后，这张表格对应的柱状图和链接的数字（黄色部分）同时立即发生对等改变（Excel的特性）<br/>
+<img src="media/15845099482085/table_observer.gif" alt="table_observe"/></p>
+
+<p>下面使用表格、图表、链接数字指代上面图片的左、中、右部分</p>
+
+<p>基本事实：</p>
+
+<ol>
+<li>表格数据发生变化时，需要立刻通知图表和链接的数字进行对应的变更</li>
+</ol>
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_1">硬编码</h2>
+
+<p><strong>表格类</strong></p>
+
+<pre><code class="language-java">public class Table {
+    private Integer data;
+
+    public Integer getData() {
+        return data;
+    }
+
+    public void setData(Integer data) {
+        this.data = data;
+    }
+}
+</code></pre>
+
+<p>注意这个表格类的setData方法是在改变这个表格的数据</p>
+
+<p><strong>图表类</strong></p>
+
+<pre><code class="language-java">public class Chart {
+    public void update(Integer newData) {
+        System.out.println(&quot;Chart: new value is : &quot; + newData);
+    }
+}
+</code></pre>
+
+<p>链接数字类</p>
+
+<pre><code class="language-java">public class Ceil {
+    public void update(Integer newData) {
+        System.out.println(&quot;Ceil: new value is : &quot; + newData);
+    }
+}
+</code></pre>
+
+<p>在调用Table::setData()方法时需要通知图表和链接数字:</p>
+
+<ol>
+<li>比较容易想到的方式时在Table中耦合Chart和Ceil</li>
+<li>然后调用Chart::update(newData)和Ceil::update(newData)进行通知</li>
+</ol>
+
+<p>这样做可以达到通知的目的，但是并不符合面向对象的开闭原则：不利于扩展，这种情况就可以使用观察者模式/中介者模式进行实现了，这里采用观察者模式的代码结构</p>
+
+<h2 id="toc_2">模式实现</h2>
+
+<p><strong>观察者接口设计</strong></p>
+
+<pre><code class="language-java">public interface Observer {
+    void update(Integer newData);
+}
+</code></pre>
+
+<p>当被观察者需要通知观察者时，调用update方法即可，这里使用接口是为了将耦合从具体实现优化为耦合一个接口</p>
+
+<p><strong>被观察者通用方法设计</strong></p>
+
+<pre><code class="language-java">public class Observable {
+    private List&lt;Observer&gt; observerList = new ArrayList&lt;&gt;();
+
+    public void addObserver(Observer observer) {
+        observerList.add(observer);
+    }
+
+    public void notifyObservers(Integer newData) {
+        for (var observer : observerList)
+            observer.update(newData);
+    }
+}
+</code></pre>
+
+<p>可以看到被观察者可以通过addObserver添加多个观察者，扩展性比较好，符合开闭原则</p>
+
+<p>表格（中的数据)是被观察的对象，通过继承Observable即可拥有注册并通知观察者的能力，代码参考如下：</p>
+
+<pre><code class="language-java">public class Table extends Observable { // 注意这里，通过继承拥有被观察者通知/添加观察者的能力
+    private Integer data;
+
+    public Integer getData() {
+        return data;
+    }
+
+    public void setData(Integer data) {
+        this.data = data;
+        notifyObservers(data); // 注意这里，对观察者进行了通知
+    }
+}
+</code></pre>
+
+<p>用法如下</p>
+
+<pre><code class="language-java">var table = new Table();
+var chart = new Chart();
+var ceil = new Ceil();
+
+table.addObserver(chart);
+table.addObserver(ceil);
+
+table.setData(100);
+</code></pre>
+
+<p>效果如下<br/>
+<img src="media/15845099482085/15845805452035.jpg" alt="" style="width:403px;"/></p>
+
+<h2 id="toc_3">UML</h2>
+
+<p><img src="media/15845099482085/15845808547918.jpg" alt="" style="width:546px;"/></p>
+
+<h2 id="toc_4">为什么观察者模式更好</h2>
+
+<ol>
+<li>解偶</li>
+<li>符合开闭原则，方便扩展</li>
+</ol>
+
+<h2 id="toc_5">一些注意的点</h2>
+
+<p>观察者模式注重状态的传递，而中介者模式注重组件之间的解耦合，虽然解耦合的表象是相似的，但是它们想达到的目的是不相同的。</p>
+
+<p>观察者模式和中介者模式特性条件下实现可以呼唤，上面只是一种代码结构，可以思考如何用观察者模式实现中介者模式</p>
+
+<p>观察者模式的数据传递有推(Push)和拉(Pull)两种模式，具体参考：<a href="https://blog.csdn.net/sinat_34093604/article/details/53081130">https://blog.csdn.net/sinat_34093604/article/details/53081130</a></p>
+
+<h2 id="toc_6">参考资料</h2>
+
+<ol>
+<li><a href="https://zh.wikipedia.org/wiki/%E5%BC%80%E9%97%AD%E5%8E%9F%E5%88%99">https://zh.wikipedia.org/wiki/%E5%BC%80%E9%97%AD%E5%8E%9F%E5%88%99</a></li>
+<li><a href="https://stackoverflow.com/questions/9226479/mediator-vs-observer-object-oriented-design-patterns">https://stackoverflow.com/questions/9226479/mediator-vs-observer-object-oriented-design-patterns</a></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[互联网程序员能力模型设计]]></title>
+    <link href="https://neatlifecoco.com/15844164176189.html"/>
+    <updated>2020-03-17T11:40:17+08:00</updated>
+    <id>https://neatlifecoco.com/15844164176189.html</id>
+    <content type="html"><![CDATA[
+<p>互联网是高科技/崇尚技术的公司，意味着所有问题都可以通过/间接通过技术来解决，遇到问题后，优先选择技术方式进行处理</p>
+
+<p>人是不可靠的，尽可能使用规则和制度进行限定，保证稳定的产出质量</p>
+
+<h2 id="toc_0">理解需求的能力</h2>
+
+<p>通常产品经理会把需求落实为文字+图片的形式即PRD（Product Requirement Document）放在wiki上让程序员先预习</p>
+
+<p>预习的质量直接决定着理解需求的能力，从技术角度有以下方式提高预习的质量</p>
+
+<ol>
+<li><p>站在产品角度思考问题，思考产品在写下这个wiki时的状态，估算出wiki中缺少的信息，并自行进行查找相关资料进行验证</p></li>
+<li><p>熟悉wiki系统的使用，比如confluence这个wiki系统的收藏功能</p></li>
+</ol>
+
+<p><img src="media/15844164176189/15844169312272.jpg" alt=""/></p>
+
+<p>点击头像下拉菜单中的收藏即可进入收藏列表<br/>
+<img src="media/15844164176189/15844169950869.jpg" alt=""/></p>
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_1">编码能力</h2>
+
+<p>熟悉公司框架，但实际编码并不需要占用太多时间，约20%，剩下时间都是在确定需求细节/技术实现方案、数据表设计等</p>
+
+<p>所以业务开发对技术要求并不需要太深入，如果想深入技术开发，可以走技术专家路线</p>
+
+<ol>
+<li>能够使用高效的编码工具提高工作效率，比如Jetbrain Idea等</li>
+<li>了解通用问题解决的技术栈</li>
+</ol>
+
+<h2 id="toc_2">运营能力</h2>
+
+<p>大部分需求的直接来源是来自公司运营，所以理解运营工作的目标和方式对程序开发也是至关重要的</p>
+
+<p>运营的首要目标就是提高产品的人流量，并增加产品的用户留存率，<strong>一切以此为目的的需求都是合理的</strong></p>
+
+<p>通常是通过提高产品内容质量(文章质量、商品质量）来达到目标的，达到这个目标通常有技术和非技术手段两个方式来解决，但是总的目标是提高运营人员的工作效率，因为技术手段的规则是运营定的</p>
+
+<h2 id="toc_3">产品能力</h2>
+
+<ol>
+<li>能够用axure画简单的产品原型图</li>
+<li>能够使用omnigraffle等流程图工具画清楚产品的逻辑关系图</li>
+</ol>
+
+<h3 id="toc_4">竞品分析能力</h3>
+
+<p>互联网产品通常有很多竞品，多了解这些竞品，对产品接下来产品变化的趋势判断很有帮助</p>
+
+<p>比如流量型的产品，多参考业务成功的产品，比如 抖音、火山小视频、今日头条等的做法</p>
+
+<h2 id="toc_5">统计能力</h2>
+
+<ol>
+<li>对比理想产出和实际产出、判断产品变化趋势</li>
+<li>统计程序bug量、评估工资性价比（工资/公时)</li>
+</ol>
+
+<h2 id="toc_6">协调能力</h2>
+
+<p><img src="media/15844164176189/15844177939864.jpg" alt=""/></p>
+
+<p>充分利用公司内部通讯软件，尽量减少当面沟通，可以间接提高工作效率，有以下几个原因</p>
+
+<ol>
+<li>所有内容都在通讯软件上有记录，方便后期查找核对</li>
+<li>不用预约时间、会议室（会议多方同时在场成本比较高)</li>
+</ol>
+
+<h2 id="toc_7">一些工具</h2>
+
+<p>在工作过程中，有些至关重要的内容无法落实/延迟落实为文字，比如需求细节变更，有些内容作为旁听者很难一次全部理解，可以采用录音/录像的方式进行回放：</p>
+
+<ol>
+<li><p>录音笔：推荐sony A10<br/>
+<img src="media/15844164176189/15844183166108.jpg" alt=""/></p></li>
+<li><p>相机：推荐Canon M6 Mark 二代<br/>
+<img src="media/15844164176189/15844219219823.jpg" alt=""/></p></li>
+</ol>
+
+<h2 id="toc_8">一些注意的点</h2>
+
+<p>永远以工作产出为导向，一切偏离产出的行为都是需要避免的</p>
+
+<p>把人当工具、高效的利用在公司可以接触到的人，物尽其用，互为工具，在公司，所有的设备、人都是公司的资源。</p>
+
+<h2 id="toc_9">参考资料</h2>
+
+<ol>
+<li><a href="https://www.axure.com/">https://www.axure.com/</a></li>
+<li><a href="https://helpguide.sony.net/icd/pcma10/v1/en2/index.html">https://helpguide.sony.net/icd/pcma10/v1/en2/index.html</a></li>
+<li><a href="https://www.omnigroup.com/omnigraffle">https://www.omnigroup.com/omnigraffle</a></li>
+<li><a href="https://www.atlassian.com/zh/software/confluence">https://www.atlassian.com/zh/software/confluence</a></li>
+<li><a href="http://www.woshipm.com/pmd/192826.html">http://www.woshipm.com/pmd/192826.html</a></li>
+<li><a href="https://helpguide.sony.net/icd/pcma10/v1/zh-tw/index.html">https://helpguide.sony.net/icd/pcma10/v1/zh-tw/index.html</a></li>
+</ol>
+
+<p>持续更新中...</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[7/24 设计模式之中介者模式 Mediator Pattern]]></title>
+    <link href="https://neatlifecoco.com/15843642142462.html"/>
+    <updated>2020-03-16T21:10:14+08:00</updated>
+    <id>https://neatlifecoco.com/15843642142462.html</id>
+    <content type="html"><![CDATA[
+<p>类别：行为型设计模式</p>
+
+<p>目的：将数个相互耦合的对象进行解耦，转为只耦合一个中介者对象</p>
+
+<p>完整代码参考：<a href="https://1drv.ms/u/s!AquRvPzqx59Ri3aYThIUHA4m6crp?e=6d4aE3">https://1drv.ms/u/s!AquRvPzqx59Ri3aYThIUHA4m6crp?e=6d4aE3</a></p>
+
+<h2 id="toc_0">典型场景</h2>
+
+<p>在ui界面中，点击一个按钮，这个按钮的状态会影响其它按钮的状态，并改变表格的显示方式，参考如下：</p>
+
+<p><img src="media/15843642142462/2020-03-16_16-38-13%20-1-.gif" alt="2020-03-16_16-38-13 -1-"/></p>
+
+<p>场景效果：</p>
+
+<ol>
+<li>点击居左按钮后，表格左对齐，并且居左按钮高亮，居中、居右按钮取消高亮</li>
+<li>点击居中按钮后，表格居中对齐，并且居中按钮高亮，居左、居右按钮取消高亮</li>
+<li>点击居右按钮后，表格居右对齐，并且居右按钮高亮，居左、居中按钮取消高亮</li>
+</ol>
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_1">硬编码</h2>
+
+<p>基于以上的场景容易写出下面的代码</p>
+
+<p>3个按钮和表格对象原型如下：</p>
+
+<p><strong>左按钮</strong></p>
+
+<pre><code class="language-java">public class LeftButton {
+    private MiddleButton middleButton;
+    private RightButton rightButton;
+    private Table table;  
+      
+    public LeftButton(MiddleButton middleButton, RightButton rightButton, Table table) {
+        this.middleButton = middleButton;
+        this.rightButton = rightButton;
+        this.table = table;
+    }
+
+    public void click() {
+        this.highlight();
+        middleButton.cancelHighlight();
+        rightButton.cancelHighlight();
+        table.alignLeft();
+    }
+
+    public void highlight() {
+        // 高亮自生
+    }
+    public void cancelHighlight() {
+        // 取消高亮
+    }
+}
+</code></pre>
+
+<p>中按钮和右按钮</p>
+
+<pre><code class="language-java">public class MiddleButton {
+    public MiddleButton(LeftButton leftButton, RightButton rightButton, Table table) {
+        this.leftButton = leftButton;
+        this.rightButton = rightButton;
+        this.table = table;
+    }
+    // 逻辑同LeftButton...
+}
+
+public class RightButton {
+    public RightButton(LeftButton leftButton, RightButton middleButton, Table table) {
+        this.leftButton = leftButton;
+        this.middleButton = middleButton;
+        this.table = table;
+    }
+    // 同LeftButton...
+}
+</code></pre>
+
+<p>表格如下：</p>
+
+<pre><code class="language-java">public class Table {
+    public void alignLeft() {
+        // 内容左对齐
+    }
+
+    public void alignMiddle() {
+        // 内容居中对齐
+    }
+
+    public void alignRight() {
+        // 内容右对齐
+    }
+}
+</code></pre>
+
+<p>可以看到</p>
+
+<ol>
+<li>3个按钮和一个表格对象之间紧耦合了，每个按钮都需要持有对其它按钮的引用</li>
+<li>系统中如果加入一个新按钮，比如复位按钮，所有的按钮和表格都需要为这个新增的按钮进行适配，在组件数量可变的条件下，维护成本巨大(每新增一个组件、所有组件都要为其适配)</li>
+</ol>
+
+<h2 id="toc_2">模式实现</h2>
+
+<p>这个时候就可以引入一个新的中介者对象来集中处理这些组件之间的耦合代码，比如SectionMediator<br/>
+<strong>相互依赖的按钮变更为只依赖中介者即可</strong>，在按钮自生状态发生改变时，<strong>通知中介者</strong>，<strong>由中介者处理其影响的对象的相关行为调用</strong>。</p>
+
+<p>拿LeftButton举例更改参考如下：</p>
+
+<pre><code class="language-java">public class LeftButton implements Component {
+    private SectionMediator sectionMediator;
+
+    public LeftButton(SectionMediator sectionMediator) {
+        this.sectionMediator = sectionMediator;
+    }
+
+    public void click() {
+        this.highlight();
+        sectionMediator.changed(this);
+    }
+    // ...
+}
+</code></pre>
+
+<p>可以看到按钮只耦合了一个中介者，并在自生状态改变时（click时）通过调用<code>sectionMediator.changed(this)</code>通知中介者自生状态发生了改变</p>
+
+<p>中介者即处理按钮被点击后相关对象的更新，参考如下：</p>
+
+<pre><code class="language-java">public class SectionMediator implements Mediator {
+    private LeftButton leftButton;
+    private MiddleButton middleButton;
+    private RightButton rightButton;
+    private Table table;
+
+    public SectionMediator(LeftButton leftButton, MiddleButton middleButton, RightButton rightButton, Table table) {
+        this.leftButton = leftButton;
+        this.middleButton = middleButton;
+        this.rightButton = rightButton;
+        this.table = table;
+    }
+
+    @Override
+    public void changed(Component component) {
+        if (component == leftButton) {
+            middleButton.cancelHighlight();
+            rightButton.cancelHighlight();
+            table.alignLeft();
+        } else if (component == middleButton) {
+            leftButton.cancelHighlight();
+            rightButton.cancelHighlight();
+            table.alignMiddle();
+        } else if (component == rightButton) {
+            leftButton.cancelHighlight();
+            middleButton.cancelHighlight();
+            table.alignRight();
+        }
+    }
+}
+</code></pre>
+
+<p>可以看到在changed方法中，首先对状态变化的主体进行了判断，然后调用影响的对象进行状态变化</p>
+
+<h2 id="toc_3">UML</h2>
+
+<p><img src="media/15843642142462/15844058438136.jpg" alt="" style="width:579px;"/></p>
+
+<h2 id="toc_4">为什么中介者模式更好</h2>
+
+<p><img src="media/15843642142462/15844060407660.jpg" alt="" style="width:1021px;"/></p>
+
+<p>可以看到中介者去除了对象之间的直接耦合，使得单个对象结构更清晰</p>
+
+<h2 id="toc_5">一些注意的点</h2>
+
+<p>中介者模式的具体实现可以使用观察者模式进行实现</p>
+
+<h2 id="toc_6">参考资料</h2>
+
+<ol>
+<li><a href="https://xuliangzhan.github.io/vxe-table/#/table/base/basic">https://xuliangzhan.github.io/vxe-table/#/table/base/basic</a></li>
+<li><a href="https://www.geeksforgeeks.org/mediator-design-pattern/">https://www.geeksforgeeks.org/mediator-design-pattern/</a></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[6/24 设计模式之享元模式 Flyweight Pattern]]></title>
+    <link href="https://neatlifecoco.com/15838865043988.html"/>
+    <updated>2020-03-11T08:28:24+08:00</updated>
+    <id>https://neatlifecoco.com/15838865043988.html</id>
+    <content type="html"><![CDATA[
+<p>类别：结构型设计模式</p>
+
+<p>目的：减少潜在的对象创建次数、尽可能延迟创建/重用对象，降低内存占用，并对代码实现结构进行限定</p>
+
+<p>完整代码参考：<a href="https://1drv.ms/u/s!AquRvPzqx59Ri3URckgGBGw8WoWh?e=I6BRDg">https://1drv.ms/u/s!AquRvPzqx59Ri3URckgGBGw8WoWh?e=I6BRDg</a></p>
+
+<h2 id="toc_0">典型场景</h2>
+
+<p>有许多不同种类的对象需要被使用，需要延迟对象的创建、同类对象会创建多次</p>
+
+<p>比如一张地图中包含很多点，每个点会有一个图标表示这个地点的类型，比如餐厅、体育馆、办公楼、图书馆等。把这些点显示在地图上，程序需要先在内存中保存这些点</p>
+
+<p>基本事实：</p>
+
+<ol>
+<li>一张地图上可能会有成千上万的点需要绘制</li>
+<li>每个地图点在地图上一般会以图片进行显示</li>
+<li>一个图片文件内容占用的内容空间远超普通对象</li>
+<li>为了避免地图加载过程中占用过多内存，有必要优化地图点上的内存空间占用</li>
+</ol>
+
+<span id="more"></span><!-- more -->
+
+<p>一张典型的地图参考如下：<br/>
+<img src="media/15838865043988/15842728824433.jpg" alt=""/><br/>
+可以看到，同类型建筑的图片是一样的</p>
+
+<p>这里拿5个地图点进行举例：3个餐厅+2个体育馆</p>
+
+<h2 id="toc_1">硬编码</h2>
+
+<p>构建代表地图点和图片类型</p>
+
+<p>代表地图点图片类参考如下：</p>
+
+<pre><code class="language-java">public class PointImage {
+    private final String type;
+    private final byte[] image;
+
+    public PointImage(String type, byte[] image) {
+        this.type = type;
+        this.image = image;
+    }
+
+    public String getType() {
+        return type;
+    }
+}
+</code></pre>
+
+<p>地图点类参考如下：</p>
+
+<pre><code class="language-java">public class Point {
+    private int longitude; // 经度
+    private int latitude; // 纬度
+    private PointImage image;
+
+    public Point(int longitude, int latitude, PointImage image) {
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.image = image;
+    }
+
+    public void display() {
+        System.out.printf(&quot;image: %s, longtitude: %d, latitude %d)&quot;, image.getType(), longitude, latitude);
+    }
+}
+</code></pre>
+
+<p>很容易写出下面的生成5个带图片的地图点的代码、参考如下：</p>
+
+<pre><code class="language-java">// 三个餐厅
+var pointImage1 = new PointImage(&quot;restaurant&quot;, loadBytes(&quot;restaurant.png&quot;));
+var point1 = new Point(1, 2, pointImage1);
+
+var pointImage2 = new PointImage(&quot;restaurant&quot;, loadBytes(&quot;restaurant.png&quot;));
+var point2 = new Point(1, 2, pointImage2);
+
+var pointImage3 = new PointImage(&quot;restaurant&quot;, loadBytes(&quot;restaurant.png&quot;));
+var point3 = new Point(1, 2, pointImage3);
+
+// 两个体育馆
+var pointImage4 = new PointImage(&quot;stadium&quot;, loadBytes(&quot;stadium.png&quot;));
+var point4 = new Point(1, 2, pointImage3);
+
+var pointImage5 = new PointImage(&quot;stadium&quot;, loadBytes(&quot;stadium.png&quot;));
+var point5 = new Point(1, 2, pointImage3);
+</code></pre>
+
+<p>从上面的代码可以看出</p>
+
+<ol>
+<li>每个地图点包含一个图片，图片是地图点的<strong>元数据</strong></li>
+<li>加载了多张图片，同时一类图片可能会加载多次，造成内存浪费/或者内存溢出</li>
+<li>每类建筑可以复用一张图片，但不同类型的建筑需要使用不同的图片</li>
+</ol>
+
+<h2 id="toc_2">模式实现</h2>
+
+<p>使用一个单例对象表示一类建筑的图片，地图上存在多种类型的建筑，每个类型对应/复用一张图片，可以使用<strong>单例</strong>来表示一个图片对象，多类的建筑即会对应多个单例对象</p>
+
+<p>存在多个单例可复用的对象，为了能够方便控制这些单例对象的创建，可以使用工厂设计模式来生成这些单例对象，并从在生成这些对象时进行检查，已生成过，直接返回即可</p>
+
+<p>对应的单例工厂核心如下</p>
+
+<pre><code class="language-java">public class PointImageFactory {
+    private Map&lt;String, PointImage&gt; imageList = new HashMap&lt;&gt;();
+
+    public PointImage getPointIcon(String type) {
+        if (imageList.containsKey(type)) {
+            return imageList.get(type);
+        }
+
+        PointImage pointImage = null;
+        switch (type) {
+            case &quot;restaurant&quot;: // 餐厅
+                // 从文件加载餐厅图片到内存
+                pointImage = new PointImage(type, loadBytes(&quot;restaurant.png&quot;));
+                break;
+            case &quot;stadium&quot;: // 体育馆
+                // 从文件加载体育馆图片到内存
+                pointImage = new PointImage(type, loadBytes(&quot;stadium.png&quot;));
+                break;
+        }
+        imageList.put(type, pointImage);
+
+        return imageList.get(type);
+    }
+
+    public static byte[] loadBytes (String ImageName) {
+        // 加载图片为byte实现...
+    }
+}
+</code></pre>
+
+<p>可以看到，同类型的图片会被缓存在imageList列表中，再次请求同类型的图片，将直接从imageList列表中获取，无需重新创建了。</p>
+
+<p>在创建地图上的点时，使用这个图片工厂创建点对应的图片，参考如下：</p>
+
+<pre><code class="language-java">PointImageFactory imageFactory = new PointImageFactory();
+
+// 三个餐厅
+var point1 = new Point(1, 2, imageFactory.getPointIcon(&quot;restaurant&quot;));
+var point2 = new Point(1, 2, imageFactory.getPointIcon(&quot;restaurant&quot;));
+var point3 = new Point(1, 2, imageFactory.getPointIcon(&quot;restaurant&quot;));
+
+// 两个体育馆
+var point4 = new Point(1, 2, imageFactory.getPointIcon(&quot;restaurant&quot;));
+var point5 = new Point(1, 2, imageFactory.getPointIcon(&quot;restaurant&quot;));
+</code></pre>
+
+<h2 id="toc_3">UML</h2>
+
+<p><img src="media/15838865043988/15842777937911.jpg" alt="" style="width:606px;"/></p>
+
+<h2 id="toc_4">为什么享元模式更好</h2>
+
+<p>在对象数量特别庞大时能够有效减少程序内存空间的使用，对内存缓存的实现进行基本限定，减少不同的实现方式，造成增加维护成本</p>
+
+<h2 id="toc_5">一些注意的点</h2>
+
+<p><strong>可以看到享元设计模式的核心思想是缓存大内存对象，并对实现这个缓存进行基本的限定</strong>，即使组合使用工厂模式+单例对象（也可以叫单例工厂）</p>
+
+<ol>
+<li>单例模式一般是管理一个单例对象，享元模式需要管理一组同类的单例独享</li>
+<li>单例对象内部属性可以改变，但是享元中的单例创建后就是只读的了，即享元设计模式缓存的核心对象是<strong>不变的数据</strong></li>
+</ol>
+
+<p>享元模式特殊的地方在于同时组合使用了工厂模式和单例模式、工厂和单例都属于创建型设计模式，而享元模式更关注于代码结构，享元和其它两个设计模式关注的方向并不一样，不可把享元模式和工厂、单例等同。享元更多是关注于减少程序内存空间的使用。工厂和单例只是其实现目的的一种方式</p>
+
+<p>java将图片文件读取为byte参考如下</p>
+
+<pre><code class="language-java">public static byte[] loadBytes (String ImageName) {
+    byte[] bytes = null;
+    try {
+        // open image
+        File imgPath = new File(ImageName);
+        BufferedImage bufferedImage = ImageIO.read(imgPath);
+
+        // get DataBufferBytes from Raster
+        WritableRaster raster = bufferedImage .getRaster();
+        DataBufferByte data   = (DataBufferByte) raster.getDataBuffer();
+
+        bytes = data.getData();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    return bytes;
+}
+</code></pre>
+
+<h2 id="toc_6">参考资料</h2>
+
+<ol>
+<li><a href="https://stackoverflow.com/questions/16750758/what-are-the-practical-use-differences-between-flyweight-vs-singleton-patterns/16750913">https://stackoverflow.com/questions/16750758/what-are-the-practical-use-differences-between-flyweight-vs-singleton-patterns/16750913</a></li>
+<li><a href="https://www.youxiniao.com/news/xinshou/2650014.html">https://www.youxiniao.com/news/xinshou/2650014.html</a></li>
+<li><a href="https://stackoverflow.com/questions/3211156/how-to-convert-image-to-byte-array-in-java">https://stackoverflow.com/questions/3211156/how-to-convert-image-to-byte-array-in-java</a></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[5/24 设计模式之组合模式 Composite Pattern]]></title>
+    <link href="https://neatlifecoco.com/15837554438917.html"/>
+    <updated>2020-03-09T20:04:03+08:00</updated>
+    <id>https://neatlifecoco.com/15837554438917.html</id>
+    <content type="html"><![CDATA[
+<p>类别：结构型设计模式</p>
+
+<p>目的：表示一组对象，这组对象的用法和单个对象的用法一致</p>
+
+<p>完整代码参考：<a href="https://1drv.ms/u/s!AquRvPzqx59Ri3TfmAb69-DF82jQ?e=DR2vwn">https://1drv.ms/u/s!AquRvPzqx59Ri3TfmAb69-DF82jQ?e=DR2vwn</a></p>
+
+<h2 id="toc_0">典型场景</h2>
+
+<p>处理电脑上的文件和文件夹</p>
+
+<p>基本事实</p>
+
+<ol>
+<li>文件和文件夹可以有多个</li>
+<li>文件和文件夹有多个共同的操作，比如：删除、移动、复制等</li>
+</ol>
+
+<p>这里拿对多个文件夹和文件执行删除操作举例，对应mac下右键Move to Trash按钮<br/>
+<img src="media/15837554438917/15837595474362.jpg" alt=""/></p>
+
+<p>可以看到，可以选中多个文件和文件夹执行删除、复制、移动、获取属性信息等操作</p>
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_1">硬编码</h2>
+
+<p>这里拿在业务逻辑中删除2个文件和1个文件夹举例</p>
+
+<p>文件File和文件夹Folder类原型</p>
+
+<pre><code class="language-java">public class File {
+    private String path;
+
+    public File(String path) {
+        this.path = path;
+    }
+
+    public void delete() {
+        System.out.println(&quot;file: &quot; + path + &quot; was deleted.\n&quot;);
+    }
+}
+
+public class Folder {
+    private String path;
+
+    public Folder(String path) {
+        this.path = path;
+    }
+
+    public void delete() {
+        System.out.println(&quot;folder: &quot; + path + &quot; was deleted.\n&quot;);
+    }
+}
+</code></pre>
+
+<p>为了能够同时删除多个文件/文件夹、很容易写出下面的聚合代码</p>
+
+<p>聚合删除文件和文件夹Group类</p>
+
+<pre><code class="language-java">public class Group {
+    private List&lt;Object&gt; items = new ArrayList&lt;&gt;();
+
+    public void add(Object object) {
+        items.add(object);
+    }
+
+    public void delete() {
+        for (Object object : items) {
+            if (object instanceof File) {
+                ((File) object).delete();
+            } else if (object instanceof Folder) {
+                ((Folder) object).delete();
+            }
+        }
+    }
+}
+</code></pre>
+
+<p>实际使用举例如下</p>
+
+<pre><code class="language-java">public class Main {
+    public static void main(String[] args) {
+        var file1 = new File(&quot;1.txt&quot;);
+        var file2 = new File(&quot;2.txt&quot;);
+        var folder1 = new Folder(&quot;/tmp/folder1&quot;);
+
+        var group = new Group();
+        group.add(file1);
+        group.add(file2);
+        group.add(folder1);
+
+        businessLogic(group);
+    }
+
+    public static void businessLogic(Group group) {
+        group.delete();
+    }
+}
+</code></pre>
+
+<p><strong>核心问题</strong></p>
+
+<p>文件和文件夹的删除逻辑和类型耦合了，参考Group::delete()方法、随着类型的细分，比如文件类型继续细分为压缩文件和图片文件，那么delete()中对类型的耦合会越来越多</p>
+
+<p>如果还存在其它批量操作，比如批量获取文件/文件夹信息，比如Group::getInfo()方法，name这种耦合代码还将重复一次</p>
+
+<p>解决方式：组合模式，利用组合模式重构代码结构，使得文件和文件夹、分组都实现一个公有操作的接口，比如</p>
+
+<h2 id="toc_2">模式实现</h2>
+
+<pre><code class="language-java">public interface Component {
+    void delete();
+}
+</code></pre>
+
+<p>结构更改如下</p>
+
+<ol>
+<li><code>public class File implements Component</code></li>
+<li><code>public class Folder implements Component</code></li>
+<li><code>public class Group implements Component</code></li>
+</ol>
+
+<p>然后在Group::delete()时就无须关心类型了，所有的Component类型都有delete方法了，实现变更为:</p>
+
+<pre><code class="language-java">public void delete() {
+    for (Component component : items) {
+        component.delete();
+    }
+}
+</code></pre>
+
+<p>可以参考完整代码</p>
+
+<p>执行效果如下：<br/>
+<img src="media/15837554438917/15838189562794.jpg" alt=""/></p>
+
+<p>可以看到文件和文件夹的删除操作都被调用到了，分组Group也可以像文件和文件夹一样被add进别的分组了，达到了组合模式，一个组合可以被当成独立个体使用的目的，参考下面的group2:</p>
+
+<pre><code class="language-java">public static void main(String[] args) {
+    var file1 = new File(&quot;1.txt&quot;);
+    var file2 = new File(&quot;2.txt&quot;);
+    var folder1 = new Folder(&quot;/tmp/folder1&quot;);
+
+    var group = new Group();
+    group.add(file1);
+    group.add(file2);
+    group.add(folder1);
+
+    var group2 = new Group();
+    group2.add(group);
+    group2.add(new File(&quot;3.txt&quot;));
+
+    businessLogic(group2);
+}
+
+public static void businessLogic(Group group) {
+    group.delete();
+}
+</code></pre>
+
+<h2 id="toc_3">UML</h2>
+
+<p><img src="media/15837554438917/15842843098861.jpg" alt="" style="width:672px;"/></p>
+
+<h2 id="toc_4">一些注意的点</h2>
+
+<p>需要使用接口技术使得不同类型的对象保持相同的行为</p>
+
+<h2 id="toc_5">为什么组合模式更好</h2>
+
+<ol>
+<li>避免大量的类型检查逻辑</li>
+<li>避免重复的类型检查逻辑</li>
+</ol>
+
+<h2 id="toc_6">参考资料</h2>
+
+<ol>
+<li><a href="https://www.geeksforgeeks.org/composite-design-pattern/">https://www.geeksforgeeks.org/composite-design-pattern/</a></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[4/24 设计模式之命令设计模式 Command Pattern]]></title>
+    <link href="https://neatlifecoco.com/15834720479826.html"/>
+    <updated>2020-03-06T13:20:47+08:00</updated>
+    <id>https://neatlifecoco.com/15834720479826.html</id>
+    <content type="html"><![CDATA[
+<p>类别：行为型设计模式</p>
+
+<p>目的：解耦行为的接收方和行为的实际处理逻辑</p>
+
+<p>完整代码参考：<a href="https://1drv.ms/u/s!AquRvPzqx59Ri3MMlUz2cbydE0Eu?e=X6DGEG">https://1drv.ms/u/s!AquRvPzqx59Ri3MMlUz2cbydE0Eu?e=X6DGEG</a></p>
+
+<h2 id="toc_0">典型场景</h2>
+
+<p>gui窗口界面上的一个按钮对象，点击后执行一断逻辑处理代码</p>
+
+<h2 id="toc_1">硬编码</h2>
+
+<p>构造一个按钮类，并在点击（click）时执行业务逻辑代码，参考代码如下：</p>
+
+<pre><code class="language-java">public class Button {
+    private String label;
+
+    public void click() {
+        // doBusinessLogic(); 逻辑处理代码
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+}
+</code></pre>
+
+<p>核心问题</p>
+
+<p>按钮和按钮点后的业务逻辑代码耦合在一起</p>
+
+<ol>
+<li>button的复用变得困难</li>
+<li>逻辑代码的复用变得困难</li>
+</ol>
+
+<span id="more"></span><!-- more -->
+
+<p>解决方式：命令模式，将业务逻辑代码和按钮分开，使得button和逻辑代码都变得比较容易复用</p>
+
+<h2 id="toc_2">模式实现</h2>
+
+<p>将逻辑代码单独进行封装，这部分封装就是命令模式中的<strong>命令</strong></p>
+
+<p>单独封装业务逻辑</p>
+
+<pre><code class="language-java">public interface Command {
+    void execute();
+}
+
+public class BusinessLogicCommand implements Command {
+    @Override
+    public void execute() {
+        System.out.println(&quot;business logic here...&quot;);
+    }
+}
+</code></pre>
+
+<p>按钮中持有对业务逻辑的引用</p>
+
+<pre><code class="language-java">public class Button {
+    private String label;
+    private Command command;
+
+    public Button(Command command) {
+        this.command = command;
+    }
+
+    public void click() {
+        command.execute();
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+}
+</code></pre>
+
+<p>使用方式</p>
+
+<pre><code class="language-java">var command = new BusinessLogicCommand();
+var button = new Button(command);
+button.click();
+</code></pre>
+
+<p><img src="media/15834720479826/15836443284590.jpg" alt="" style="width:486px;"/></p>
+
+<p>可以看到命令使用了接口、可以方便的进行业务逻辑的扩展</p>
+
+<h2 id="toc_3">一些注意的点</h2>
+
+<p>命令模式中的Command对象特性</p>
+
+<ol>
+<li>可被持久化、比如从关键状态中恢复以前的状态</li>
+<li>可被撤销、比如执行删除命令时，先保存被删除的内容，可在需要时恢复被删除的内容</li>
+</ol>
+
+<p>java 持久化参考代码如下(stat为需要持久化的对象)</p>
+
+<pre><code class="language-java">// 持久化对象到文件
+var fileStream = new FileOutputStream(&quot;stat.txt&quot;);
+var objectStream = new ObjectOutputStream(fileStream);
+objectStream.writeObject(stat);
+objectStream.close();
+
+// 从文件恢复对象
+var fileStream = new FileInputStream(&quot;history.txt&quot;);
+var objectStream = new ObjectInputStream(fileStream);
+var stat = (Stat) objectStream.readObject();
+</code></pre>
+
+<h2 id="toc_4">为什么命令模式更好</h2>
+
+<ol>
+<li>避免大量的耦合</li>
+<li>减少基础组件的重复、比如界面上许多的按钮，大部分可以重用</li>
+</ol>
+
+<h2 id="toc_5">参考资料</h2>
+
+<ol>
+<li><a href="https://www.geeksforgeeks.org/command-pattern/">https://www.geeksforgeeks.org/command-pattern/</a></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[3/24 设计模式之责任链设计模式 Chain Of Responsibility Pattern]]></title>
+    <link href="https://neatlifecoco.com/15830361322402.html"/>
+    <updated>2020-03-01T12:15:32+08:00</updated>
+    <id>https://neatlifecoco.com/15830361322402.html</id>
+    <content type="html"><![CDATA[
+<p>类别：行为型设计模式</p>
+
+<p>目的：将为了达成共同目标的一系列具有逻辑顺序的操作进行解耦</p>
+
+<p>完整代码参考：<a href="https://1drv.ms/u/s!AquRvPzqx59Ri3IZYwf83oLFp6Pu?e=i6yxH7">https://1drv.ms/u/s!AquRvPzqx59Ri3IZYwf83oLFp6Pu?e=i6yxH7</a></p>
+
+<h2 id="toc_0">典型场景</h2>
+
+<p>为一个web请求定义的一些列操作，比如</p>
+
+<ol>
+<li>用户登陆验证</li>
+<li>处理业务逻辑</li>
+<li>压缩响应数据</li>
+</ol>
+
+<p>注意以上3个操作是顺序的，需要登陆成功后再执行业务逻辑，业务逻辑生成响应数据后，才需要压缩响应数据</p>
+
+<p>构造一个简单的http请求对象备用，参考：</p>
+
+<pre><code class="language-java">public class HttpRequest {
+    private String username;
+    private String password;
+
+    public HttpRequest(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+}
+</code></pre>
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_1">硬编码</h2>
+
+<p>1 . 用户登陆认证</p>
+
+<pre><code class="language-java">public class Authenticator {
+    public boolean doHandle(HttpRequest request) {
+        var isValid = (request.getUsername() == &quot;admin&quot; &amp;&amp;
+                request.getPassword() == &quot;1234&quot;);
+
+        System.out.println(&quot;Authentication&quot;);
+
+        return !isValid;
+    }
+}
+</code></pre>
+
+<p>2 . 处理业务逻辑</p>
+
+<pre><code class="language-java">public class BusinessLogic {
+    public boolean doHandle(HttpRequest request) {
+        System.out.println(&quot;Log&quot;);
+
+        return false;
+    }
+}
+</code></pre>
+
+<p>3 . 压缩响应数据</p>
+
+<pre><code class="language-java">public class Compressor {
+    public boolean doHandle(HttpRequest request) {
+        System.out.println(&quot;Compress&quot;);
+
+        return false;
+    }
+}
+</code></pre>
+
+<p>很容易写出下面的流程处理代码: </p>
+
+<pre><code class="language-java">var request = new HttpRequest(&quot;root&quot;, &quot;root&quot;);
+var auth = new Authenticator();
+var businessLogic = new BusinessLogic();
+var compressor = new Compressor();
+if (!auth.doHandle(request)) {
+    if (!businessLogic.doHandle(request)) {
+        compressor.doHandle(request);
+    } else {
+        // 处理结束
+    }
+} else {
+    // 处理结束
+}
+</code></pre>
+
+<p>可以看到随着处理步骤的增加，上面代码的混乱程度会越来越验证，特别是对于处理http请求这种步骤可能多达2、30个的复杂流程来说，这块代码将变得很难维护</p>
+
+<h2 id="toc_2">模式实现</h2>
+
+<p>责任链的解决方式是，在每个流程处理class中<strong>持有</strong>下个处理流程的引用，通过判断当前流程是否成功，来决定是否调用下个处理流程</p>
+
+<h3 id="toc_3">代码</h3>
+
+<p>每个流程持有的下个流程的引用、以及判断是否调用下个流程的代码实现可以放到处理流程的父类中，参考 Handler.java</p>
+
+<pre><code class="language-java">public abstract class Handler {
+    private Handler next;
+
+    public Handler(Handler next) {
+        this.next = next;
+    }
+
+    public void handle(HttpRequest request) {
+        if (doHandle(request))
+            return;
+
+        if (next != null)
+            next.handle(request);
+    }
+
+    public abstract boolean doHandle(HttpRequest request);
+}
+</code></pre>
+
+<p>对下个流程的引用通过构造函数传递进来，通过调用hand()方法间接调用当前流程doHandle方法进行流程处理</p>
+
+<p>所有的流程处理类继承这个Handler即可，拿BusinessLogic举例，参考：</p>
+
+<pre><code class="language-java">public class BusinessLogic extends Handler {
+    public BusinessLogic(Handler next) {
+        super(next);
+    }
+
+    @Override
+    public boolean doHandle(HttpRequest request) {
+        System.out.println(&quot;Log&quot;);
+
+        return false;
+    }
+}
+</code></pre>
+
+<p>然后依次处理Authenticator.java、Compressor.java</p>
+
+<p>然后创建和使用这些流程</p>
+
+<pre><code class="language-java">var compressor = new Compressor(null);
+var businessLogic = new BusinessLogic(compressor);
+var authenticator = new Authenticator(businessLogic);
+
+var httpRequest = new HttpRequest(&quot;root&quot;, &quot;root&quot;);
+authenticator.handle(httpRequest);
+</code></pre>
+
+<p>可以看到把if判断的逻辑代码分散到了各自的流程处理类中，主流程更清晰了</p>
+
+<h3 id="toc_4">UML</h3>
+
+<p><img src="media/15830361322402/15832136553375.jpg" alt=""/></p>
+
+<h2 id="toc_5">为什么责任链模式更好</h2>
+
+<p><img src="media/15830361322402/15832202059984.jpg" alt=""/></p>
+
+<ol>
+<li>分解逻辑判断的复杂度</li>
+<li>使用者可以灵活选择不同的处理流程、调整处理顺序</li>
+<li>新流程非常容易加入（集成Handler类即可）</li>
+</ol>
+
+<h2 id="toc_6">一些注意的点</h2>
+
+<p>流程处理方法doHandle中返回值表示流程处理是否结束，true表示结束，false表示未结束，返回true后就不需要再执行下面的流程了</p>
+
+<h2 id="toc_7">参考资料</h2>
+
+<ol>
+<li><a href="https://www.geeksforgeeks.org/chain-responsibility-design-pattern/">https://www.geeksforgeeks.org/chain-responsibility-design-pattern/</a></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[2/24 设计模式之访问者设计模式 Visitor Pattern]]></title>
+    <link href="https://neatlifecoco.com/15827975641715.html"/>
+    <updated>2020-02-27T17:59:24+08:00</updated>
+    <id>https://neatlifecoco.com/15827975641715.html</id>
+    <content type="html"><![CDATA[
+<p>类别：行为型设计模式</p>
+
+<p>目的：不改变类的定义的约束下，为类的对象应用/添加新的行为</p>
+
+<h2 id="toc_0">典型场景</h2>
+
+<p>现存一系列对象，比如由很多html标签对象组成了一个html页面，这里拿几个html标签举例</p>
+
+<table>
+<thead>
+<tr>
+<th>标签</th>
+<th>当前状态</th>
+<th>目标状态</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>a</td>
+<td><code>&lt;a href=“#”&gt;link&lt;/a&gt;</code></td>
+<td>添加class=“underlinea&quot;</td>
+</tr>
+<tr>
+<td>p</td>
+<td><code>&lt;p&gt;this is a paragraph&lt;/p&gt;</code></td>
+<td>添加style=“font: bold&quot;</td>
+</tr>
+<tr>
+<td>h1</td>
+<td><code>&lt;h1&gt;new title&lt;/h1&gt;</code></td>
+<td>添加id=“h1-highlight&quot;</td>
+</tr>
+</tbody>
+</table>
+
+<p>当前代码状态如下，注意需要修改的部分</p>
+
+<span id="more"></span><!-- more -->
+
+<pre><code class="language-java">// a标签
+public class AnchorNode implements HtmlNode {
+    public String cssClass = &quot;&quot;; // 注意此处需要修改
+    public String text = &quot;link&quot;;
+
+    public String getContent()
+    {
+        return String.format(&quot;&lt;a class=&#39;%s&#39;&gt;%s&lt;/a&gt;&quot;, cssClass, cssClass, text);
+    }
+}
+
+// p标签
+public class ParagraphNode implements HtmlNode {
+    public String style = &quot;&quot;; // 注意此处需要修改
+    public String text = &quot;this is a paragraph&quot;;
+
+    public String getContent()
+    {
+        return String.format(&quot;&lt;p style=&#39;&#39;&gt;&lt;/p&gt;&quot;, style, text);
+    }
+}
+
+// h1标签
+public class HeadingNode implements HtmlNode {
+    public String id = &quot;&quot;; // 注意此处需要修改
+    public String text = &quot;this is a paragraph&quot;;
+
+    public String getContent()
+    {
+        return String.format(&quot;&lt;h1 id=&#39;%s&#39;&gt;%s&lt;/a&gt;&quot;, id, text);
+    }
+}
+</code></pre>
+
+<h2 id="toc_1">硬编码</h2>
+
+<p>要达到目标状态、需要修改的内容如下</p>
+
+<ol>
+<li>AnchorNode的cssNode属性需要赋值为underlinea</li>
+<li>ParagraphNode的style属性需要赋值为font: bold</li>
+<li>HeadingNode的id属性需要赋值为h1-highlight</li>
+</ol>
+
+<p>要实现以上功能，很容易想到直接修改类定义，参考如下</p>
+
+<pre><code class="language-java">// a标签
+public class AnchorNode implements HtmlNode {
+    public String cssClass = &quot;underlinea&quot;; // 按照需求进行修改
+    public String text = &quot;link&quot;;
+
+    public String getContent()
+    {
+        return String.format(&quot;&lt;a class=&#39;%s&#39;&gt;%s&lt;/a&gt;&quot;, cssClass, cssClass, text);
+    }
+}
+
+// p标签
+public class ParagraphNode implements HtmlNode {
+    public String style = &quot;font: bold&quot;; // 按照需求进行修改
+    public String text = &quot;this is a paragraph&quot;;
+
+    public String getContent()
+    {
+        return String.format(&quot;&lt;p style=&#39;&#39;&gt;&lt;/p&gt;&quot;, style, text);
+    }
+}
+
+// h1标签
+public class HeadingNode implements HtmlNode {
+    public String id = &quot;h1-highlight&quot;; // 按照需求进行修改
+    public String text = &quot;this is a paragraph&quot;;
+
+    public String getContent()
+    {
+        return String.format(&quot;&lt;h1 id=&#39;%s&#39;&gt;%s&lt;/a&gt;&quot;, id, text);
+    }
+}
+</code></pre>
+
+<p>虽然修改成功达到了目的，但在需要修改的class数量比较多时(比如30个类)， 会导致修改大量的文件，同时因为修改的代码都分散很多不同的文件中，非常不利于新增的修改代码的维护，这时就可以使用访问者设计模式了</p>
+
+<h2 id="toc_2">模式实现</h2>
+
+<p>在所有同类的潜在会被修改的class内设计一个接收访问者的方法，交由访问者对自身进行修改</p>
+
+<h3 id="toc_3">代码</h3>
+
+<p>访问者接口定义如下</p>
+
+<pre><code class="language-java">public interface Visitor {
+    void apply(HeadingNode heading);
+
+    void apply(AnchorNode anchor);
+
+    void apply(ParagraphNode paragraph);
+}
+</code></pre>
+
+<p>定义一个进行目标修改的访问者</p>
+
+<pre><code class="language-java">public class AddCssVisitor implements Visitor {
+    @Override
+    public void apply(HeadingNode heading) {
+        heading.id = &quot;h1-highlight&quot;;
+    }
+
+    @Override
+    public void apply(AnchorNode anchor) {
+        anchor.cssClass=&quot;underlinea&quot;;
+    }
+
+    @Override
+    public void apply(ParagraphNode paragraph) {
+        paragraph.style = &quot;font: bold&quot;;
+    }
+}
+</code></pre>
+
+<p>在需要应用这些修改的对象对应的class内部，设计一个接收并应用访问者的方法，参考如下</p>
+
+<p><strong>接口</strong></p>
+
+<pre><code class="language-java">public interface HtmlNode {
+    void acceptVisitor(Visitor visitor);
+}
+</code></pre>
+
+<p>具体实现，拿AnchorNode举例</p>
+
+<pre><code class="language-java">public class AnchorNode implements HtmlNode {
+    public String cssClass = &quot;underlinea&quot;;
+    public String text = &quot;link&quot;;
+
+    public String getContent()
+    {
+        return String.format(&quot;&lt;a class=&#39;%s&#39;&gt;%s&lt;/a&gt;&quot;, cssClass, cssClass, text);
+    }
+
+    @Override
+    public void acceptVisitor(Visitor visitor) {
+        visitor.apply(this);
+    }
+}
+</code></pre>
+
+<p>这样通过调用AnchorNode的acceptVisitor方法就可以在不修改AnchorNode类定义的限定下，通过vistor对AnchorNode对象进行目标修改</p>
+
+<p>同时可以定义多个Vistor，各调用一次目标对象的acceptVisitor方法可以实现多个/多种修改目的</p>
+
+<h3 id="toc_4">UML</h3>
+
+<p><img src="media/15827975641715/15828863130882.jpg" alt=""/></p>
+
+<h2 id="toc_5">为什么访问者模式更好</h2>
+
+<p>存在大量同类对象需求修改时，可以将修改内容集中到一处（一个访问者内），降低直接修改大量目标类产生的漏改/错改，或者使得修改后的类行为不再符合某些依赖方预期。降低改动大量类文件的风险，同时将修改集中到一处，方便后期进行维护，同时对于新的迭代，也可以使用一个新的访问者实现，将迭代的风险集中管理</p>
+
+<h2 id="toc_6">一些注意的点</h2>
+
+<p>可以将接纳访问者的acceptVisitor方法写到父类中</p>
+
+<h2 id="toc_7">参考资料</h2>
+
+<ol>
+<li><a href="https://www.geeksforgeeks.org/visitor-design-pattern/">https://www.geeksforgeeks.org/visitor-design-pattern/</a></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+</feed>

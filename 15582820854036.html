@@ -1,0 +1,679 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  数据api接口的要点 - xiaolin's blog
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="xiaolin's blog" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:neatlifecoco.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">about</a></li>
+        
+        <li id=""><a target="_self" href="all.html">blog</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">archive</a></li>
+        
+        <li id=""><a target="_self" href="tools.html">tools</a></li>
+        
+        <li id=""><a target="_self" href="pro.html">pros</a></li>
+        
+        <li id=""><a target="_self" href="pub.html">press</a></li>
+        
+        <li id=""><a target="_self" href="paper.html">paper</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; xiaolin's blog</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">about</a></li>
+        
+        <li><a target="_self" href="all.html">blog</a></li>
+        
+        <li><a target="_self" href="archives.html">archive</a></li>
+        
+        <li><a target="_self" href="tools.html">tools</a></li>
+        
+        <li><a target="_self" href="pro.html">pros</a></li>
+        
+        <li><a target="_self" href="pub.html">press</a></li>
+        
+        <li><a target="_self" href="paper.html">paper</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="macios.html">mac&ios</a></li>
+        
+            <li><a href="lc.html">leetcode</a></li>
+        
+            <li><a href="security.html">安全</a></li>
+        
+            <li><a href="business.html">业务</a></li>
+        
+            <li><a href="source-code.html">源码分析</a></li>
+        
+            <li><a href="redis.html">Redis</a></li>
+        
+            <li><a href="apache-nginx.html">Apache/Nginx</a></li>
+        
+            <li><a href="spring-boot.html">Spring Boot</a></li>
+        
+            <li><a href="pm.html">项目管理</a></li>
+        
+            <li><a href="sql.html">SQL</a></li>
+        
+            <li><a href="job-scheduler.html">任务调度</a></li>
+        
+            <li><a href="design-pattern.html">设计模式</a></li>
+        
+            <li><a href="mq.html">消息队列</a></li>
+        
+            <li><a href="rpc.html">RPC</a></li>
+        
+            <li><a href="laravel.html">LARAVEL</a></li>
+        
+            <li><a href="tcp-ip.html">TCP/IP</a></li>
+        
+            <li><a href="uml.html">UML</a></li>
+        
+            <li><a href="service-mesh.html">SERVICE MESH</a></li>
+        
+            <li><a href="ci-cd.html">CI/CD</a></li>
+        
+            <li><a href="ops.html">OPS</a></li>
+        
+            <li><a href="linux.html">LINUX</a></li>
+        
+            <li><a href="system-programming.html">系统编程</a></li>
+        
+            <li><a href="aws.html">AWS</a></li>
+        
+            <li><a href="lua.html">LUA</a></li>
+        
+            <li><a href="git.html">GIT</a></li>
+        
+            <li><a href="js.html">js</a></li>
+        
+            <li><a href="java.html">JAVA</a></li>
+        
+            <li><a href="monitor.html">监控</a></li>
+        
+            <li><a href="vim.html">VIM</a></li>
+        
+            <li><a href="php.html">PHP</a></li>
+        
+            <li><a href="openresty.html">OpenResty</a></li>
+        
+            <li><a href="swoole.html">SWOOLE</a></li>
+        
+            <li><a href="ons.html">消息队列</a></li>
+        
+            <li><a href="gdb.html">GDB</a></li>
+        
+            <li><a href="specification.html">规范</a></li>
+        
+            <li><a href="3-minutes.html">三分钟系列</a></li>
+        
+            <li><a href="1-pic.html">一图胜千言</a></li>
+        
+            <li><a href="account-system.html">帐号系统</a></li>
+        
+            <li><a href="interview.html">面试题</a></li>
+        
+            <li><a href="yii.html">Yii/Yii2</a></li>
+        
+            <li><a href="python.html">python</a></li>
+        
+            <li><a href="go.html">GO</a></li>
+        
+            <li><a href="ml.html">机器学习</a></li>
+        
+            <li><a href="emacs.html">emacs</a></li>
+        
+            <li><a href="bi.html">商业智能</a></li>
+        
+            <li><a href="mac.html">mac</a></li>
+        
+            <li><a href="editor.html">编辑器</a></li>
+        
+            <li><a href="productive-soft.html">生产力工具</a></li>
+        
+            <li><a href="driver-license.html">驾照</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>数据api接口的要点</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2017/2/21</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='interview.html'>面试题</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>因为最近面试反馈被问到了接口，所以在此总结接口涉及到的内容。</p>
+
+<p>在工作中、接口涉及到编写app接口、因为编写app接口涉及到Java(安卓app)、Object C(IOSapp)与php后端的数据交换、所以编写app接口的核心数据交换格式是JSON。</p>
+
+<p>编写app接口还有一点难点是保持已登录的用户的状态、因为app程序和浏览器不同的一点是、app默认是不支持cookie、所以默认app无法保持登录状态、所以常见的有以下三种解决方式</p>
+
+<p>app在发送请求时、每次请求都模仿浏览器携带cookie，在cookie中包含session_id<br/>
+app端登录成功后、php服务器端为登录的用户生成一个唯一的随机字符串、并返回给app、app在后面的请求里都携带上这个随机字符串、服务器通过这个随机字符串寻找对应的用户。<br/>
+其它的基于唯一字符串的验证方式：比如JWT <a href="https://jwt.io/">https://jwt.io/</a><br/>
+除了app接口、还有不需要用户和用户状态保持的接口、比如支付宝的支付、没有状态的保持、只需要保证和接口通信的安全性。支付宝采用的是非对称加密和使用https协议进行数据传输、避免中间人攻击。</p>
+
+<p>app接口设计要点<br/>
+app接口设计包含以下4点</p>
+
+<p>接口的作用<br/>
+接口的地址<br/>
+接口的参数、参数通常是post请求携带payload方式传递的json字符串、需要通过file_get_contents(&#39;php://input&#39;)进行接收、当然也可以模拟普通的html表单进行提交、在php中使用$_POST接收。<br/>
+接口的返回值、通常会返回一个状态码表示接口是否成功执行<br/>
+{<br/>
+    code：0,<br/>
+    message: &quot;success&quot;,<br/>
+    data: { key1: value1, key2: value2, ... }<br/>
+}<br/>
+ 其中的code表示状态码、状态码举例、其中为0的状态码表示成功、其它均表示错误：</p>
+
+<p>0：成功<br/>
+100：请求错误<br/>
+101：缺少appKey<br/>
+102：缺少签名<br/>
+103：缺少参数<br/>
+200：服务器出错<br/>
+201：服务不可用<br/>
+202：服务器正在重启<br/>
+其中的message表示消息、成功、表示成功的消息、失败、返回失败的消息、这个消息一般用于直接显示给用户。</p>
+
+<p>还有的接口简化了状态码的设计、只返回成功或者失败的状态、所以、状态由true和false表示，true表示接口执行成功、false表示错误。</p>
+
+<p>还有的直接使用http状态码作为接口的状态码返回给客户端。</p>
+
+<p>接口的安全性<br/>
+我们的接口暴露在互联网上、所以存在有人恶意使用程序进行调用、程序可以以极快的速度请求我们的接口、造成我们的接口无法服务其它正常用户、所以针对这个问题、可以对一个ip的调用次数在单位时间内进行限制、比如一个每分钟只允许60次请求、超过60次即认为非法请求、后面的请求拒绝提供服务。接口请求的次数可以保存在redis、memcache等高速缓存中、从而不影响接口的性能。</p>
+
+<p>同时为了禁止非授权用户调用我们的接口、可以要求需要调用接口的第三方在我们的平台上进行注册、注册成功后、我们分配给一个固定的唯一的随机字符串、要求用户请求时必须携带此参数、并在我们的接口里进行校验、不匹配直接不提供服务。比如有道接口，百度地图接口</p>
+
+<p>Restful接口<br/>
+restful接口的要点就是利用请求动词（get,post）表示出接口调用方的意图（获取、删除、还是保存数据）</p>
+
+<p>GET（SELECT）：从服务器取出资源（一项或多项）。<br/>
+POST（CREATE）：在服务器新建一个资源。(客户端提供资源的信息)<br/>
+PUT（UPDATE）：在服务器更新资源（客户端提供改变后的完整资源）。<br/>
+PATCH（UPDATE）：在服务器更新资源（客户端提供改变的属性）。<br/>
+DELETE（DELETE）：从服务器删除资源。<br/>
+HEAD：获取资源的元数据。<br/>
+OPTIONS：获取信息，关于资源的哪些属性是客户端可以改变的。<br/>
+其中最常用的是前面5个请求动词、分别对应增删改查。其余用法和普通api没有区别。</p>
+
+<p>接口调试工具<br/>
+chrome扩展postman：<a href="https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=zh-CN">https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=zh-CN</a></p>
+
+<p>抓包工具fiddler：<a href="http://www.telerik.com/fiddler">http://www.telerik.com/fiddler</a></p>
+
+<p>php请求第三方接口<br/>
+可以使用file_get_contents()默认以get方式请求、但是在实际开发中、为了增强对请求过程的控制、一般使用curl进行发起请求。</p>
+
+<p>使用curl发起post请求</p>
+
+<p>function curl_post(\(data, \)url, \(headers = array())<br/>
+{<br/>
+    \)ch = curl_init();<br/>
+    \(res= curl_setopt (\)ch, CURLOPT_URL, \(url);<br/>
+    curl_setopt(\)ch, CURLOPT_SSL_VERIFYHOST, FALSE);<br/>
+    curl_setopt(\(ch, CURLOPT_SSL_VERIFYPEER, FALSE);<br/>
+    curl_setopt(\)ch, CURLOPT_HEADER, 0);<br/>
+    curl_setopt(\(ch, CURLOPT_POST, 1);<br/>
+    curl_setopt(\)ch, CURLOPT_POSTFIELDS, \(data);<br/>
+    curl_setopt(\)ch, CURLOPT_RETURNTRANSFER, 1);<br/>
+    \(result = curl_exec(\)ch);<br/>
+    curl_close(\(ch);<br/>
+    if (\)result == NULL) {<br/>
+        return 0;<br/>
+    }<br/>
+    return $result;<br/>
+}<br/>
+使用curl发起get请求</p>
+
+<p>function curl_get(\(data, \)url, \(headers = array())<br/>
+{<br/>
+    \)ch = curl_init();<br/>
+    \(res= curl_setopt (\)ch, CURLOPT_URL, \(url);<br/>
+    curl_setopt(\)ch, CURLOPT_SSL_VERIFYHOST, FALSE);<br/>
+    curl_setopt(\(ch, CURLOPT_SSL_VERIFYPEER, FALSE);<br/>
+    curl_setopt(\)ch, CURLOPT_HEADER, 0);<br/>
+    curl_setopt(\(ch, CURLOPT_POSTFIELDS, \)data);<br/>
+    curl_setopt(\(ch, CURLOPT_RETURNTRANSFER, 1);<br/>
+    \)result = curl_exec(\(ch);<br/>
+    curl_close(\)ch);<br/>
+    if (\(result == NULL) {<br/>
+        return 0;<br/>
+    }<br/>
+    return \)result;<br/>
+} <br/>
+ 第三方接口一般返回json字符串、我们对json字符串使用json_decode进行处理成php的对象或数组、就可以使用php操作变量的方式对返回的字符串进行处理。</p>
+
+<p>友盟数据接口的使用方式</p>
+
+<h1 id="toc_0">授权接口</h1>
+
+<p>\(url = &#39;http://api.umeng.com/authorize&#39; ;<br/>
+\)data = &#39;email=你的邮箱&amp;password=你的密码&#39;;<br/>
+echo curl_post(\(data, \)url);</p>
+
+<h1 id="toc_1">获取app基本数据的接口</h1>
+
+<p>\(url = &quot;http://api.umeng.com/apps/base_data&quot;;<br/>
+\)data = &#39;&#39;;<br/>
+\(headers = array(<br/>
+    &#39;Authorization: Basic 你的auth_token&#39;<br/>
+);<br/>
+echo curl_get(\)data, \(url, \)headers);</p>
+
+<h2 id="toc_2">参考资料</h2>
+
+<p><a href="http://keeganlee.me/post/architecture/20160107">Keegan小钢</a></p>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15582821937297.html" 
+          title="Previous Post: 面试题-使用IE的ActiveX对象过滤敏感词">&laquo; 面试题-使用IE的ActiveX对象过滤敏感词</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15582818425859.html" 
+          title="Next Post: 安装composer的三种方式">安装composer的三种方式 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          <script src="https://utteranc.es/client.js"
+        repo="neatlife/neatlife.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>xiaolin's blog</h1>
+                <div class="site-des">core tech share blog</div>
+                <div class="social">
+                  <a target="_blank" class="juejin" href="https://juejin.im/user/5c409f86e51d4551c88027a2/posts" title="Juejin">juejin</a>
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/neatlife" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="macios.html"><strong>mac&ios</strong></a>
+        
+            <a href="lc.html"><strong>leetcode</strong></a>
+        
+            <a href="security.html"><strong>安全</strong></a>
+        
+            <a href="business.html"><strong>业务</strong></a>
+        
+            <a href="source-code.html"><strong>源码分析</strong></a>
+        
+            <a href="redis.html"><strong>Redis</strong></a>
+        
+            <a href="apache-nginx.html"><strong>Apache/Nginx</strong></a>
+        
+            <a href="spring-boot.html"><strong>Spring Boot</strong></a>
+        
+            <a href="pm.html"><strong>项目管理</strong></a>
+        
+            <a href="sql.html"><strong>SQL</strong></a>
+        
+            <a href="job-scheduler.html"><strong>任务调度</strong></a>
+        
+            <a href="design-pattern.html"><strong>设计模式</strong></a>
+        
+            <a href="mq.html"><strong>消息队列</strong></a>
+        
+            <a href="rpc.html"><strong>RPC</strong></a>
+        
+            <a href="laravel.html"><strong>LARAVEL</strong></a>
+        
+            <a href="tcp-ip.html"><strong>TCP/IP</strong></a>
+        
+            <a href="uml.html"><strong>UML</strong></a>
+        
+            <a href="service-mesh.html"><strong>SERVICE MESH</strong></a>
+        
+            <a href="ci-cd.html"><strong>CI/CD</strong></a>
+        
+            <a href="ops.html"><strong>OPS</strong></a>
+        
+            <a href="linux.html"><strong>LINUX</strong></a>
+        
+            <a href="system-programming.html"><strong>系统编程</strong></a>
+        
+            <a href="aws.html"><strong>AWS</strong></a>
+        
+            <a href="lua.html"><strong>LUA</strong></a>
+        
+            <a href="git.html"><strong>GIT</strong></a>
+        
+            <a href="js.html"><strong>js</strong></a>
+        
+            <a href="java.html"><strong>JAVA</strong></a>
+        
+            <a href="monitor.html"><strong>监控</strong></a>
+        
+            <a href="vim.html"><strong>VIM</strong></a>
+        
+            <a href="php.html"><strong>PHP</strong></a>
+        
+            <a href="openresty.html"><strong>OpenResty</strong></a>
+        
+            <a href="swoole.html"><strong>SWOOLE</strong></a>
+        
+            <a href="ons.html"><strong>消息队列</strong></a>
+        
+            <a href="gdb.html"><strong>GDB</strong></a>
+        
+            <a href="specification.html"><strong>规范</strong></a>
+        
+            <a href="3-minutes.html"><strong>三分钟系列</strong></a>
+        
+            <a href="1-pic.html"><strong>一图胜千言</strong></a>
+        
+            <a href="account-system.html"><strong>帐号系统</strong></a>
+        
+            <a href="interview.html"><strong>面试题</strong></a>
+        
+            <a href="yii.html"><strong>Yii/Yii2</strong></a>
+        
+            <a href="python.html"><strong>python</strong></a>
+        
+            <a href="go.html"><strong>GO</strong></a>
+        
+            <a href="ml.html"><strong>机器学习</strong></a>
+        
+            <a href="emacs.html"><strong>emacs</strong></a>
+        
+            <a href="bi.html"><strong>商业智能</strong></a>
+        
+            <a href="mac.html"><strong>mac</strong></a>
+        
+            <a href="editor.html"><strong>编辑器</strong></a>
+        
+            <a href="productive-soft.html"><strong>生产力工具</strong></a>
+        
+            <a href="driver-license.html"><strong>驾照</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="16081898834624.html">OSX使用代码代替storyboard构建项目，并添加NSSplitView组件</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16005640944829.html">linux系统编程之多进程和管道（pip）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15970226751276.html">三分钟上手java多线程控制技术</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15864793262262.html">14/24 设计模式之状态模式 State Pattern</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15880004262195.html">python高性能之路:使用C/C++编写扩展</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.
+<span id="busuanzi_container_site_uv">访问<span id="busuanzi_value_site_uv"></span>人</span>/
+        <span id="busuanzi_container_site_pv"><span id="busuanzi_value_site_pv"></span>次</span>
+    </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138141150-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138141150-1');
+</script>
+
+<canvas class="fireworks" 
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999999; pointer-events: none; width: 1158px; height: 916px;" 
+        width="2316" 
+        height="1832">
+</canvas>
+    <script src="asset/js/anime.min.js"></script>
+    <script src="asset/js/fireworks.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </body>
+</html>

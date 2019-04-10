@@ -1,0 +1,942 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  memcached网络通信模块设计与实现分析 - xiaolin's blog
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="xiaolin's blog" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:neatlifecoco.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">about</a></li>
+        
+        <li id=""><a target="_self" href="all.html">blog</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">archive</a></li>
+        
+        <li id=""><a target="_self" href="tools.html">tools</a></li>
+        
+        <li id=""><a target="_self" href="pro.html">pros</a></li>
+        
+        <li id=""><a target="_self" href="pub.html">press</a></li>
+        
+        <li id=""><a target="_self" href="paper.html">paper</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; xiaolin's blog</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">about</a></li>
+        
+        <li><a target="_self" href="all.html">blog</a></li>
+        
+        <li><a target="_self" href="archives.html">archive</a></li>
+        
+        <li><a target="_self" href="tools.html">tools</a></li>
+        
+        <li><a target="_self" href="pro.html">pros</a></li>
+        
+        <li><a target="_self" href="pub.html">press</a></li>
+        
+        <li><a target="_self" href="paper.html">paper</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="macios.html">mac&ios</a></li>
+        
+            <li><a href="lc.html">leetcode</a></li>
+        
+            <li><a href="security.html">安全</a></li>
+        
+            <li><a href="business.html">业务</a></li>
+        
+            <li><a href="source-code.html">源码分析</a></li>
+        
+            <li><a href="redis.html">Redis</a></li>
+        
+            <li><a href="apache-nginx.html">Apache/Nginx</a></li>
+        
+            <li><a href="spring-boot.html">Spring Boot</a></li>
+        
+            <li><a href="pm.html">项目管理</a></li>
+        
+            <li><a href="sql.html">SQL</a></li>
+        
+            <li><a href="job-scheduler.html">任务调度</a></li>
+        
+            <li><a href="design-pattern.html">设计模式</a></li>
+        
+            <li><a href="mq.html">消息队列</a></li>
+        
+            <li><a href="rpc.html">RPC</a></li>
+        
+            <li><a href="laravel.html">LARAVEL</a></li>
+        
+            <li><a href="tcp-ip.html">TCP/IP</a></li>
+        
+            <li><a href="uml.html">UML</a></li>
+        
+            <li><a href="service-mesh.html">SERVICE MESH</a></li>
+        
+            <li><a href="ci-cd.html">CI/CD</a></li>
+        
+            <li><a href="ops.html">OPS</a></li>
+        
+            <li><a href="linux.html">LINUX</a></li>
+        
+            <li><a href="system-programming.html">系统编程</a></li>
+        
+            <li><a href="aws.html">AWS</a></li>
+        
+            <li><a href="lua.html">LUA</a></li>
+        
+            <li><a href="git.html">GIT</a></li>
+        
+            <li><a href="js.html">js</a></li>
+        
+            <li><a href="java.html">JAVA</a></li>
+        
+            <li><a href="monitor.html">监控</a></li>
+        
+            <li><a href="vim.html">VIM</a></li>
+        
+            <li><a href="php.html">PHP</a></li>
+        
+            <li><a href="openresty.html">OpenResty</a></li>
+        
+            <li><a href="swoole.html">SWOOLE</a></li>
+        
+            <li><a href="ons.html">消息队列</a></li>
+        
+            <li><a href="gdb.html">GDB</a></li>
+        
+            <li><a href="specification.html">规范</a></li>
+        
+            <li><a href="3-minutes.html">三分钟系列</a></li>
+        
+            <li><a href="1-pic.html">一图胜千言</a></li>
+        
+            <li><a href="account-system.html">帐号系统</a></li>
+        
+            <li><a href="interview.html">面试题</a></li>
+        
+            <li><a href="yii.html">Yii/Yii2</a></li>
+        
+            <li><a href="python.html">python</a></li>
+        
+            <li><a href="go.html">GO</a></li>
+        
+            <li><a href="ml.html">机器学习</a></li>
+        
+            <li><a href="emacs.html">emacs</a></li>
+        
+            <li><a href="bi.html">商业智能</a></li>
+        
+            <li><a href="mac.html">mac</a></li>
+        
+            <li><a href="editor.html">编辑器</a></li>
+        
+            <li><a href="productive-soft.html">生产力工具</a></li>
+        
+            <li><a href="driver-license.html">驾照</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>memcached网络通信模块设计与实现分析</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2019/8/11</span>
+
+          
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>接上一篇redis网络通信模块，memcached的网络通信借助了libevent库，简化了底层的网络读写事件的封装，但是memcached多了多线程处理</p>
+
+<p>核心流程：客户端 -&gt; 服务端memcached master -&gt; master fd -&gt; master accept(fd) -&gt; client fd -&gt; worker线程处理client fd所有读写事件</p>
+
+<h2 id="toc_0">master处理流程</h2>
+
+<p><img src="media/15655033189527/15655989246091.jpg" alt=""/></p>
+
+<p>master处理流程在main()函数中，虽然main函数共有6892-8334共计1442行代码，6892-&gt;8104共计1212行都是在解析memcached的配置、和做一些主流程无关的小操作。</p>
+
+<p>main中的核心代码不到230行(8104-&gt;8334)，还是非常容易分析的</p>
+
+<p>master做的核心工作有一下几点</p>
+
+<h3 id="toc_1">创建libevent事件循环-event_base_new_with_config()</h3>
+
+<p>这个是libevent事件循环的核心共享结构体，后面的事件注册，启动等都需要这个结构体</p>
+
+<p>这里需要注意的是memcached使用了带参的event_base_new()函数，参数是libevent配置</p>
+
+<pre><code class="language-c">ev_config = event_config_new();
+event_config_set_flag(ev_config, EVENT_BASE_FLAG_NOLOCK);
+main_base = event_base_new_with_config(ev_config);
+</code></pre>
+
+<p>不为event_base分配锁，这样可以提高一些libevent的性能，虽然这样可能导致多线程下使用event_base变得不安全，但是memcached的event_base是一个线程一个event_base，所以不存在这个问题</p>
+
+<h3 id="toc_2">启动tcp服务器</h3>
+
+<p>memcached.c::server_socket()函数中使用socket()和bind()方法启动了tcp服务器，并得到这个代表memcached server的fd</p>
+
+<span id="more"></span><!-- more -->
+
+<p>核心代码如下：</p>
+
+<pre><code class="language-c">static int server_socket(const char *interface,
+                         int port,
+                         enum network_transport transport,
+                         FILE *portnumber_file, bool ssl_enabled) {
+    // ...
+
+    for (next= ai; next; next= next-&gt;ai_next) {
+        conn *listen_conn_add;
+        if ((sfd = new_socket(next)) == -1) {
+            // ...
+            continue;
+        }
+
+        // 省略ipv6逻辑...
+        if (bind(sfd, next-&gt;ai_addr, next-&gt;ai_addrlen) == -1) {
+            // ...
+            close(sfd);
+            continue;
+        } else {
+            success++;
+            if (!IS_UDP(transport) &amp;&amp; listen(sfd, settings.backlog) == -1) {
+                // ...
+            }
+            // ...
+        }
+
+        // 省略udp逻辑...
+            if (!(listen_conn_add = conn_new(sfd, conn_listening,
+                                             EV_READ | EV_PERSIST, 1,
+                                             transport, main_base, NULL))) {
+            // ...
+        }
+
+    // ...
+}
+</code></pre>
+
+<h3 id="toc_3">注册libevent事件循环事件</h3>
+
+<p>虽然memcached的main()函数一开始就创建了master的libevent事件循环，但是使用是非常靠后的，在worker线程都初始化完成后，才创建tcp服务器，并为master的event_base注册回调函数</p>
+
+<p>master的event_handler回调函数如下：</p>
+
+<pre><code class="language-c">void event_handler(const int fd, const short which, void *arg) {
+    conn *c;
+
+    c = (conn *)arg;
+    assert(c != NULL);
+
+    c-&gt;which = which;
+
+    /* sanity */
+    if (fd != c-&gt;sfd) {
+        if (settings.verbose &gt; 0)
+            fprintf(stderr, &quot;Catastrophic: event fd doesn&#39;t match conn fd!\n&quot;);
+        conn_close(c);
+        return;
+    }
+
+    drive_machine(c);
+
+    /* wait for next event */
+    return;
+}
+</code></pre>
+
+<p>可以看到这个event_handler里面只是做了一些错误检查，然后就立即交给drive_machine函数进行处理了</p>
+
+<p>这个drive_machine主要是对<code>c-&gt;state</code>变量进行逻辑判断处理，对于master的c变量的state属性，它的值在memcached.c:653被设置了，值是memcached.c::6242行传递进去的，为：conn_listening，drive_machine对应的逻辑如下</p>
+
+<pre><code class="language-c">addrlen = sizeof(addr);
+#ifdef HAVE_ACCEPT4
+    if (use_accept4) {
+        sfd = accept4(c-&gt;sfd, (struct sockaddr *)&amp;addr, &amp;addrlen, SOCK_NONBLOCK);
+    } else {
+        sfd = accept(c-&gt;sfd, (struct sockaddr *)&amp;addr, &amp;addrlen);
+    }
+#else
+    sfd = accept(c-&gt;sfd, (struct sockaddr *)&amp;addr, &amp;addrlen);
+#endif
+    // 省略流程无关代码...
+
+#ifdef TLS
+        // ssl相关逻辑省略...
+#endif
+
+        dispatch_conn_new(sfd, conn_new_cmd, EV_READ | EV_PERSIST,
+                             DATA_BUFFER_SIZE, c-&gt;transport, ssl_v);
+    }
+
+    stop = true;
+</code></pre>
+
+<p>可以看到master线程的tcp服务器有新客户端连接进入后，drive_machine处理逻辑会立即获取这个memcached客户端连接fd为sfd，并交给了dispatch_conn_new函数进行处理</p>
+
+<p>dispatch_conn_new函数核心逻辑如下</p>
+
+<pre><code class="language-c">void dispatch_conn_new(int sfd, enum conn_states init_state, int event_flags,
+                       int read_buffer_size, enum network_transport transport, void *ssl) {
+    CQ_ITEM *item = cqi_new();
+    char buf[1];
+    if (item == NULL) {
+        close(sfd);
+        /* given that malloc failed this may also fail, but let&#39;s try */
+        fprintf(stderr, &quot;Failed to allocate memory for connection object\n&quot;);
+        return ;
+    }
+
+    int tid = (last_thread + 1) % settings.num_threads;
+
+    LIBEVENT_THREAD *thread = threads + tid;
+
+    last_thread = tid;
+
+    item-&gt;sfd = sfd;
+    item-&gt;init_state = init_state;
+    item-&gt;event_flags = event_flags;
+    item-&gt;read_buffer_size = read_buffer_size;
+    item-&gt;transport = transport;
+    item-&gt;mode = queue_new_conn;
+    item-&gt;ssl = ssl;
+
+    cq_push(thread-&gt;new_conn_queue, item);
+
+    MEMCACHED_CONN_DISPATCH(sfd, thread-&gt;thread_id);
+    buf[0] = &#39;c&#39;;
+    if (write(thread-&gt;notify_send_fd, buf, 1) != 1) {
+        perror(&quot;Writing to thread notify pipe&quot;);
+    }
+}
+</code></pre>
+
+<p>这里面主要是</p>
+
+<ol>
+<li>选择一个worker线程用于处理这个客户端连接后续的读写操作</li>
+<li>声明了一个CQ_ITEM结构体代表这个客户端的连接，并保存到worker线程的new_conn_queue属性上，这个属性是个数组，并且被当成队列使用了</li>
+<li>向worker线程的notify_send_fd属性发送一个字符&#39;c&#39;通知worker线程有新客户端连接分配给它了</li>
+</ol>
+
+<p>后续worker线程的event_base监听到notify_receive_fd的可读事件就开始工作了, 因为这里使用pipe线程通信技术，所以notify_send_fd写数据，触发notify_receive_fd的可读事件，pipe线程通信技术参考：<a href="https://blog.csdn.net/robertkun/article/details/8095331">https://blog.csdn.net/robertkun/article/details/8095331</a></p>
+
+<p>至此，memcached master线程，网络相关的主流程就走完了，剩下的事情就交给worker进程处理了</p>
+
+<h3 id="toc_4">libevent启动时机</h3>
+
+<p>当客户端向memcached服务器写入输入时，可以使用clion进行断点测试，比如在event_handler上进行断点<br/>
+<img src="media/15655033189527/15656018998284.jpg" alt=""/></p>
+
+<h3 id="toc_5">conn_new()</h3>
+
+<p>memcached.c::conn_new()</p>
+
+<p>注册事件回调</p>
+
+<pre><code class="language-c">event_set(&amp;c-&gt;event, sfd, event_flags, event_handler, (void *)c);
+event_base_set(base, &amp;c-&gt;event);
+</code></pre>
+
+<p><code>event_handler</code> 就是设置的回调函数</p>
+
+<h2 id="toc_6">worker处理流程</h2>
+
+<p><img src="media/15655033189527/15656098565890.jpg" alt=""/></p>
+
+<p>worker线程的回调在master里就指定好了，参考：thread.c::setup_thread()，worker的回调函数被指定为了<code>thread_libevent_process</code>，结合master的处理流程，这个worker的回调函数只有在master得到新连接时被触发</p>
+
+<h3 id="toc_7">worker获取客户端连接</h3>
+
+<p>参考thread.c::thread_libevent_process()函数，核心代码如下</p>
+
+<pre><code class="language-c">item = cq_pop(me-&gt;new_conn_queue);
+
+c = conn_new(item-&gt;sfd, item-&gt;init_state, item-&gt;event_flags,
+                   item-&gt;read_buffer_size, item-&gt;transport,
+                   me-&gt;base, item-&gt;ssl);
+if (c == NULL) {
+    // 省略错误处理...
+} else {
+    c-&gt;thread = me;
+#ifdef TLS
+    // 省略ssl逻辑...
+#endif
+}
+</code></pre>
+
+<p>worker调用cq_pop从队列中获取客户端连接后，然后就交给了conn_new函数进行处理</p>
+
+<p>conn_new函数把客户端的读写事件交给了event_handler函数进行处理，核心代码如下</p>
+
+<pre><code class="language-c">event_set(&amp;c-&gt;event, sfd, event_flags, event_handler, (void *)c);
+</code></pre>
+
+<p>master也使用event_handler函数来处理master的事件，worker也使用event_handler处理事件，是不会冲突的，因为在event_handler里的drive_machine执行体中，会通过这个事件参数conn结构体的state属性的进行分支判断, worker的conn的state从CQ_ITEM获取，值为conn_new_cmd</p>
+
+<h2 id="toc_8">客户端读写事件分发</h2>
+
+<p>客户端往memcached服务器发送数据，触发event_handler函数执行，此时state值为conn_new_cmd<br/>
+对应drive_machine核心代码如下</p>
+
+<pre><code class="language-c">while (!stop) {
+    case conn_new_cmd:
+        /* Only process nreqs at a time to avoid starving other
+           connections */
+
+        --nreqs;
+        if (nreqs &gt;= 0) {
+            reset_cmd_handler(c);
+        } else {
+            // 异常处理逻辑...
+        }
+        break;
+}
+</code></pre>
+
+<p>最上层是个无限循环，里面肯定有个出口，把请求交给了reset_cmd_handler()函数进行处理,核心代码如下</p>
+
+<pre><code class="language-c">static void reset_cmd_handler(conn *c) {
+    // ...
+    if (c-&gt;rbytes &gt; 0) {
+        conn_set_state(c, conn_parse_cmd);
+    } else {
+        conn_set_state(c, conn_waiting);
+    }
+}
+</code></pre>
+
+<p>如果还有数据可以读取，就设置state为conn_parse_cmd状态，否则，进入conn_waiting状态</p>
+
+<h3 id="toc_9">conn_parse_cmd</h3>
+
+<pre><code class="language-c">case conn_parse_cmd :
+    if (c-&gt;try_read_command(c) == 0) {
+        /* wee need more data! */
+        conn_set_state(c, conn_waiting);
+    }
+
+    break;
+</code></pre>
+
+<p>进行数据读取，然后将状态设置为conn_waiting, 这个try_read_command里面就对客户端的输入进行了处理，并把结果返回了客户端，参考: try_read_command_ascii</p>
+
+<pre><code class="language-c">static int try_read_command_ascii(conn *c) {
+    char *el, *cont;
+
+    if (c-&gt;rbytes == 0)
+        return 0;
+
+    el = memchr(c-&gt;rcurr, &#39;\n&#39;, c-&gt;rbytes);
+    if (!el) {
+        // 略过异常处理逻辑...
+        return 0;
+    }
+    cont = el + 1;
+    if ((el - c-&gt;rcurr) &gt; 1 &amp;&amp; *(el - 1) == &#39;\r&#39;) {
+        el--;
+    }
+    *el = &#39;\0&#39;;
+
+    assert(cont &lt;= (c-&gt;rcurr + c-&gt;rbytes));
+
+    c-&gt;last_cmd_time = current_time;
+    process_command(c, c-&gt;rcurr);
+
+    c-&gt;rbytes -= (cont - c-&gt;rcurr);
+    c-&gt;rcurr = cont;
+
+    assert(c-&gt;rcurr &lt;= (c-&gt;rbuf + c-&gt;rsize));
+
+    return 1;
+}
+</code></pre>
+
+<p>调用<strong>process_command</strong>进行请求处理了，至此，memcached的网络处理到这里就结束了，参考memcached.c::process_command()</p>
+
+<h2 id="toc_10">和redis对比</h2>
+
+<ol>
+<li>memcached</li>
+</ol>
+
+<h2 id="toc_11">一些注意的点</h2>
+
+<p>本文基于memcached master分支写成，参考：<a href="https://github.com/memcached/memcached">https://github.com/memcached/memcached</a></p>
+
+<p>memcached初版没有多线程，多线程的worker处理是在后续加上的，参考github上的1.2.0初版：<a href="https://github.com/memcached/memcached/releases/tag/1.2.0">https://github.com/memcached/memcached/releases/tag/1.2.0</a></p>
+
+<p>pthread_create函数用来创建线程</p>
+
+<h3 id="toc_12">核心共享结构体LIBEVENT_THREAD</h3>
+
+<p>memcached使用的是多线程模型，而不是多进程模型，这一点非常重要，这意味着memcached的master线程和worker线程可以共享一些结构体变量，比如代表worker线程的LIBEVENT_THREAD结构体，源码如下</p>
+
+<pre><code class="language-c">typedef struct {
+    pthread_t thread_id;        /* unique ID of this thread */
+    struct event_base *base;    /* libevent handle this thread uses */
+    struct event notify_event;  /* listen event for notify pipe */
+    int notify_receive_fd;      /* receiving end of notify pipe */
+    int notify_send_fd;         /* sending end of notify pipe */
+    struct thread_stats stats;  /* Stats generated by this thread */
+    struct conn_queue *new_conn_queue; /* queue of new connections to handle */
+    cache_t *suffix_cache;      /* suffix cache */
+#ifdef EXTSTORE
+    cache_t *io_cache;          /* IO objects */
+    void *storage;              /* data object for storage system */
+#endif
+    logger *l;                  /* logger buffer */
+    void *lru_bump_buf;         /* async LRU bump buffer */
+#ifdef TLS
+    char   *ssl_wbuf;
+#endif
+
+} LIBEVENT_THREAD;
+</code></pre>
+
+<p>memcached就是master通过往共享的notify_send_fd字段上写入数据，触发worker线程处理新的客户端连接fd的</p>
+
+<h3 id="toc_13">master线程获取客户端连接fd，通过队列传给worker进行处理</h3>
+
+<p>thread.c::dispatch_conn_new() -&gt; cq_push(thread-&gt;new_conn_queue, item) -&gt; write(thread-&gt;notify_send_fd, buf, 1)</p>
+
+<p><code>write(thread-&gt;notify_send_fd, buf, 1)</code>就是触发worker线程的event_base，notify_send_fd的可读事件</p>
+
+<h3 id="toc_14">memcached客户端连接状态枚举</h3>
+
+<pre><code class="language-c">enum conn_states {
+    conn_listening,  /**&lt; the socket which listens for connections */
+    conn_new_cmd,    /**&lt; Prepare connection for next command */
+    conn_waiting,    /**&lt; waiting for a readable socket */
+    conn_read,       /**&lt; reading in a command line */
+    conn_parse_cmd,  /**&lt; try to parse a command from the input buffer */
+    conn_write,      /**&lt; writing out a simple response */
+    conn_nread,      /**&lt; reading in a fixed number of bytes */
+    conn_swallow,    /**&lt; swallowing unnecessary bytes w/o storing */
+    conn_closing,    /**&lt; closing this connection */
+    conn_mwrite,     /**&lt; writing out many items sequentially */
+    conn_closed,     /**&lt; connection is closed */
+    conn_watch,      /**&lt; held by the logger thread as a watcher */
+    conn_max_state   /**&lt; Max state value (used for assertion) */
+};
+</code></pre>
+
+<p>CQ_ITEM的state属性的值在memcached.c::5725被指定成了conn_new_cmd</p>
+
+<p>master建立的tcp服务器，接收的memcached客户端连接均是fd，注意区分fd代表的角色</p>
+
+<h2 id="toc_15">参考资料</h2>
+
+<ol>
+<li><a href="https://blog.csdn.net/ta893115871/article/details/7478779">https://blog.csdn.net/ta893115871/article/details/7478779</a></li>
+<li><a href="https://www.cnblogs.com/gqtcgq/p/7247260.html">https://www.cnblogs.com/gqtcgq/p/7247260.html</a></li>
+<li><a href="https://holmeshe.me/">https://holmeshe.me/</a></li>
+</ol>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15660228266567.html" 
+          title="Previous Post: 三分钟上手linux系统开发">&laquo; 三分钟上手linux系统开发</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15653167338198.html" 
+          title="Next Post: redis网络通信模块设计与实现分析">redis网络通信模块设计与实现分析 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          <script src="https://utteranc.es/client.js"
+        repo="neatlife/neatlife.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>xiaolin's blog</h1>
+                <div class="site-des">core tech share blog</div>
+                <div class="social">
+                  <a target="_blank" class="juejin" href="https://juejin.im/user/5c409f86e51d4551c88027a2/posts" title="Juejin">juejin</a>
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/neatlife" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="macios.html"><strong>mac&ios</strong></a>
+        
+            <a href="lc.html"><strong>leetcode</strong></a>
+        
+            <a href="security.html"><strong>安全</strong></a>
+        
+            <a href="business.html"><strong>业务</strong></a>
+        
+            <a href="source-code.html"><strong>源码分析</strong></a>
+        
+            <a href="redis.html"><strong>Redis</strong></a>
+        
+            <a href="apache-nginx.html"><strong>Apache/Nginx</strong></a>
+        
+            <a href="spring-boot.html"><strong>Spring Boot</strong></a>
+        
+            <a href="pm.html"><strong>项目管理</strong></a>
+        
+            <a href="sql.html"><strong>SQL</strong></a>
+        
+            <a href="job-scheduler.html"><strong>任务调度</strong></a>
+        
+            <a href="design-pattern.html"><strong>设计模式</strong></a>
+        
+            <a href="mq.html"><strong>消息队列</strong></a>
+        
+            <a href="rpc.html"><strong>RPC</strong></a>
+        
+            <a href="laravel.html"><strong>LARAVEL</strong></a>
+        
+            <a href="tcp-ip.html"><strong>TCP/IP</strong></a>
+        
+            <a href="uml.html"><strong>UML</strong></a>
+        
+            <a href="service-mesh.html"><strong>SERVICE MESH</strong></a>
+        
+            <a href="ci-cd.html"><strong>CI/CD</strong></a>
+        
+            <a href="ops.html"><strong>OPS</strong></a>
+        
+            <a href="linux.html"><strong>LINUX</strong></a>
+        
+            <a href="system-programming.html"><strong>系统编程</strong></a>
+        
+            <a href="aws.html"><strong>AWS</strong></a>
+        
+            <a href="lua.html"><strong>LUA</strong></a>
+        
+            <a href="git.html"><strong>GIT</strong></a>
+        
+            <a href="js.html"><strong>js</strong></a>
+        
+            <a href="java.html"><strong>JAVA</strong></a>
+        
+            <a href="monitor.html"><strong>监控</strong></a>
+        
+            <a href="vim.html"><strong>VIM</strong></a>
+        
+            <a href="php.html"><strong>PHP</strong></a>
+        
+            <a href="openresty.html"><strong>OpenResty</strong></a>
+        
+            <a href="swoole.html"><strong>SWOOLE</strong></a>
+        
+            <a href="ons.html"><strong>消息队列</strong></a>
+        
+            <a href="gdb.html"><strong>GDB</strong></a>
+        
+            <a href="specification.html"><strong>规范</strong></a>
+        
+            <a href="3-minutes.html"><strong>三分钟系列</strong></a>
+        
+            <a href="1-pic.html"><strong>一图胜千言</strong></a>
+        
+            <a href="account-system.html"><strong>帐号系统</strong></a>
+        
+            <a href="interview.html"><strong>面试题</strong></a>
+        
+            <a href="yii.html"><strong>Yii/Yii2</strong></a>
+        
+            <a href="python.html"><strong>python</strong></a>
+        
+            <a href="go.html"><strong>GO</strong></a>
+        
+            <a href="ml.html"><strong>机器学习</strong></a>
+        
+            <a href="emacs.html"><strong>emacs</strong></a>
+        
+            <a href="bi.html"><strong>商业智能</strong></a>
+        
+            <a href="mac.html"><strong>mac</strong></a>
+        
+            <a href="editor.html"><strong>编辑器</strong></a>
+        
+            <a href="productive-soft.html"><strong>生产力工具</strong></a>
+        
+            <a href="driver-license.html"><strong>驾照</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="16081898834624.html">OSX使用代码代替storyboard构建项目，并添加NSSplitView组件</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16005640944829.html">linux系统编程之多进程和管道（pip）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15970226751276.html">三分钟上手java多线程控制技术</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15864793262262.html">14/24 设计模式之状态模式 State Pattern</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15880004262195.html">python高性能之路:使用C/C++编写扩展</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.
+<span id="busuanzi_container_site_uv">访问<span id="busuanzi_value_site_uv"></span>人</span>/
+        <span id="busuanzi_container_site_pv"><span id="busuanzi_value_site_pv"></span>次</span>
+    </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138141150-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138141150-1');
+</script>
+
+<canvas class="fireworks" 
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999999; pointer-events: none; width: 1158px; height: 916px;" 
+        width="2316" 
+        height="1832">
+</canvas>
+    <script src="asset/js/anime.min.js"></script>
+    <script src="asset/js/fireworks.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </body>
+</html>

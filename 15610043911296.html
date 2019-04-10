@@ -1,0 +1,1050 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  xaop源码分析 - xiaolin's blog
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="xiaolin's blog" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:neatlifecoco.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">about</a></li>
+        
+        <li id=""><a target="_self" href="all.html">blog</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">archive</a></li>
+        
+        <li id=""><a target="_self" href="tools.html">tools</a></li>
+        
+        <li id=""><a target="_self" href="pro.html">pros</a></li>
+        
+        <li id=""><a target="_self" href="pub.html">press</a></li>
+        
+        <li id=""><a target="_self" href="paper.html">paper</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; xiaolin's blog</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">about</a></li>
+        
+        <li><a target="_self" href="all.html">blog</a></li>
+        
+        <li><a target="_self" href="archives.html">archive</a></li>
+        
+        <li><a target="_self" href="tools.html">tools</a></li>
+        
+        <li><a target="_self" href="pro.html">pros</a></li>
+        
+        <li><a target="_self" href="pub.html">press</a></li>
+        
+        <li><a target="_self" href="paper.html">paper</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="macios.html">mac&ios</a></li>
+        
+            <li><a href="lc.html">leetcode</a></li>
+        
+            <li><a href="security.html">安全</a></li>
+        
+            <li><a href="business.html">业务</a></li>
+        
+            <li><a href="source-code.html">源码分析</a></li>
+        
+            <li><a href="redis.html">Redis</a></li>
+        
+            <li><a href="apache-nginx.html">Apache/Nginx</a></li>
+        
+            <li><a href="spring-boot.html">Spring Boot</a></li>
+        
+            <li><a href="pm.html">项目管理</a></li>
+        
+            <li><a href="sql.html">SQL</a></li>
+        
+            <li><a href="job-scheduler.html">任务调度</a></li>
+        
+            <li><a href="design-pattern.html">设计模式</a></li>
+        
+            <li><a href="mq.html">消息队列</a></li>
+        
+            <li><a href="rpc.html">RPC</a></li>
+        
+            <li><a href="laravel.html">LARAVEL</a></li>
+        
+            <li><a href="tcp-ip.html">TCP/IP</a></li>
+        
+            <li><a href="uml.html">UML</a></li>
+        
+            <li><a href="service-mesh.html">SERVICE MESH</a></li>
+        
+            <li><a href="ci-cd.html">CI/CD</a></li>
+        
+            <li><a href="ops.html">OPS</a></li>
+        
+            <li><a href="linux.html">LINUX</a></li>
+        
+            <li><a href="system-programming.html">系统编程</a></li>
+        
+            <li><a href="aws.html">AWS</a></li>
+        
+            <li><a href="lua.html">LUA</a></li>
+        
+            <li><a href="git.html">GIT</a></li>
+        
+            <li><a href="js.html">js</a></li>
+        
+            <li><a href="java.html">JAVA</a></li>
+        
+            <li><a href="monitor.html">监控</a></li>
+        
+            <li><a href="vim.html">VIM</a></li>
+        
+            <li><a href="php.html">PHP</a></li>
+        
+            <li><a href="openresty.html">OpenResty</a></li>
+        
+            <li><a href="swoole.html">SWOOLE</a></li>
+        
+            <li><a href="ons.html">消息队列</a></li>
+        
+            <li><a href="gdb.html">GDB</a></li>
+        
+            <li><a href="specification.html">规范</a></li>
+        
+            <li><a href="3-minutes.html">三分钟系列</a></li>
+        
+            <li><a href="1-pic.html">一图胜千言</a></li>
+        
+            <li><a href="account-system.html">帐号系统</a></li>
+        
+            <li><a href="interview.html">面试题</a></li>
+        
+            <li><a href="yii.html">Yii/Yii2</a></li>
+        
+            <li><a href="python.html">python</a></li>
+        
+            <li><a href="go.html">GO</a></li>
+        
+            <li><a href="ml.html">机器学习</a></li>
+        
+            <li><a href="emacs.html">emacs</a></li>
+        
+            <li><a href="bi.html">商业智能</a></li>
+        
+            <li><a href="mac.html">mac</a></li>
+        
+            <li><a href="editor.html">编辑器</a></li>
+        
+            <li><a href="productive-soft.html">生产力工具</a></li>
+        
+            <li><a href="driver-license.html">驾照</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>xaop源码分析</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2019/6/20</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='source-code.html'>源码分析</a></span>
+          
+              <span class="posted-in"><a href='php.html'>PHP</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>项目地址：<a href="https://github.com/liqiongfan/xaop">https://github.com/liqiongfan/xaop</a></p>
+
+<p>思路: hook掉php执行函数的方法(zend_execute_ex)，然后使用call_user_function调用自定义的回调函数</p>
+
+<h2 id="toc_0">文件和作用</h2>
+
+<p>Xaop操作类的所有方法：kernel/xaop.c</p>
+
+<p>Xaop操作类会使用的宏，比如解析和检查方法的参数：kernel/xaop.h</p>
+
+<p>扩展调用php函数的函数：kernel/helper.c 和 kernel/helper.h</p>
+
+<p>替换php的zend_execution_ex: kernel/exec.c 和 kernel/exec.c</p>
+
+<p>解析用户编写的annotation的相关逻辑：kernel/parsing.c 和 kernel/parsing.h</p>
+
+<p>全局变量定义在: php_xaop.h</p>
+
+<p>全局工具类zend_class_entry的声明*annotation_ce, *doc_ce, *xaop_ce：kernel/classes.c</p>
+
+<h2 id="toc_1">检查参数是否合法</h2>
+
+<pre><code class="language-c">#define CHECK_PARAM() do {\
+    if ( Z_TYPE_P(class_name) != IS_STRING &amp;&amp; Z_TYPE_P(class_name) != IS_NULL ) { \
+        php_error_docref(NULL, E_ERROR, &quot;First argument need to be a valid class name or NULL&quot;);\
+        return ;\
+    }\
+    if ( ZSTR_LEN(function_name) &amp;&amp; &#39;*&#39; == ZSTR_VAL(function_name)[0] ) { \
+        php_error_docref(NULL, E_ERROR, &quot;Function name mustn&#39;t be `*`.&quot;);\
+        return ;\
+    }\
+    if ( !zend_is_callable(aop, IS_CALLABLE_CHECK_NO_ACCESS, NULL) ) {\
+        php_error_docref(NULL, E_ERROR, &quot;Third argument is expected to be a valid callback&quot;);\
+        return ;\
+    }\
+} while(0)
+</code></pre>
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_2">解析用户传递进来的参数</h2>
+
+<pre><code class="language-c">#define SAVE_PARAMS_ZPP()     ZEND_PARSE_PARAMETERS_START(3, 3)\
+    Z_PARAM_ZVAL(class_name)\
+    Z_PARAM_STR(function_name)\
+    Z_PARAM_ZVAL(aop)\
+    ZEND_PARSE_PARAMETERS_END()
+
+#define SAVE_PARAMS_OLD()  if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, &quot;zSz&quot;, &amp;class_name, &amp;function_name, &amp;aop) == FAILURE ) { \
+    return ; \
+    }
+</code></pre>
+
+<h2 id="toc_3">在请求初始化事件中进行替换php的zend_execute_ex</h2>
+
+<pre><code class="language-c">PHP_RINIT_FUNCTION(xaop)
+{
+#if defined(COMPILE_DL_XAOP) &amp;&amp; defined(ZTS)
+    ZEND_TSRMLS_CACHE_UPDATE();
+#endif
+    /** After INI config read already, to init the kernel aop handler */
+    switch ( XAOP_G(aop_mode) ) {
+        case ANNOTATION_AOP:
+            zend_execute_ex = xaop_annotation_ex;
+            break;
+        case INJECTION_AOP:
+            zend_execute_ex = xaop_injection_ex;
+            zend_execute_internal = xaop_injection_internal_ex;
+            break;
+    }
+    XAOP_G(overloaded) = 0;
+    XAOP_G(around_mode) = 0;
+    array_init(&amp;XAOP_G(di));
+    /* Init all injection aop */
+    array_init(&amp;XAOP_G(before_aops));
+    array_init(&amp;XAOP_G(after_aops));
+    array_init(&amp;XAOP_G(after_return_aops));
+    array_init(&amp;XAOP_G(after_throw_aops));
+    array_init(&amp;XAOP_G(around_aops));
+    array_init(&amp;XAOP_G(property_aops));
+    return SUCCESS;
+}
+</code></pre>
+
+<p>可以看到如果使用代码方式使用切面，不仅替换了用于执行用户定义的函数的zend_execute_ex指针，同时也替换了用于执行系统函数的xaop_injection_internal_ex指针</p>
+
+<p>替换zend_execute_ex指针后，执行函数时就会调用这个替换的函数指针进行执行了，这样就方便进行hook了</p>
+
+<h2 id="toc_4">在模块初始化中声明了全局工具类Xaop</h2>
+
+<pre><code class="language-c">// -&gt; xaop.c
+PHP_MINIT_FUNCTION(xaop)
+{
+    ZEND_INIT_MODULE_GLOBALS(xaop, php_xaop_init_globals, NULL);
+    REGISTER_INI_ENTRIES();
+  /* If you have INI entries, uncomment these lines */
+    le_xaop = zend_register_list_destructors_ex(NULL, NULL, &quot;XaopExec&quot;, module_number);
+    std_object_handlers.write_property = xaop_property_aop_ex;
+    std_object_handlers.read_property  = xaop_read_property_aop_ex;
+    annotation_init();
+    doc_init();
+    xaop_init();
+    
+    return SUCCESS;
+}
+</code></pre>
+
+<p>xaop_init对应代码如下：</p>
+
+<pre><code class="language-c">// -&gt; kernel/xaop.c
+// xaop_init()
+XAOP_INIT(xaop)
+{
+    zend_class_entry ce;
+    INIT_CLASS_ENTRY(ce, &quot;Xaop&quot;, xaop_functions);
+    xaop_ce = zend_register_internal_class(&amp;ce);
+    xaop_ce-&gt;ce_flags |= ZEND_ACC_FINAL;
+}/*}}}*/
+</code></pre>
+
+<p>同时在<code>PHP_MINIT_FUNCTION(xaop)</code>中对属性进行了hook</p>
+
+<pre><code class="language-c">std_object_handlers.write_property = xaop_property_aop_ex;
+std_object_handlers.read_property  = xaop_read_property_aop_ex;
+</code></pre>
+
+<h2 id="toc_5">从用户空间调用execute_ex</h2>
+
+<p>kernel/xaop.c</p>
+
+<pre><code class="language-c">XAOP_METHOD(Xaop, exec)
+{
+    zval *xaop_exec;
+    if ( zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, &quot;r&quot;, &amp;xaop_exec) == FAILURE ) {
+        return ;
+    }
+    
+    zend_execute_data *exec = (zend_execute_data *)zend_fetch_resource( Z_RES_P(xaop_exec), &quot;XaopExec&quot;, le_xaop);
+    if ( exec ) {
+        if ( exec-&gt;func-&gt;type == ZEND_USER_FUNCTION ) {
+            exec-&gt;return_value = return_value;
+            execute_ex( exec );
+        } else if ( exec-&gt;func-&gt;type == ZEND_INTERNAL_FUNCTION ) {
+            execute_internal(exec, return_value);
+        }
+    }
+}/*}}}*/
+</code></pre>
+
+<p>可以看到这里可以通过exec的exec-&gt;func-&gt;type获取到被调用的函数的类型</p>
+
+<ul>
+<li>调用用户定义的函数, type是ZEND_USER_FUNCTION</li>
+<li>调用系统定义的函数, type是ZEND_INTERNAL_FUNCTION</li>
+</ul>
+
+<h2 id="toc_6">XAOP_METHOD(Xaop, addBeforeAop)</h2>
+
+<pre><code class="language-c">XAOP_METHOD(Xaop, addBeforeAop)
+{
+    DCL_PARAMS
+    
+#ifdef FAST_ZPP
+    SAVE_PARAMS_ZPP();
+#else
+    SAVE_PARAMS_OLD();
+#endif
+    CHECK_PARAM();
+    
+    zval retval;
+    array_init(&amp;retval);
+
+    /**
+     * [ class = &#39;Tag&#39;, func = &#39;getList&#39;, aop = (zval *) ]
+     */
+    add_assoc_zval(&amp;retval, &quot;class&quot;, class_name);
+    add_assoc_str(&amp;retval, &quot;func&quot;, function_name);
+    Z_TRY_ADDREF_P(aop);
+    add_assoc_zval(&amp;retval, &quot;aop&quot;, aop);
+    
+    add_next_index_zval(&amp;XAOP_G(before_aops), &amp;retval);
+}/*}}}*/
+</code></pre>
+
+<p>这个方法接收三个参数，分别是类名class，字符串、函数名func，字符串、回调函数aop，类型为回调函数<br/>
+这个方法一共使用了三个宏: DCL_PARAMS、SAVE_PARAMS_ZPP、CHECK_PARAM</p>
+
+<p>add_next_index_zval 参考：<a href="http://php.theraven7.com/manual/pt_BR/zend-api.add-next-index-zval.php">http://php.theraven7.com/manual/pt_BR/zend-api.add-next-index-zval.php</a></p>
+
+<h3 id="toc_7">DCL_PARAMS，位于：kernel/xaop.h</h3>
+
+<pre><code class="language-c">#define DCL_PARAMS      zval *class_name, *aop; zend_string *function_name;
+</code></pre>
+
+<p>可以看到这个宏的作用是定义了三个变量，类型为zval的class_name和aop，类型为字符串的function_name</p>
+
+<h3 id="toc_8">SAVE_PARAMS_ZPP，位于：kernel/xaop.h</h3>
+
+<pre><code class="language-c">#define SAVE_PARAMS_ZPP()     ZEND_PARSE_PARAMETERS_START(3, 3)\
+    Z_PARAM_ZVAL(class_name)\
+    Z_PARAM_STR(function_name)\
+    Z_PARAM_ZVAL(aop)\
+    ZEND_PARSE_PARAMETERS_END()
+</code></pre>
+
+<p>php7以后的解析扩展函数用户传进来的参数的方式，相比7以前的代码，这种方式更简化了</p>
+
+<h3 id="toc_9">SAVE_PARAMS_OLD，位于：kernel/xaop.h</h3>
+
+<pre><code class="language-c">#define SAVE_PARAMS_OLD()  if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, &quot;zSz&quot;, &amp;class_name, &amp;function_name, &amp;aop) == FAILURE ) { \
+    return ; \
+    }
+</code></pre>
+
+<p>php7以前的解析扩展函数用户传进来的参数的方式，相比7以前的代码</p>
+
+<h2 id="toc_10">全局变量</h2>
+
+<pre><code class="language-c">ZEND_BEGIN_MODULE_GLOBALS(xaop)
+    zval di;                    /* Di container */
+    int  aspect;                /* Aspect mode or not, 1 for aspect 0 for not. */
+    int  overloaded;            /* overload mode or not 1: overload 0: normal */
+    int  aop_mode;              /* The AOP mode for kernel use. 1: normal 2:annotation aop 3: method aop */
+    char *method_prefix;        /* The AOP method start with will be excluded */
+    int  property_aop;          /* The AOP about the property 1: disable 2 on */
+    zval property_aops;         /* The property aop when property occur */
+    
+    zval before_aops;           /* The before aop */
+    zval after_aops;            /* The after aop */
+    zval after_return_aops;     /* The after_return aop */
+    zval after_throw_aops;      /* The after_throw aop */
+    zval around_aops;           /* The around_aop */
+    int  around_mode;           /* In around aop mode */
+ZEND_END_MODULE_GLOBALS(xaop)
+</code></pre>
+
+<p>可以看到这个全局变量里除了基础类型，全部都是zval结构体类型，后面在操作这些zval类型的变量时就可以使用php提供的大量内置的宏了</p>
+
+<p>before_aops存放方法或者函数被调用前的回调函数</p>
+
+<p>after_aops存放方法或者函数被调用后的回调函数</p>
+
+<p>after_return_aops存放方法或者函数被调用后的回调函数(方法或者函数返回值不为null才会触发)</p>
+
+<p>after_throw_aops存放方法或者函数被调用后跑出了异常的回调函数</p>
+
+<h3 id="toc_11">全局变量的初始化</h3>
+
+<p>通过调用ZEND_INIT_MODULE_GLOBALS可以给这个全局变量指定一个函数进行初始化, xaop在<code>PHP_MINIT_FUNCTION(xaop)</code>中指定了初始化函数为php_xaop_init_globals，完整指令：ZEND_INIT_MODULE_GLOBALS(xaop, php_xaop_init_globals, NULL);</p>
+
+<pre><code class="language-c">static void php_xaop_init_globals(zend_xaop_globals *xaop_globals)
+{
+    xaop_globals-&gt;aop_mode = 1;
+    xaop_globals-&gt;method_prefix=&quot;&quot;;
+    xaop_globals-&gt;property_aop = 1;
+}
+</code></pre>
+
+<p>这个模块在初始化时，会把aop_mode、method_prefix、property_aop这三个全局变量进行初始化</p>
+
+<p>一些和每次请求有关的全局变量的初始化放在了<code>PHP_RINIT_FUNCTION(xaop)</code>这个事件中</p>
+
+<pre><code class="language-c">XAOP_G(overloaded) = 0;
+XAOP_G(around_mode) = 0;
+array_init(&amp;XAOP_G(di));
+/* Init all injection aop */
+array_init(&amp;XAOP_G(before_aops));
+array_init(&amp;XAOP_G(after_aops));
+array_init(&amp;XAOP_G(after_return_aops));
+array_init(&amp;XAOP_G(after_throw_aops));
+array_init(&amp;XAOP_G(around_aops));
+array_init(&amp;XAOP_G(property_aops));
+</code></pre>
+
+<h3 id="toc_12">全局变量的销毁</h3>
+
+<p>一般在模块销毁的同时销毁全局变量</p>
+
+<pre><code class="language-c">PHP_RSHUTDOWN_FUNCTION(xaop)
+{
+#if defined(COMPILE_DL_XAOP) &amp;&amp; defined(ZTS)
+    ZEND_TSRMLS_CACHE_UPDATE();
+#endif
+    zend_array_destroy(Z_ARRVAL(XAOP_G(di)));
+    zend_array_destroy(Z_ARRVAL(XAOP_G(before_aops)));
+    zend_array_destroy(Z_ARRVAL(XAOP_G(after_aops)));
+    zend_array_destroy(Z_ARRVAL(XAOP_G(after_return_aops)));
+    zend_array_destroy(Z_ARRVAL(XAOP_G(after_throw_aops)));
+    zend_array_destroy(Z_ARRVAL(XAOP_G(around_aops)));
+    zend_array_destroy(Z_ARRVAL(XAOP_G(property_aops)));
+    return SUCCESS;
+}
+</code></pre>
+
+<p>注意：基础类型无需销毁，需要销毁释放内存空间的一般都是结构体类型</p>
+
+<h2 id="toc_13">PHP_MINFO_FUNCTION(xaop) 输出扩展信息</h2>
+
+<pre><code class="language-c">PHP_MINFO_FUNCTION(xaop)
+{
+    php_info_print_table_start();
+    php_info_print_table_header(2, &quot;xaop support&quot;, &quot;enabled&quot; );
+    php_info_print_table_header(2, &quot;xaop version&quot;, PHP_XAOP_VERSION );
+    php_info_print_table_header(2, &quot;enable mode&quot;, ( ANNOTATION_AOP == XAOP_G(aop_mode) ) ? &quot;Annotation(文档注解) AOP&quot; : (
+        INJECTION_AOP == XAOP_G(aop_mode) ? &quot;Injection(方法注入) AOP&quot; : &quot;Normal(正常模式) Mode&quot; ) );
+    php_info_print_table_header(2, &quot;xaop author&quot;, &quot;Josin&quot;);
+    php_info_print_table_header(2, &quot;current php version&quot;, PHP_VERSION );
+    php_info_print_table_end();
+
+    /* Remove comments if you have entries in php.ini */
+    DISPLAY_INI_ENTRIES();
+}
+</code></pre>
+
+<p>使用这个DISPLAY_INI_ENTRIES()将在phpinfo中输出php.ini对这个扩展配置的信息</p>
+
+<h2 id="toc_14">注册扩展独享的配置</h2>
+
+<pre><code class="language-c">PHP_INI_BEGIN()
+    STD_PHP_INI_ENTRY(&quot;xaop.aop_mode&quot;, &quot;1&quot;, PHP_INI_ALL, OnUpdateLong, aop_mode, zend_xaop_globals, xaop_globals)
+    STD_PHP_INI_ENTRY(&quot;xaop.method_prefix&quot;, &quot;&quot;, PHP_INI_ALL, OnUpdateString, method_prefix, zend_xaop_globals, xaop_globals)
+    STD_PHP_INI_ENTRY(&quot;xaop.property_aop&quot;, &quot;1&quot;, PHP_INI_ALL, OnUpdateLong, property_aop, zend_xaop_globals, xaop_globals)
+PHP_INI_END()
+</code></pre>
+
+<p>把php.ini中<code>xaop.aop_mode</code>配置的值注册到模块的<code>aop_mode</code>这个全局变量中，类型为long<br/>
+把php.ini中<code>xaop.method_prefix</code>配置的值注册到模块的<code>method_prefix</code>这个全局变量中，类型为string<br/>
+把php.ini中<code>xaop.property_aop</code>配置的值注册到模块的<code>property_aop</code>这个全局变量中，类型为long</p>
+
+<p>获取<code>xaop.aop_mode</code>配置对应的aop_mode全局变量的值就可以使用XAOP_G宏了，比如</p>
+
+<pre><code class="language-c">php_printf(&quot;aop_mode value is: %d&quot;, XAOP_G(aop_mode));
+</code></pre>
+
+<p>然后在模块初始化函数中调用<code>REGISTER_INI_ENTRIES();</code>就注册配置了</p>
+
+<h2 id="toc_15">invoke_zval_arg: 内核层面执行php的函数变量</h2>
+
+<p>用户定义的函数传递到php内核就是普通的zval变量了</p>
+
+<pre><code class="language-c">void invoke_zval_arg(zval *arg)
+{
+    if ( Z_TYPE_P(arg) == IS_OBJECT &amp;&amp; zend_is_callable(arg, IS_CALLABLE_CHECK_NO_ACCESS, NULL) ) {
+        zval retval;
+        call_user_function(NULL, NULL, arg, &amp;retval, 0, NULL);
+        zval_ptr_dtor(&amp;retval);
+        return ;
+    } else if ( 2 != zend_hash_num_elements(Z_ARRVAL_P(arg)) )
+        return ;
+    
+    zval *class_name = zend_hash_index_find(Z_ARRVAL_P(arg), 0);
+    zval *funct_name = zend_hash_index_find(Z_ARRVAL_P(arg), 1);
+    
+    zend_class_entry *class_ce = zend_lookup_class(zend_string_tolower(Z_STR_P(class_name)));
+    if ( class_ce ) {
+        zval obj, retval;
+        xaop_get_object_from_di(&amp;obj, Z_STRVAL_P(class_name), class_ce);
+        call_user_function(NULL, &amp;obj, funct_name, &amp;retval, 0, NULL);
+        zval_ptr_dtor(&amp;retval);
+    }
+}/*}}}*/
+</code></pre>
+
+<p>可以看到，执行zval里的用户定义的函数使用call_user_function函数就可以了，和php用户层面的call_user_function作用一样，虽然这里调用函数没有传递参数，但是调用这个函数可以传递参数的，第5个参数就是指明参数的个数，第6个参数就是参数列表</p>
+
+<p>注意，第4个参数就是保存了函数执行的结果</p>
+
+<p>参考：<a href="https://www.php.net/manual/en/internals2.ze1.zendapi.php">https://www.php.net/manual/en/internals2.ze1.zendapi.php</a><br/>
+<img src="media/15610043911296/15610122819204.jpg" alt=""/></p>
+
+<h2 id="toc_16">around模式切面宏：PARSING_SCOPE_AROUND_AOP</h2>
+
+<pre><code class="language-c">#define PARSING_SCOPE_AROUND_AOP( class_scope ) do {\
+    zval *join_point;\
+    ZEND_HASH_FOREACH_VAL( Z_ARRVAL( XAOP_G( around_aops ) ), join_point )\
+    {\
+        if ( Z_TYPE_P( join_point ) == IS_ARRAY ) {\
+            zval *class_name = zend_hash_str_find( Z_ARRVAL_P( join_point ), ZEND_STRL( &quot;class&quot; ) );\
+            if ( !class_name || ZVAL_IS_NULL( class_name ) ) {\
+                if ( class_scope ) continue;\
+            }\
+            zval *func_name = zend_hash_str_find( Z_ARRVAL_P( join_point ), ZEND_STRL( &quot;func&quot; ) );\
+            zval *aop       = zend_hash_str_find( Z_ARRVAL_P( join_point ), ZEND_STRL( &quot;aop&quot; ) );\
+            /** to compare the class_name &amp; function_name with the current scope */\
+            if ( ( ( !class_scope ) &amp;&amp; SUCCESS == xaop_match_string( Z_STRVAL_P( func_name ), ZSTR_VAL( funct_name ) ) ) ||\
+            ( ( class_scope ) &amp;&amp; SUCCESS == xaop_match_string( Z_STRVAL_P( class_name ), ZSTR_VAL( scope-&gt;name ) ) &amp;&amp;\
+            SUCCESS == xaop_match_string( Z_STRVAL_P( func_name ), ZSTR_VAL( funct_name ) ) ) ) {\
+                XAOP_G( around_mode ) = 0;\
+                invoke_zval_arg_with_execute_data( aop, execute_data );\
+                XAOP_G( around_mode ) = 1;\
+            }\
+        }\
+    } ZEND_HASH_FOREACH_END();\
+} while(0)
+</code></pre>
+
+<p>这个宏从全局变量around_aops数组中挨个取出切面函数来执行，执行成功后会把around_mode值设置成1，标记当前是切面模式，别的aop模式都会失效了。</p>
+
+<p>around_mode这个全局变量在每次请求时都会重置成0，参考：PHP_RINIT_FUNCTION(xaop)</p>
+
+<p>这里执行切面函数时只传递了execute_data到切面函数中，导致切面函数无法获取被切的函数的参数</p>
+
+<h2 id="toc_17">一些工具宏</h2>
+
+<h3 id="toc_18">设置/获取扩展某个全局变量的值</h3>
+
+<pre><code class="language-c">#define XAOP_G(v) ZEND_MODULE_GLOBALS_ACCESSOR(xaop, v)
+</code></pre>
+
+<p>比如获取before_aops的值可以使用: XAOP_G(before_aops)</p>
+
+<p>设置around_mode值可以使用: XAOP_G( around_mode ) = 1</p>
+
+<p>使用例子如下：</p>
+
+<pre><code class="language-c">PHP_FUNCTION(get_aops)
+{
+    zend_long type;
+    if ( zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, &quot;l&quot;, &amp;type) == FAILURE ) {
+        return ;
+    }
+    
+    if ( type == 1) {
+        ZVAL_COPY(return_value, &amp;XAOP_G(before_aops));
+    } else if ( type == 2) {
+        ZVAL_COPY(return_value, &amp;XAOP_G(after_aops));
+    } else if ( type == 3 ) {
+        ZVAL_COPY(return_value, &amp;XAOP_G(after_return_aops));
+    } else if ( type == 4 ) {
+        ZVAL_COPY(return_value, &amp;XAOP_G(after_throw_aops));
+    } else if ( type == 5 ) {
+        ZVAL_COPY(return_value, &amp;XAOP_G(around_aops));
+    }
+}/*}}}*/
+</code></pre>
+
+<h3 id="toc_19">zval_ptr_dtor(&amp;ret);</h3>
+
+<p>安全释放zval变量的内存</p>
+
+<h2 id="toc_20">调试</h2>
+
+<h3 id="toc_21">php_error_docref</h3>
+
+<p><img src="media/15610043911296/15610107925773.jpg" alt=""/><br/>
+这个php_error_docref抛出php内置级别的错误，比如下面这个代码</p>
+
+<pre><code class="language-c">php_error_docref(0, E_ERROR, &quot;$className must be valid name.&quot;);
+</code></pre>
+
+<p>抛出了一个php的error级别的错误</p>
+
+<h3 id="toc_22">php_printf</h3>
+
+<p>参考：<a href="https://phpinternals.net/docs/php_printf">https://phpinternals.net/docs/php_printf</a></p>
+
+<p>用于在扩展中输出字符串</p>
+
+<h2 id="toc_23">一些注意的点</h2>
+
+<ol>
+<li>虽然php扩展里大量使用宏，但是一般宏的级别只有3-5层，可以使用understand等工具进行追踪</li>
+</ol>
+
+<p>从execute_data中拿当前将执行方法对应的对象和方法名</p>
+
+<pre><code class="language-c">zend_string *funct_name = execute_data-&gt;func-&gt;common.function_name;
+zend_class_entry *scope  = execute_data-&gt;func-&gt;common.scope;
+</code></pre>
+
+<p>调用php的explode函数:</p>
+
+<pre><code class="language-c">php_explode(
+    strpprintf(0, &quot;%s&quot;, &quot;||&quot;),
+    Z_STR_P(params),
+    &amp;parameters,
+    ZEND_LONG_MAX
+);
+</code></pre>
+
+<p>config.m4文件有语法错误时编译器不会报错</p>
+
+<h2 id="toc_24">参考资料</h2>
+
+<ol>
+<li><a href="https://github.com/liqiongfan/xaop/blob/master/Document.md">https://github.com/liqiongfan/xaop/blob/master/Document.md</a></li>
+<li><a href="https://github.com/liqiongfan/xaop">https://github.com/liqiongfan/xaop</a></li>
+<li><a href="http://ju.outofmemory.cn/entry/187365">http://ju.outofmemory.cn/entry/187365</a></li>
+<li><a href="https://www.supjos.cn/archives/69.html">https://www.supjos.cn/archives/69.html</a></li>
+<li><a href="http://nikic.github.io/2012/03/16/Understanding-PHPs-internal-function-definitions">http://nikic.github.io/2012/03/16/Understanding-PHPs-internal-function-definitions</a></li>
+<li>call_user_function 参考：<a href="https://www.php.net/manual/en/internals2.ze1.zendapi.php">https://www.php.net/manual/en/internals2.ze1.zendapi.php</a></li>
+</ol>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15610918959976.html" 
+          title="Previous Post: 使用staruml画uml图">&laquo; 使用staruml画uml图</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15607626333341.html" 
+          title="Next Post: 小微http服务器Tinyhttpd源码分析">小微http服务器Tinyhttpd源码分析 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          <script src="https://utteranc.es/client.js"
+        repo="neatlife/neatlife.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>xiaolin's blog</h1>
+                <div class="site-des">core tech share blog</div>
+                <div class="social">
+                  <a target="_blank" class="juejin" href="https://juejin.im/user/5c409f86e51d4551c88027a2/posts" title="Juejin">juejin</a>
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/neatlife" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="macios.html"><strong>mac&ios</strong></a>
+        
+            <a href="lc.html"><strong>leetcode</strong></a>
+        
+            <a href="security.html"><strong>安全</strong></a>
+        
+            <a href="business.html"><strong>业务</strong></a>
+        
+            <a href="source-code.html"><strong>源码分析</strong></a>
+        
+            <a href="redis.html"><strong>Redis</strong></a>
+        
+            <a href="apache-nginx.html"><strong>Apache/Nginx</strong></a>
+        
+            <a href="spring-boot.html"><strong>Spring Boot</strong></a>
+        
+            <a href="pm.html"><strong>项目管理</strong></a>
+        
+            <a href="sql.html"><strong>SQL</strong></a>
+        
+            <a href="job-scheduler.html"><strong>任务调度</strong></a>
+        
+            <a href="design-pattern.html"><strong>设计模式</strong></a>
+        
+            <a href="mq.html"><strong>消息队列</strong></a>
+        
+            <a href="rpc.html"><strong>RPC</strong></a>
+        
+            <a href="laravel.html"><strong>LARAVEL</strong></a>
+        
+            <a href="tcp-ip.html"><strong>TCP/IP</strong></a>
+        
+            <a href="uml.html"><strong>UML</strong></a>
+        
+            <a href="service-mesh.html"><strong>SERVICE MESH</strong></a>
+        
+            <a href="ci-cd.html"><strong>CI/CD</strong></a>
+        
+            <a href="ops.html"><strong>OPS</strong></a>
+        
+            <a href="linux.html"><strong>LINUX</strong></a>
+        
+            <a href="system-programming.html"><strong>系统编程</strong></a>
+        
+            <a href="aws.html"><strong>AWS</strong></a>
+        
+            <a href="lua.html"><strong>LUA</strong></a>
+        
+            <a href="git.html"><strong>GIT</strong></a>
+        
+            <a href="js.html"><strong>js</strong></a>
+        
+            <a href="java.html"><strong>JAVA</strong></a>
+        
+            <a href="monitor.html"><strong>监控</strong></a>
+        
+            <a href="vim.html"><strong>VIM</strong></a>
+        
+            <a href="php.html"><strong>PHP</strong></a>
+        
+            <a href="openresty.html"><strong>OpenResty</strong></a>
+        
+            <a href="swoole.html"><strong>SWOOLE</strong></a>
+        
+            <a href="ons.html"><strong>消息队列</strong></a>
+        
+            <a href="gdb.html"><strong>GDB</strong></a>
+        
+            <a href="specification.html"><strong>规范</strong></a>
+        
+            <a href="3-minutes.html"><strong>三分钟系列</strong></a>
+        
+            <a href="1-pic.html"><strong>一图胜千言</strong></a>
+        
+            <a href="account-system.html"><strong>帐号系统</strong></a>
+        
+            <a href="interview.html"><strong>面试题</strong></a>
+        
+            <a href="yii.html"><strong>Yii/Yii2</strong></a>
+        
+            <a href="python.html"><strong>python</strong></a>
+        
+            <a href="go.html"><strong>GO</strong></a>
+        
+            <a href="ml.html"><strong>机器学习</strong></a>
+        
+            <a href="emacs.html"><strong>emacs</strong></a>
+        
+            <a href="bi.html"><strong>商业智能</strong></a>
+        
+            <a href="mac.html"><strong>mac</strong></a>
+        
+            <a href="editor.html"><strong>编辑器</strong></a>
+        
+            <a href="productive-soft.html"><strong>生产力工具</strong></a>
+        
+            <a href="driver-license.html"><strong>驾照</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="16081898834624.html">OSX使用代码代替storyboard构建项目，并添加NSSplitView组件</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16005640944829.html">linux系统编程之多进程和管道（pip）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15970226751276.html">三分钟上手java多线程控制技术</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15864793262262.html">14/24 设计模式之状态模式 State Pattern</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15880004262195.html">python高性能之路:使用C/C++编写扩展</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.
+<span id="busuanzi_container_site_uv">访问<span id="busuanzi_value_site_uv"></span>人</span>/
+        <span id="busuanzi_container_site_pv"><span id="busuanzi_value_site_pv"></span>次</span>
+    </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138141150-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138141150-1');
+</script>
+
+<canvas class="fireworks" 
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999999; pointer-events: none; width: 1158px; height: 916px;" 
+        width="2316" 
+        height="1832">
+</canvas>
+    <script src="asset/js/anime.min.js"></script>
+    <script src="asset/js/fireworks.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </body>
+</html>

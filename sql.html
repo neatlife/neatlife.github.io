@@ -1,0 +1,1243 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  SQL - xiaolin's blog
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="xiaolin's blog" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:neatlifecoco.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">about</a></li>
+        
+        <li id=""><a target="_self" href="all.html">blog</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">archive</a></li>
+        
+        <li id=""><a target="_self" href="tools.html">tools</a></li>
+        
+        <li id=""><a target="_self" href="pro.html">pros</a></li>
+        
+        <li id=""><a target="_self" href="pub.html">press</a></li>
+        
+        <li id=""><a target="_self" href="paper.html">paper</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; xiaolin's blog</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">about</a></li>
+        
+        <li><a target="_self" href="all.html">blog</a></li>
+        
+        <li><a target="_self" href="archives.html">archive</a></li>
+        
+        <li><a target="_self" href="tools.html">tools</a></li>
+        
+        <li><a target="_self" href="pro.html">pros</a></li>
+        
+        <li><a target="_self" href="pub.html">press</a></li>
+        
+        <li><a target="_self" href="paper.html">paper</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="macios.html">mac&ios</a></li>
+        
+            <li><a href="lc.html">leetcode</a></li>
+        
+            <li><a href="security.html">安全</a></li>
+        
+            <li><a href="business.html">业务</a></li>
+        
+            <li><a href="source-code.html">源码分析</a></li>
+        
+            <li><a href="redis.html">Redis</a></li>
+        
+            <li><a href="apache-nginx.html">Apache/Nginx</a></li>
+        
+            <li><a href="spring-boot.html">Spring Boot</a></li>
+        
+            <li><a href="pm.html">项目管理</a></li>
+        
+            <li><a href="sql.html">SQL</a></li>
+        
+            <li><a href="job-scheduler.html">任务调度</a></li>
+        
+            <li><a href="design-pattern.html">设计模式</a></li>
+        
+            <li><a href="mq.html">消息队列</a></li>
+        
+            <li><a href="rpc.html">RPC</a></li>
+        
+            <li><a href="laravel.html">LARAVEL</a></li>
+        
+            <li><a href="tcp-ip.html">TCP/IP</a></li>
+        
+            <li><a href="uml.html">UML</a></li>
+        
+            <li><a href="service-mesh.html">SERVICE MESH</a></li>
+        
+            <li><a href="ci-cd.html">CI/CD</a></li>
+        
+            <li><a href="ops.html">OPS</a></li>
+        
+            <li><a href="linux.html">LINUX</a></li>
+        
+            <li><a href="system-programming.html">系统编程</a></li>
+        
+            <li><a href="aws.html">AWS</a></li>
+        
+            <li><a href="lua.html">LUA</a></li>
+        
+            <li><a href="git.html">GIT</a></li>
+        
+            <li><a href="js.html">js</a></li>
+        
+            <li><a href="java.html">JAVA</a></li>
+        
+            <li><a href="monitor.html">监控</a></li>
+        
+            <li><a href="vim.html">VIM</a></li>
+        
+            <li><a href="php.html">PHP</a></li>
+        
+            <li><a href="openresty.html">OpenResty</a></li>
+        
+            <li><a href="swoole.html">SWOOLE</a></li>
+        
+            <li><a href="ons.html">消息队列</a></li>
+        
+            <li><a href="gdb.html">GDB</a></li>
+        
+            <li><a href="specification.html">规范</a></li>
+        
+            <li><a href="3-minutes.html">三分钟系列</a></li>
+        
+            <li><a href="1-pic.html">一图胜千言</a></li>
+        
+            <li><a href="account-system.html">帐号系统</a></li>
+        
+            <li><a href="interview.html">面试题</a></li>
+        
+            <li><a href="yii.html">Yii/Yii2</a></li>
+        
+            <li><a href="python.html">python</a></li>
+        
+            <li><a href="go.html">GO</a></li>
+        
+            <li><a href="ml.html">机器学习</a></li>
+        
+            <li><a href="emacs.html">emacs</a></li>
+        
+            <li><a href="bi.html">商业智能</a></li>
+        
+            <li><a href="mac.html">mac</a></li>
+        
+            <li><a href="editor.html">编辑器</a></li>
+        
+            <li><a href="productive-soft.html">生产力工具</a></li>
+        
+            <li><a href="driver-license.html">驾照</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+	$(function(){
+		$('#menu_item_index').addClass('is_active');
+	});
+</script>
+<div class="row">
+	<div class="large-8 medium-8 columns">
+		<div class="markdown-body home-categories">
+		
+			<div class="article">
+                <a class="clearlink" href="15870941721023.html">
+                
+                  <h1>mysql查询优化相关技术</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<ol>
+<li>查询优化
+<ol>
+<li>SQL查询执行顺序</li>
+<li>Where条件相关性能问题</li>
+<li>子查询(in/exist)相关</li>
+<li>分组排序相关</li>
+</ol></li>
+<li>索引优化</li>
+<li>事务</li>
+</ol>
+
+<h2 id="toc_0">0x01 SQL查询执行顺序</h2>
+
+<table>
+<thead>
+<tr>
+<th>执行顺序</th>
+<th>SQL关键字</th>
+<th>执行内容</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>8</td>
+<td>SELECT</td>
+<td>根据选择的字段,结果写入虚拟表T8</td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td>DISTINCT 字段</td>
+<td>对SELECT的结果T8执行去重后, 写入虚拟表T9</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>FROM 左表 as a</td>
+<td>对FROM中的左表与右表执行笛卡尔积,生成虚拟表T1</td>
+<td>每步操作结果都会生成一个虚拟表, 这里用T加执行顺序号来命名</td>
+</tr>
+<tr>
+<td>3</td>
+<td>LEFT JOIN 右表 as b</td>
+<td>如指定了左外连接,会将左表中存在,但右表不存在的行,添加到T2表,生成虚拟表T3; 如果FROM中包含多个表, 则会将T3与下一表重复执行步骤1~3</td>
+<td>Join类型:  Inner: 内联接, 等值连接  Outer: 外连接, 常用的Left join(以左表记录为基准),   Right join(以右表记录为基准)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>ON a.id = b.id</td>
+<td>对T1表应用on条件筛选, 符合条件的行写入虚拟表T2</td>
+<td>Inner jojn中on 与where条件效果相同;   left join中on与where条件效果不同;</td>
+</tr>
+<tr>
+<td>4</td>
+<td>WHERE 条件</td>
+<td>对T3表应用where条件过滤, 符合条件的记录写入T4表</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>GROUP BY 字段</td>
+<td>根据group by中字段 , 对T4执行分组,生成虚拟表T5</td>
+<td>注意:不在GROUP BY中的字段,如果出现在SELECT中,都要使用聚合类函数,不推荐下面的写法:  Select a,b, sum(c) from t  Group by a</td>
+</tr>
+<tr>
+<td>6</td>
+<td>WITH ROLLUP [CUBE]</td>
+<td>对T5结果,按不同维度执行统计,生成虚拟表T6</td>
+<td>GROUP BY ROLLUP(A,B,C) 结果  (A,B,C),(A,B), (A)  GROUP BY CUBE(A,B,C)结果  (A,B,C),(A,B)(A,C),(B,C)(A),(B),(C)</td>
+</tr>
+<tr>
+<td>7</td>
+<td>HAVING 条件</td>
+<td>对T6结果执行过滤,结果写入虚拟表T7</td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td>ORDER BY 字段</td>
+<td>对DISTINCT后的结果T9, 执行排序后写入虚拟表T10</td>
+<td>这部分可以使用字段别名, 字段运算或按字段顺序号执行排序操作</td>
+</tr>
+<tr>
+<td>11</td>
+<td>LIMIT</td>
+<td>对T10取出指定行数据记录后,返回最终结果</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="15870941721023.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2020/4/17</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='specification.html'>规范</a></span>
+          				  
+          					    <span class="posted-in"><a href='sql.html'>SQL</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15777670811036.html">
+                
+                  <h1>三分钟搭建大数据sql开发平台</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>目前工作内容中包含比较多的sql需求，但是公司目前的sql开发平台hue系统最近越来越慢了，一般在开发过程中会验证一些小sql是否符合预期，某些大sql也可能会拆成数个/数十个子sql进行分步验证，如果每个小sql需要等待数分钟才能查看结果，无疑会导致sql开发效率变得低下</p>
+
+<p>所以在本地搭建一个大数据sql开发平台就十分必要了</p>
+
+<p>cloudera公司提供了方便的一键启动的虚拟机，参考：<a href="https://www.cloudera.com/downloads/quickstart_vms/5-13.html">https://www.cloudera.com/downloads/quickstart_vms/5-13.html</a><br/>
+<img src="media/15777670811036/15777768855511.jpg" alt=""/></p>
+
+<p>平时一般使用vmware虚拟机，这里就用vmware举例了，可以看到cloudera官方还支持virtual box, kvm, docker image等虚拟机系统，可以自行选择</p>
+
+<h2 id="toc_0">获取hue虚拟机</h2>
+
+<p><img src="media/15777670811036/15777770666449.jpg" alt=""/><br/>
+单击&quot;GET IT NOW&quot;，然后填一个问卷单就可以下载了，下载完成后可以检查下文件大小，约5.76GB是下载ok的</p>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="15777670811036.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2019/12/31</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='java.html'>JAVA</a></span>
+          				  
+          					    <span class="posted-in"><a href='3-minutes.html'>三分钟系列</a></span>
+          				  
+          					    <span class="posted-in"><a href='bi.html'>商业智能</a></span>
+          				  
+          					    <span class="posted-in"><a href='sql.html'>SQL</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15582857762410.html">
+                
+                  <h1>yearning docker部署注意事项</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>第一次启动时，yearning是无法访问的，因为第一次mysql需要初始化yearning的数据，可能yearning先于mysql启动了，导致读取数据出现异常</p>
+
+<p>解决方法</p>
+
+<ul>
+<li>先启动mysql，通过查看日志，确认mysql初始化完成后在启动yearning</li>
+</ul>
+
+<p>docker-compose.yml</p>
+
+<pre><code class="language-yml">version: &#39;2&#39;
+
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - ./docker/etc/mysql/:/etc/mysql/conf.d/
+      - ./db_data/:/var/lib/mysql/
+      - ./init-sql/:/docker-entrypoint-initdb.d/
+    restart: always
+    ports:
+      - &quot;3406:3306&quot;
+    environment:
+      MYSQL_ROOT_PASSWORD: yearning
+      MYSQL_DATABASE: Yearning
+      MYSQL_USER: yearning
+      MYSQL_PASSWORD: yearning
+  yearning:
+    image: registry.cn-hangzhou.aliyuncs.com/cookie/yearning:latest
+    depends_on:
+      - db
+    ports:
+      - &quot;9180:8000&quot;
+    environment:
+      HOST: localhost
+      MYSQL_PASSWORD: yearning
+      MYSQL_USER: root
+      MYSQL_ADDR: db
+  inception:
+    image: hhyo/inception:latest
+    depends_on:
+      - db
+    ports:
+      - &quot;6669:6669&quot;
+    volumes:
+      - ./inc.cnf:/etc/inc.cnf
+
+# 默认账号：admin，默认密码：Yearning_admin
+# 感谢 eacdy 张功震 贡献
+</code></pre>
+
+<h2 id="toc_0">注意的点</h2>
+
+<ol>
+<li>必须先给用户赋予ddl权限，用户才可以提交ddl的工单</li>
+</ol>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/5/20</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='sql.html'>SQL</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15582857304757.html">
+                
+                  <h1>inception安装</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>docker 安装, docker hub地址</p>
+
+<p><a href="https://hub.docker.com/r/hhyo/inception">https://hub.docker.com/r/hhyo/inception</a></p>
+
+<p>github仓库地址</p>
+
+<p><a href="https://github.com/hhyo/inception">https://github.com/hhyo/inception</a></p>
+
+<p>inception 配置文件</p>
+
+<pre><code class="language-ini">[inception]
+general_log=1
+general_log_file=inception.log
+port=6669
+socket=/tmp/inc.socket
+character-set-client-handshake=0
+character-set-server=utf8
+inception_remote_system_password=root
+inception_remote_system_user=wzf1
+inception_remote_backup_port=3306
+inception_remote_backup_host=127.0.0.1
+inception_support_charset=utf8,utf8mb4
+inception_enable_nullable=0
+inception_check_primary_key=1
+inception_check_column_comment=1
+inception_check_table_comment=1
+inception_osc_on=OFF
+inception_osc_bin_dir=/usr/bin
+inception_osc_min_table_size=1
+inception_osc_chunk_time=0.1
+inception_enable_blob_type=1
+inception_check_column_default_value=1
+</code></pre>
+
+<p>中文文档：<a href="https://inception-document.readthedocs.io/zh_CN/latest/">https://inception-document.readthedocs.io/zh_CN/latest/</a></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/5/20</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='sql.html'>SQL</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15582856862245.html">
+                
+                  <h1>perocona</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>perocona toolkit<br/>
+重复锁查询<br/>
+杀慢查询</p>
+
+<p>pt-query-digest 分析慢查询日志</p>
+
+<p><img src="media/15582856862245/image-20180610100427468.png" alt="image-20180610100427468"/></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/5/20</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='sql.html'>SQL</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15582856557359.html">
+                
+                  <h1>把所有字段转成utf8mb4</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<pre><code class="language-sql">use information_schema;
+SELECT concat(&quot;ALTER DATABASE `&quot;,table_schema,&quot;` CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;&quot;) as _sql 
+FROM `TABLES` where table_schema like &quot;supply_chain2&quot; group by table_schema;
+SELECT concat(&quot;ALTER TABLE `&quot;,table_schema,&quot;`.`&quot;,table_name,&quot;` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;&quot;) as _sql  
+FROM `TABLES` where table_schema like &quot;supply_chain2&quot; group by table_schema, table_name;
+SELECT concat(&quot;ALTER TABLE `&quot;,table_schema,&quot;`.`&quot;,table_name, &quot;` CHANGE `&quot;,column_name,&quot;` `&quot;,column_name,&quot;` &quot;,data_type,&quot;(&quot;,character_maximum_length,&quot;) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;&quot;) as _sql 
+FROM `COLUMNS` where table_schema like &quot;supply_chain2&quot; and data_type in (&#39;varchar&#39;);
+SELECT concat(&quot;ALTER TABLE `&quot;,table_schema,&quot;`.`&quot;,table_name, &quot;` CHANGE `&quot;,column_name,&quot;` `&quot;,column_name,&quot;` &quot;,data_type,&quot; CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;&quot;) as _sql 
+FROM `COLUMNS` where table_schema like &quot;supply_chain2&quot;
+-- and data_type in (&#39;text&#39;,&#39;tinytext&#39;,&#39;mediumtext&#39;,&#39;longtext&#39;);
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/5/20</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='sql.html'>SQL</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15582855791915.html">
+                
+                  <h1>死锁</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>查看当前的数据库隔离级别</p>
+
+<p>​   select @@global.tx_isolation</p>
+
+<p><a href="http://www.ywnds.com/?p=4949">http://www.ywnds.com/?p=4949</a></p>
+
+<p>​   两个事务开始修改多个表时，如果访问表的顺序不同，会出现互相等待对方释放锁，然后才能继续处理的情况。MySQL会立刻发现这种情况并且终止较小的事务，允许其他的事务执行。</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/5/20</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='sql.html'>SQL</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15582847686529.html">
+                
+                  <h1>mysql配置主从复制小记</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<pre><code class="language-text">GRANT REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO repl@`%` IDENTIFIED BY &#39;repl&#39;;
+</code></pre>
+
+<pre><code class="language-text">flush privileges;
+</code></pre>
+
+<pre><code class="language-text"># for master-slave architecture
+log_bin=mysql-bin
+server_id=10
+</code></pre>
+
+<pre><code class="language-text">SHOW MASTER STATUS\G
+</code></pre>
+
+<pre><code class="language-text">log_bin = mysql-bin
+server_id = 2
+relay_log = /var/lib/mysql/mysql-relay-bin
+log_slave_updates = 1
+read_only = 1
+</code></pre>
+
+<pre><code class="language-text">CHANGE MASTER TO MASTER_HOST=&#39;mysql&#39;,
+MASTER_USER=&#39;repl&#39;,
+MASTER_PASSWORD=&#39;repl&#39;,
+MASTER_LOG_FILE=&#39;mysql-bin.000001&#39;,
+MASTER_LOG_POS=0;
+</code></pre>
+
+<pre><code class="language-text">SHOW SLAVE STATUS\G
+</code></pre>
+
+<pre><code class="language-text">START SLAVE;
+</code></pre>
+
+<pre><code class="language-text">replicate_wild_do_table = test.%
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/5/20</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='sql.html'>SQL</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15582842757578.html">
+                
+                  <h1>使用xtrabackup进行mysql备份恢复</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<pre><code class="language-text">docker run --name=cpx_prod20180430023756 -v $PWD:/root/tools -e MYSQL_ROOT_PASSWORD=root -d registry.cn-hangzhou.aliyuncs.com/xiayu/mysql-5.6-xtrabackup:latest
+</code></pre>
+
+<pre><code class="language-text">innobackupex --apply-log /root/tools/mysql --user=root --password=root
+
+innobackupex --defaults-file=/etc/mysql/my.cnf --copy-back /root/tools/mysql
+</code></pre>
+
+<pre><code class="language-text">mysqld_safe --defaults-file=/root/tools/mysql/backup-my.cnf --user=mysql --datadir=/root/tools/mysql/ &amp;
+</code></pre>
+
+<pre><code class="language-text">innobackupex --defaults-file=/root/tools/mysql/backup-my.cnf --apply-log /root/tools/mysql
+</code></pre>
+
+<pre><code class="language-text">mysqld_safe --defaults-file=/etc/mysql/my.cnf --user=root --datadir=/var/lib/mysql &amp;
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/5/20</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='sql.html'>SQL</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15582826489770.html">
+                
+                  <h1>mysql 常用命令</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<pre><code class="language-sql">set names utf8
+source
+
+select语句 into outfile &#39;外部文件路径&#39; fields terminated by &#39;|&#39; enclosed by &#39;&quot;&#39; lines terminated by &#39;\r\n&#39; ;
+load data infile &#39;外部文件路径&#39; into table 表名 fields terminated by &#39;|&#39; enclosed by &#39;&quot;&#39; lines terminated by &#39;\r\n&#39; ;
+
+mysqldump -u 用户名 -p 数据库名 &gt; 导出的文件名
+mysqldump -u 用户名 -p 数据库名 表名&gt; 导出的文件名
+
+只导出表结构
+mysqldump -u 用户名 -p -d --add-drop-table 数据库名 &gt; 导出的文件名
+
+mysqldump  -uroot -p --databases test mysql #空格分隔
+mysqldump  -uroot -p -all-databases
+mysql -uroot -proot test &lt; test.sql
+</code></pre>
+
+<h2 id="toc_0">查看锁等待</h2>
+
+<pre><code class="language-sql">SELECT 
+    r.trx_id waiting_trx_id,
+    r.trx_mysql_thread_id waiting_thread,
+    r.trx_query waiting_query,
+    b.trx_id blocking_trx_id,
+    b.trx_mysql_thread_id blocking_thread,
+    b.trx_query blocking_query
+FROM
+    information_schema.innodb_lock_waits w
+        INNER JOIN
+    information_schema.innodb_trx b ON b.trx_id = w.blocking_trx_id
+        INNER JOIN
+    information_schema.innodb_trx r ON r.trx_id = w.requesting_trx_id;
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/3/10</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='sql.html'>SQL</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15623795123706.html">
+                
+                  <h1>三分钟实现程序分库分表</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">hash算法选择</h2>
+
+<h3 id="toc_1">取模</h3>
+
+<p>比如分2个表，按user_id分，比如user_id=3, 和2取模结果是1，那么就分到表1，如果user_id=4，和2取模是0，那么就分到表0</p>
+
+<p>这个时候就有三个表了,比如post表</p>
+
+<table>
+<thead>
+<tr>
+<th>表名</th>
+<th>作用</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>post</td>
+<td>基础表，用来生成自增id</td>
+</tr>
+<tr>
+<td>post_0</td>
+<td>分表中的第一个表</td>
+</tr>
+<tr>
+<td>post_1</td>
+<td>分表中的第二个表</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-php">function shard_hash($keyword, $n) {
+    return $keyword % $n;
+}
+</code></pre>
+
+<h3 id="toc_2">crc32</h3>
+
+<p>为了使得数据分配更平均，可以使用crc32算法得到一个大数，然后再取模</p>
+
+<pre><code class="language-php">function shard_hash($keyword, $n) {
+    return (sprintf(&quot;%u&quot;, crc32($keyword)) &gt;&gt; 16 &amp; 0x7fff) % $n;
+}
+</code></pre>
+
+<h3 id="toc_3">优点与不足</h3>
+
+<p>这种分表方式在客户端实现，比较容易实现</p>
+
+<p>不足就是需要侵入业务代码了</p>
+
+<h2 id="toc_4">一些注意的点</h2>
+
+<ol>
+<li>分库/分表的核心是hash算法，这个hash算法确保了把数据均分到不同的库，并且这个hash算法是稳定的，对于同一个输入，任何时候都会只对应一个输出</li>
+<li>分表由于id作为主键不能重复，所以id需要单独生成，一般把分表的基础表作为id生成表，每次新增数据，都会从这个表中获取新的id，一般使用mysql的<code>SET id=LAST_INSERT_ID(id+1)</code>实现</li>
+<li>由于hash输入不变，输出也不变的特性，分库同样可以使用这个算法，相对分表，分库无需生成自增id了，模的结果拼接到库名后即可</li>
+</ol>
+
+<h2 id="toc_5">参考资料</h2>
+
+<ol>
+<li><a href="https://help.aliyun.com/product/29657.html">https://help.aliyun.com/product/29657.html</a></li>
+</ol>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2014/7/6</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='php.html'>PHP</a></span>
+          				  
+          					    <span class="posted-in"><a href='sql.html'>SQL</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+              
+
+
+			<div class="row">
+			  <div class="large-6 columns">
+			  <p class="text-left" style="padding-top:25px;">
+			   
+			  </p>
+			  </div>
+			  <div class="large-6 columns">
+			<p class="text-right" style="padding-top:25px;">
+			
+			</p>
+			  </div>
+			</div>
+		</div>
+	</div><!-- large 8 -->
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>xiaolin's blog</h1>
+                <div class="site-des">core tech share blog</div>
+                <div class="social">
+                  <a target="_blank" class="juejin" href="https://juejin.im/user/5c409f86e51d4551c88027a2/posts" title="Juejin">juejin</a>
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/neatlife" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="macios.html"><strong>mac&ios</strong></a>
+        
+            <a href="lc.html"><strong>leetcode</strong></a>
+        
+            <a href="security.html"><strong>安全</strong></a>
+        
+            <a href="business.html"><strong>业务</strong></a>
+        
+            <a href="source-code.html"><strong>源码分析</strong></a>
+        
+            <a href="redis.html"><strong>Redis</strong></a>
+        
+            <a href="apache-nginx.html"><strong>Apache/Nginx</strong></a>
+        
+            <a href="spring-boot.html"><strong>Spring Boot</strong></a>
+        
+            <a href="pm.html"><strong>项目管理</strong></a>
+        
+            <a href="sql.html"><strong>SQL</strong></a>
+        
+            <a href="job-scheduler.html"><strong>任务调度</strong></a>
+        
+            <a href="design-pattern.html"><strong>设计模式</strong></a>
+        
+            <a href="mq.html"><strong>消息队列</strong></a>
+        
+            <a href="rpc.html"><strong>RPC</strong></a>
+        
+            <a href="laravel.html"><strong>LARAVEL</strong></a>
+        
+            <a href="tcp-ip.html"><strong>TCP/IP</strong></a>
+        
+            <a href="uml.html"><strong>UML</strong></a>
+        
+            <a href="service-mesh.html"><strong>SERVICE MESH</strong></a>
+        
+            <a href="ci-cd.html"><strong>CI/CD</strong></a>
+        
+            <a href="ops.html"><strong>OPS</strong></a>
+        
+            <a href="linux.html"><strong>LINUX</strong></a>
+        
+            <a href="system-programming.html"><strong>系统编程</strong></a>
+        
+            <a href="aws.html"><strong>AWS</strong></a>
+        
+            <a href="lua.html"><strong>LUA</strong></a>
+        
+            <a href="git.html"><strong>GIT</strong></a>
+        
+            <a href="js.html"><strong>js</strong></a>
+        
+            <a href="java.html"><strong>JAVA</strong></a>
+        
+            <a href="monitor.html"><strong>监控</strong></a>
+        
+            <a href="vim.html"><strong>VIM</strong></a>
+        
+            <a href="php.html"><strong>PHP</strong></a>
+        
+            <a href="openresty.html"><strong>OpenResty</strong></a>
+        
+            <a href="swoole.html"><strong>SWOOLE</strong></a>
+        
+            <a href="ons.html"><strong>消息队列</strong></a>
+        
+            <a href="gdb.html"><strong>GDB</strong></a>
+        
+            <a href="specification.html"><strong>规范</strong></a>
+        
+            <a href="3-minutes.html"><strong>三分钟系列</strong></a>
+        
+            <a href="1-pic.html"><strong>一图胜千言</strong></a>
+        
+            <a href="account-system.html"><strong>帐号系统</strong></a>
+        
+            <a href="interview.html"><strong>面试题</strong></a>
+        
+            <a href="yii.html"><strong>Yii/Yii2</strong></a>
+        
+            <a href="python.html"><strong>python</strong></a>
+        
+            <a href="go.html"><strong>GO</strong></a>
+        
+            <a href="ml.html"><strong>机器学习</strong></a>
+        
+            <a href="emacs.html"><strong>emacs</strong></a>
+        
+            <a href="bi.html"><strong>商业智能</strong></a>
+        
+            <a href="mac.html"><strong>mac</strong></a>
+        
+            <a href="editor.html"><strong>编辑器</strong></a>
+        
+            <a href="productive-soft.html"><strong>生产力工具</strong></a>
+        
+            <a href="driver-license.html"><strong>驾照</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="16081898834624.html">OSX使用代码代替storyboard构建项目，并添加NSSplitView组件</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16005640944829.html">linux系统编程之多进程和管道（pip）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15970226751276.html">三分钟上手java多线程控制技术</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15864793262262.html">14/24 设计模式之状态模式 State Pattern</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15880004262195.html">python高性能之路:使用C/C++编写扩展</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.
+<span id="busuanzi_container_site_uv">访问<span id="busuanzi_value_site_uv"></span>人</span>/
+        <span id="busuanzi_container_site_pv"><span id="busuanzi_value_site_pv"></span>次</span>
+    </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138141150-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138141150-1');
+</script>
+
+<canvas class="fireworks" 
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999999; pointer-events: none; width: 1158px; height: 916px;" 
+        width="2316" 
+        height="1832">
+</canvas>
+    <script src="asset/js/anime.min.js"></script>
+    <script src="asset/js/fireworks.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </body>
+</html>

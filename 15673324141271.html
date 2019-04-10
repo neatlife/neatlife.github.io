@@ -1,0 +1,799 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  memcached中的经典数据结构hash链表和LRU删除策略的应用 - xiaolin's blog
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="xiaolin's blog" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:neatlifecoco.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">about</a></li>
+        
+        <li id=""><a target="_self" href="all.html">blog</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">archive</a></li>
+        
+        <li id=""><a target="_self" href="tools.html">tools</a></li>
+        
+        <li id=""><a target="_self" href="pro.html">pros</a></li>
+        
+        <li id=""><a target="_self" href="pub.html">press</a></li>
+        
+        <li id=""><a target="_self" href="paper.html">paper</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; xiaolin's blog</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">about</a></li>
+        
+        <li><a target="_self" href="all.html">blog</a></li>
+        
+        <li><a target="_self" href="archives.html">archive</a></li>
+        
+        <li><a target="_self" href="tools.html">tools</a></li>
+        
+        <li><a target="_self" href="pro.html">pros</a></li>
+        
+        <li><a target="_self" href="pub.html">press</a></li>
+        
+        <li><a target="_self" href="paper.html">paper</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="macios.html">mac&ios</a></li>
+        
+            <li><a href="lc.html">leetcode</a></li>
+        
+            <li><a href="security.html">安全</a></li>
+        
+            <li><a href="business.html">业务</a></li>
+        
+            <li><a href="source-code.html">源码分析</a></li>
+        
+            <li><a href="redis.html">Redis</a></li>
+        
+            <li><a href="apache-nginx.html">Apache/Nginx</a></li>
+        
+            <li><a href="spring-boot.html">Spring Boot</a></li>
+        
+            <li><a href="pm.html">项目管理</a></li>
+        
+            <li><a href="sql.html">SQL</a></li>
+        
+            <li><a href="job-scheduler.html">任务调度</a></li>
+        
+            <li><a href="design-pattern.html">设计模式</a></li>
+        
+            <li><a href="mq.html">消息队列</a></li>
+        
+            <li><a href="rpc.html">RPC</a></li>
+        
+            <li><a href="laravel.html">LARAVEL</a></li>
+        
+            <li><a href="tcp-ip.html">TCP/IP</a></li>
+        
+            <li><a href="uml.html">UML</a></li>
+        
+            <li><a href="service-mesh.html">SERVICE MESH</a></li>
+        
+            <li><a href="ci-cd.html">CI/CD</a></li>
+        
+            <li><a href="ops.html">OPS</a></li>
+        
+            <li><a href="linux.html">LINUX</a></li>
+        
+            <li><a href="system-programming.html">系统编程</a></li>
+        
+            <li><a href="aws.html">AWS</a></li>
+        
+            <li><a href="lua.html">LUA</a></li>
+        
+            <li><a href="git.html">GIT</a></li>
+        
+            <li><a href="js.html">js</a></li>
+        
+            <li><a href="java.html">JAVA</a></li>
+        
+            <li><a href="monitor.html">监控</a></li>
+        
+            <li><a href="vim.html">VIM</a></li>
+        
+            <li><a href="php.html">PHP</a></li>
+        
+            <li><a href="openresty.html">OpenResty</a></li>
+        
+            <li><a href="swoole.html">SWOOLE</a></li>
+        
+            <li><a href="ons.html">消息队列</a></li>
+        
+            <li><a href="gdb.html">GDB</a></li>
+        
+            <li><a href="specification.html">规范</a></li>
+        
+            <li><a href="3-minutes.html">三分钟系列</a></li>
+        
+            <li><a href="1-pic.html">一图胜千言</a></li>
+        
+            <li><a href="account-system.html">帐号系统</a></li>
+        
+            <li><a href="interview.html">面试题</a></li>
+        
+            <li><a href="yii.html">Yii/Yii2</a></li>
+        
+            <li><a href="python.html">python</a></li>
+        
+            <li><a href="go.html">GO</a></li>
+        
+            <li><a href="ml.html">机器学习</a></li>
+        
+            <li><a href="emacs.html">emacs</a></li>
+        
+            <li><a href="bi.html">商业智能</a></li>
+        
+            <li><a href="mac.html">mac</a></li>
+        
+            <li><a href="editor.html">编辑器</a></li>
+        
+            <li><a href="productive-soft.html">生产力工具</a></li>
+        
+            <li><a href="driver-license.html">驾照</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>memcached中的经典数据结构hash链表和LRU删除策略的应用</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2019/9/8</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='source-code.html'>源码分析</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>hash链表是memcached核心的数据结构了，hash表用于快速读取、写入缓存数据（item结构），链表用于实现lru策略，lru用于内存不足时的兜底策略，有效防止了内存不足时造成宕机</p>
+
+<h2 id="toc_0">缓存操作</h2>
+
+<p>memcached中使用struct _stritem结构体代表缓存，这个结构体被typedef定义成了item类型，对这个item结构体的操作都在item.c中，函数列表如下</p>
+
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>作用</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>item_init</td>
+<td>初始化lru链表头尾指针、item数量数组</td>
+</tr>
+<tr>
+<td>item_make_header</td>
+<td>计算一个item占用的内存字节数</td>
+</tr>
+<tr>
+<td>item_alloc</td>
+<td>从slab中分配出item的内存</td>
+</tr>
+<tr>
+<td>item_free</td>
+<td>把item内存还给slab</td>
+</tr>
+<tr>
+<td>item_size_ok</td>
+<td>检查item内存大小是否超过了slab允许的范围</td>
+</tr>
+<tr>
+<td>item_link_q</td>
+<td>把item加入到lru链表头</td>
+</tr>
+<tr>
+<td>item_unlink_q</td>
+<td>从链表中删除item</td>
+</tr>
+<tr>
+<td>item_link</td>
+<td>把item插入hash表，同时加入lru链表中(item_link_q)</td>
+</tr>
+<tr>
+<td>item_unlink</td>
+<td>把item从hash表中删除，同时从lru链表中删除(item_unlink_q)</td>
+</tr>
+<tr>
+<td>item_remove</td>
+<td>把item内存还给slab，带异常检查</td>
+</tr>
+<tr>
+<td>item_update</td>
+<td>修改item，同时按照lru规则重建这个item在lru链表中的位置</td>
+</tr>
+<tr>
+<td>item_replace</td>
+<td>替换item，和item_update的区别时，这个不会修改item的最后访问时间</td>
+</tr>
+<tr>
+<td>item_cachedump</td>
+<td>获取指定slab的所有item的key和value的大小</td>
+</tr>
+<tr>
+<td>item_stats</td>
+<td>获取所有lru链表的大小</td>
+</tr>
+<tr>
+<td>item_stats_sizes</td>
+<td>统计item的大小</td>
+</tr>
+</tbody>
+</table>
+
+<p>可以看到这个item的操作就用到了hash表和链表，item是在hash表和链表上进行的，即对缓存item的操作，<strong>会同时影响到hash表和链表两种数据结构的构建</strong></p>
+
+<h2 id="toc_1">hash表构建</h2>
+
+<span id="more"></span><!-- more -->
+
+<p>hash表的构建、crud操作都在assoc.c中</p>
+
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>作用</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>hash</td>
+<td>将字符串char*散列成8字节32位的数字</td>
+</tr>
+<tr>
+<td>assoc_init</td>
+<td>为hash表分配内存空间，默认大小是hashsize(HASHPOWER) * sizeof(void*)</td>
+</tr>
+<tr>
+<td>assoc_find</td>
+<td>通过hash表找到对应hash的value</td>
+</tr>
+<tr>
+<td>assoc_insert</td>
+<td>将新key插入hash表</td>
+</tr>
+<tr>
+<td>assoc_delete</td>
+<td>从hash表中删除指定key的hash</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="toc_2">hash冲突的解决</h3>
+
+<p>不同的key，通过hash函数可能hash成了同一个32位的数字，这不会影响hash表插入(纯链表操作)，但是查找的时候，就不能只靠hash找item了，memcached采用的是开放寻址，即对比找到的item的key是否和查找的key相同，如不同，就是遇到了hash冲突，继续和链表的下一个item进行对比</p>
+
+<pre><code class="language-c">item *it = hashtable[hv];
+
+while (it) {
+    if (strcmp(key, ITEM_key(it)) == 0)
+        return it;
+    it = it-&gt;h_next;
+}
+return 0;
+</code></pre>
+
+<h2 id="toc_3">链表构建</h2>
+
+<p>lru链表定义在了items.c中，在item_init()函数中初始化成空指针</p>
+
+<p>items.c</p>
+
+<pre><code class="language-c">#define LARGEST_ID 255
+static item *heads[LARGEST_ID];
+static item *tails[LARGEST_ID];
+</code></pre>
+
+<p>item_init()</p>
+
+<pre><code class="language-c">for(i=0; i&lt;LARGEST_ID; i++) {
+    heads[i]=0;
+    tails[i]=0;
+}
+</code></pre>
+
+<p>LARGEST_ID常量是最大的内存slab数量，每个slab对应了一个头尾链表。</p>
+
+<h3 id="toc_4">链表头维护时机</h3>
+
+<h4 id="toc_5">add/set时添加</h4>
+
+<p>add/set/replace时会把状态机置成conn_nread状态: conn_set_state(c, conn_nread)</p>
+
+<p>通过nread -&gt; complete_nread(c) -&gt; item_link(it) -&gt; item_link_q(it)<br/>
+再item_link_q中把item放到lru链表头部(链表头指向新增的元素)，核心代码如下</p>
+
+<pre><code class="language-c">head = &amp;heads[it-&gt;slabs_clsid];
+tail = &amp;tails[it-&gt;slabs_clsid];
+it-&gt;prev = 0;
+it-&gt;next = *head;
+*head = it;
+if (*tail == 0) *tail = it;
+</code></pre>
+
+<p>如果这时如果尾指针为空，表示lru链表都是刚构建，这时尾指针和头指针初始化都指向第一个it元素</p>
+
+<h4 id="toc_6">replace时删除</h4>
+
+<p>item被replace、delete时，都需要把item从lru链表中删除，replace会调用item_link_q重新添加到lru链表中</p>
+
+<p>item_unlink_q()核心代码如下</p>
+
+<pre><code class="language-c">item **head, **tail;
+
+head = &amp;heads[it-&gt;slabs_clsid];
+tail = &amp;tails[it-&gt;slabs_clsid];
+
+if (*head == it) {
+    *head = it-&gt;next;
+}
+if (*tail == it) {
+    *tail = it-&gt;prev;
+}
+
+if (it-&gt;next) it-&gt;next-&gt;prev = it-&gt;prev;
+if (it-&gt;prev) it-&gt;prev-&gt;next = it-&gt;next;
+</code></pre>
+
+<p>可以看到如果被删除的item正好是lru链表的头/尾指针时，需要多维护一下头尾指针，其他情况直接把item从lru链表中解除关系即可</p>
+
+<h3 id="toc_7">链表尾维护时机</h3>
+
+<p>链表尾指针只会在lru链表都是刚构建的时候，指向第一个元素，以及删除lru链表元素时，刚好删到了尾指针，其它时候都不会再动了，这就保证了tail指针永远指向lru链表的最后一个元素</p>
+
+<h2 id="toc_8">lru生效时机</h2>
+
+<p>lru生效发生在memcached无法从slab分配新内存的时候，会尝试使用lru链表尾指针往前进行查找出可以删除的item，进行删除释放内存空间给新增的元素使用</p>
+
+<p>核心代码在items.c中，调用slabs_alloc(ntotal)分配内存失败时</p>
+
+<pre><code class="language-c">it = slabs_alloc(ntotal);
+if (it == 0) {
+    int tries = 50;
+    item *search;
+    if (tails[id]==0) return 0;
+
+    for (search = tails[id]; tries&gt;0 &amp;&amp; search; tries--, search=search-&gt;prev) {
+        if (search-&gt;refcount==0) {
+            item_unlink(search);
+            break;
+        }
+    }
+    it = slabs_alloc(ntotal);
+    if (it==0) return 0;
+}
+</code></pre>
+
+<p>memcached一共会尝试最后50个元素进行lru淘汰，如果仍然没有元素可删除，这个时候就直接返回错误了，最新版lru对这个简单的策略改进了很多，参考：<a href="https://github.com/memcached/memcached/blob/master/items.c#L170">do_item_alloc_pull()</a></p>
+
+<h2 id="toc_9">一些注意的点</h2>
+
+<p>本文基于memcached 1.2.0</p>
+
+<p>telnet调试memcached时value跟在最后，命令以<strong>回车(\n)结束</strong>，核心代码如下</p>
+
+<pre><code class="language-text">el = memchr(c-&gt;rcurr, &#39;\n&#39;, c-&gt;rbytes);
+if (!el)
+    return 0;
+</code></pre>
+
+<h2 id="toc_10">参考资料</h2>
+
+<ol>
+<li><a href="https://github.com/memcached/memcached/blob/master/items.c#L170">https://github.com/memcached/memcached/blob/master/items.c#L170</a></li>
+<li><a href="https://www.journaldev.com/16/memcached-telnet-commands-example">https://www.journaldev.com/16/memcached-telnet-commands-example</a></li>
+<li><a href="https://blog.csdn.net/sky2098/article/details/1532766">https://blog.csdn.net/sky2098/article/details/1532766</a></li>
+</ol>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15685261364999.html" 
+          title="Previous Post: nginx网络通信模块设计与实现分析">&laquo; nginx网络通信模块设计与实现分析</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15669924613320.html" 
+          title="Next Post: 基础数据结构-用链表实现队列和栈">基础数据结构-用链表实现队列和栈 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          <script src="https://utteranc.es/client.js"
+        repo="neatlife/neatlife.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>xiaolin's blog</h1>
+                <div class="site-des">core tech share blog</div>
+                <div class="social">
+                  <a target="_blank" class="juejin" href="https://juejin.im/user/5c409f86e51d4551c88027a2/posts" title="Juejin">juejin</a>
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/neatlife" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="macios.html"><strong>mac&ios</strong></a>
+        
+            <a href="lc.html"><strong>leetcode</strong></a>
+        
+            <a href="security.html"><strong>安全</strong></a>
+        
+            <a href="business.html"><strong>业务</strong></a>
+        
+            <a href="source-code.html"><strong>源码分析</strong></a>
+        
+            <a href="redis.html"><strong>Redis</strong></a>
+        
+            <a href="apache-nginx.html"><strong>Apache/Nginx</strong></a>
+        
+            <a href="spring-boot.html"><strong>Spring Boot</strong></a>
+        
+            <a href="pm.html"><strong>项目管理</strong></a>
+        
+            <a href="sql.html"><strong>SQL</strong></a>
+        
+            <a href="job-scheduler.html"><strong>任务调度</strong></a>
+        
+            <a href="design-pattern.html"><strong>设计模式</strong></a>
+        
+            <a href="mq.html"><strong>消息队列</strong></a>
+        
+            <a href="rpc.html"><strong>RPC</strong></a>
+        
+            <a href="laravel.html"><strong>LARAVEL</strong></a>
+        
+            <a href="tcp-ip.html"><strong>TCP/IP</strong></a>
+        
+            <a href="uml.html"><strong>UML</strong></a>
+        
+            <a href="service-mesh.html"><strong>SERVICE MESH</strong></a>
+        
+            <a href="ci-cd.html"><strong>CI/CD</strong></a>
+        
+            <a href="ops.html"><strong>OPS</strong></a>
+        
+            <a href="linux.html"><strong>LINUX</strong></a>
+        
+            <a href="system-programming.html"><strong>系统编程</strong></a>
+        
+            <a href="aws.html"><strong>AWS</strong></a>
+        
+            <a href="lua.html"><strong>LUA</strong></a>
+        
+            <a href="git.html"><strong>GIT</strong></a>
+        
+            <a href="js.html"><strong>js</strong></a>
+        
+            <a href="java.html"><strong>JAVA</strong></a>
+        
+            <a href="monitor.html"><strong>监控</strong></a>
+        
+            <a href="vim.html"><strong>VIM</strong></a>
+        
+            <a href="php.html"><strong>PHP</strong></a>
+        
+            <a href="openresty.html"><strong>OpenResty</strong></a>
+        
+            <a href="swoole.html"><strong>SWOOLE</strong></a>
+        
+            <a href="ons.html"><strong>消息队列</strong></a>
+        
+            <a href="gdb.html"><strong>GDB</strong></a>
+        
+            <a href="specification.html"><strong>规范</strong></a>
+        
+            <a href="3-minutes.html"><strong>三分钟系列</strong></a>
+        
+            <a href="1-pic.html"><strong>一图胜千言</strong></a>
+        
+            <a href="account-system.html"><strong>帐号系统</strong></a>
+        
+            <a href="interview.html"><strong>面试题</strong></a>
+        
+            <a href="yii.html"><strong>Yii/Yii2</strong></a>
+        
+            <a href="python.html"><strong>python</strong></a>
+        
+            <a href="go.html"><strong>GO</strong></a>
+        
+            <a href="ml.html"><strong>机器学习</strong></a>
+        
+            <a href="emacs.html"><strong>emacs</strong></a>
+        
+            <a href="bi.html"><strong>商业智能</strong></a>
+        
+            <a href="mac.html"><strong>mac</strong></a>
+        
+            <a href="editor.html"><strong>编辑器</strong></a>
+        
+            <a href="productive-soft.html"><strong>生产力工具</strong></a>
+        
+            <a href="driver-license.html"><strong>驾照</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="16081898834624.html">OSX使用代码代替storyboard构建项目，并添加NSSplitView组件</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16005640944829.html">linux系统编程之多进程和管道（pip）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15970226751276.html">三分钟上手java多线程控制技术</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15864793262262.html">14/24 设计模式之状态模式 State Pattern</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15880004262195.html">python高性能之路:使用C/C++编写扩展</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.
+<span id="busuanzi_container_site_uv">访问<span id="busuanzi_value_site_uv"></span>人</span>/
+        <span id="busuanzi_container_site_pv"><span id="busuanzi_value_site_pv"></span>次</span>
+    </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138141150-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138141150-1');
+</script>
+
+<canvas class="fireworks" 
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999999; pointer-events: none; width: 1158px; height: 916px;" 
+        width="2316" 
+        height="1832">
+</canvas>
+    <script src="asset/js/anime.min.js"></script>
+    <script src="asset/js/fireworks.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </body>
+</html>

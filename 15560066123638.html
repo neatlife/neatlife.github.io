@@ -1,0 +1,915 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  基于spring boot框架进行二次封装，微型框架编写思路 - xiaolin's blog
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="xiaolin's blog" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:neatlifecoco.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">about</a></li>
+        
+        <li id=""><a target="_self" href="all.html">blog</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">archive</a></li>
+        
+        <li id=""><a target="_self" href="tools.html">tools</a></li>
+        
+        <li id=""><a target="_self" href="pro.html">pros</a></li>
+        
+        <li id=""><a target="_self" href="pub.html">press</a></li>
+        
+        <li id=""><a target="_self" href="paper.html">paper</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; xiaolin's blog</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">about</a></li>
+        
+        <li><a target="_self" href="all.html">blog</a></li>
+        
+        <li><a target="_self" href="archives.html">archive</a></li>
+        
+        <li><a target="_self" href="tools.html">tools</a></li>
+        
+        <li><a target="_self" href="pro.html">pros</a></li>
+        
+        <li><a target="_self" href="pub.html">press</a></li>
+        
+        <li><a target="_self" href="paper.html">paper</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="macios.html">mac&ios</a></li>
+        
+            <li><a href="lc.html">leetcode</a></li>
+        
+            <li><a href="security.html">安全</a></li>
+        
+            <li><a href="business.html">业务</a></li>
+        
+            <li><a href="source-code.html">源码分析</a></li>
+        
+            <li><a href="redis.html">Redis</a></li>
+        
+            <li><a href="apache-nginx.html">Apache/Nginx</a></li>
+        
+            <li><a href="spring-boot.html">Spring Boot</a></li>
+        
+            <li><a href="pm.html">项目管理</a></li>
+        
+            <li><a href="sql.html">SQL</a></li>
+        
+            <li><a href="job-scheduler.html">任务调度</a></li>
+        
+            <li><a href="design-pattern.html">设计模式</a></li>
+        
+            <li><a href="mq.html">消息队列</a></li>
+        
+            <li><a href="rpc.html">RPC</a></li>
+        
+            <li><a href="laravel.html">LARAVEL</a></li>
+        
+            <li><a href="tcp-ip.html">TCP/IP</a></li>
+        
+            <li><a href="uml.html">UML</a></li>
+        
+            <li><a href="service-mesh.html">SERVICE MESH</a></li>
+        
+            <li><a href="ci-cd.html">CI/CD</a></li>
+        
+            <li><a href="ops.html">OPS</a></li>
+        
+            <li><a href="linux.html">LINUX</a></li>
+        
+            <li><a href="system-programming.html">系统编程</a></li>
+        
+            <li><a href="aws.html">AWS</a></li>
+        
+            <li><a href="lua.html">LUA</a></li>
+        
+            <li><a href="git.html">GIT</a></li>
+        
+            <li><a href="js.html">js</a></li>
+        
+            <li><a href="java.html">JAVA</a></li>
+        
+            <li><a href="monitor.html">监控</a></li>
+        
+            <li><a href="vim.html">VIM</a></li>
+        
+            <li><a href="php.html">PHP</a></li>
+        
+            <li><a href="openresty.html">OpenResty</a></li>
+        
+            <li><a href="swoole.html">SWOOLE</a></li>
+        
+            <li><a href="ons.html">消息队列</a></li>
+        
+            <li><a href="gdb.html">GDB</a></li>
+        
+            <li><a href="specification.html">规范</a></li>
+        
+            <li><a href="3-minutes.html">三分钟系列</a></li>
+        
+            <li><a href="1-pic.html">一图胜千言</a></li>
+        
+            <li><a href="account-system.html">帐号系统</a></li>
+        
+            <li><a href="interview.html">面试题</a></li>
+        
+            <li><a href="yii.html">Yii/Yii2</a></li>
+        
+            <li><a href="python.html">python</a></li>
+        
+            <li><a href="go.html">GO</a></li>
+        
+            <li><a href="ml.html">机器学习</a></li>
+        
+            <li><a href="emacs.html">emacs</a></li>
+        
+            <li><a href="bi.html">商业智能</a></li>
+        
+            <li><a href="mac.html">mac</a></li>
+        
+            <li><a href="editor.html">编辑器</a></li>
+        
+            <li><a href="productive-soft.html">生产力工具</a></li>
+        
+            <li><a href="driver-license.html">驾照</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>基于spring boot框架进行二次封装，微型框架编写思路</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2019/4/24</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='spring-boot.html'>Spring Boot</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>目标：减少重复代码，提高开发效率，项目地址：<a href="https://github.com/neatlife/jframework">https://github.com/neatlife/jframework</a></p>
+
+<p><strong>欢迎star，欢迎pr(求star, 求star, 求star)</strong></p>
+
+<p>可封装功能列表</p>
+
+<table>
+<thead>
+<tr>
+<th>E文</th>
+<th>功能</th>
+<th>目前作用</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>controller</td>
+<td>控制器父类</td>
+<td>简化控制器里的常见操作</td>
+</tr>
+<tr>
+<td>exception</td>
+<td>异常</td>
+<td>统一全局业务异常操作</td>
+</tr>
+<tr>
+<td>handler</td>
+<td>异常拦截</td>
+<td>全局异常拦截到日志里</td>
+</tr>
+<tr>
+<td>http</td>
+<td>请求响应实体</td>
+<td>统一全局响应实体</td>
+</tr>
+<tr>
+<td>hystrix</td>
+<td>hystrix事件拦截</td>
+<td>熔断时发送报警邮件</td>
+</tr>
+<tr>
+<td>jpa</td>
+<td>jpa非业务重复代码封装</td>
+<td>自动给deleted_at, updated_at, created_at赋值</td>
+</tr>
+<tr>
+<td>json</td>
+<td>响应json数据的二次处理</td>
+<td>自动格式化金额小数位数</td>
+</tr>
+<tr>
+<td>listener</td>
+<td>spring boot框架事件</td>
+<td>在框架启动时给util注入service实例</td>
+</tr>
+<tr>
+<td>logback</td>
+<td>自定义logback日志输出</td>
+<td>将日志输出到elk的redis，方便elk统一进行日志处理</td>
+</tr>
+<tr>
+<td>model</td>
+<td>基础jpa实体</td>
+<td>包含deleted_at, updated_at, created_at字段的实体</td>
+</tr>
+<tr>
+<td>redis</td>
+<td>自定义redis序列化和反序列化操作</td>
+<td>使用GenericJackson2JsonRedisSerializer序列化redis值，提高可读性</td>
+</tr>
+<tr>
+<td>request</td>
+<td>自定请求数据的解析</td>
+<td>处理json请求</td>
+</tr>
+<tr>
+<td>springfox</td>
+<td>自定义springfox文档解析</td>
+<td>ApiClass支持文档描述引用</td>
+</tr>
+<tr>
+<td>util</td>
+<td>常用工具收集</td>
+<td>比如json, http请求等常用工具类</td>
+</tr>
+<tr>
+<td>validator</td>
+<td>请求参数自定义校验</td>
+<td>检查参数长度</td>
+</tr>
+<tr>
+<td>apiversion</td>
+<td>支持不同的api的版本到不同的控制器逻辑</td>
+<td>参考 <a href="https://github.com/xdd-organ/xdd-nasa/blob/master/src/main/java/com/java/xdd/nasa/main/controller/MainController.java">MainController</a></td>
+</tr>
+</tbody>
+</table>
+
+<span id="more"></span><!-- more -->
+
+<p>目前已经实现上面列表中的所有功能并开源</p>
+
+<p><img src="media/15560066123638/15560080373978.jpg" alt=""/></p>
+
+<h3 id="toc_0">一些关键的点</h3>
+
+<h3 id="toc_1">json &amp; http客户端的封装</h3>
+
+<p>json &amp; http客户端经常使用，自行编写容易踩坑，所以直接拿dew框架的工具类进行了集成</p>
+
+<p><a href="https://github.com/gudaoxuri/dew-common">https://github.com/gudaoxuri/dew-common</a></p>
+
+<p>需要同时发出多个http请求时可以使用parallelStream()技术，可显著减少请求总时长</p>
+
+<pre><code class="language-java">List&lt;String&gt; paramList = ...
+paramList.parallelStream().forEach(param -&gt; {
+    http post with param
+})
+</code></pre>
+
+<p>经测试， 26个请求，使用parallelStream将请求总时间从23.803减少到1.731秒，提升效果显著</p>
+
+<h3 id="toc_2">MapperUtil工具类的封装</h3>
+
+<p>因为java里对象复制非常频繁，所以封装了MapperUtil, 虽然复制对象只需下面两行代码</p>
+
+<pre><code class="language-java">Class1 class1 = new Class1();
+BeanUtils.copyProperties(source, class1);
+</code></pre>
+
+<p>但是由于非常频繁的类似代码，一个项目项目可能出现上千次这种复制，所以将上面两行代码合并成了一行</p>
+
+<pre><code class="language-java">Class1 class1 = MapperUtil.to(source, class1);
+</code></pre>
+
+<p>核心实现代码如下:</p>
+
+<pre><code class="language-java">public static &lt;SOURCE, TARGET&gt; TARGET to(SOURCE source, Class&lt;TARGET&gt; targetClass) {
+    TARGET target = BeanUtils.instantiateClass(targetClass);
+    BeanUtils.copyProperties(source, target);
+    return target;
+}
+</code></pre>
+
+<p>虽然使用了反射技术，但经过测试无性能问题</p>
+
+<h3 id="toc_3">elk日志</h3>
+
+<p>使用redis进行了日志中转，所以logstash需要从redis读取日志输出到elasticsearch</p>
+
+<p>logstash从redis读取日志输出到elasticsearch的配置</p>
+
+<pre><code class="language-conf">input {
+    redis {
+        data_type =&gt; &quot;list&quot;
+        key =&gt; &quot;logstash&quot;
+        host =&gt; &quot;127.0.0.1&quot;
+        port =&gt; 6379
+        threads =&gt; 5
+        codec =&gt; &quot;json&quot;
+    }
+}
+filter {
+
+}
+output {
+
+    elasticsearch {
+        hosts =&gt; [&quot;elasticsearch:9200&quot;]
+        index =&gt; &quot;logstash-%{type}-%{+YYYY.MM.dd}&quot;
+        document_type =&gt; &quot;%{type}&quot;
+        workers =&gt; 1
+        template_overwrite =&gt; true
+    }
+    stdout{}
+}
+</code></pre>
+
+<p>因为elasticsearch里日志会越来越大，所以需要定时清理，定时清理elasticsearch数据</p>
+
+<p>参考：<a href="https://www.jianshu.com/p/458421dac807">https://www.jianshu.com/p/458421dac807</a></p>
+
+<p>核心代码如下</p>
+
+<pre><code class="language-shell">#!/bin/bash
+# filename:deleteEsData.sh
+# 每天2点定时删除es中指定日期的数据
+# crontab: 0 2 * * * sh /home/scripts/deleteEsData.sh &gt;&gt; /home/scripts/logs/deleteEsData.run.log 2&gt;&amp;1
+# 如今天是2017-09-21 50天前是2017.08.02
+# createdate: 20190921
+
+today=`date +%Y-%m-%d`;
+echo &quot;今天是${today}&quot;
+
+# 不指定参数时，默认删除daynum天前以logs-开头的数据
+daynum=51
+
+# 当参数个数大于1时，提示参数错误
+if [ $# -gt 1 ] ;then
+        echo &quot;要么不传参数，要么只传1个参数!&quot;
+        exit 101;
+fi
+
+# 当参数个数为1时，获取指定的参数
+if [ $# == 1 ] ;then
+        daynum=$1
+fi
+
+esday=`date -d &#39;-&#39;&quot;${daynum}&quot;&#39; day&#39; +%Y.%m.%d`;
+echo &quot;${daynum}天前是${esday}&quot;
+
+curl -XDELETE http://127.0.0.1:9200/logs-${esday}
+echo &quot;${esday} 的log删除执行完成&quot;
+</code></pre>
+
+<h3 id="toc_4">全局业务异常</h3>
+
+<p>定义全局业务异常，方便进行全局业务异常的捕获和统一处理 <a href="https://raw.githubusercontent.com/neatlife/jframework/master/src/main/java/com/github/neatlife/jframework/handler/ControllerExceptionHandler.java">ControllerExceptionHandler</a></p>
+
+<p>核心处理逻辑如下：</p>
+
+<pre><code class="language-java">@ExceptionHandler({BusinessRuntimeException.class})
+@ResponseBody
+public Response handlerBusinessException(BusinessRuntimeException ex) {
+    return new Response&lt;Map&gt;(HttpCode.SUCCESS.toString(), ex.getMessage(), Maps.newHashMap());
+}
+</code></pre>
+
+<p>这样的好处是方便对错误的返回数据进行格式化</p>
+
+<h3 id="toc_5">利用框架事件，简化util</h3>
+
+<p>RedisUtil工具类需要RedisTemplate操作实例对象，如果在RedisUtil使用Autowired自动注入RedisTemplate，则需要RedisUtil也是Service，这将RedisUtil的调用变得复杂化了（使用前必须先注入RedisUtil以获取RedisTemplate对象）<br/>
+利用框架事件，可在框架启动时，获取RedisTemplate对象，手动注入RedisUtil里</p>
+
+<p>核心实现代码如下:</p>
+
+<pre><code class="language-java">@Component
+public class ApplicationStartedEventListener implements ApplicationListener&lt;ApplicationStartedEvent&gt; {
+
+    private final RedisTemplate redisTemplate;
+    private final JFrameworkConfig jFrameworkConfig;
+
+    @Autowired
+    public ApplicationStartedEventListener(RedisTemplate redisTemplate, JFrameworkConfig jFrameworkConfig) {
+        this.redisTemplate = redisTemplate;
+        this.jFrameworkConfig = jFrameworkConfig;
+    }
+
+    @Override
+    public void onApplicationEvent(ApplicationStartedEvent event) {
+        RedisUtil.setRedisTemplate(redisTemplate);
+        LockUtil.setRedisTemplate(redisTemplate);
+        DingTalkUtil.setDdUrl(jFrameworkConfig.getNotification().getDingTalkUrl());
+    }
+}
+</code></pre>
+
+<h3 id="toc_6">docker 镜像仓库选择</h3>
+
+<p>自行搭建镜像仓库不如使用免费稳定的来得高效可靠</p>
+
+<p>可以直接使用了aliyun提供的免费docker镜像仓库</p>
+
+<h3 id="toc_7">自动维护created_at, updated_at, deleted_at字段</h3>
+
+<p>采用了jpa的事件机制，在创建，修改，删除事件发生时自动进行维护</p>
+
+<p>核心代码如下:</p>
+
+<pre><code class="language-java">@PrePersist
+public void touchCreated(BaseEntity target) {
+    target.setCreatedAt(DateUtil.currentSecond());
+    target.setUpdatedAt(DateUtil.currentSecond());
+}
+
+@PreUpdate
+public void touchUpdate(BaseEntity target) {
+    target.setUpdatedAt(DateUtil.currentSecond());
+}
+
+@PreRemove
+public void touchDeleted(BaseEntity target) {
+    target.setDeletedAt(DateUtil.currentSecond());
+}
+</code></pre>
+
+<h3 id="toc_8">ci/cd的选择</h3>
+
+<p>目前ci/cd工具选择非常多，但在生产里用得最多的应该是gitlab和jenkins</p>
+
+<p>目前仍然采用jenkins作为ci/cd工具，gitlab的ci目前个人认为仍然不够成熟</p>
+
+<h3 id="toc_9">代码质量检测</h3>
+
+<p>可以直接试用sonarkube的开放服务，无需自行搭建:</p>
+
+<p><a href="https://sonarcloud.io/dashboard?id=neatlife_jframework">https://sonarcloud.io/dashboard?id=neatlife_jframework</a> </p>
+
+<h3 id="toc_10">打包分发</h3>
+
+<p>一般框架会作为项目的基础依赖，那么能够非常方便的下载这个框架就非常重要了</p>
+
+<p>目前nexus私服仍然是首选，可以使用docker搭建nexus私服：</p>
+
+<pre><code class="language-yml">version: &quot;3&quot;
+
+services:
+  nexus:
+    image: sonatype/nexus3
+    environment:
+      - INSTALL4J_ADD_VM_PARAMS=-Xms512m -Xmx768m -XX:MaxDirectMemorySize=1g -Djava.util.prefs.userRoot=/nexus-data/javaprefs
+    volumes:
+      - ./nexus-data:/nexus-data
+    ports:
+      - &quot;8081:8081&quot;
+</code></pre>
+
+<h3 id="toc_11">工具类设计</h3>
+
+<p>工具类考虑到要易于使用，即使不引用框架，也能很方便的复制过去，所以一般工具类不要有依赖，最好是单个独立的文件，这样方便使用</p>
+
+<h3 id="toc_12">微服务</h3>
+
+<p>由于是微服务形式的部署，所以日志，配置都需要中心化，k8s也是标配</p>
+
+<p>日志选经典的elk</p>
+
+<p>配置中心选择apollo</p>
+
+<p>部署平台可以选择k8s，或者k8s上的istio，目前使用k8s</p>
+
+<p>微服务的k8s模版参考<br/>
+应用: <a href="https://raw.githubusercontent.com/neatlife/jframework/master/k8s.yml">https://raw.githubusercontent.com/neatlife/jframework/master/k8s.yml</a><br/>
+网关: <a href="https://raw.githubusercontent.com/neatlife/jframework/master/k8s-gateway.yml">https://raw.githubusercontent.com/neatlife/jframework/master/k8s-gateway.yml</a></p>
+
+<p>核心区别是kind字段，网关是 DaemonSet 应用是 Deployment</p>
+
+<h3 id="toc_13">项目参考</h3>
+
+<p>完成框架的封装必然少不了很多参考，即使这是个小框架</p>
+
+<p>以下是参考列表</p>
+
+<ol>
+<li><a href="https://github.com/kmtong/logback-redis-appender">https://github.com/kmtong/logback-redis-appender</a></li>
+<li><a href="https://github.com/looly/hutool">https://github.com/looly/hutool</a></li>
+<li><a href="https://github.com/gudaoxuri/dew-common">https://github.com/gudaoxuri/dew-common</a></li>
+<li><a href="https://github.com/gudaoxuri/dew">https://github.com/gudaoxuri/dew</a></li>
+<li><a href="https://github.com/xdd-organ/xdd-nasa">https://github.com/xdd-organ/xdd-nasa</a></li>
+<li><a href="https://github.com/indrabasak/swagger-deepdive">https://github.com/indrabasak/swagger-deepdive</a></li>
+<li><a href="https://github.com/ityouknow/spring-boot-examples">https://github.com/ityouknow/spring-boot-examples</a></li>
+<li><a href="https://github.com/WellJay/spring-data-redis-tools">https://github.com/WellJay/spring-data-redis-tools</a></li>
+</ol>
+
+<p>目前文章还在持续更新中，如果对框架开发感兴趣，可加作者微信探讨，也可提pr，issue等</p>
+
+<p><img src="media/15560066123638/suxiaolinKing.jpg" alt="suxiaolinKing"/></p>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15560721425149.html" 
+          title="Previous Post: 订单系统设计，消息队列幂等处理思路">&laquo; 订单系统设计，消息队列幂等处理思路</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15559918695450.html" 
+          title="Next Post: hystrix对比服务网格istio的destinationrule">hystrix对比服务网格istio的destinationrule &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          <script src="https://utteranc.es/client.js"
+        repo="neatlife/neatlife.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>xiaolin's blog</h1>
+                <div class="site-des">core tech share blog</div>
+                <div class="social">
+                  <a target="_blank" class="juejin" href="https://juejin.im/user/5c409f86e51d4551c88027a2/posts" title="Juejin">juejin</a>
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/neatlife" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="macios.html"><strong>mac&ios</strong></a>
+        
+            <a href="lc.html"><strong>leetcode</strong></a>
+        
+            <a href="security.html"><strong>安全</strong></a>
+        
+            <a href="business.html"><strong>业务</strong></a>
+        
+            <a href="source-code.html"><strong>源码分析</strong></a>
+        
+            <a href="redis.html"><strong>Redis</strong></a>
+        
+            <a href="apache-nginx.html"><strong>Apache/Nginx</strong></a>
+        
+            <a href="spring-boot.html"><strong>Spring Boot</strong></a>
+        
+            <a href="pm.html"><strong>项目管理</strong></a>
+        
+            <a href="sql.html"><strong>SQL</strong></a>
+        
+            <a href="job-scheduler.html"><strong>任务调度</strong></a>
+        
+            <a href="design-pattern.html"><strong>设计模式</strong></a>
+        
+            <a href="mq.html"><strong>消息队列</strong></a>
+        
+            <a href="rpc.html"><strong>RPC</strong></a>
+        
+            <a href="laravel.html"><strong>LARAVEL</strong></a>
+        
+            <a href="tcp-ip.html"><strong>TCP/IP</strong></a>
+        
+            <a href="uml.html"><strong>UML</strong></a>
+        
+            <a href="service-mesh.html"><strong>SERVICE MESH</strong></a>
+        
+            <a href="ci-cd.html"><strong>CI/CD</strong></a>
+        
+            <a href="ops.html"><strong>OPS</strong></a>
+        
+            <a href="linux.html"><strong>LINUX</strong></a>
+        
+            <a href="system-programming.html"><strong>系统编程</strong></a>
+        
+            <a href="aws.html"><strong>AWS</strong></a>
+        
+            <a href="lua.html"><strong>LUA</strong></a>
+        
+            <a href="git.html"><strong>GIT</strong></a>
+        
+            <a href="js.html"><strong>js</strong></a>
+        
+            <a href="java.html"><strong>JAVA</strong></a>
+        
+            <a href="monitor.html"><strong>监控</strong></a>
+        
+            <a href="vim.html"><strong>VIM</strong></a>
+        
+            <a href="php.html"><strong>PHP</strong></a>
+        
+            <a href="openresty.html"><strong>OpenResty</strong></a>
+        
+            <a href="swoole.html"><strong>SWOOLE</strong></a>
+        
+            <a href="ons.html"><strong>消息队列</strong></a>
+        
+            <a href="gdb.html"><strong>GDB</strong></a>
+        
+            <a href="specification.html"><strong>规范</strong></a>
+        
+            <a href="3-minutes.html"><strong>三分钟系列</strong></a>
+        
+            <a href="1-pic.html"><strong>一图胜千言</strong></a>
+        
+            <a href="account-system.html"><strong>帐号系统</strong></a>
+        
+            <a href="interview.html"><strong>面试题</strong></a>
+        
+            <a href="yii.html"><strong>Yii/Yii2</strong></a>
+        
+            <a href="python.html"><strong>python</strong></a>
+        
+            <a href="go.html"><strong>GO</strong></a>
+        
+            <a href="ml.html"><strong>机器学习</strong></a>
+        
+            <a href="emacs.html"><strong>emacs</strong></a>
+        
+            <a href="bi.html"><strong>商业智能</strong></a>
+        
+            <a href="mac.html"><strong>mac</strong></a>
+        
+            <a href="editor.html"><strong>编辑器</strong></a>
+        
+            <a href="productive-soft.html"><strong>生产力工具</strong></a>
+        
+            <a href="driver-license.html"><strong>驾照</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="16081898834624.html">OSX使用代码代替storyboard构建项目，并添加NSSplitView组件</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16005640944829.html">linux系统编程之多进程和管道（pip）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15970226751276.html">三分钟上手java多线程控制技术</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15864793262262.html">14/24 设计模式之状态模式 State Pattern</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15880004262195.html">python高性能之路:使用C/C++编写扩展</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.
+<span id="busuanzi_container_site_uv">访问<span id="busuanzi_value_site_uv"></span>人</span>/
+        <span id="busuanzi_container_site_pv"><span id="busuanzi_value_site_pv"></span>次</span>
+    </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138141150-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138141150-1');
+</script>
+
+<canvas class="fireworks" 
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999999; pointer-events: none; width: 1158px; height: 916px;" 
+        width="2316" 
+        height="1832">
+</canvas>
+    <script src="asset/js/anime.min.js"></script>
+    <script src="asset/js/fireworks.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </body>
+</html>

@@ -1,0 +1,791 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  java ci/cd环境搭建 - xiaolin's blog
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="xiaolin's blog" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:neatlifecoco.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">about</a></li>
+        
+        <li id=""><a target="_self" href="all.html">blog</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">archive</a></li>
+        
+        <li id=""><a target="_self" href="tools.html">tools</a></li>
+        
+        <li id=""><a target="_self" href="pro.html">pros</a></li>
+        
+        <li id=""><a target="_self" href="pub.html">press</a></li>
+        
+        <li id=""><a target="_self" href="paper.html">paper</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; xiaolin's blog</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">about</a></li>
+        
+        <li><a target="_self" href="all.html">blog</a></li>
+        
+        <li><a target="_self" href="archives.html">archive</a></li>
+        
+        <li><a target="_self" href="tools.html">tools</a></li>
+        
+        <li><a target="_self" href="pro.html">pros</a></li>
+        
+        <li><a target="_self" href="pub.html">press</a></li>
+        
+        <li><a target="_self" href="paper.html">paper</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="macios.html">mac&ios</a></li>
+        
+            <li><a href="lc.html">leetcode</a></li>
+        
+            <li><a href="security.html">安全</a></li>
+        
+            <li><a href="business.html">业务</a></li>
+        
+            <li><a href="source-code.html">源码分析</a></li>
+        
+            <li><a href="redis.html">Redis</a></li>
+        
+            <li><a href="apache-nginx.html">Apache/Nginx</a></li>
+        
+            <li><a href="spring-boot.html">Spring Boot</a></li>
+        
+            <li><a href="pm.html">项目管理</a></li>
+        
+            <li><a href="sql.html">SQL</a></li>
+        
+            <li><a href="job-scheduler.html">任务调度</a></li>
+        
+            <li><a href="design-pattern.html">设计模式</a></li>
+        
+            <li><a href="mq.html">消息队列</a></li>
+        
+            <li><a href="rpc.html">RPC</a></li>
+        
+            <li><a href="laravel.html">LARAVEL</a></li>
+        
+            <li><a href="tcp-ip.html">TCP/IP</a></li>
+        
+            <li><a href="uml.html">UML</a></li>
+        
+            <li><a href="service-mesh.html">SERVICE MESH</a></li>
+        
+            <li><a href="ci-cd.html">CI/CD</a></li>
+        
+            <li><a href="ops.html">OPS</a></li>
+        
+            <li><a href="linux.html">LINUX</a></li>
+        
+            <li><a href="system-programming.html">系统编程</a></li>
+        
+            <li><a href="aws.html">AWS</a></li>
+        
+            <li><a href="lua.html">LUA</a></li>
+        
+            <li><a href="git.html">GIT</a></li>
+        
+            <li><a href="js.html">js</a></li>
+        
+            <li><a href="java.html">JAVA</a></li>
+        
+            <li><a href="monitor.html">监控</a></li>
+        
+            <li><a href="vim.html">VIM</a></li>
+        
+            <li><a href="php.html">PHP</a></li>
+        
+            <li><a href="openresty.html">OpenResty</a></li>
+        
+            <li><a href="swoole.html">SWOOLE</a></li>
+        
+            <li><a href="ons.html">消息队列</a></li>
+        
+            <li><a href="gdb.html">GDB</a></li>
+        
+            <li><a href="specification.html">规范</a></li>
+        
+            <li><a href="3-minutes.html">三分钟系列</a></li>
+        
+            <li><a href="1-pic.html">一图胜千言</a></li>
+        
+            <li><a href="account-system.html">帐号系统</a></li>
+        
+            <li><a href="interview.html">面试题</a></li>
+        
+            <li><a href="yii.html">Yii/Yii2</a></li>
+        
+            <li><a href="python.html">python</a></li>
+        
+            <li><a href="go.html">GO</a></li>
+        
+            <li><a href="ml.html">机器学习</a></li>
+        
+            <li><a href="emacs.html">emacs</a></li>
+        
+            <li><a href="bi.html">商业智能</a></li>
+        
+            <li><a href="mac.html">mac</a></li>
+        
+            <li><a href="editor.html">编辑器</a></li>
+        
+            <li><a href="productive-soft.html">生产力工具</a></li>
+        
+            <li><a href="driver-license.html">驾照</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>java ci/cd环境搭建</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2019/4/11</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='ci-cd.html'>CI/CD</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>最近搭建了一套java的ci/cd环境，记录下搭建过程😀</p>
+
+<p>注：下面演示软件安装在/opt</p>
+
+<h5 id="toc_0">准备一台机器，内存8G以上 系统版本centos 7</h5>
+
+<p><img src="media/15549548897698/15549558084751.jpg" alt=""/></p>
+
+<span id="more"></span><!-- more -->
+
+<h5 id="toc_1">安装java</h5>
+
+<p>从oracle官网下载并解压<br/>
+<img src="media/15549548897698/15549560176399.jpg" alt=""/></p>
+
+<p>设置环境变量<br/>
+vim /etc/profile</p>
+
+<pre><code class="language-shell">export JAVA_HOME=/opt/jdk1.8.0_201
+
+export PATH=$JAVA_HOME/bin:/opt/rancher:/opt:/opt/apache-maven-3.6.0/bin:/opt/gitlab-runner:$PATH
+</code></pre>
+
+<h5 id="toc_2">安装nexus私服</h5>
+
+<p>编写私服docker-compose.yml</p>
+
+<pre><code class="language-yml">version: &quot;3&quot;
+
+services:
+  nexus:
+    image: sonatype/nexus3
+    environment:
+      - INSTALL4J_ADD_VM_PARAMS=-Xms512m -Xmx768m -XX:MaxDirectMemorySize=1g -Djava.util.prefs.userRoot=/nexus-data/javaprefs
+    volumes:
+      - ./nexus-data:/nexus-data
+    ports:
+      - &quot;8081:8081&quot;
+</code></pre>
+
+<p>启动</p>
+
+<pre><code class="language-shell">mkdir nexus-data
+chmod -R 777 nexus-data
+docker-compose up -d
+</code></pre>
+
+<p>使用默认用户名密码 admin / admin123 登陆查看效果</p>
+
+<p><img src="media/15549592849509/15549767075674.jpg" alt=""/></p>
+
+<h5 id="toc_3">安装jenkins</h5>
+
+<p>wget <a href="http://mirrors.jenkins.io/war-stable/latest/jenkins.war">http://mirrors.jenkins.io/war-stable/latest/jenkins.war</a></p>
+
+<p>制作jenkins启动脚本<br/>
+start_jenkins.sh</p>
+
+<pre><code class="language-shell">#!/bin/bash
+
+export JAVA_HOME=/opt/jdk1.8.0_201
+export JRE_HOME=$JAVA_HOME/jre
+export PATH=$JAVA_HOME/bin:$PATH
+export CLASSPATH=.:$JAVA_HOME/lib/*.jar:$JRE_HOME/lib:$CLASSPATH
+export JENKINS_SERVER_PATH=/opt/jenkins_server
+
+cd ${JENKINS_SERVER_PATH}
+# nohup java -jar jenkins.war --httpPort=8080 &gt;/dev/null 2&gt;&amp;1 &amp;
+nohup java -jar jenkins.war --httpPort=8080 &gt; jenkins.log &amp;
+</code></pre>
+
+<p>设置开机启动<br/>
+vim /etc/rc.local</p>
+
+<pre><code class="language-shell">/opt/jenkins_server/start_jenkins.sh
+</code></pre>
+
+<p>添加开发机</p>
+
+<p><img src="media/15549548897698/15549590964189.jpg" alt=""/></p>
+
+<h5 id="toc_4">安装jenkins插件</h5>
+
+<p>在jenkins插件中心安装以下插件: <a href="http://127.0.0.1:8080/pluginManager/available">http://127.0.0.1:8080/pluginManager/available</a></p>
+
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>作用</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Publish Over SSH</td>
+<td>将文件发到目标服务器</td>
+</tr>
+<tr>
+<td>SonarQube Scanner for Jenkins</td>
+<td>代码质量分析</td>
+</tr>
+<tr>
+<td>Maven Integration plugin</td>
+<td>maven打包</td>
+</tr>
+<tr>
+<td>JaCoCo plugin</td>
+<td>自动测试并上报sonarqube</td>
+</tr>
+<tr>
+<td>gitlab</td>
+<td>连接gitlab代码库</td>
+</tr>
+</tbody>
+</table>
+
+<h5 id="toc_5">安装docker</h5>
+
+<pre><code class="language-shell">yum install -y docker
+systemctl enable docker
+systemctl start docker
+</code></pre>
+
+<h5 id="toc_6">安装gitlab</h5>
+
+<p>下载laradock工具包</p>
+
+<pre><code class="language-shell">git clone https://github.com/laradock/laradock.git &amp;&amp; cp env-example .env
+</code></pre>
+
+<p>启动gitlab</p>
+
+<pre><code class="language-shell">cd laradock &amp;&amp; docker-compose up -d gitlab
+</code></pre>
+
+<p>访问ip:8989查看效果<br/>
+<img src="media/15549548897698/15549563262855.jpg" alt=""/></p>
+
+<h5 id="toc_7">安装yearning</h5>
+
+<p>下载yearning docker工具包</p>
+
+<pre><code class="language-shell">git clone https://github.com/cookieY/Yearning.git
+cd Yearning/install/yearning-docker-compose
+docker-compose up -d
+</code></pre>
+
+<p>使用 默认账号：admin，默认密码：Yearning_admin 登陆查看效果</p>
+
+<p><img src="media/15549548897698/15549589094362.jpg" alt=""/></p>
+
+<h5 id="toc_8">安装sonarqube</h5>
+
+<p>下载sonarqube docker工具包</p>
+
+<pre><code class="language-shell">git clone https://github.com/thyrlian/SonarOnDocker.git
+</code></pre>
+
+<p>启动sonarqube</p>
+
+<pre><code class="language-shell">docker-compose -f docker-compose-mysql.yml up -d
+</code></pre>
+
+<p>访问9000端口，查看效果</p>
+
+<p><img src="media/15549548897698/15549586945443.jpg" alt=""/></p>
+
+<h5 id="toc_9">安装maven &amp;&amp; gradle</h5>
+
+<p>从<a href="https://maven.apache.org/download.cgi%E4%B8%8B%E8%BD%BDmaven%E5%B9%B6%E8%A7%A3%E5%8E%8B">https://maven.apache.org/download.cgi下载maven并解压</a><br/>
+从<a href="https://gradle.org/releases/%E4%B8%8B%E8%BD%BDgradle%E5%B9%B6%E8%A7%A3%E5%8E%8B">https://gradle.org/releases/下载gradle并解压</a><br/>
+设置环境变量: vim /etc/profile</p>
+
+<pre><code class="language-shell">export JAVA_HOME=/opt/jdk1.8.0_201
+
+export PATH=$JAVA_HOME/bin:/opt/rancher:/opt:/opt/apache-maven-3.6.0/bin:/opt/gradle-5.3.1/bin:/opt/gitlab-runner:$PATH
+</code></pre>
+
+<p>验证安装<br/>
+<img src="media/15549548897698/15549580570676.jpg" alt=""/></p>
+
+<h5 id="toc_10">安装kubectl &amp;&amp; rancher cli</h5>
+
+<pre><code class="language-shell">curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl
+
+chmod +x kubectl
+
+mv kubectl /opt/
+</code></pre>
+
+<p>从<a href="https://github.com/rancher/cli/releases%E4%B8%8B%E8%BD%BDrancher">https://github.com/rancher/cli/releases下载rancher</a> cli并解压<br/>
+把rancher和kubectl加入环境变量</p>
+
+<p>在rancher上创建api token并取得token内容<br/>
+<img src="media/15549548897698/15549582907748.jpg" alt=""/></p>
+
+<p>rancher cli配置token认证</p>
+
+<pre><code class="language-shell">rancher login https://rancherip:8843 -t rancher的token
+</code></pre>
+
+<p>选择部署的k8s集群<br/>
+<img src="media/15549592849509/15552456346617.jpg" alt=""/></p>
+
+<h5 id="toc_11">最终目录结构</h5>
+
+<p><img src="media/15549548897698/15549585772148.jpg" alt=""/></p>
+
+<p><img src="media/15549548897698/15549590492197.jpg" alt=""/></p>
+
+<h5 id="toc_12">安装showdoc</h5>
+
+<p>编写showdoc docker-compose.yml启动文件</p>
+
+<pre><code class="language-yml">version: &quot;3&quot;
+
+services:
+  showdoc:
+    image: star7th/showdoc
+    volumes:
+      - ./html:/var/www/html
+    ports:
+      - &quot;4999:80&quot;
+</code></pre>
+
+<p>docker-compose up -d 启动</p>
+
+<p>访问 ip:4999查看效果</p>
+
+<p><img src="media/15549592849509/15550522176598.jpg" alt=""/></p>
+
+<h5 id="toc_13">安装jira</h5>
+
+<p>待后续更新...</p>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15550432633789.html" 
+          title="Previous Post: java微服务 k8s生产环境搭建">&laquo; java微服务 k8s生产环境搭建</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15592947393033.html" 
+          title="Next Post: emacs常用快捷键">emacs常用快捷键 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          <script src="https://utteranc.es/client.js"
+        repo="neatlife/neatlife.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>xiaolin's blog</h1>
+                <div class="site-des">core tech share blog</div>
+                <div class="social">
+                  <a target="_blank" class="juejin" href="https://juejin.im/user/5c409f86e51d4551c88027a2/posts" title="Juejin">juejin</a>
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/neatlife" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="macios.html"><strong>mac&ios</strong></a>
+        
+            <a href="lc.html"><strong>leetcode</strong></a>
+        
+            <a href="security.html"><strong>安全</strong></a>
+        
+            <a href="business.html"><strong>业务</strong></a>
+        
+            <a href="source-code.html"><strong>源码分析</strong></a>
+        
+            <a href="redis.html"><strong>Redis</strong></a>
+        
+            <a href="apache-nginx.html"><strong>Apache/Nginx</strong></a>
+        
+            <a href="spring-boot.html"><strong>Spring Boot</strong></a>
+        
+            <a href="pm.html"><strong>项目管理</strong></a>
+        
+            <a href="sql.html"><strong>SQL</strong></a>
+        
+            <a href="job-scheduler.html"><strong>任务调度</strong></a>
+        
+            <a href="design-pattern.html"><strong>设计模式</strong></a>
+        
+            <a href="mq.html"><strong>消息队列</strong></a>
+        
+            <a href="rpc.html"><strong>RPC</strong></a>
+        
+            <a href="laravel.html"><strong>LARAVEL</strong></a>
+        
+            <a href="tcp-ip.html"><strong>TCP/IP</strong></a>
+        
+            <a href="uml.html"><strong>UML</strong></a>
+        
+            <a href="service-mesh.html"><strong>SERVICE MESH</strong></a>
+        
+            <a href="ci-cd.html"><strong>CI/CD</strong></a>
+        
+            <a href="ops.html"><strong>OPS</strong></a>
+        
+            <a href="linux.html"><strong>LINUX</strong></a>
+        
+            <a href="system-programming.html"><strong>系统编程</strong></a>
+        
+            <a href="aws.html"><strong>AWS</strong></a>
+        
+            <a href="lua.html"><strong>LUA</strong></a>
+        
+            <a href="git.html"><strong>GIT</strong></a>
+        
+            <a href="js.html"><strong>js</strong></a>
+        
+            <a href="java.html"><strong>JAVA</strong></a>
+        
+            <a href="monitor.html"><strong>监控</strong></a>
+        
+            <a href="vim.html"><strong>VIM</strong></a>
+        
+            <a href="php.html"><strong>PHP</strong></a>
+        
+            <a href="openresty.html"><strong>OpenResty</strong></a>
+        
+            <a href="swoole.html"><strong>SWOOLE</strong></a>
+        
+            <a href="ons.html"><strong>消息队列</strong></a>
+        
+            <a href="gdb.html"><strong>GDB</strong></a>
+        
+            <a href="specification.html"><strong>规范</strong></a>
+        
+            <a href="3-minutes.html"><strong>三分钟系列</strong></a>
+        
+            <a href="1-pic.html"><strong>一图胜千言</strong></a>
+        
+            <a href="account-system.html"><strong>帐号系统</strong></a>
+        
+            <a href="interview.html"><strong>面试题</strong></a>
+        
+            <a href="yii.html"><strong>Yii/Yii2</strong></a>
+        
+            <a href="python.html"><strong>python</strong></a>
+        
+            <a href="go.html"><strong>GO</strong></a>
+        
+            <a href="ml.html"><strong>机器学习</strong></a>
+        
+            <a href="emacs.html"><strong>emacs</strong></a>
+        
+            <a href="bi.html"><strong>商业智能</strong></a>
+        
+            <a href="mac.html"><strong>mac</strong></a>
+        
+            <a href="editor.html"><strong>编辑器</strong></a>
+        
+            <a href="productive-soft.html"><strong>生产力工具</strong></a>
+        
+            <a href="driver-license.html"><strong>驾照</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="16081898834624.html">OSX使用代码代替storyboard构建项目，并添加NSSplitView组件</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16005640944829.html">linux系统编程之多进程和管道（pip）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15970226751276.html">三分钟上手java多线程控制技术</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15864793262262.html">14/24 设计模式之状态模式 State Pattern</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15880004262195.html">python高性能之路:使用C/C++编写扩展</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.
+<span id="busuanzi_container_site_uv">访问<span id="busuanzi_value_site_uv"></span>人</span>/
+        <span id="busuanzi_container_site_pv"><span id="busuanzi_value_site_pv"></span>次</span>
+    </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138141150-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138141150-1');
+</script>
+
+<canvas class="fireworks" 
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999999; pointer-events: none; width: 1158px; height: 916px;" 
+        width="2316" 
+        height="1832">
+</canvas>
+    <script src="asset/js/anime.min.js"></script>
+    <script src="asset/js/fireworks.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </body>
+</html>

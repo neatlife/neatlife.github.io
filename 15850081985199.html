@@ -1,0 +1,772 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  10/24 设计模式之桥接模式 Bridge Pattern - xiaolin's blog
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="xiaolin's blog" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:neatlifecoco.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">about</a></li>
+        
+        <li id=""><a target="_self" href="all.html">blog</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">archive</a></li>
+        
+        <li id=""><a target="_self" href="tools.html">tools</a></li>
+        
+        <li id=""><a target="_self" href="pro.html">pros</a></li>
+        
+        <li id=""><a target="_self" href="pub.html">press</a></li>
+        
+        <li id=""><a target="_self" href="paper.html">paper</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; xiaolin's blog</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">about</a></li>
+        
+        <li><a target="_self" href="all.html">blog</a></li>
+        
+        <li><a target="_self" href="archives.html">archive</a></li>
+        
+        <li><a target="_self" href="tools.html">tools</a></li>
+        
+        <li><a target="_self" href="pro.html">pros</a></li>
+        
+        <li><a target="_self" href="pub.html">press</a></li>
+        
+        <li><a target="_self" href="paper.html">paper</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="macios.html">mac&ios</a></li>
+        
+            <li><a href="lc.html">leetcode</a></li>
+        
+            <li><a href="security.html">安全</a></li>
+        
+            <li><a href="business.html">业务</a></li>
+        
+            <li><a href="source-code.html">源码分析</a></li>
+        
+            <li><a href="redis.html">Redis</a></li>
+        
+            <li><a href="apache-nginx.html">Apache/Nginx</a></li>
+        
+            <li><a href="spring-boot.html">Spring Boot</a></li>
+        
+            <li><a href="pm.html">项目管理</a></li>
+        
+            <li><a href="sql.html">SQL</a></li>
+        
+            <li><a href="job-scheduler.html">任务调度</a></li>
+        
+            <li><a href="design-pattern.html">设计模式</a></li>
+        
+            <li><a href="mq.html">消息队列</a></li>
+        
+            <li><a href="rpc.html">RPC</a></li>
+        
+            <li><a href="laravel.html">LARAVEL</a></li>
+        
+            <li><a href="tcp-ip.html">TCP/IP</a></li>
+        
+            <li><a href="uml.html">UML</a></li>
+        
+            <li><a href="service-mesh.html">SERVICE MESH</a></li>
+        
+            <li><a href="ci-cd.html">CI/CD</a></li>
+        
+            <li><a href="ops.html">OPS</a></li>
+        
+            <li><a href="linux.html">LINUX</a></li>
+        
+            <li><a href="system-programming.html">系统编程</a></li>
+        
+            <li><a href="aws.html">AWS</a></li>
+        
+            <li><a href="lua.html">LUA</a></li>
+        
+            <li><a href="git.html">GIT</a></li>
+        
+            <li><a href="js.html">js</a></li>
+        
+            <li><a href="java.html">JAVA</a></li>
+        
+            <li><a href="monitor.html">监控</a></li>
+        
+            <li><a href="vim.html">VIM</a></li>
+        
+            <li><a href="php.html">PHP</a></li>
+        
+            <li><a href="openresty.html">OpenResty</a></li>
+        
+            <li><a href="swoole.html">SWOOLE</a></li>
+        
+            <li><a href="ons.html">消息队列</a></li>
+        
+            <li><a href="gdb.html">GDB</a></li>
+        
+            <li><a href="specification.html">规范</a></li>
+        
+            <li><a href="3-minutes.html">三分钟系列</a></li>
+        
+            <li><a href="1-pic.html">一图胜千言</a></li>
+        
+            <li><a href="account-system.html">帐号系统</a></li>
+        
+            <li><a href="interview.html">面试题</a></li>
+        
+            <li><a href="yii.html">Yii/Yii2</a></li>
+        
+            <li><a href="python.html">python</a></li>
+        
+            <li><a href="go.html">GO</a></li>
+        
+            <li><a href="ml.html">机器学习</a></li>
+        
+            <li><a href="emacs.html">emacs</a></li>
+        
+            <li><a href="bi.html">商业智能</a></li>
+        
+            <li><a href="mac.html">mac</a></li>
+        
+            <li><a href="editor.html">编辑器</a></li>
+        
+            <li><a href="productive-soft.html">生产力工具</a></li>
+        
+            <li><a href="driver-license.html">驾照</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>10/24 设计模式之桥接模式 Bridge Pattern</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2020/3/24</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='design-pattern.html'>设计模式</a></span>
+          
+              <span class="posted-in"><a href='java.html'>JAVA</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>类别：结构型设计模式</p>
+
+<p>目的：将抽象和实现按维度拆分成两部分（通常两类接口），使得两部分都可以独立的进行迭代（变化），防止类数量爆发式增长</p>
+
+<p>完整代码参考：<a href="https://1drv.ms/u/s!AquRvPzqx59Ri33d5NhvwuPkHa8F?e=LLClnq">https://1drv.ms/u/s!AquRvPzqx59Ri33d5NhvwuPkHa8F?e=LLClnq</a></p>
+
+<h2 id="toc_0">典型场景</h2>
+
+<p>被抽象数量比较多时，新增特性导致抽象数量可能会骤增（比如一个特性就增加2-3个类）就可以考虑使用桥接模式了</p>
+
+<p>比如抽象万能电视机遥控场景、存在多个遥控场景(每个场景功能不一样)，以及要适配多种电视类型<br/>
+再比如造车，存在多种类型的车（卡车、公交车、小轿车等），每种类型的车的生产过程不尽相同</p>
+
+<p>这里拿万能遥控器场景举例，场景参考如下：</p>
+
+<ol>
+<li>基本遥控场景：开机、关机</li>
+<li>看电视台场景：选择电视台、同时也可以开关机</li>
+<li>看电影场景：播放、暂停、开关机等</li>
+</ol>
+
+<p>可以看到这个场景是有层级结构的，比如电视台场景就涵盖了基本的开关机场景</p>
+
+<p>目前举例适配的电视类型参考如下：</p>
+
+<ol>
+<li>索尼电视</li>
+<li>三星电视</li>
+</ol>
+
+<p>可以看到这个电视类型的适配可能会更多</p>
+
+<span id="more"></span><!-- more -->
+
+<h3 id="toc_1">抽象场景</h3>
+
+<p>这里使用抽象类来抽象遥控场景</p>
+
+<h4 id="toc_2">1. 基本遥控场景</h4>
+
+<pre><code class="language-java">abstract public class CommonScenes {
+    abstract public void turnOn();
+
+    abstract public void tureOff();
+}
+</code></pre>
+
+<h4 id="toc_3">2. 看电视台场景</h4>
+
+<pre><code class="language-java">abstract public class TvScenes extends CommonScenes {
+    abstract void setChannel();
+}
+</code></pre>
+
+<h4 id="toc_4">3. 看电影场景</h4>
+
+<pre><code class="language-java">abstract public class MovieScenes extends CommonScenes {
+    abstract void pause();
+
+    abstract void play();
+}
+</code></pre>
+
+<h3 id="toc_5">实现不同类型电视的场景操作对应的具体代码</h3>
+
+<p>然后对抽象进行具体的实现，可以估计到实现数量会比较多：比如场景有n个，电视机类型有m个，每个电视机类型都把n个场景实现一遍，那么实现的数量就是n*m个，随着n或者m的增加，具体实现的数量会骤增，参考如下：</p>
+
+<table>
+<thead>
+<tr>
+<th>实现</th>
+<th>class</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>三星基本遥控场景实现</td>
+<td>SamsungTvCommonScenes.java</td>
+</tr>
+<tr>
+<td>三星电影场景实现</td>
+<td>SamsungTvMovieScenes.java</td>
+</tr>
+<tr>
+<td>三星看电视场景实现</td>
+<td>SamsungTvTvScenes.java</td>
+</tr>
+<tr>
+<td>索尼基本遥控场景实现</td>
+<td>SonyTvCommonScenes.java</td>
+</tr>
+<tr>
+<td>索尼电影场景实现</td>
+<td>SonyTvMovieScenes.java</td>
+</tr>
+<tr>
+<td>索尼看电视场景实现</td>
+<td>SonyTvTvScenes.java</td>
+</tr>
+</tbody>
+</table>
+
+<p>这里拿<strong>三星看电视场景实现</strong>举例实现参考如下：</p>
+
+<pre><code class="language-java">public class SamsungTvTvScenes extends TvScenes {
+    @Override
+    void setChannel() {
+        // 使用三星电视sdk操作三星电视切换电视台
+        System.out.println(&quot;samsung tv set channel&quot;);
+    }
+
+    @Override
+    public void turnOn() {
+        // 使用三星电视sdk开机
+        System.out.println(&quot;samsung tv turn on&quot;);
+    }
+
+    @Override
+    public void tureOff() {
+        // 使用三星电视sdk关机
+        System.out.println(&quot;samsung tv turn off&quot;);
+    }
+}
+</code></pre>
+
+<p>代码层级结构参考如下：<br/>
+<img src="media/15850081985199/15851835522460.jpg" alt="" style="width:813px;"/></p>
+
+<p>可以看到随着场景/电视机类型的增加，实现的具体数量将会骤增，不利于扩展，这时候就可以使用桥接设计模式了</p>
+
+<h2 id="toc_6">模式实现</h2>
+
+<p>将上面的场景和电视机类型这两个维度进行拆分成两个抽象：场景抽象和电视机抽象，职责参考如下：</p>
+
+<ol>
+<li>电视机抽象：只负责抽象电视机、并实现抽象里的功能</li>
+<li>场景抽象：只负责抽象场景、控制电视机的具体逻辑交给电视机抽象的实现</li>
+</ol>
+
+<p>电视机抽象接口如下</p>
+
+<pre><code class="language-java">public interface Television {
+    void turnOn();
+
+    void tureOff();
+
+    void setChannel();
+}
+</code></pre>
+
+<p>不同的电视机类型实现这个电视机接口即可，比如三星电视参考如下：</p>
+
+<pre><code class="language-java">public class SamsungTelevision implements Television {
+    @Override
+    public void turnOn() {
+        System.out.println(&quot;samsung tv turn on&quot;);
+    }
+
+    @Override
+    public void tureOff() {
+        System.out.println(&quot;samsung tv turn off&quot;);
+    }
+
+    @Override
+    public void setChannel() {
+        System.out.println(&quot;samsung tv set channel&quot;);
+    }
+}
+</code></pre>
+
+<p>这样场景只需要持有不同电视机类型的引用即可，不需要为不同的电视机类型单独抽象了，参考如下</p>
+
+<pre><code class="language-java">public class CommonScenes {
+    private Television television; // 持有电视机的引用
+
+    public CommonScenes(Television television) {
+        this.television = television;
+    }
+
+    public void turnOn() {
+        television.turnOn();
+    }
+
+    public void tureOff() {
+        television.tureOff();
+    }
+}
+</code></pre>
+
+<h2 id="toc_7">UML</h2>
+
+<p><img src="media/15850081985199/15851847245907.jpg" alt="" style="width:841px;"/></p>
+
+<h2 id="toc_8">为什么桥接模式更好</h2>
+
+<p>两个维度都可以单独进行扩展了，比如新增加一个场景或者新增加一个电视机类型，不会造成类数量骤增了，场景和电视机这两个维度通过组合实现完整的场景，比如三星电视看电影场景组合代码参考如下：</p>
+
+<pre><code class="language-java">Television samsumngTelevision = new SamsungTelevision();
+MovieScenes movieScenes = new MovieScenes(samsumngTelevision);// 组合
+    
+movieScenes.pause();
+movieScenes.play();
+</code></pre>
+
+<h2 id="toc_9">一些注意的点</h2>
+
+<p>通过桥接按维度拆分成可独立扩展的部分，然后通过组合形成完整的使用场景</p>
+
+<h2 id="toc_10">参考资料</h2>
+
+<ol>
+<li><a href="https://www.geeksforgeeks.org/bridge-design-pattern/">https://www.geeksforgeeks.org/bridge-design-pattern/</a></li>
+</ol>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15852043608231.html" 
+          title="Previous Post: 11/24 设计模式之模板方法模式 Template Method Pattern">&laquo; 11/24 设计模式之模板方法模式 Template Method Pattern</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15846628308871.html" 
+          title="Next Post: 9/24 设计模式之迭代器者模式 Iterator Pattern">9/24 设计模式之迭代器者模式 Iterator Pattern &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          <script src="https://utteranc.es/client.js"
+        repo="neatlife/neatlife.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>xiaolin's blog</h1>
+                <div class="site-des">core tech share blog</div>
+                <div class="social">
+                  <a target="_blank" class="juejin" href="https://juejin.im/user/5c409f86e51d4551c88027a2/posts" title="Juejin">juejin</a>
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/neatlife" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="macios.html"><strong>mac&ios</strong></a>
+        
+            <a href="lc.html"><strong>leetcode</strong></a>
+        
+            <a href="security.html"><strong>安全</strong></a>
+        
+            <a href="business.html"><strong>业务</strong></a>
+        
+            <a href="source-code.html"><strong>源码分析</strong></a>
+        
+            <a href="redis.html"><strong>Redis</strong></a>
+        
+            <a href="apache-nginx.html"><strong>Apache/Nginx</strong></a>
+        
+            <a href="spring-boot.html"><strong>Spring Boot</strong></a>
+        
+            <a href="pm.html"><strong>项目管理</strong></a>
+        
+            <a href="sql.html"><strong>SQL</strong></a>
+        
+            <a href="job-scheduler.html"><strong>任务调度</strong></a>
+        
+            <a href="design-pattern.html"><strong>设计模式</strong></a>
+        
+            <a href="mq.html"><strong>消息队列</strong></a>
+        
+            <a href="rpc.html"><strong>RPC</strong></a>
+        
+            <a href="laravel.html"><strong>LARAVEL</strong></a>
+        
+            <a href="tcp-ip.html"><strong>TCP/IP</strong></a>
+        
+            <a href="uml.html"><strong>UML</strong></a>
+        
+            <a href="service-mesh.html"><strong>SERVICE MESH</strong></a>
+        
+            <a href="ci-cd.html"><strong>CI/CD</strong></a>
+        
+            <a href="ops.html"><strong>OPS</strong></a>
+        
+            <a href="linux.html"><strong>LINUX</strong></a>
+        
+            <a href="system-programming.html"><strong>系统编程</strong></a>
+        
+            <a href="aws.html"><strong>AWS</strong></a>
+        
+            <a href="lua.html"><strong>LUA</strong></a>
+        
+            <a href="git.html"><strong>GIT</strong></a>
+        
+            <a href="js.html"><strong>js</strong></a>
+        
+            <a href="java.html"><strong>JAVA</strong></a>
+        
+            <a href="monitor.html"><strong>监控</strong></a>
+        
+            <a href="vim.html"><strong>VIM</strong></a>
+        
+            <a href="php.html"><strong>PHP</strong></a>
+        
+            <a href="openresty.html"><strong>OpenResty</strong></a>
+        
+            <a href="swoole.html"><strong>SWOOLE</strong></a>
+        
+            <a href="ons.html"><strong>消息队列</strong></a>
+        
+            <a href="gdb.html"><strong>GDB</strong></a>
+        
+            <a href="specification.html"><strong>规范</strong></a>
+        
+            <a href="3-minutes.html"><strong>三分钟系列</strong></a>
+        
+            <a href="1-pic.html"><strong>一图胜千言</strong></a>
+        
+            <a href="account-system.html"><strong>帐号系统</strong></a>
+        
+            <a href="interview.html"><strong>面试题</strong></a>
+        
+            <a href="yii.html"><strong>Yii/Yii2</strong></a>
+        
+            <a href="python.html"><strong>python</strong></a>
+        
+            <a href="go.html"><strong>GO</strong></a>
+        
+            <a href="ml.html"><strong>机器学习</strong></a>
+        
+            <a href="emacs.html"><strong>emacs</strong></a>
+        
+            <a href="bi.html"><strong>商业智能</strong></a>
+        
+            <a href="mac.html"><strong>mac</strong></a>
+        
+            <a href="editor.html"><strong>编辑器</strong></a>
+        
+            <a href="productive-soft.html"><strong>生产力工具</strong></a>
+        
+            <a href="driver-license.html"><strong>驾照</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="16081898834624.html">OSX使用代码代替storyboard构建项目，并添加NSSplitView组件</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16005640944829.html">linux系统编程之多进程和管道（pip）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15970226751276.html">三分钟上手java多线程控制技术</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15864793262262.html">14/24 设计模式之状态模式 State Pattern</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15880004262195.html">python高性能之路:使用C/C++编写扩展</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.
+<span id="busuanzi_container_site_uv">访问<span id="busuanzi_value_site_uv"></span>人</span>/
+        <span id="busuanzi_container_site_pv"><span id="busuanzi_value_site_pv"></span>次</span>
+    </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138141150-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138141150-1');
+</script>
+
+<canvas class="fireworks" 
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999999; pointer-events: none; width: 1158px; height: 916px;" 
+        width="2316" 
+        height="1832">
+</canvas>
+    <script src="asset/js/anime.min.js"></script>
+    <script src="asset/js/fireworks.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </body>
+</html>

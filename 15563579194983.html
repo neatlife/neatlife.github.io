@@ -1,0 +1,1415 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  参数调优 - xiaolin's blog
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="xiaolin's blog" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:neatlifecoco.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">about</a></li>
+        
+        <li id=""><a target="_self" href="all.html">blog</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">archive</a></li>
+        
+        <li id=""><a target="_self" href="tools.html">tools</a></li>
+        
+        <li id=""><a target="_self" href="pro.html">pros</a></li>
+        
+        <li id=""><a target="_self" href="pub.html">press</a></li>
+        
+        <li id=""><a target="_self" href="paper.html">paper</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; xiaolin's blog</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">about</a></li>
+        
+        <li><a target="_self" href="all.html">blog</a></li>
+        
+        <li><a target="_self" href="archives.html">archive</a></li>
+        
+        <li><a target="_self" href="tools.html">tools</a></li>
+        
+        <li><a target="_self" href="pro.html">pros</a></li>
+        
+        <li><a target="_self" href="pub.html">press</a></li>
+        
+        <li><a target="_self" href="paper.html">paper</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="macios.html">mac&ios</a></li>
+        
+            <li><a href="lc.html">leetcode</a></li>
+        
+            <li><a href="security.html">安全</a></li>
+        
+            <li><a href="business.html">业务</a></li>
+        
+            <li><a href="source-code.html">源码分析</a></li>
+        
+            <li><a href="redis.html">Redis</a></li>
+        
+            <li><a href="apache-nginx.html">Apache/Nginx</a></li>
+        
+            <li><a href="spring-boot.html">Spring Boot</a></li>
+        
+            <li><a href="pm.html">项目管理</a></li>
+        
+            <li><a href="sql.html">SQL</a></li>
+        
+            <li><a href="job-scheduler.html">任务调度</a></li>
+        
+            <li><a href="design-pattern.html">设计模式</a></li>
+        
+            <li><a href="mq.html">消息队列</a></li>
+        
+            <li><a href="rpc.html">RPC</a></li>
+        
+            <li><a href="laravel.html">LARAVEL</a></li>
+        
+            <li><a href="tcp-ip.html">TCP/IP</a></li>
+        
+            <li><a href="uml.html">UML</a></li>
+        
+            <li><a href="service-mesh.html">SERVICE MESH</a></li>
+        
+            <li><a href="ci-cd.html">CI/CD</a></li>
+        
+            <li><a href="ops.html">OPS</a></li>
+        
+            <li><a href="linux.html">LINUX</a></li>
+        
+            <li><a href="system-programming.html">系统编程</a></li>
+        
+            <li><a href="aws.html">AWS</a></li>
+        
+            <li><a href="lua.html">LUA</a></li>
+        
+            <li><a href="git.html">GIT</a></li>
+        
+            <li><a href="js.html">js</a></li>
+        
+            <li><a href="java.html">JAVA</a></li>
+        
+            <li><a href="monitor.html">监控</a></li>
+        
+            <li><a href="vim.html">VIM</a></li>
+        
+            <li><a href="php.html">PHP</a></li>
+        
+            <li><a href="openresty.html">OpenResty</a></li>
+        
+            <li><a href="swoole.html">SWOOLE</a></li>
+        
+            <li><a href="ons.html">消息队列</a></li>
+        
+            <li><a href="gdb.html">GDB</a></li>
+        
+            <li><a href="specification.html">规范</a></li>
+        
+            <li><a href="3-minutes.html">三分钟系列</a></li>
+        
+            <li><a href="1-pic.html">一图胜千言</a></li>
+        
+            <li><a href="account-system.html">帐号系统</a></li>
+        
+            <li><a href="interview.html">面试题</a></li>
+        
+            <li><a href="yii.html">Yii/Yii2</a></li>
+        
+            <li><a href="python.html">python</a></li>
+        
+            <li><a href="go.html">GO</a></li>
+        
+            <li><a href="ml.html">机器学习</a></li>
+        
+            <li><a href="emacs.html">emacs</a></li>
+        
+            <li><a href="bi.html">商业智能</a></li>
+        
+            <li><a href="mac.html">mac</a></li>
+        
+            <li><a href="editor.html">编辑器</a></li>
+        
+            <li><a href="productive-soft.html">生产力工具</a></li>
+        
+            <li><a href="driver-license.html">驾照</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>参数调优</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2018/10/27</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='spring-boot.html'>Spring Boot</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>参考：<a href="https://github.com/gudaoxuri/dew/blob/spring-boot-1.x/docs/src/main/asciidoc/_chapter/best-practices.adoc">https://github.com/gudaoxuri/dew/blob/spring-boot-1.x/docs/src/main/asciidoc/_chapter/best-practices.adoc</a></p>
+
+<p>谨防被删，以下做了备份</p>
+
+<h2 id="toc_0">最佳实践</h2>
+
+<h3 id="toc_1">JDBC框架的选择</h3>
+
+<p>主流JDBC框架有Hibernate、MyBatis、Spring JDBC Template、Ebean、DBUtils等，Dew基于Spring Boot，所以对于这些框架都提供了很好的兼容。那么如何选择呢？</p>
+
+<ul>
+<li>先说Hibernate，如果你的数据表结构与对象模型基本吻合，那么使用JPA会带来很大的便捷，推荐Hibernate</li>
+<li>如果你的数据表结构与对象模型严重不吻合或是你希望对SQL有更多主动权（SQL优化、复杂查询等），那JPA就没什么优势了，这时：
+<ul>
+<li>如果你追求极简、不需要ORMPPING，那么DBUtils会是最佳选择</li>
+<li>如果你喜欢敏捷开发，推崇充血模型，那么尝试一下Ebean吧，与Play!结合最合适不过</li>
+<li>如果你既要有一定的ORMPPING能力，又希望自己写SQL，那么MyBatis会是不错的选择</li>
+<li>如果你使用了Spring，希望框架简单些，可以接受自己写ORMPPING，未来无切换关系型数据库的计划，那么Spring JDBC Template将是个很好的选择</li>
+</ul></li>
+</ul>
+
+<span id="more"></span><!-- more -->
+
+<h3 id="toc_2">服务调用开发期使用</h3>
+
+<p>在 <code>Spring Cloud</code> 体系下，服务调用需要启动 <code>Eureka</code> 服务（对于 <code>Dew</code> 中的 <code>Registry</code> 组件），这对开发阶段并不友好：</p>
+
+<ol>
+<li>开发期间会不断启停服务，<code>Eureka</code> 保护机制会影响服务注册（当然这是可以关闭的）</li>
+<li>多人协作时可能会出现调用到他人服务的情况（同一服务多个实例）</li>
+<li>需要启动 <code>Eureka</code> 服务，多了一个依赖</li>
+</ol>
+
+<p>为解决上述问题,在使用 <code>Spring Cloud</code> 的 <code>RestTemplate</code> 时,增加 <code>Ribbon</code> 的服务配置.</p>
+
+<pre><code class="language-text"># &lt;client&gt;为service-id
+&lt;client&gt;.ribbon.listOfServers: &lt;直接访问的IPs&gt;
+# 如
+x-service.ribbon.listOfServers: 127.0.0.1:8812
+</code></pre>
+
+<h3 id="toc_3"><code>@Validated</code> 注解</h3>
+
+<ul>
+<li>在Spring Controller类里，<code>@Validated</code> 注解初使用会比较不易上手，在此做下总结
+<ol>
+<li>对于基本数据类型和String类型，要使校验的注解生效，需在该类上方加 <code>@Validated</code> 注解</li>
+<li>对于抽象数据类型，需在形式参数前加<code>@Validated</code>注解</li>
+</ol></li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th>Tip</th>
+<th>Spring对抽象数据类型校验抛出异常为<code>MethodArgumentNotValidException</code>，http状态码为400，对基本数据类型校验抛出异常为<code>ConstraintViolationException</code>，http状态码为500，dew对这两种异常做了统一处理，http状态码均返回200，code为400</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="toc_4"><code>jackson</code> 对于 <code>Java8</code> 时间转换（ <code>SpringMVC</code> 以 <code>jackson</code> 接收 <code>json</code> 数据）</h3>
+
+<ol>
+<li>对于 <code>LocalDateTime</code> 类型，需在参数上加 <code>@JsonFormat</code> 注解，如下：<code>@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = &quot;yyyy-MM-dd HH:mm:ss&quot;)</code></li>
+<li><code>LocalDate,LocalTime,Instant</code> 等，无需配置可自行转换</li>
+</ol>
+
+<table>
+<thead>
+<tr>
+<th>Tip</th>
+<th><code>jackson</code> 对于 <code>LocalDateTime</code> 类型的支持与其他三种类型不具有一致性，这是 <code>jackson</code> 需要优化的一个点</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="toc_5"><code>Ribbon</code> 负载均衡</h3>
+
+<pre><code class="language-text">example: service-dew.ribbon.NFLoadBalancerRuleClassName=com.netflix.loadbalancer.RandomRule
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Note</th>
+<th><code>service-dew</code>为服务名，配置时自行选取规则，类均在<code>com.netflix.loadbalancer</code>包下</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<p>若指定zone，默认会优先调用相同zone的服务,此优先级高于策略配置，配置如下</p>
+
+<pre><code class="language-yaml">#指定属于哪个zone
+eureka:
+  instance:
+    metadata-map:
+      zone: #zone 名称
+
+#指定region（此处region为项目在不同区域的部署，为项目规范，不同region间能互相调用）
+eureka:
+  client:
+    region: #region名称
+</code></pre>
+
+<h3 id="toc_6"><code>Feign</code> 配置特定方法超时时间</h3>
+
+<p><strong>Hystrix 超时时间配置</strong></p>
+
+<pre><code class="language-yaml"># 配置默认的hystrix超时时间
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds=10000
+# 配置特定方法的超时时间,优于默认配置
+hystrix.command.&lt;hystrixcommandkey&gt;.execution.isolation.thread.timeoutInMilliseconds=10000
+# &lt;hystrixcommandkey&gt;的format为FeignClassName#methodSignature,下面是示例配置
+hystrix.command.PressureService#getBalance(int).execution.isolation.thread.timeoutInMilliseconds=10000
+</code></pre>
+
+<p><strong>Ribbon 超时时间配置</strong></p>
+
+<pre><code class="language-yaml"># 配置默认ribbon超时时间
+ribbon.ReadTimeout=60000
+# 配置特定服务超时时间,优于默认配置
+&lt;client&gt;.ribbon.ReadTimeout=6000
+# &lt;client&gt;为实际服务名,下面是示例配置
+x-service.ribbon.ReadTimeout=5000
+</code></pre>
+
+<p><strong>Hystrix 和 Ribbon 的超时时间配置相互独立,以低为准,使用时请根据实际情况进行配置</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Tip</th>
+<th>如果要针对某个服务做超时设置,建议使用 <code>Ribbon</code> 的配置；在同时使用 <code>Ribbon</code> 和 <code>Hystrix</code> 时,请特别注意超时时间的配置。</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="toc_7"><code>Feign</code> 接口添加 <code>Http</code> 请求头信息</h3>
+
+<table>
+<thead>
+<tr>
+<th>Tip</th>
+<th>在 <code>@FeignClient</code> 修饰类中的接口方法里添加新的形参，并加上 <code>@RequestHeader</code> 注解指定key值</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<p>示例</p>
+
+<pre><code class="language-text">@PostMapping(value = &quot;ca/all&quot;, consumes = MediaType.APPLICATION_JSON_VALUE)
+Resp&lt;CustomerInfoVO&gt; applyCA(@RequestBody CAIdentificationDTO params,
+     @RequestHeader Map&lt;String, Object&gt; headers);
+</code></pre>
+
+<h3 id="toc_8"><code>Feign</code> 文件上传实践</h3>
+
+<ul>
+<li>在 <code>SDK</code> 工程处，添加包依赖</li>
+</ul>
+
+<p>pom</p>
+
+<pre><code class="language-markup">        &lt;dependency&gt;
+            &lt;groupId&gt;io.github.openfeign.form&lt;/groupId&gt;
+            &lt;artifactId&gt;feign-form&lt;/artifactId&gt;
+            &lt;version&gt;3.0.1&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;io.github.openfeign.form&lt;/groupId&gt;
+            &lt;artifactId&gt;feign-form-spring&lt;/artifactId&gt;
+            &lt;version&gt;3.0.1&lt;/version&gt;
+        &lt;/dependency&gt;
+</code></pre>
+
+<ul>
+<li>在 <code>SDK</code> 工程处，创建一个 <code>Configuration</code></li>
+</ul>
+
+<p>MultipartSupportConfig</p>
+
+<pre><code class="language-java">import feign.codec.Encoder;
+import feign.form.spring.SpringFormEncoder;
+import org.springframework.beans.factory.ObjectFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
+import org.springframework.cloud.netflix.feign.support.SpringEncoder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class MultipartSupportConfig {
+
+    @Autowired
+    private ObjectFactory&lt;HttpMessageConverters&gt; messageConverters;
+
+    @Bean
+    public Encoder feignFormEncoder() {
+        return new SpringFormEncoder(new SpringEncoder(messageConverters));
+    }
+
+}
+</code></pre>
+
+<ul>
+<li>修改接口</li>
+</ul>
+
+<p>FeginExample</p>
+
+<pre><code class="language-java">@FeignClient(name = &quot;demo&quot;)
+public interface FeginExample {
+@PostMapping(value = &quot;images&quot;, consumes = MULTIPART_FORM_DATA_VALUE)
+ Resp&lt;String&gt; uploadImage(
+            @RequestParam MultipartFile image,
+            @RequestParam(&quot;id&quot;) String id);
+}
+</code></pre>
+
+<p><code>@RequestPart</code> 与 <code>@RequestParam</code> 效果是一样的，大家就不用花时间在这上面了。</p>
+
+<ul>
+<li>修改服务器接口</li>
+</ul>
+
+<p>FeginServiceExample</p>
+
+<pre><code class="language-java">@RestController
+public class FeginServiceExample {
+  @PostMapping(value = &quot;images&quot;, consumes = MULTIPART_FORM_DATA_VALUE)
+    public Resp&lt;String&gt; uploadImage(
+            @RequestParam(&quot;image&quot;) MultipartFile image,
+            @RequestParam(&quot;id&quot;) String id,
+            HttpServletRequest request) {
+              return Resp.success(null);
+            }
+}
+</code></pre>
+
+<p>常见问题：</p>
+
+<ul>
+<li><code>HTTP Status 400 - Required request part &#39;file&#39; is not present</code></li>
+</ul>
+
+<pre><code class="language-text">请求文件参数的名称与实际接口接受名称不一致
+</code></pre>
+
+<ul>
+<li><code>feign.codec.EncodeException: Could not write request: no suitable HttpMessageConverter found for request type [org.springframework.mock.web.MockMultipartFile] and content type [multipart/form-data]</code></li>
+</ul>
+
+<pre><code class="language-text">转换器没有生效，检查一下MultipartSupportConfig
+</code></pre>
+
+<h3 id="toc_9">自定义降级方法</h3>
+
+<table>
+<thead>
+<tr>
+<th>Note</th>
+<th>构建类继承HystrixCommand抽象类，重写run方法，getFallback方法，getFallback为run的降级，再执行excute方法即可</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th>Tip</th>
+<th>每个HystrixCommand的子类的实例只能execute一次。</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<p>下面附上代码</p>
+
+<pre><code class="language-java">public class HelloHystrixCommand extends HystrixCommand&lt;HelloHystrixCommand.Model&gt; {
+
+    public static final Logger logger = LoggerFactory.getLogger(HelloHystrixCommand.class);
+
+    private Model model;
+
+    protected HelloHystrixCommand(HystrixCommandGroupKey group) {
+        super(group);
+    }
+
+    protected HelloHystrixCommand(HystrixCommandGroupKey group, HystrixThreadPoolKey threadPool) {
+        super(group, threadPool);
+    }
+
+    protected HelloHystrixCommand(HystrixCommandGroupKey group, int executionIsolationThreadTimeoutInMilliseconds) {
+        super(group, executionIsolationThreadTimeoutInMilliseconds);
+    }
+
+    protected HelloHystrixCommand(HystrixCommandGroupKey group, HystrixThreadPoolKey threadPool, int executionIsolationThreadTimeoutInMilliseconds) {
+        super(group, threadPool, executionIsolationThreadTimeoutInMilliseconds);
+    }
+
+    protected HelloHystrixCommand(Setter setter) {
+        super(setter);
+    }
+
+    public static HelloHystrixCommand getInstance(String key){
+        return new HelloHystrixCommand(HystrixCommandGroupKey.Factory.asKey(key));
+    }
+
+    @Override
+    protected Model run() throws Exception {
+        int i = 1 / 0;
+        logger.info(&quot;run:   thread id:  &quot; + Thread.currentThread().getId());
+        return model;
+    }
+
+    @Override
+    protected Model getFallback() {
+        return new Model(&quot;fallback&quot;);
+    }
+
+    public static void main(String[] args) throws Exception {
+        HelloHystrixCommand helloHystrixCommand = HelloHystrixCommand.getInstance(&quot;dew&quot;);
+        helloHystrixCommand.model = helloHystrixCommand.new Model(&quot;run&quot;);
+        logger.info(&quot;main:      &quot; + helloHystrixCommand.model + &quot;thread id: &quot; + Thread.currentThread().getId());
+        System.out.println(helloHystrixCommand.execute());
+
+    }
+
+
+    class Model {
+
+        public Model(String name) {
+            this.name = name;
+        }
+
+        private String name;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        @Override
+        public String toString() {
+            return &quot;Model{&quot; +
+                    &quot;name=&#39;&quot; + name + &#39;\&#39;&#39; +
+                    &#39;}&#39;;
+        }
+    }
+}
+</code></pre>
+
+<h3 id="toc_10">断路保护</h3>
+
+<p>Hystrix配置</p>
+
+<pre><code class="language-yaml"># 执行的隔离策略 THREAD, SEMAPHORE 默认THREAD
+hystrix.command.default.execution.isolation.strategy=THREAD
+# 执行hystrix command的超时时间,超时后会进入fallback方法 默认1000
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds=1000
+# 执行hystrix command是否限制超时,默认是true
+hystrix.command.default.execution.timeout.enabled=true
+# hystrix command 执行超时后是否中断 默认true
+hystrix.command.default.execution.isolation.thread.interruptOnTimeout=true
+# 使用信号量隔离时,信号量大小,默认10
+hystrix.command.default.execution.isolation.semaphore.maxConcurrentRequests=10
+# fallback方法最大并发请求数 默认是10
+hystrix.command.default.fallback.isolation.semaphore.maxConcurrentRequests=10
+# 服务降级是否开启,默认为true
+hystrix.command.default.fallback.enabled=true
+# 是否使用断路器来跟踪健康指标和熔断请求
+hystrix.command.default.circuitBreaker.enabled=true
+# 熔断器的最小请求数,默认20. (这个不是很理解,欢迎补充)
+hystrix.command.default.circuitBreaker.requestVolumeThreshold=20
+# 断路器打开后的休眠时间,默认5000
+hystrix.command.default.circuitBreaker.sleepWindowInMilliseconds=5000
+# 断路器打开的容错比,默认50
+hystrix.command.default.circuitBreaker.errorThresholdPercentage=50
+# 强制打开断路器,拒绝所有请求. 默认false, 优先级高于forceClosed
+hystrix.command.default.circuitBreaker.forceOpen=false
+# 强制关闭断路器,接收所有请求,默认false,优先级低于forceOpen
+hystrix.command.default.circuitBreaker.forceClosed=false
+
+# hystrix command 命令执行核心线程数,最大并发 默认10
+hystrix.threadpool.default.coreSize=10
+</code></pre>
+
+<ul>
+<li>信息参见:
+<ul>
+<li><a href="https://github.com/Netflix/Hystrix/wiki/Configuration">https://github.com/Netflix/Hystrix/wiki/Configuration</a></li>
+<li><a href="http://hwood.lofter.com/post/1cc7fbdc_e8c5c96">http://hwood.lofter.com/post/1cc7fbdc_e8c5c96</a></li>
+</ul></li>
+</ul>
+
+<p>使用断路保护可有效果的防止系统雪崩，<code>Spring Cloud</code> 对 <code>Hystrix</code> 做了封装，详见： <a href="http://cloud.spring.io/spring-cloud-netflix/single/spring-cloud-netflix.html#_circuit_breaker_hystrix_clients">http://cloud.spring.io/spring-cloud-netflix/single/spring-cloud-netflix.html#_circuit_breaker_hystrix_clients</a></p>
+
+<p>需要说明的是 <code>Hystrix</code> 使用新线程执行代码，导致 <code>Threadlocal</code> 数据不能同步，使用时需要将用到的数据做为参数传入，如果需要使用 <code>Dew</code> 框架的上下文（请求链路/用户等获取）需要先传入再设值，e.g.</p>
+
+<p>Hystrix Command 示例,及Context处理</p>
+
+<pre><code class="language-java">public class HystrixExampleService {
+    @HystrixCommand(fallbackMethod = &quot;defaultFallback&quot;, commandProperties = {
+            @HystrixProperty(name = &quot;execution.isolation.thread.timeoutInMilliseconds&quot;, value = &quot;2000&quot;)
+    })
+    public String someMethod(Map&lt;String, Object&gt; parameters, DewContext context) {
+        // ！！！ Hystrix使用新线程执行代码，导致Threadlocal数据不能同步，
+        // 使用时需要将用到的数据做为参数传入，如果需要使用Dew框架的上下文需要先传入再设值
+        DewContext.setContext(context);
+        try {
+            Thread.sleep(new Random().nextInt(3000));
+            logger.info(&quot;Normal Service Token:&quot; + Dew.context().getToken());
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        return &quot;ok&quot;;
+    }
+
+    // 降级处理方法定义
+    public String defaultFallback(Map&lt;String, Object&gt; parameters, DewContext context, Throwable e) {
+        DewContext.setContext(context);
+        logger.info(&quot;Error Service Token:&quot; + Dew.context().getToken());
+        return &quot;fail&quot;;
+    }
+}
+</code></pre>
+
+<h3 id="toc_11">定时任务</h3>
+
+<p>使用 <code>Spring Config</code> 配置中心 <code>refresh</code> 时,在 <code>@RefreshScope</code> 注解的类中, <code>@Scheduled</code> 注解的自动任务会失效。 建议使用实现 <code>SchedulingConfigurer</code> 接口的方式添加自动任务。</p>
+
+<p>自动任务添加</p>
+
+<pre><code class="language-yaml">@Configuration
+@EnableScheduling
+public class SchedulingConfiguration implements SchedulingConfigurer {
+
+    private Logger logger = LoggerFactory.getLogger(SchedulingConfiguration.class);
+
+    @Autowired
+    private ConfigExampleConfig config;
+
+    @Override
+    public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
+        taskRegistrar.addTriggerTask(() -&gt; logger.info(&quot;task1: &quot; + config.getVersion()), triggerContext -&gt; {
+            Instant instant = Instant.now().plus(5, SECONDS);
+            return Date.from(instant);
+        });
+
+        taskRegistrar.addTriggerTask(() -&gt; logger.info(&quot;task2: &quot; + config.getVersion()), new CronTrigger(&quot;1/3 * * * * ?&quot;));
+    }
+}
+</code></pre>
+
+<h3 id="toc_12">主要性能影响参数</h3>
+
+<ul>
+<li><p>内置 <code>Tomcat</code> 参数调整效果并不大,如果需要调整,建议适当调大 <code>max-treads</code> 和 <code>accept-count</code></p>
+<pre><code class="language-text"># 最大等待请求数 默认100
+server.tomcat.accept-count=1000<br/>
+# 最大并发数 默认200<br/>
+server.tomcat.max-threads=1000<br/>
+# 最大连接数 默认BIO:200 NIO:10000 APR:8192<br/>
+server.tomcat.max-connections=2000
+</code></pre></li>
+<li><p><code>Zuul</code> 性能参数说明</p>
+<pre><code class="language-yaml"># 连接池最大连接，默认是200
+zuul.host.maxTotalConnections=1000<br/>
+每个route可用的最大连接数，默认值是20<br/>
+zuul.host.maxPerRouteConnections=1000<br/>
+Hystrix最大的并发请求 默认值是100<br/>
+zuul.semaphore.maxSemaphores=1000
+</code></pre></li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th>Note</th>
+<th><code>Zuul</code> 的最大并发数主要调整 <code>maxSemaphores</code> 优先级高于 <code>Hystrix</code> 的最大线程数配置.</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li><p><code>Ribbon</code> 性能参数说明调整 <code>MaxTotalConnections</code> 和 <code>MaxConnectionsPerHost</code> 时建议同比调整 <code>Pool</code> 相关的参数</p>
+<pre><code class="language-yaml"># ribbon 单主机最大连接数,默认50
+ribbon.MaxConnectionsPerHost=500<br/>
+# ribbon 总连接数,默认 200<br/>
+ribbon.MaxTotalConnections=1000<br/>
+# 默认200<br/>
+ribbon.PoolMaxThreads=1000<br/>
+# 默认1<br/>
+ribbon.PoolMinThreads=500
+</code></pre></li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th>Note</th>
+<th><code>Zuul</code> 和其它使用 <code>Ribbon</code> 的服务一样,TPS主要调整 <code>Ribbon</code> 的 <code>MaxConnectionsPerHost</code> 和 <code>MaxTotalConnections</code></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li><p><code>Hystrix</code> 性能参数说明</p>
+<pre><code class="language-text"># 并发执行的最大线程数,默认10
+hystrix.threadpool.default.coreSize=100
+</code></pre></li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th>Note</th>
+<th>普通 <code>Service</code> 使用 <code>Hystrix</code> 时,最大并发主要调整 <code>hystrix.threadpool.default.coreSize</code></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th>Warning</th>
+<th><code>Hystrix</code> 的默认超时时间为1s,在高并发下容易出现超时,建议将默认超时时间适当调长, 特殊接口需要将时间调短或更长的,使用特定配置,见上面 <code>Feign</code> 配置特定方法超时时间.</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="toc_13"><code>Zuul</code> 保护(隐藏)内部服务的 <code>Http</code> 接口</h3>
+
+<p>在yml配置文件里配置(<code>ignored-patterns</code>,<code>ignored-services</code>)这两项中的一项即可</p>
+
+<p>配置示例</p>
+
+<pre><code class="language-yaml">zuul: #配置一项即可!
+  ignored-patterns: /dew-example/**   #排除此路径
+  ignored-services: dew-example       #排除此服务
+</code></pre>
+
+<h3 id="toc_14">缓存处理</h3>
+
+<p><code>Spring Cache</code> 提供了很好的注解式缓存，但默认没有超时，需要根据使用的缓存容器特殊配置</p>
+
+<p>Redis缓存过期时间设置</p>
+
+<pre><code class="language-java">@Bean
+RedisCacheManager cacheManager() {
+    final RedisCacheManager redisCacheManager = new RedisCacheManager(redisTemplate);
+    redisCacheManager.setUsePrefix(true);
+    redisCacheManager.setDefaultExpiration(&lt;过期秒数&gt;);
+    return redisCacheManager;
+}
+</code></pre>
+
+<h3 id="toc_15">Spring Boot Admin 监控实践</h3>
+
+<p>在 <code>Spring Boot Actuator</code> 中提供很多像 <code>health</code> 、 <code>metrics</code> 等实时监控接口，可以方便我们随时跟踪服务的性能指标。<code>Spring Boot</code> 默认是开放这些接口提供调用的，那么就问题来了，如果这些接口公开在外网中，很容易被不法分子所利用，这肯定不是我们想要的结果。 在这里我们提供一种比较好的解决方案</p>
+
+<ul>
+<li>被监控的服务配置</li>
+</ul>
+
+<pre><code class="language-yaml">management:
+  security:
+    enabled: false # 关闭管理认证
+  context-path: /management //(1)
+eureka:
+  instance:
+    metadata-map:
+      cluster: default (2)
+</code></pre>
+
+<ol>
+<li>管理前缀</li>
+<li><p>集群名称</p></li>
+</ol>
+
+<ul>
+<li><code>Zuul</code> 网关配置</li>
+</ul>
+
+<pre><code class="language-yaml">zuul:
+  ignoredPatterns: /*/management/** //(1)
+</code></pre>
+
+<ol>
+<li><p>同上文 <code>management.context-path</code> , 这里之所以不是 <code>/management/**</code> ，由于网关存在项目前缀，需要往前一级，大家可以具体场景具体配置</p></li>
+</ol>
+
+<ul>
+<li><code>Spring Boot Admin</code> 配置</li>
+</ul>
+
+<pre><code class="language-yaml">spring:
+  application:
+    name: monitor
+  boot:
+    admin:
+      discovery:
+        converter:
+          management-context-path: ${management.context-path}
+      routes:
+        endpoints: env,metrics,dump,jolokia,info,configprops,trace,logfile,refresh,flyway,liquibase,heapdump,loggers,auditevents,hystrix.stream,turbine.stream  (1)
+      turbine:
+        clusters: default  (2)
+        location: ${spring.application.name}
+
+turbine:
+  instanceUrlSuffix: ${management.context-path}/hystrix.stream
+  aggregator:
+    clusterConfig: default (2)
+  appConfig: monitor-example,hystrix-example (3)
+  clusterNameExpression: metadata[&#39;cluster&#39;]
+
+security:
+  basic:
+    enabled: false
+
+server:
+  port: ...
+
+eureka:
+  instance:
+    metadata-map:
+      cluster: default (2)
+  client:
+    serviceUrl:
+      defaultZone: ...
+
+management:
+  security:
+    enabled: false
+  context-path: /management (4)
+</code></pre>
+
+<ol>
+<li>要监控的内容</li>
+<li>要监控的集群名称</li>
+<li>添加需要被监控的应用 <code>Service-Id</code> ，以逗号分隔</li>
+<li>同上文 <code>management.context-path</code></li>
+</ol>
+
+<h3 id="toc_16">jdbc 批量插入性能问题</h3>
+
+<p>如果不开启rewriteBatchedStatements=true，那么jdbc会把批量插入当做一行行的单条处理，也就没有达到批量插入的效果</p>
+
+<p>jdbc配置示例</p>
+
+<pre><code class="language-text">spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/dew?useUnicode=true&amp;characterEncoding=utf-8&amp;rewriteBatchedStatements=true
+    username: root
+    password: 123456
+</code></pre>
+
+<ul>
+<li>对于一张七列的表，插入1500条数据，分别对mybatis和jdbctemplate进行测试，记录三次数据如下,可以看到，该配置对于jdbctemplate影响是极大的，而对于mybatis影响却不大，后续有时间再继续深入了解</li>
+</ul>
+
+<p>Table 1. 测试数据</p>
+
+<table>
+<thead>
+<tr>
+<th>rewriteBatchedStatements</th>
+<th>mybatis(ms)</th>
+<th>jdbctemplate(ms)</th>
+<th>dew(ms)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>true</td>
+<td>401</td>
+<td>88</td>
+<td>174</td>
+</tr>
+<tr>
+<td>true</td>
+<td>427</td>
+<td>78</td>
+<td>167</td>
+</tr>
+<tr>
+<td>true</td>
+<td>422</td>
+<td>75</td>
+<td>176</td>
+</tr>
+<tr>
+<td>false</td>
+<td>428</td>
+<td>1967</td>
+<td>2065</td>
+</tr>
+<tr>
+<td>false</td>
+<td>410</td>
+<td>2641</td>
+<td>2744</td>
+</tr>
+<tr>
+<td>false</td>
+<td>369</td>
+<td>2299</td>
+<td>2398</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="toc_17">http请求并发数性能瓶颈</h3>
+
+<ul>
+<li>当策略为Thread时（默认是Thread)，hystrix.threadpool.default.maximumSize为第一个性能瓶颈，默认值为10.</li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th>Tip</th>
+<th>修改值时，需要先设置hystrix.threadpool.default.allowMaximumSizeToDivergeFromCoreSize为true，默认为false</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<p>hystrix详细配置参见<a href="https://github.com/Netflix/Hystrix/wiki/configuration#allowMaximumSizeToDivergeFromCoreSize">https://github.com/Netflix/Hystrix/wiki/configuration#allowMaximumSizeToDivergeFromCoreSize</a></p>
+
+<ul>
+<li>第二个瓶颈为springboot内置的tomcat的最大连接数，参数为server.tomcat.maxThreads，默认值为200</li>
+</ul>
+
+<h3 id="toc_18">日志中解析message,动态显示property</h3>
+
+<ol>
+<li>在启动类的main方法中注册converter，如下<code>PatternLayout.defaultConverterMap.put(&quot;dew&quot;, TestConverter.class.getName());</code></li>
+</ol>
+
+<table>
+<thead>
+<tr>
+<th>Note</th>
+<th>这个是解析%dew的内容</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<ol>
+<li>自定义Converter继承DynamicConverter<ILoggingEvent>，解析message，获取有效信息并返回解析后得到的字符串。</li>
+</ol>
+
+<p>Converter代码示例</p>
+
+<pre><code class="language-java">public class TestConverter extends DynamicConverter&lt;ILoggingEvent&gt; {
+
+    @Override
+    public String convert(ILoggingEvent event) {
+        // 这里未做解析，示例代码
+        return event.getMessage();
+    }
+}
+</code></pre>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15548919605486.html" 
+          title="Previous Post: pinpoint-docker开启邮件报警和集成钉钉报警推送">&laquo; pinpoint-docker开启邮件报警和集成钉钉报警推送</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15629159337173.html" 
+          title="Next Post: 基于snowflake和scikit_learn机器学习的工作流">基于snowflake和scikit_learn机器学习的工作流 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          <script src="https://utteranc.es/client.js"
+        repo="neatlife/neatlife.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>xiaolin's blog</h1>
+                <div class="site-des">core tech share blog</div>
+                <div class="social">
+                  <a target="_blank" class="juejin" href="https://juejin.im/user/5c409f86e51d4551c88027a2/posts" title="Juejin">juejin</a>
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/neatlife" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="macios.html"><strong>mac&ios</strong></a>
+        
+            <a href="lc.html"><strong>leetcode</strong></a>
+        
+            <a href="security.html"><strong>安全</strong></a>
+        
+            <a href="business.html"><strong>业务</strong></a>
+        
+            <a href="source-code.html"><strong>源码分析</strong></a>
+        
+            <a href="redis.html"><strong>Redis</strong></a>
+        
+            <a href="apache-nginx.html"><strong>Apache/Nginx</strong></a>
+        
+            <a href="spring-boot.html"><strong>Spring Boot</strong></a>
+        
+            <a href="pm.html"><strong>项目管理</strong></a>
+        
+            <a href="sql.html"><strong>SQL</strong></a>
+        
+            <a href="job-scheduler.html"><strong>任务调度</strong></a>
+        
+            <a href="design-pattern.html"><strong>设计模式</strong></a>
+        
+            <a href="mq.html"><strong>消息队列</strong></a>
+        
+            <a href="rpc.html"><strong>RPC</strong></a>
+        
+            <a href="laravel.html"><strong>LARAVEL</strong></a>
+        
+            <a href="tcp-ip.html"><strong>TCP/IP</strong></a>
+        
+            <a href="uml.html"><strong>UML</strong></a>
+        
+            <a href="service-mesh.html"><strong>SERVICE MESH</strong></a>
+        
+            <a href="ci-cd.html"><strong>CI/CD</strong></a>
+        
+            <a href="ops.html"><strong>OPS</strong></a>
+        
+            <a href="linux.html"><strong>LINUX</strong></a>
+        
+            <a href="system-programming.html"><strong>系统编程</strong></a>
+        
+            <a href="aws.html"><strong>AWS</strong></a>
+        
+            <a href="lua.html"><strong>LUA</strong></a>
+        
+            <a href="git.html"><strong>GIT</strong></a>
+        
+            <a href="js.html"><strong>js</strong></a>
+        
+            <a href="java.html"><strong>JAVA</strong></a>
+        
+            <a href="monitor.html"><strong>监控</strong></a>
+        
+            <a href="vim.html"><strong>VIM</strong></a>
+        
+            <a href="php.html"><strong>PHP</strong></a>
+        
+            <a href="openresty.html"><strong>OpenResty</strong></a>
+        
+            <a href="swoole.html"><strong>SWOOLE</strong></a>
+        
+            <a href="ons.html"><strong>消息队列</strong></a>
+        
+            <a href="gdb.html"><strong>GDB</strong></a>
+        
+            <a href="specification.html"><strong>规范</strong></a>
+        
+            <a href="3-minutes.html"><strong>三分钟系列</strong></a>
+        
+            <a href="1-pic.html"><strong>一图胜千言</strong></a>
+        
+            <a href="account-system.html"><strong>帐号系统</strong></a>
+        
+            <a href="interview.html"><strong>面试题</strong></a>
+        
+            <a href="yii.html"><strong>Yii/Yii2</strong></a>
+        
+            <a href="python.html"><strong>python</strong></a>
+        
+            <a href="go.html"><strong>GO</strong></a>
+        
+            <a href="ml.html"><strong>机器学习</strong></a>
+        
+            <a href="emacs.html"><strong>emacs</strong></a>
+        
+            <a href="bi.html"><strong>商业智能</strong></a>
+        
+            <a href="mac.html"><strong>mac</strong></a>
+        
+            <a href="editor.html"><strong>编辑器</strong></a>
+        
+            <a href="productive-soft.html"><strong>生产力工具</strong></a>
+        
+            <a href="driver-license.html"><strong>驾照</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="16081898834624.html">OSX使用代码代替storyboard构建项目，并添加NSSplitView组件</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16005640944829.html">linux系统编程之多进程和管道（pip）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15970226751276.html">三分钟上手java多线程控制技术</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15864793262262.html">14/24 设计模式之状态模式 State Pattern</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15880004262195.html">python高性能之路:使用C/C++编写扩展</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.
+<span id="busuanzi_container_site_uv">访问<span id="busuanzi_value_site_uv"></span>人</span>/
+        <span id="busuanzi_container_site_pv"><span id="busuanzi_value_site_pv"></span>次</span>
+    </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138141150-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138141150-1');
+</script>
+
+<canvas class="fireworks" 
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999999; pointer-events: none; width: 1158px; height: 916px;" 
+        width="2316" 
+        height="1832">
+</canvas>
+    <script src="asset/js/anime.min.js"></script>
+    <script src="asset/js/fireworks.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </body>
+</html>

@@ -1,0 +1,686 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  apache商业智能系统superset使用报告 - xiaolin's blog
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="xiaolin's blog" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:neatlifecoco.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">about</a></li>
+        
+        <li id=""><a target="_self" href="all.html">blog</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">archive</a></li>
+        
+        <li id=""><a target="_self" href="tools.html">tools</a></li>
+        
+        <li id=""><a target="_self" href="pro.html">pros</a></li>
+        
+        <li id=""><a target="_self" href="pub.html">press</a></li>
+        
+        <li id=""><a target="_self" href="paper.html">paper</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; xiaolin's blog</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">about</a></li>
+        
+        <li><a target="_self" href="all.html">blog</a></li>
+        
+        <li><a target="_self" href="archives.html">archive</a></li>
+        
+        <li><a target="_self" href="tools.html">tools</a></li>
+        
+        <li><a target="_self" href="pro.html">pros</a></li>
+        
+        <li><a target="_self" href="pub.html">press</a></li>
+        
+        <li><a target="_self" href="paper.html">paper</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="macios.html">mac&ios</a></li>
+        
+            <li><a href="lc.html">leetcode</a></li>
+        
+            <li><a href="security.html">安全</a></li>
+        
+            <li><a href="business.html">业务</a></li>
+        
+            <li><a href="source-code.html">源码分析</a></li>
+        
+            <li><a href="redis.html">Redis</a></li>
+        
+            <li><a href="apache-nginx.html">Apache/Nginx</a></li>
+        
+            <li><a href="spring-boot.html">Spring Boot</a></li>
+        
+            <li><a href="pm.html">项目管理</a></li>
+        
+            <li><a href="sql.html">SQL</a></li>
+        
+            <li><a href="job-scheduler.html">任务调度</a></li>
+        
+            <li><a href="design-pattern.html">设计模式</a></li>
+        
+            <li><a href="mq.html">消息队列</a></li>
+        
+            <li><a href="rpc.html">RPC</a></li>
+        
+            <li><a href="laravel.html">LARAVEL</a></li>
+        
+            <li><a href="tcp-ip.html">TCP/IP</a></li>
+        
+            <li><a href="uml.html">UML</a></li>
+        
+            <li><a href="service-mesh.html">SERVICE MESH</a></li>
+        
+            <li><a href="ci-cd.html">CI/CD</a></li>
+        
+            <li><a href="ops.html">OPS</a></li>
+        
+            <li><a href="linux.html">LINUX</a></li>
+        
+            <li><a href="system-programming.html">系统编程</a></li>
+        
+            <li><a href="aws.html">AWS</a></li>
+        
+            <li><a href="lua.html">LUA</a></li>
+        
+            <li><a href="git.html">GIT</a></li>
+        
+            <li><a href="js.html">js</a></li>
+        
+            <li><a href="java.html">JAVA</a></li>
+        
+            <li><a href="monitor.html">监控</a></li>
+        
+            <li><a href="vim.html">VIM</a></li>
+        
+            <li><a href="php.html">PHP</a></li>
+        
+            <li><a href="openresty.html">OpenResty</a></li>
+        
+            <li><a href="swoole.html">SWOOLE</a></li>
+        
+            <li><a href="ons.html">消息队列</a></li>
+        
+            <li><a href="gdb.html">GDB</a></li>
+        
+            <li><a href="specification.html">规范</a></li>
+        
+            <li><a href="3-minutes.html">三分钟系列</a></li>
+        
+            <li><a href="1-pic.html">一图胜千言</a></li>
+        
+            <li><a href="account-system.html">帐号系统</a></li>
+        
+            <li><a href="interview.html">面试题</a></li>
+        
+            <li><a href="yii.html">Yii/Yii2</a></li>
+        
+            <li><a href="python.html">python</a></li>
+        
+            <li><a href="go.html">GO</a></li>
+        
+            <li><a href="ml.html">机器学习</a></li>
+        
+            <li><a href="emacs.html">emacs</a></li>
+        
+            <li><a href="bi.html">商业智能</a></li>
+        
+            <li><a href="mac.html">mac</a></li>
+        
+            <li><a href="editor.html">编辑器</a></li>
+        
+            <li><a href="productive-soft.html">生产力工具</a></li>
+        
+            <li><a href="driver-license.html">驾照</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>apache商业智能系统superset使用报告</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2019/7/17</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='python.html'>python</a></span>
+          
+              <span class="posted-in"><a href='bi.html'>商业智能</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>最近公司有bi的需求，安排我收集了阿里云的quickbi、apache、airbnb的superset、和metabase系统的资料，个人觉得superset还不错，就来了个简单上手了</p>
+
+<p>supeprset是airbnb开源到apache的商业智能项目，目前正在apache里孵化，以后可能成为apache的顶级项目</p>
+
+<p>项目地址：<a href="https://github.com/apache/incubator-superset">https://github.com/apache/incubator-superset</a></p>
+
+<p>bi数据显示面板由数据图表组成，数据图表里的数据来自数据库里的表，数据库里的表来自配置的数据源，关系如下所示<br/>
+<img src="media/15633450114355/15633455121223.jpg" alt=""/></p>
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_0">创建数据源</h2>
+
+<p><img src="media/15633450114355/15633503778051.jpg" alt=""/></p>
+
+<p>然后在添加数据源界面填上数据库的名称、连接参数<br/>
+<img src="media/15633450114355/15633506113775.jpg" alt=""/><br/>
+单击保存即可</p>
+
+<p>可选：Expose in SQL Lab单选表示是否可以在Sql Editor调试这个数据源，建议勾上</p>
+
+<p>superset支持的完整的数据源列表参考：<a href="https://superset.incubator.apache.org/installation.html#database-dependencies">https://superset.incubator.apache.org/installation.html#database-dependencies</a></p>
+
+<p>常用的mysql snakeflow druid都支持</p>
+
+<h2 id="toc_1">基于数据源创建数据表</h2>
+
+<p>数据源建好后，只是表示有可选的数据使用了，具体使用数据源中的那张表需要在superset中创建数据表来表示</p>
+
+<p><img src="media/15633450114355/15633511450001.jpg" alt=""/></p>
+
+<p>然后选择数据源和填写需要操作的表<br/>
+<img src="media/15633450114355/15633518944317.jpg" alt=""/></p>
+
+<p>最后保存就ok了</p>
+
+<h2 id="toc_2">基于数据表创建图表</h2>
+
+<p>在superset中有了数据表后，就可以从这个数据表读取数据生成图表了<br/>
+比如从下面这个mysql的word_freq表中生成图表<br/>
+<img src="media/15633450114355/15633523270132.jpg" alt=""/><br/>
+操作如下<br/>
+<img src="media/15633450114355/15633524247859.jpg" alt=""/></p>
+
+<p>然后选择图表使用的数据表，和需要显示成的效果，这里案例就使用表格简单的把数据显示出来了<br/>
+<img src="media/15633450114355/15633524731870.jpg" alt=""/><br/>
+单击&quot;Create new chart&quot;进行确认进入到表格编辑页面<br/>
+<img src="media/15633450114355/15633526645090.jpg" alt=""/><br/>
+按照上图操作后，单击Run Query按钮就可以看到生成的数据表格了</p>
+
+<p>这个superset可以生成复杂的查询</p>
+
+<p>然后对这个图表进行保存<br/>
+<img src="media/15633450114355/15633528449363.jpg" alt=""/><br/>
+就可以在面板中使用这个图表了</p>
+
+<h2 id="toc_3">基于图表创建bi面板</h2>
+
+<p>一般一个bi面板由多个图表组成，可以提前创建多个图表，然后在bi面板中组合使用<br/>
+<img src="media/15633450114355/15633532339098.jpg" alt=""/><br/>
+<img src="media/15633450114355/15633532615577.jpg" alt=""/></p>
+
+<p>然后进入到这个dashboard的编辑模式就可以把图表添加到这个dashboard了</p>
+
+<p><img src="media/15633450114355/15633533612496.jpg" alt=""/></p>
+
+<p>分享面板可以生成访问这个dashboard的url，方便进行交流<br/>
+<img src="media/15633450114355/15633534250070.jpg" alt=""/></p>
+
+<h2 id="toc_4">用户和权限管理</h2>
+
+<p>superset提供了基于角色的权限管理<br/>
+<img src="media/15633450114355/15633535383980.jpg" alt=""/></p>
+
+<p>可以看到这个superset提供了一大堆内置的权限可以使用，权限涉及到两张表：ab_permission、ab_view_menu</p>
+
+<p>superset使用flask内置的has_access, has_access_api装饰实现权限检查<br/>
+在incubator-superset/superset/security.py中继承了flask默认的权限处理，并在/incubator-superset/superset/__init__.py注册成了默认的权限处理器<br/>
+<img src="media/15633450114355/15633543939325.jpg" alt=""/></p>
+
+<h2 id="toc_5">查看执行过的sql语句</h2>
+
+<p><img src="media/15633450114355/15633499451169.jpg" alt=""/></p>
+
+<p>可以在&quot;Manage&quot; &gt; &quot;Queries&quot;中查看到执行过的sql语句列表，详情就是具体的sql语句了，显示效果如下</p>
+
+<p><img src="media/15633450114355/15633500193452.jpg" alt=""/><br/>
+可以看到被执行的完整的sql语句</p>
+
+<h2 id="toc_6">在sql editor中调试sql语句</h2>
+
+<p><img src="media/15633450114355/15633531412540.jpg" alt=""/></p>
+
+<h2 id="toc_7">目录结构</h2>
+
+<p><img src="media/15633450114355/15633521240486.jpg" alt=""/></p>
+
+<p>可以看到这个superset源码的目录结构是非常清晰的。</p>
+
+<h2 id="toc_8">表结构</h2>
+
+<p>superset截至本文写完共有51张表，部分效果如下<br/>
+<img src="media/15633450114355/15633530005483.jpg" alt=""/></p>
+
+<p>可以看到这些表的命名还是非常简单、容易理解的</p>
+
+<h2 id="toc_9">一些注意的点</h2>
+
+<p>连接mysql必须指定字符集，否则中文乱码，比如<code>mysql+mysqldb://root:root@127.0.0.1/word_freq?charset=utf8</code></p>
+
+<p><img src="media/15633450114355/15633548352590.jpg" alt=""/></p>
+
+<pre><code class="language-shell">source venv/bin/activate
+pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
+pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements-dev.txt
+
+FLASK_ENV=development FLASK_APP=superset:app flask run -p 8098 --with-threads --reload --debugger --host=0.0.0.0
+</code></pre>
+
+<p>可以使用docker启动这个superset，参考：<a href="https://superset.incubator.apache.org/installation.html#start-with-docker">https://superset.incubator.apache.org/installation.html#start-with-docker</a></p>
+
+<h2 id="toc_10">参考资料</h2>
+
+<ol>
+<li><a href="https://airbnb.io/projects/superset/">https://airbnb.io/projects/superset/</a></li>
+<li><a href="https://github.com/apache/incubator-superset">https://github.com/apache/incubator-superset</a></li>
+<li><a href="https://www.jianshu.com/p/b02fcea7eb5b">https://www.jianshu.com/p/b02fcea7eb5b</a></li>
+</ol>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15636998581347.html" 
+          title="Previous Post: dotenv 2到3版本设计模式重构实战分析">&laquo; dotenv 2到3版本设计模式重构实战分析</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15629922354675.html" 
+          title="Next Post: 三分钟上手scikit-learn机器学习算法库">三分钟上手scikit-learn机器学习算法库 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          <script src="https://utteranc.es/client.js"
+        repo="neatlife/neatlife.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>xiaolin's blog</h1>
+                <div class="site-des">core tech share blog</div>
+                <div class="social">
+                  <a target="_blank" class="juejin" href="https://juejin.im/user/5c409f86e51d4551c88027a2/posts" title="Juejin">juejin</a>
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/neatlife" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="macios.html"><strong>mac&ios</strong></a>
+        
+            <a href="lc.html"><strong>leetcode</strong></a>
+        
+            <a href="security.html"><strong>安全</strong></a>
+        
+            <a href="business.html"><strong>业务</strong></a>
+        
+            <a href="source-code.html"><strong>源码分析</strong></a>
+        
+            <a href="redis.html"><strong>Redis</strong></a>
+        
+            <a href="apache-nginx.html"><strong>Apache/Nginx</strong></a>
+        
+            <a href="spring-boot.html"><strong>Spring Boot</strong></a>
+        
+            <a href="pm.html"><strong>项目管理</strong></a>
+        
+            <a href="sql.html"><strong>SQL</strong></a>
+        
+            <a href="job-scheduler.html"><strong>任务调度</strong></a>
+        
+            <a href="design-pattern.html"><strong>设计模式</strong></a>
+        
+            <a href="mq.html"><strong>消息队列</strong></a>
+        
+            <a href="rpc.html"><strong>RPC</strong></a>
+        
+            <a href="laravel.html"><strong>LARAVEL</strong></a>
+        
+            <a href="tcp-ip.html"><strong>TCP/IP</strong></a>
+        
+            <a href="uml.html"><strong>UML</strong></a>
+        
+            <a href="service-mesh.html"><strong>SERVICE MESH</strong></a>
+        
+            <a href="ci-cd.html"><strong>CI/CD</strong></a>
+        
+            <a href="ops.html"><strong>OPS</strong></a>
+        
+            <a href="linux.html"><strong>LINUX</strong></a>
+        
+            <a href="system-programming.html"><strong>系统编程</strong></a>
+        
+            <a href="aws.html"><strong>AWS</strong></a>
+        
+            <a href="lua.html"><strong>LUA</strong></a>
+        
+            <a href="git.html"><strong>GIT</strong></a>
+        
+            <a href="js.html"><strong>js</strong></a>
+        
+            <a href="java.html"><strong>JAVA</strong></a>
+        
+            <a href="monitor.html"><strong>监控</strong></a>
+        
+            <a href="vim.html"><strong>VIM</strong></a>
+        
+            <a href="php.html"><strong>PHP</strong></a>
+        
+            <a href="openresty.html"><strong>OpenResty</strong></a>
+        
+            <a href="swoole.html"><strong>SWOOLE</strong></a>
+        
+            <a href="ons.html"><strong>消息队列</strong></a>
+        
+            <a href="gdb.html"><strong>GDB</strong></a>
+        
+            <a href="specification.html"><strong>规范</strong></a>
+        
+            <a href="3-minutes.html"><strong>三分钟系列</strong></a>
+        
+            <a href="1-pic.html"><strong>一图胜千言</strong></a>
+        
+            <a href="account-system.html"><strong>帐号系统</strong></a>
+        
+            <a href="interview.html"><strong>面试题</strong></a>
+        
+            <a href="yii.html"><strong>Yii/Yii2</strong></a>
+        
+            <a href="python.html"><strong>python</strong></a>
+        
+            <a href="go.html"><strong>GO</strong></a>
+        
+            <a href="ml.html"><strong>机器学习</strong></a>
+        
+            <a href="emacs.html"><strong>emacs</strong></a>
+        
+            <a href="bi.html"><strong>商业智能</strong></a>
+        
+            <a href="mac.html"><strong>mac</strong></a>
+        
+            <a href="editor.html"><strong>编辑器</strong></a>
+        
+            <a href="productive-soft.html"><strong>生产力工具</strong></a>
+        
+            <a href="driver-license.html"><strong>驾照</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="16081898834624.html">OSX使用代码代替storyboard构建项目，并添加NSSplitView组件</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16005640944829.html">linux系统编程之多进程和管道（pip）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15970226751276.html">三分钟上手java多线程控制技术</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15864793262262.html">14/24 设计模式之状态模式 State Pattern</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15880004262195.html">python高性能之路:使用C/C++编写扩展</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.
+<span id="busuanzi_container_site_uv">访问<span id="busuanzi_value_site_uv"></span>人</span>/
+        <span id="busuanzi_container_site_pv"><span id="busuanzi_value_site_pv"></span>次</span>
+    </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138141150-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138141150-1');
+</script>
+
+<canvas class="fireworks" 
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999999; pointer-events: none; width: 1158px; height: 916px;" 
+        width="2316" 
+        height="1832">
+</canvas>
+    <script src="asset/js/anime.min.js"></script>
+    <script src="asset/js/fireworks.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </body>
+</html>

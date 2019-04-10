@@ -1,0 +1,1532 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  PHP - xiaolin's blog
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="xiaolin's blog" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:neatlifecoco.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">about</a></li>
+        
+        <li id=""><a target="_self" href="all.html">blog</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">archive</a></li>
+        
+        <li id=""><a target="_self" href="tools.html">tools</a></li>
+        
+        <li id=""><a target="_self" href="pro.html">pros</a></li>
+        
+        <li id=""><a target="_self" href="pub.html">press</a></li>
+        
+        <li id=""><a target="_self" href="paper.html">paper</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; xiaolin's blog</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">about</a></li>
+        
+        <li><a target="_self" href="all.html">blog</a></li>
+        
+        <li><a target="_self" href="archives.html">archive</a></li>
+        
+        <li><a target="_self" href="tools.html">tools</a></li>
+        
+        <li><a target="_self" href="pro.html">pros</a></li>
+        
+        <li><a target="_self" href="pub.html">press</a></li>
+        
+        <li><a target="_self" href="paper.html">paper</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="macios.html">mac&ios</a></li>
+        
+            <li><a href="lc.html">leetcode</a></li>
+        
+            <li><a href="security.html">安全</a></li>
+        
+            <li><a href="business.html">业务</a></li>
+        
+            <li><a href="source-code.html">源码分析</a></li>
+        
+            <li><a href="redis.html">Redis</a></li>
+        
+            <li><a href="apache-nginx.html">Apache/Nginx</a></li>
+        
+            <li><a href="spring-boot.html">Spring Boot</a></li>
+        
+            <li><a href="pm.html">项目管理</a></li>
+        
+            <li><a href="sql.html">SQL</a></li>
+        
+            <li><a href="job-scheduler.html">任务调度</a></li>
+        
+            <li><a href="design-pattern.html">设计模式</a></li>
+        
+            <li><a href="mq.html">消息队列</a></li>
+        
+            <li><a href="rpc.html">RPC</a></li>
+        
+            <li><a href="laravel.html">LARAVEL</a></li>
+        
+            <li><a href="tcp-ip.html">TCP/IP</a></li>
+        
+            <li><a href="uml.html">UML</a></li>
+        
+            <li><a href="service-mesh.html">SERVICE MESH</a></li>
+        
+            <li><a href="ci-cd.html">CI/CD</a></li>
+        
+            <li><a href="ops.html">OPS</a></li>
+        
+            <li><a href="linux.html">LINUX</a></li>
+        
+            <li><a href="system-programming.html">系统编程</a></li>
+        
+            <li><a href="aws.html">AWS</a></li>
+        
+            <li><a href="lua.html">LUA</a></li>
+        
+            <li><a href="git.html">GIT</a></li>
+        
+            <li><a href="js.html">js</a></li>
+        
+            <li><a href="java.html">JAVA</a></li>
+        
+            <li><a href="monitor.html">监控</a></li>
+        
+            <li><a href="vim.html">VIM</a></li>
+        
+            <li><a href="php.html">PHP</a></li>
+        
+            <li><a href="openresty.html">OpenResty</a></li>
+        
+            <li><a href="swoole.html">SWOOLE</a></li>
+        
+            <li><a href="ons.html">消息队列</a></li>
+        
+            <li><a href="gdb.html">GDB</a></li>
+        
+            <li><a href="specification.html">规范</a></li>
+        
+            <li><a href="3-minutes.html">三分钟系列</a></li>
+        
+            <li><a href="1-pic.html">一图胜千言</a></li>
+        
+            <li><a href="account-system.html">帐号系统</a></li>
+        
+            <li><a href="interview.html">面试题</a></li>
+        
+            <li><a href="yii.html">Yii/Yii2</a></li>
+        
+            <li><a href="python.html">python</a></li>
+        
+            <li><a href="go.html">GO</a></li>
+        
+            <li><a href="ml.html">机器学习</a></li>
+        
+            <li><a href="emacs.html">emacs</a></li>
+        
+            <li><a href="bi.html">商业智能</a></li>
+        
+            <li><a href="mac.html">mac</a></li>
+        
+            <li><a href="editor.html">编辑器</a></li>
+        
+            <li><a href="productive-soft.html">生产力工具</a></li>
+        
+            <li><a href="driver-license.html">驾照</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+	$(function(){
+		$('#menu_item_index').addClass('is_active');
+	});
+</script>
+<div class="row">
+	<div class="large-8 medium-8 columns">
+		<div class="markdown-body home-categories">
+		
+			<div class="article">
+                <a class="clearlink" href="15638508022336.html">
+                
+                  <h1>基于swoole框架进行二次封装，php高性能业务框架编写思路</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>swoole已经是php高性能服务器事实标准，可以参考这个博客使用swoole开发业务框架</p>
+
+<p>项目地址：<a href="https://github.com/neatlife/pframework">https://github.com/neatlife/pframework</a></p>
+
+<p><strong>欢迎star，欢迎pr</strong></p>
+
+<pre><code class="language-text">⁃   框架执行的核心流程图如下（右键可查看大图）：
+</code></pre>
+
+<p><img src="media/15638508022336/15638755906177.jpg" alt=""/></p>
+
+<ol>
+<li>通用组件尽量遵守psr进行实现，以提高对三方组件的兼容性</li>
+<li>事件驱动</li>
+</ol>
+
+<h2 id="toc_0">全局变量适配</h2>
+
+<p>swoole是从命令行启动，常驻进程运行，web请求处理依赖的全局变量比如 \(_SERVER, \)_GET, \(_POST, \)_FILES等不会随着每次请求的改变填上对应的值，swoole把这个每次请求的变量放在了Swoole\Http\Request对象中</p>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="15638508022336.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2019/7/23</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='swoole.html'>SWOOLE</a></span>
+          				  
+          					    <span class="posted-in"><a href='php.html'>PHP</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15636998581347.html">
+                
+                  <h1>dotenv 2到3版本设计模式重构实战分析</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>老大说了这个dotenv的重构比较适合用来学习，进行了分析，并分享了出来</p>
+
+<p>github项目地址: <a href="https://github.com/vlucas/phpdotenv">https://github.com/vlucas/phpdotenv</a></p>
+
+<p>dotenv是一个php写的从文件中加载环境变量的库，库本身文件数量较少，比较容易阅读。</p>
+
+<h2 id="toc_0">核心api变动</h2>
+
+<p>2.x实例化方式</p>
+
+<pre><code class="language-php">$dotenv = new Dotenv\Dotenv(__DIR__, &#39;myconfig&#39;);
+$dotenv-&gt;load();
+</code></pre>
+
+<p>3.x实例化方式</p>
+
+<pre><code class="language-php">$dotenv = Dotenv\Dotenv::create(__DIR__, &#39;myconfig&#39;);
+$dotenv-&gt;load();
+</code></pre>
+
+<h3 id="toc_1">静态工厂方法设计模式应用</h3>
+
+<p>这个3.x版本create方法创建对象使用的是<strong>工厂方法设计模式</strong></p>
+
+<p>核心实例化dotenv对象由手动调用构造方法重构成了<strong>静态工厂方法</strong>，这个改变是因为这个dotenv加载.env文件需要判断env文件、envFactory对象是否传递，而这个判断是个if else的逻辑，根据<strong>构造方法不宜写逻辑定理</strong>，如果不使用<strong>静态工厂方法</strong>进行重构，那么在new DotEnv之前，必须手动判断.env是否存在。在多次实例化这个Dotenv对象时，必然造成代码重复。</p>
+
+<p>通过工厂方法封装创建对象的逻辑，以避免创建对象的代码重复，是非常常见的一种设计模式的<strong>最佳实践</strong></p>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="15636998581347.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2019/7/21</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='php.html'>PHP</a></span>
+          				  
+          					    <span class="posted-in"><a href='design-pattern.html'>设计模式</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15610043911296.html">
+                
+                  <h1>xaop源码分析</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>项目地址：<a href="https://github.com/liqiongfan/xaop">https://github.com/liqiongfan/xaop</a></p>
+
+<p>思路: hook掉php执行函数的方法(zend_execute_ex)，然后使用call_user_function调用自定义的回调函数</p>
+
+<h2 id="toc_0">文件和作用</h2>
+
+<p>Xaop操作类的所有方法：kernel/xaop.c</p>
+
+<p>Xaop操作类会使用的宏，比如解析和检查方法的参数：kernel/xaop.h</p>
+
+<p>扩展调用php函数的函数：kernel/helper.c 和 kernel/helper.h</p>
+
+<p>替换php的zend_execution_ex: kernel/exec.c 和 kernel/exec.c</p>
+
+<p>解析用户编写的annotation的相关逻辑：kernel/parsing.c 和 kernel/parsing.h</p>
+
+<p>全局变量定义在: php_xaop.h</p>
+
+<p>全局工具类zend_class_entry的声明*annotation_ce, *doc_ce, *xaop_ce：kernel/classes.c</p>
+
+<h2 id="toc_1">检查参数是否合法</h2>
+
+<pre><code class="language-c">#define CHECK_PARAM() do {\
+    if ( Z_TYPE_P(class_name) != IS_STRING &amp;&amp; Z_TYPE_P(class_name) != IS_NULL ) { \
+        php_error_docref(NULL, E_ERROR, &quot;First argument need to be a valid class name or NULL&quot;);\
+        return ;\
+    }\
+    if ( ZSTR_LEN(function_name) &amp;&amp; &#39;*&#39; == ZSTR_VAL(function_name)[0] ) { \
+        php_error_docref(NULL, E_ERROR, &quot;Function name mustn&#39;t be `*`.&quot;);\
+        return ;\
+    }\
+    if ( !zend_is_callable(aop, IS_CALLABLE_CHECK_NO_ACCESS, NULL) ) {\
+        php_error_docref(NULL, E_ERROR, &quot;Third argument is expected to be a valid callback&quot;);\
+        return ;\
+    }\
+} while(0)
+</code></pre>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="15610043911296.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2019/6/20</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='source-code.html'>源码分析</a></span>
+          				  
+          					    <span class="posted-in"><a href='php.html'>PHP</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15602252455163.html">
+                
+                  <h1>在mac os中使用phpbrew管理本地php版本</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>虽然mac下的mamp pro非常好用，并且提供gui操作界面，但是是收费软件，还比较贵，目前使用phpbrew作为mamp pro的替代品，除了没有gui界面，对php的版本管理不输mamp pro</p>
+
+<h3 id="toc_0">安装phpbrew</h3>
+
+<p>先使用homebrew安装依赖</p>
+
+<pre><code class="language-shell"># xcode-select --install
+brew install automake autoconf curl pcre bison re2c mhash libtool icu4c gettext jpeg openssl libxml2 mcrypt gmp libevent
+brew link icu4c
+brew link --force openssl
+brew link --force libxml2
+</code></pre>
+
+<p>安装phpbrew</p>
+
+<pre><code class="language-shell">curl -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew
+chmod +x phpbrew
+
+mv phpbrew /usr/local/bin/phpbrew
+</code></pre>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="15602252455163.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2019/6/11</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='php.html'>PHP</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15589619730811.html">
+                
+                  <h1>在spring boot中三分钟上手阿里云日志服务Log Service</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>虽然可以自行搭建elk等日志系统，但是日志系统特别耗费系统资源，相对于阿里云提供日志服务，自行搭建的机器成本和运维成本较高，一般可以直接选择使用阿里云的日志服务</p>
+
+<p>先来看一张阿里云日志服务的架构图<br/>
+<img src="media/15589619730811/15589627993275.jpg" alt=""/><br/>
+从上面这张图可以看到这个阿里云的日志服务不仅支持多个数据源，同时在日志服务的基础上衍生出不少数据二次加工的功能，比如MacCompute、Spark Streaming等</p>
+
+<h2 id="toc_0">创建案例项目</h2>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="15589619730811.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2019/5/27</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='3-minutes.html'>三分钟系列</a></span>
+          				  
+          					    <span class="posted-in"><a href='spring-boot.html'>Spring Boot</a></span>
+          				  
+          					    <span class="posted-in"><a href='php.html'>PHP</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15581545560082.html">
+                
+                  <h1>使用gdb调试工具上手调试php和swoole源码</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>swoole作为php的核心项目，php和swoole都具有一定的研究价值，由于是c语言编写的项目，要上手进行调试，那么最好用的调试工具就是gdb了</p>
+
+<p>这个gdb调试工具功能强大，支持的选项也是非常多，下面就总结出来常用的命令</p>
+
+<h2 id="toc_0">编译源码添加调试信息</h2>
+
+<p>在编译时把调试信息编译进生成的二进制文件中，需要给gcc编译器加上-g参数，比如编译php的Makefile中是这样的<br/>
+<img src="media/15581545560082/15581808442680.jpg" alt=""/><br/>
+加上<code>-g</code>参数就已经有调试信息了，-O0是关闭gcc的优化，这个gcc优化后会在调试时丢失一部分调试信息，所以一般建议关闭</p>
+
+<p>这样在gdb里面就可以随时查看当前执行到源码的那个地方了，能够显著提升调试的效率</p>
+
+<h2 id="toc_1">查看源码</h2>
+
+<p><img src="media/15581545560082/15581812987755.jpg" alt=""/></p>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="15581545560082.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2019/5/18</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='gdb.html'>GDB</a></span>
+          				  
+          					    <span class="posted-in"><a href='php.html'>PHP</a></span>
+          				  
+          					    <span class="posted-in"><a href='swoole.html'>SWOOLE</a></span>
+          				  
+          					    <span class="posted-in"><a href='source-code.html'>源码分析</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15582833746595.html">
+                
+                  <h1>面试题-字符串的处理 近义词正反双向替换</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">试题</h2>
+
+<p>$words = array(<br/>
+&#39;我&#39;=&gt;&#39;你&#39;,</p>
+
+<p>&#39;不错&#39;=&gt;&#39;很好&#39;,</p>
+
+<p>&#39;cc&#39;=&gt;&#39;XXX&#39;,</p>
+
+<p>);</p>
+
+<p>$str = &#39;你和我今天很好，XXX，是不是不错&#39;;</p>
+
+<p>替换后结果 我和你今天不错，cc，是不是很好</p>
+
+<p>(近义词可能是任意词语，给定的数组的键替换成值，值替换成键)</p>
+
+<h2 id="toc_1">解决方案</h2>
+
+<p>参考代码：</p>
+
+<pre><code class="language-php">&lt;?php
+
+$words = array(
+    &#39;我&#39;=&gt;&#39;你&#39;,
+    &#39;不错&#39;=&gt;&#39;很好&#39;,
+    &#39;cc&#39;=&gt;&#39;XXX&#39;,
+);
+$str = &#39;你和我今天很好，XXX，是不是不错&#39;;
+
+$words = array_merge($words, array_flip($words));
+$regex = &quot;/&quot; . implode(&#39;|&#39;, array_map(function($word) {
+    $word = &quot;(&quot; . str_replace([&#39;&quot;&#39;], [&#39;&#39;], json_encode($word)) . &quot;)&quot;;
+    $word = preg_replace(&quot;/\\\u(.{4})/&quot;, &quot;\x{\$1}&quot;, $word);
+    return $word;
+}, array_keys($words))) . &quot;/u&quot;;
+
+echo preg_replace_callback($regex, function($matches) use ($words) {
+    $keyword = end($matches);
+    return $words[$keyword];
+}, $str);
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/8/9</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='interview.html'>面试题</a></span>
+          				  
+          					    <span class="posted-in"><a href='php.html'>PHP</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15582833071020.html">
+                
+                  <h1>socket和socket通信与socket和websocket通信的区别</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<ol>
+<li>socket和socket通信的数据没有经过编码，所以在socket服务端无需对接收的数据解码，和对返回的数据编码</li>
+<li>socket和socket建立连接时就使用的socket协议进行通信，而websocket建立连接时使用的HTTP协议，必须提升通信协议为websocket</li>
+<li>socket和socket通信没有握手过程，socket和websocket时，socket必须给websocket返回握手响应</li>
+</ol>
+
+<p>附socket与socket通信参考代码</p>
+
+<p>server</p>
+
+<pre><code class="language-php">&lt;?php
+
+$host = &#39;0.0.0.0&#39;;
+$port = 12345;
+
+$master = socket_create(AF_INET, SOCK_STREAM, SOL_TCP)      or die(&quot;socket_create()函数调用失败。&quot;);
+socket_set_option($master, SOL_SOCKET, SO_REUSEADDR, 1)     or die(&quot;socket_option() failed&quot;);// 设置重用
+socket_bind($master, $host, $port)                          or die(&quot;socket_bind() 函数调用失败。&quot;);
+socket_listen($master, 20);
+$sockets = [];
+$sockets[] = $master;
+while(true) {
+    $activeSockets = $sockets;
+    $write = $except = null;
+    $status = socket_select($activeSockets, $write, $except, null);
+    if ($status === 0) {
+        continue;
+    }
+    if ($status === false) {
+        echo socket_last_error() . &quot;\r\n&quot;;
+        continue;
+    }
+    if (in_array($master, $activeSockets)) {
+        $newSocket = socket_accept($master);
+        if (!$newSocket) {
+            continue;
+        }
+        $sockets[] = $newSocket;
+        $activeSockets[] = $newSocket;
+        $index = array_search($master, $activeSockets);
+        unset($activeSockets[$index]);
+    }
+    foreach($activeSockets as $activeSocket) {
+        $socketId = (int) $activeSocket;
+        $requestDataLength = socket_recv($activeSocket, $requestData, 2048, 0);
+        if ($requestDataLength == 0) {
+            socket_close($activeSocket);
+            $index = array_search($activeSocket, $sockets);
+            unset($sockets[$index]);
+            continue;
+        }
+        $response = &quot;&quot;;
+        $data = json_decode($requestData, true);
+        if ($data) {
+            switch($data[&#39;operator&#39;]) {
+                case &#39;add&#39;:
+                    $response = $data[&#39;firstNum&#39;] + $data[&#39;secondNum&#39;];
+                    break;
+                case &#39;sub&#39;:
+                    $response = $data[&#39;firstNum&#39;] - $data[&#39;secondNum&#39;];
+                    break;
+                case &#39;multi&#39;:
+                    $response = $data[&#39;firstNum&#39;] * $data[&#39;secondNum&#39;];
+                    break;
+                case &#39;div&#39;:
+                    $response = $data[&#39;firstNum&#39;] / $data[&#39;secondNum&#39;];
+                    break;
+            }
+        } else {
+            $response = $requestData;
+        }
+        socket_write($activeSocket, $response, strlen($response));
+    }
+
+};
+</code></pre>
+
+<p>client</p>
+
+<pre><code class="language-php">&lt;?php
+
+$socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+$result = socket_connect($socket, &#39;127.0.0.1&#39;, &#39;12345&#39;);
+$raw = json_encode([
+    &#39;firstNum&#39; =&gt; 10,
+    &#39;secondNum&#39; =&gt; 20,
+    &#39;operator&#39; =&gt; &#39;add&#39;,
+]);
+socket_write($socket, $raw, strlen($raw));
+$result = socket_read($socket, 2048);
+echo $result;
+socket_close($socket);
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/6/19</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='php.html'>PHP</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15582832387211.html">
+                
+                  <h1>图片16:9缩放</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<pre><code class="language-php">function crop_image($image) {
+    list($w_i, $h_i, $type) = getimagesize($image);
+ 
+    $w_o = $w_i;
+    $h_o = 9 * $w_o / 16;
+ 
+    if ($h_i &lt; $h_o) {
+        $h_o = $h_i;
+        $w_o = 16 * $h_o / 9;
+    }
+ 
+    $x_o = $w_i - $w_o;
+    $y_o = $h_i - $h_o;
+ 
+    $types = array(&quot;&quot;, &quot;gif&quot;, &quot;jpeg&quot;, &quot;png&quot;);
+    $ext = $types[$type];
+    if ($ext) {
+      $func = &#39;imagecreatefrom&#39;.$ext;
+      $img_i = $func($image);
+    } else {
+      echo &#39;Incorrect image&#39;;
+      return false;
+    }
+    if ($x_o + $w_o &gt; $w_i) $w_o = $w_i - $x_o;
+    if ($y_o + $h_o &gt; $h_i) $h_o = $h_i - $y_o;
+    $img_o = imagecreatetruecolor($w_o, $h_o);
+    imagecopy($img_o, $img_i, 0, 0, $x_o/2, $y_o/2, $w_o, $h_o);
+    $func = &#39;image&#39;.$ext;
+    return $func($img_o, $image);  
+}
+ 
+crop_image(&quot;screen.png&quot;);
+</code></pre>
+
+<h2 id="toc_0">改良后的代码（解决获取图片宽高错误）</h2>
+
+<pre><code class="language-php">function crop_image($image) {
+    $img = imagecreatefromstring(file_get_contents($image));
+    $exif = @exif_read_data($image);
+    if( ! empty($exif[&#39;Orientation&#39;])) {
+        switch($exif[&#39;Orientation&#39;]) {
+            case 8:
+                $img = imagerotate($img, 90, 0);
+                break;
+            case 3:
+                $img = imagerotate($img, 180, 0);
+                break;
+            case 6:
+                $img = imagerotate($img, -90, 0);
+                break;
+        }
+        list($_, $_, $type) = getimagesize($image);
+        $types = array(&quot;&quot;, &quot;gif&quot;, &quot;jpeg&quot;, &quot;png&quot;);
+        $ext = $types[$type];
+        $func = &#39;image&#39;.$ext;
+        $func($img, $image);
+    }
+    list($w_i, $h_i, $type) = getimagesize($image);
+ 
+    $w_o = $w_i;
+    $h_o = 9 * $w_o / 16;
+ 
+    if ($h_i &lt; $h_o) {
+        $h_o = $h_i;
+        $w_o = 16 * $h_o / 9;
+    }
+ 
+    $x_o = $w_i - $w_o;
+    $y_o = $h_i - $h_o;
+ 
+    $types = array(&quot;&quot;, &quot;gif&quot;, &quot;jpeg&quot;, &quot;png&quot;);
+    $ext = $types[$type];
+    if ($ext) {
+      $func = &#39;imagecreatefrom&#39;.$ext;
+      $img_i = $func($image);
+    } else {
+      echo &#39;Incorrect image&#39;;
+      return false;
+    }
+    if ($x_o + $w_o &gt; $w_i) $w_o = $w_i - $x_o;
+    if ($y_o + $h_o &gt; $h_i) $h_o = $h_i - $y_o;
+    $img_o = imagecreatetruecolor($w_o, $h_o);
+    imagecopy($img_o, $img_i, 0, 0, $x_o/2, $y_o/2, $w_o, $h_o);
+    $func = &#39;image&#39;.$ext;
+    return $func($img_o, $image);
+}
+ 
+crop_image(&quot;1.jpg&quot;);
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/4/15</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='php.html'>PHP</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15582827924478.html">
+                
+                  <h1>面试题-在页面上显示一张图片</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">项目需求</h2>
+
+<p>在页面上显示一张图片，此图片是由多个部分组成：背景，小岛和海鸥。根据传入参数的不同，小岛和海鸥在背景中的位置将可以变化。</p>
+
+<pre><code class="language-php">&lt;?php
+
+class pic
+{
+    private $_url;
+
+    public function __get($name)
+    {
+        return $this-&gt;$name;
+    }
+
+    public function __set($name,$value)
+    {
+        return $this-&gt;$name = $value;
+    }
+}
+interface layer
+{
+    public function loadPic(pic $pic);
+}
+
+class background implements layer
+{
+    private $_z = 0;
+    private $_pic;
+    private $_width;
+    private $_height;
+    private $_html;
+
+    public function loadPic(pic $pic)
+    {
+        $this-&gt;_pic = $pic;
+    }
+
+    public function __get($name)
+    {
+        return $this-&gt;$name;
+    }
+
+    public function __set($name,$value)
+    {
+        return $this-&gt;$name = $value;
+    }
+
+    public function generateHtml()
+    {
+        $this-&gt;_html = &quot;&lt;img src=&#39;{$this-&gt;_pic-&gt;_url}&#39; width=&#39;{$this-&gt;_width}&#39; height=&#39;{$this-&gt;_height}&#39; style=&#39;z-index: {$this-&gt;_z};&#39;&gt;&quot;;
+        return $this-&gt;_html;
+    }
+}
+
+abstract class onLayer implements layer
+{
+    private $_x;
+    private $_y;
+    private $_z;
+    private $_pic;
+    private $_width;
+    private $_height;
+    private $_html;
+    private $_downLayer;
+
+    public function loadPic(pic $pic)
+    {
+        $this-&gt;_pic = $pic;
+    }
+
+    public function __get($name)
+    {
+        return $this-&gt;$name;
+    }
+
+    public function __set($name,$value)
+    {
+        return $this-&gt;$name = $value;
+    }
+
+    abstract public function on(layer $newLayer);
+
+    public function generateHtml()
+    {
+        $this-&gt;_html = $this-&gt;_downLayer-&gt;_html.&quot;&lt;img src=&#39;{$this-&gt;_pic-&gt;_url}&#39; width=&#39;{$this-&gt;_width}&#39; height=&#39;{$this-&gt;_height}&#39; style=&#39;z-index: {$this-&gt;_z}; position: absolute; left: {$this-&gt;_x}px; top: {$this-&gt;_y}px;&#39;&gt;&quot;;
+        return $this-&gt;_html;
+    }
+}
+
+class island extends onLayer
+{
+    public function on(layer $downLayer)
+    {
+        $this-&gt;_width = 100;
+        $this-&gt;_height = 50;
+        $this-&gt;_downLayer = $downLayer;
+        $this-&gt;_z = $downLayer-&gt;_z + 20;
+    }
+}
+
+class bird extends onLayer
+{
+    public function on(layer $downLayer)
+    {
+        $this-&gt;_x = 20;
+        $this-&gt;_y = 30;
+        $this-&gt;_width = 20;
+        $this-&gt;_height = 20;
+        $this-&gt;_downLayer = $downLayer;
+        $this-&gt;_z = $downLayer-&gt;_z + 21;
+    }
+}
+
+$inland_x = isset($_REQUEST[&#39;_x&#39;]) ? $_REQUEST[&#39;_x&#39;] : 0;
+$inland_y = isset($_REQUEST[&#39;_y&#39;]) ? $_REQUEST[&#39;_y&#39;] : 0;
+</code></pre>
+
+<h2 id="toc_1">No.1</h2>
+
+<p>开始写代码，显示由背景、小岛和海鸥三个图片组合而成的背景图</p>
+
+<pre><code class="language-php">/*
+背景图片为: sea.jpg
+岛的图片为: island.jpg
+鸟的图片为: bird.jpg
+*/
+$pic = new pic();
+$pic-&gt;_url = &#39;sea.jpg&#39;;
+$background = new background();
+$background-&gt;loadPic($pic);
+$background-&gt;_width = &#39;400&#39;;
+$background-&gt;_height = &#39;300&#39;;
+$background-&gt;generateHtml();
+
+
+$pic1 = new pic();
+$pic1-&gt;_url = &#39;island.jpg&#39;;
+$island = new island();
+$island-&gt;loadPic($pic1);
+$island-&gt;_x = $inland_x;
+$island-&gt;_y = $inland_y;
+$island-&gt;on($background);
+$island-&gt;generateHtml();
+
+$pic2 = new pic();
+$pic2-&gt;_url = &#39;bird.jpg&#39;;
+$bird = new bird();
+$bird-&gt;loadPic($pic2);
+$bird-&gt;on($island);
+$bird-&gt;_x = $inland_x;
+$bird-&gt;_y = $inland_y;
+
+
+$seaPic = $bird-&gt;generateHtml();
+echo $seaPic;
+//end_code
+
+?&gt;
+
+&lt;form action=&quot;#&quot; method=&quot;post&quot; style=&quot;&quot;&gt;
+    &lt;input name=&quot;_x&quot; type=&quot;text&quot;&gt;
+    &lt;input name=&quot;_y&quot; type=&quot;text&quot;&gt;
+    &lt;input type=&quot;submit&quot;&gt;
+&lt;/form&gt;
+</code></pre>
+
+<h3 id="toc_2">三张素材图</h3>
+
+<p><img src="media/15582827924478/15582829284439.jpg" alt=""/></p>
+
+<p><img src="media/15582827924478/15582829374939.jpg" alt=""/></p>
+
+<p><img src="media/15582827924478/15582829435737.jpg" alt=""/></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/3/15</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='interview.html'>面试题</a></span>
+          				  
+          					    <span class="posted-in"><a href='php.html'>PHP</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15582826206789.html">
+                
+                  <h1>FFMPEG获取视频播放时长</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<pre><code class="language-php">function video_info($file,$ffmpeg) {
+    ob_start();
+    passthru(sprintf($ffmpeg.&#39; -i &quot;%s&quot; 2&gt;&amp;1&#39;, $file));
+    $info = ob_get_contents();
+    ob_end_clean();
+  // 通过使用输出缓冲，获取到ffmpeg所有输出的内容。
+   $ret = array();
+    // Duration: 01:24:12.73, start: 0.000000, bitrate: 456 kb/s
+    if (preg_match(&quot;/Duration: (.*?), start: (.*?), bitrate: (\d*) kb\/s/&quot;, $info, $match)) {
+        $ret[&#39;duration&#39;] = $match[1]; // 提取出播放时间
+        $da = explode(&#39;:&#39;, $match[1]); 
+        $ret[&#39;seconds&#39;] = $da[0] * 3600 + $da[1] * 60 + $da[2]; // 转换为秒
+        $ret[&#39;start&#39;] = $match[2]; // 开始时间
+        $ret[&#39;bitrate&#39;] = $match[3]; // bitrate 码率 单位 kb
+    }
+
+    // Stream #0.1: Video: rv40, yuv420p, 512x384, 355 kb/s, 12.05 fps, 12 tbr, 1k tbn, 12 tbc
+    if (preg_match(&quot;/Video: (.*?), (.*?), (.*?)[,\s]/&quot;, $info, $match)) {
+        $ret[&#39;vcodec&#39;] = $match[1]; // 编码格式
+        $ret[&#39;vformat&#39;] = $match[2]; // 视频格式 
+        $ret[&#39;resolution&#39;] = $match[3]; // 分辨率
+        $a = explode(&#39;x&#39;, $match[3]);
+        $ret[&#39;width&#39;] = $a[0];
+        $ret[&#39;height&#39;] = $a[1];
+    }
+
+    // Stream #0.0: Audio: cook, 44100 Hz, stereo, s16, 96 kb/s
+    if (preg_match(&quot;/Audio: (\w*), (\d*) Hz/&quot;, $info, $match)) {
+        $ret[&#39;acodec&#39;] = $match[1];       // 音频编码
+        $ret[&#39;asamplerate&#39;] = $match[2];  // 音频采样频率
+    }
+
+    if (isset($ret[&#39;seconds&#39;]) &amp;&amp; isset($ret[&#39;start&#39;])) {
+        $ret[&#39;play_time&#39;] = $ret[&#39;seconds&#39;] + $ret[&#39;start&#39;]; // 实际播放时间
+    }
+
+    $ret[&#39;size&#39;] = filesize($file); // 文件大小
+    return $ret;
+}
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/3/7</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='php.html'>PHP</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15582822912471.html">
+                
+                  <h1>PHP分段下载文件</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<pre><code class="language-php">function download($file)
+{
+    $fp = @fopen($file, &#39;rb&#39;);
+    $size   = filesize($file); // File size
+    $length = $size;           // Content length
+    $start  = 0;               // Start byte
+    $end    = $size - 1;       // End byte
+    header(&#39;Content-type: octet-stream&#39;);
+    header(&quot;Accept-Ranges: 0-$length&quot;);
+    if (isset($_SERVER[&#39;HTTP_RANGE&#39;])) {
+        $cStart = $start;
+        $cEnd   = $end;
+        list(, $range) = explode(&#39;=&#39;, $_SERVER[&#39;HTTP_RANGE&#39;], 2);
+        if (strpos($range, &#39;,&#39;) !== false) {
+            header(&#39;HTTP/1.1 416 Requested Range Not Satisfiable&#39;);
+            header(&quot;Content-Range: bytes $start-$end/$size&quot;);
+            exit;
+        }
+        if ($range == &#39;-&#39;) {
+            $cStart = $size - substr($range, 1);
+        }else{
+            $range  = explode(&#39;-&#39;, $range);
+            $cStart = $range[0];
+            $cEnd   = (isset($range[1]) &amp;&amp; is_numeric($range[1])) ? $range[1] : $size;
+        }
+        $cEnd = ($cEnd &gt; $end) ? $end : $cEnd;
+        if ($cStart &gt; $cEnd || $cStart &gt; $size - 1 || $cEnd &gt;= $size) {
+            header(&#39;HTTP/1.1 416 Requested Range Not Satisfiable&#39;);
+            header(&quot;Content-Range: bytes $start-$end/$size&quot;);
+            exit;
+        }
+        $start  = $cStart;
+        $end    = $cEnd;
+        $length = $end - $start + 1;
+        fseek($fp, $start);
+        header(&#39;HTTP/1.1 206 Partial Content&#39;);
+    }
+    header(&quot;Content-Range: bytes $start-$end/$size&quot;);
+    header(&quot;Content-Length: &quot; . $length);
+    $buffer = 1024 * 8;
+    while(!feof($fp) &amp;&amp; ($p = ftell($fp)) &lt;= $end) {
+        if ($p + $buffer &gt; $end) {
+            $buffer = $end - $p + 1;
+        }
+        set_time_limit(0);
+        echo fread($fp, $buffer);
+        flush();
+    }
+    fclose($fp);
+    exit();
+}
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/2/23</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='php.html'>PHP</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+              
+
+
+			<div class="row">
+			  <div class="large-6 columns">
+			  <p class="text-left" style="padding-top:25px;">
+			   
+			  </p>
+			  </div>
+			  <div class="large-6 columns">
+			<p class="text-right" style="padding-top:25px;">
+			 <a href="php_1.html">&raquo; Next Page</a> 
+			</p>
+			  </div>
+			</div>
+		</div>
+	</div><!-- large 8 -->
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>xiaolin's blog</h1>
+                <div class="site-des">core tech share blog</div>
+                <div class="social">
+                  <a target="_blank" class="juejin" href="https://juejin.im/user/5c409f86e51d4551c88027a2/posts" title="Juejin">juejin</a>
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/neatlife" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="macios.html"><strong>mac&ios</strong></a>
+        
+            <a href="lc.html"><strong>leetcode</strong></a>
+        
+            <a href="security.html"><strong>安全</strong></a>
+        
+            <a href="business.html"><strong>业务</strong></a>
+        
+            <a href="source-code.html"><strong>源码分析</strong></a>
+        
+            <a href="redis.html"><strong>Redis</strong></a>
+        
+            <a href="apache-nginx.html"><strong>Apache/Nginx</strong></a>
+        
+            <a href="spring-boot.html"><strong>Spring Boot</strong></a>
+        
+            <a href="pm.html"><strong>项目管理</strong></a>
+        
+            <a href="sql.html"><strong>SQL</strong></a>
+        
+            <a href="job-scheduler.html"><strong>任务调度</strong></a>
+        
+            <a href="design-pattern.html"><strong>设计模式</strong></a>
+        
+            <a href="mq.html"><strong>消息队列</strong></a>
+        
+            <a href="rpc.html"><strong>RPC</strong></a>
+        
+            <a href="laravel.html"><strong>LARAVEL</strong></a>
+        
+            <a href="tcp-ip.html"><strong>TCP/IP</strong></a>
+        
+            <a href="uml.html"><strong>UML</strong></a>
+        
+            <a href="service-mesh.html"><strong>SERVICE MESH</strong></a>
+        
+            <a href="ci-cd.html"><strong>CI/CD</strong></a>
+        
+            <a href="ops.html"><strong>OPS</strong></a>
+        
+            <a href="linux.html"><strong>LINUX</strong></a>
+        
+            <a href="system-programming.html"><strong>系统编程</strong></a>
+        
+            <a href="aws.html"><strong>AWS</strong></a>
+        
+            <a href="lua.html"><strong>LUA</strong></a>
+        
+            <a href="git.html"><strong>GIT</strong></a>
+        
+            <a href="js.html"><strong>js</strong></a>
+        
+            <a href="java.html"><strong>JAVA</strong></a>
+        
+            <a href="monitor.html"><strong>监控</strong></a>
+        
+            <a href="vim.html"><strong>VIM</strong></a>
+        
+            <a href="php.html"><strong>PHP</strong></a>
+        
+            <a href="openresty.html"><strong>OpenResty</strong></a>
+        
+            <a href="swoole.html"><strong>SWOOLE</strong></a>
+        
+            <a href="ons.html"><strong>消息队列</strong></a>
+        
+            <a href="gdb.html"><strong>GDB</strong></a>
+        
+            <a href="specification.html"><strong>规范</strong></a>
+        
+            <a href="3-minutes.html"><strong>三分钟系列</strong></a>
+        
+            <a href="1-pic.html"><strong>一图胜千言</strong></a>
+        
+            <a href="account-system.html"><strong>帐号系统</strong></a>
+        
+            <a href="interview.html"><strong>面试题</strong></a>
+        
+            <a href="yii.html"><strong>Yii/Yii2</strong></a>
+        
+            <a href="python.html"><strong>python</strong></a>
+        
+            <a href="go.html"><strong>GO</strong></a>
+        
+            <a href="ml.html"><strong>机器学习</strong></a>
+        
+            <a href="emacs.html"><strong>emacs</strong></a>
+        
+            <a href="bi.html"><strong>商业智能</strong></a>
+        
+            <a href="mac.html"><strong>mac</strong></a>
+        
+            <a href="editor.html"><strong>编辑器</strong></a>
+        
+            <a href="productive-soft.html"><strong>生产力工具</strong></a>
+        
+            <a href="driver-license.html"><strong>驾照</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="16081898834624.html">OSX使用代码代替storyboard构建项目，并添加NSSplitView组件</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16005640944829.html">linux系统编程之多进程和管道（pip）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15970226751276.html">三分钟上手java多线程控制技术</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15864793262262.html">14/24 设计模式之状态模式 State Pattern</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15880004262195.html">python高性能之路:使用C/C++编写扩展</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.
+<span id="busuanzi_container_site_uv">访问<span id="busuanzi_value_site_uv"></span>人</span>/
+        <span id="busuanzi_container_site_pv"><span id="busuanzi_value_site_pv"></span>次</span>
+    </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138141150-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138141150-1');
+</script>
+
+<canvas class="fireworks" 
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999999; pointer-events: none; width: 1158px; height: 916px;" 
+        width="2316" 
+        height="1832">
+</canvas>
+    <script src="asset/js/anime.min.js"></script>
+    <script src="asset/js/fireworks.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </body>
+</html>

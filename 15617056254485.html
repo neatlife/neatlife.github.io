@@ -1,0 +1,743 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  在spring boot三分钟上手无界流处理系统Spark Streaming，并实现流式点赞统计 - xiaolin's blog
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="xiaolin's blog" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:neatlifecoco.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">about</a></li>
+        
+        <li id=""><a target="_self" href="all.html">blog</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">archive</a></li>
+        
+        <li id=""><a target="_self" href="tools.html">tools</a></li>
+        
+        <li id=""><a target="_self" href="pro.html">pros</a></li>
+        
+        <li id=""><a target="_self" href="pub.html">press</a></li>
+        
+        <li id=""><a target="_self" href="paper.html">paper</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; xiaolin's blog</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">about</a></li>
+        
+        <li><a target="_self" href="all.html">blog</a></li>
+        
+        <li><a target="_self" href="archives.html">archive</a></li>
+        
+        <li><a target="_self" href="tools.html">tools</a></li>
+        
+        <li><a target="_self" href="pro.html">pros</a></li>
+        
+        <li><a target="_self" href="pub.html">press</a></li>
+        
+        <li><a target="_self" href="paper.html">paper</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="macios.html">mac&ios</a></li>
+        
+            <li><a href="lc.html">leetcode</a></li>
+        
+            <li><a href="security.html">安全</a></li>
+        
+            <li><a href="business.html">业务</a></li>
+        
+            <li><a href="source-code.html">源码分析</a></li>
+        
+            <li><a href="redis.html">Redis</a></li>
+        
+            <li><a href="apache-nginx.html">Apache/Nginx</a></li>
+        
+            <li><a href="spring-boot.html">Spring Boot</a></li>
+        
+            <li><a href="pm.html">项目管理</a></li>
+        
+            <li><a href="sql.html">SQL</a></li>
+        
+            <li><a href="job-scheduler.html">任务调度</a></li>
+        
+            <li><a href="design-pattern.html">设计模式</a></li>
+        
+            <li><a href="mq.html">消息队列</a></li>
+        
+            <li><a href="rpc.html">RPC</a></li>
+        
+            <li><a href="laravel.html">LARAVEL</a></li>
+        
+            <li><a href="tcp-ip.html">TCP/IP</a></li>
+        
+            <li><a href="uml.html">UML</a></li>
+        
+            <li><a href="service-mesh.html">SERVICE MESH</a></li>
+        
+            <li><a href="ci-cd.html">CI/CD</a></li>
+        
+            <li><a href="ops.html">OPS</a></li>
+        
+            <li><a href="linux.html">LINUX</a></li>
+        
+            <li><a href="system-programming.html">系统编程</a></li>
+        
+            <li><a href="aws.html">AWS</a></li>
+        
+            <li><a href="lua.html">LUA</a></li>
+        
+            <li><a href="git.html">GIT</a></li>
+        
+            <li><a href="js.html">js</a></li>
+        
+            <li><a href="java.html">JAVA</a></li>
+        
+            <li><a href="monitor.html">监控</a></li>
+        
+            <li><a href="vim.html">VIM</a></li>
+        
+            <li><a href="php.html">PHP</a></li>
+        
+            <li><a href="openresty.html">OpenResty</a></li>
+        
+            <li><a href="swoole.html">SWOOLE</a></li>
+        
+            <li><a href="ons.html">消息队列</a></li>
+        
+            <li><a href="gdb.html">GDB</a></li>
+        
+            <li><a href="specification.html">规范</a></li>
+        
+            <li><a href="3-minutes.html">三分钟系列</a></li>
+        
+            <li><a href="1-pic.html">一图胜千言</a></li>
+        
+            <li><a href="account-system.html">帐号系统</a></li>
+        
+            <li><a href="interview.html">面试题</a></li>
+        
+            <li><a href="yii.html">Yii/Yii2</a></li>
+        
+            <li><a href="python.html">python</a></li>
+        
+            <li><a href="go.html">GO</a></li>
+        
+            <li><a href="ml.html">机器学习</a></li>
+        
+            <li><a href="emacs.html">emacs</a></li>
+        
+            <li><a href="bi.html">商业智能</a></li>
+        
+            <li><a href="mac.html">mac</a></li>
+        
+            <li><a href="editor.html">编辑器</a></li>
+        
+            <li><a href="productive-soft.html">生产力工具</a></li>
+        
+            <li><a href="driver-license.html">驾照</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>在spring boot三分钟上手无界流处理系统Spark Streaming，并实现流式点赞统计</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2019/7/8</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='3-minutes.html'>三分钟系列</a></span>
+          
+              <span class="posted-in"><a href='spring-boot.html'>Spring Boot</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>在页面上每次点赞，把这个被点赞的文章id发送到kafka，然后通过spark streaming读取kafka里的数据，统计出点赞的数量，更新回mysql中<br/>
+<img src="media/15617056254485/15625868039886.jpg" alt=""/></p>
+
+<p>完整案例代码已上传github：<a href="https://github.com/neatlife/mySparkLikes">https://github.com/neatlife/mySparkLikes</a></p>
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_0">获取案例项目</h2>
+
+<p>可以在<a href="https://start.spring.io%E4%B8%8A%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE">https://start.spring.io上创建项目</a><br/>
+<img src="media/15617056254485/15625859743952.jpg" alt=""/></p>
+
+<p>这里加上web-starter, kafka-starter即可，spark和spark kafka streaming相关以来需要手动添加，并没有对应的starter可用</p>
+
+<p>然后在pom.xml中引入kafka的客户端和spark streaming的客户端</p>
+
+<pre><code class="language-markup">&lt;!--spark相关依赖--&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.kafka&lt;/groupId&gt;
+    &lt;artifactId&gt;kafka_2.10&lt;/artifactId&gt;
+    &lt;version&gt;0.8.2.1&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;!-- https://mvnrepository.com/artifact/org.apache.spark/spark-streaming-kafka --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.spark&lt;/groupId&gt;
+    &lt;artifactId&gt;spark-core_2.10&lt;/artifactId&gt;
+    &lt;version&gt;1.6.2&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.spark&lt;/groupId&gt;
+    &lt;artifactId&gt;spark-streaming_2.10&lt;/artifactId&gt;
+    &lt;version&gt;1.6.2&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.spark&lt;/groupId&gt;
+    &lt;artifactId&gt;spark-streaming-kafka_2.10&lt;/artifactId&gt;
+    &lt;version&gt;1.6.2&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<h2 id="toc_1">把点赞的postId发到kafka</h2>
+
+<p>上手kafka可以参考: <a href="https://juejin.im/post/5d159d4ff265da1bab29c1aa">https://juejin.im/post/5d159d4ff265da1bab29c1aa</a></p>
+
+<p>创建kafka的topic，比如这里使用mylikes这个topic</p>
+
+<pre><code class="language-shell">kafka-topics --create --topic mylikes --replication-factor 1 --partitions 1 --zookeeper zoo1:2181
+</code></pre>
+
+<p>操作效果如下</p>
+
+<p><img src="media/15617056254485/15625689712773.jpg" alt=""/></p>
+
+<p>新增一个点赞接口，核心代码如下</p>
+
+<pre><code class="language-java">@RequestMapping(&quot;/send-like&quot;)
+public String sendLike(@RequestParam(value = &quot;post_id&quot;, required = true) Integer postId) {
+    producer.send(postId);
+    return &quot;test1&quot;;
+}
+</code></pre>
+
+<p>kafka发送核心代码如下</p>
+
+<pre><code class="language-java">public void send(Integer postId) {
+        ProducerRecord producerRecord = new ProducerRecord(topic, postId.toString(), &quot;1&quot;);
+        this.kafkaTemplate.send(producerRecord);
+        System.out.println(&quot;Sent sample postId [&quot; + postId + &quot;] to &quot; + topic);
+}
+</code></pre>
+
+<p>记下这里使用的kafka的topic：mylikes，在spark里也需要使用这个topic<br/>
+这里注意发送到kafka的key和value都是字符串，id和点赞数是int，所以在spark进行处理时需要做这个类型转换</p>
+
+<h2 id="toc_2">在spark中从kafka中读取数据计算点赞量</h2>
+
+<h3 id="toc_3">创建从kafka中读取数据的spark客户端</h3>
+
+<pre><code class="language-java">SparkConf conf = new SparkConf()
+        .setAppName(&quot;mySparkLikes&quot;)
+        .setMaster(&quot;local[*]&quot;)
+        .set(&quot;spark.default.parallelism&quot;, &quot;15&quot;)
+        .set(&quot;spark.streaming.concurrentJobs&quot;, &quot;5&quot;)
+        .set(&quot;spark.executor.memory&quot;, &quot;1G&quot;)
+        .set(&quot;spark.cores.max&quot;, &quot;3&quot;)
+        .set(&quot;spark.local.dir&quot;, &quot;/tmp/mySparkLikes&quot;)
+        .set(&quot;spark.streaming.kafka.maxRatePerPartition&quot;, &quot;5&quot;);
+
+Set&lt;String&gt; topics = Collections.singleton(topic);
+
+Map&lt;String, String&gt; kafkaParams = new HashMap&lt;&gt;();
+kafkaParams.put(&quot;metadata.broker.list&quot;, &quot;127.0.0.1:9092&quot;);
+
+JavaStreamingContext jsc = new JavaStreamingContext(
+        new JavaSparkContext(conf),
+        Durations.seconds(3));
+jsc.checkpoint(&quot;checkpoint&quot;);
+</code></pre>
+
+<h3 id="toc_4">创建kafka数据流</h3>
+
+<pre><code class="language-java">// 得到数据流
+final JavaPairInputDStream&lt;String, String&gt; stream = KafkaUtils.createDirectStream(
+        jsc,
+        String.class,
+        String.class,
+        StringDecoder.class,
+        StringDecoder.class,
+        kafkaParams,
+        topics
+);
+System.out.println(&quot;stream started!&quot;);
+stream.print();
+</code></pre>
+
+<p><code>stream.print()</code> 触发读取数据</p>
+
+<h3 id="toc_5">将kafka里的字符串类型的postId和点赞次数转成整数类型</h3>
+
+<pre><code class="language-java">JavaPairDStream&lt;Integer, Integer&gt; countDStream = stream
+        .transformToPair(new Function&lt;JavaPairRDD&lt;String, String&gt;, JavaPairRDD&lt;Integer, Integer&gt;&gt;() {
+
+            @Override
+            public JavaPairRDD&lt;Integer, Integer&gt; call(JavaPairRDD&lt;String, String&gt; stringStringJavaPairRDD) throws Exception {
+                return stringStringJavaPairRDD.mapToPair(new PairFunction&lt;Tuple2&lt;String, String&gt;, Integer, Integer&gt;() {
+
+                    @Override
+                    public Tuple2&lt;Integer, Integer&gt; call(Tuple2&lt;String, String&gt; stringStringTuple2) throws Exception {
+                        return new Tuple2&lt;&gt;(new Integer(stringStringTuple2._1), new Integer(stringStringTuple2._2));
+                    }
+                });
+            }
+        })
+        .reduceByKey(Integer::sum);
+</code></pre>
+
+<h3 id="toc_6">生成点赞次数的sql语句</h3>
+
+<pre><code class="language-java">countDStream.foreachRDD(v -&gt; {
+    v.foreach(record -&gt; {
+        String sql = String.format(&quot;UPDATE `post` SET likes = likes + %s WHERE id=%d&quot;, record._2, record._1);
+        System.out.println(sql);
+    });
+    log.info(&quot;一批次数据流处理完： {}&quot;, v);
+});
+</code></pre>
+
+<h3 id="toc_7">启动流计算</h3>
+
+<pre><code class="language-java">jsc.start();
+</code></pre>
+
+<p>添加一个接口来调用上面的代码</p>
+
+<pre><code class="language-java">@RequestMapping(&quot;/launch&quot;)
+public String launch() {
+    sparkLikeService.launch();
+    return &quot;test2&quot;;
+}
+</code></pre>
+
+<p>先访问/launch来启动流计算引擎，然后访问send-like接口生成点赞数据，查看控制台生成的sql语句，操作效果如下</p>
+
+<p><img src="media/15617056254485/15625865690946.jpg" alt=""/></p>
+
+<p>可以看到已经拿到了点赞数的sql，可以使用jpa把这个点赞数据存放到数据库中了</p>
+
+<h2 id="toc_8">本地调试</h2>
+
+<p>这个spark的job可以本地调试，但是需要满足以下几个条件</p>
+
+<ol>
+<li>spark需要在本地启动</li>
+<li>job连接master的地址需要是：local[*]</li>
+</ol>
+
+<h2 id="toc_9">参考资料</h2>
+
+<ol>
+<li><a href="https://www.iteblog.com/archives/1381.html">https://www.iteblog.com/archives/1381.html</a></li>
+<li><a href="https://github.com/eBay/Spark/blob/master/external/kafka/src/main/scala/org/apache/spark/streaming/kafka/KafkaCluster.scala">https://github.com/eBay/Spark/blob/master/external/kafka/src/main/scala/org/apache/spark/streaming/kafka/KafkaCluster.scala</a></li>
+<li><a href="https://blog.csdn.net/guotong1988/article/details/50555671">https://blog.csdn.net/guotong1988/article/details/50555671</a></li>
+<li><a href="https://www.4spaces.org/spark-map-flatmap/">https://www.4spaces.org/spark-map-flatmap/</a></li>
+<li><a href="https://blog.csdn.net/wuxintdrh/article/details/71123359">https://blog.csdn.net/wuxintdrh/article/details/71123359</a></li>
+</ol>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15627501481923.html" 
+          title="Previous Post: 使用grpc实现php、java、go三方互调">&laquo; 使用grpc实现php、java、go三方互调</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15618891575018.html" 
+          title="Next Post: PHP微服务在k8s上落地实战">PHP微服务在k8s上落地实战 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          <script src="https://utteranc.es/client.js"
+        repo="neatlife/neatlife.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>xiaolin's blog</h1>
+                <div class="site-des">core tech share blog</div>
+                <div class="social">
+                  <a target="_blank" class="juejin" href="https://juejin.im/user/5c409f86e51d4551c88027a2/posts" title="Juejin">juejin</a>
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/neatlife" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="macios.html"><strong>mac&ios</strong></a>
+        
+            <a href="lc.html"><strong>leetcode</strong></a>
+        
+            <a href="security.html"><strong>安全</strong></a>
+        
+            <a href="business.html"><strong>业务</strong></a>
+        
+            <a href="source-code.html"><strong>源码分析</strong></a>
+        
+            <a href="redis.html"><strong>Redis</strong></a>
+        
+            <a href="apache-nginx.html"><strong>Apache/Nginx</strong></a>
+        
+            <a href="spring-boot.html"><strong>Spring Boot</strong></a>
+        
+            <a href="pm.html"><strong>项目管理</strong></a>
+        
+            <a href="sql.html"><strong>SQL</strong></a>
+        
+            <a href="job-scheduler.html"><strong>任务调度</strong></a>
+        
+            <a href="design-pattern.html"><strong>设计模式</strong></a>
+        
+            <a href="mq.html"><strong>消息队列</strong></a>
+        
+            <a href="rpc.html"><strong>RPC</strong></a>
+        
+            <a href="laravel.html"><strong>LARAVEL</strong></a>
+        
+            <a href="tcp-ip.html"><strong>TCP/IP</strong></a>
+        
+            <a href="uml.html"><strong>UML</strong></a>
+        
+            <a href="service-mesh.html"><strong>SERVICE MESH</strong></a>
+        
+            <a href="ci-cd.html"><strong>CI/CD</strong></a>
+        
+            <a href="ops.html"><strong>OPS</strong></a>
+        
+            <a href="linux.html"><strong>LINUX</strong></a>
+        
+            <a href="system-programming.html"><strong>系统编程</strong></a>
+        
+            <a href="aws.html"><strong>AWS</strong></a>
+        
+            <a href="lua.html"><strong>LUA</strong></a>
+        
+            <a href="git.html"><strong>GIT</strong></a>
+        
+            <a href="js.html"><strong>js</strong></a>
+        
+            <a href="java.html"><strong>JAVA</strong></a>
+        
+            <a href="monitor.html"><strong>监控</strong></a>
+        
+            <a href="vim.html"><strong>VIM</strong></a>
+        
+            <a href="php.html"><strong>PHP</strong></a>
+        
+            <a href="openresty.html"><strong>OpenResty</strong></a>
+        
+            <a href="swoole.html"><strong>SWOOLE</strong></a>
+        
+            <a href="ons.html"><strong>消息队列</strong></a>
+        
+            <a href="gdb.html"><strong>GDB</strong></a>
+        
+            <a href="specification.html"><strong>规范</strong></a>
+        
+            <a href="3-minutes.html"><strong>三分钟系列</strong></a>
+        
+            <a href="1-pic.html"><strong>一图胜千言</strong></a>
+        
+            <a href="account-system.html"><strong>帐号系统</strong></a>
+        
+            <a href="interview.html"><strong>面试题</strong></a>
+        
+            <a href="yii.html"><strong>Yii/Yii2</strong></a>
+        
+            <a href="python.html"><strong>python</strong></a>
+        
+            <a href="go.html"><strong>GO</strong></a>
+        
+            <a href="ml.html"><strong>机器学习</strong></a>
+        
+            <a href="emacs.html"><strong>emacs</strong></a>
+        
+            <a href="bi.html"><strong>商业智能</strong></a>
+        
+            <a href="mac.html"><strong>mac</strong></a>
+        
+            <a href="editor.html"><strong>编辑器</strong></a>
+        
+            <a href="productive-soft.html"><strong>生产力工具</strong></a>
+        
+            <a href="driver-license.html"><strong>驾照</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="16081898834624.html">OSX使用代码代替storyboard构建项目，并添加NSSplitView组件</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16005640944829.html">linux系统编程之多进程和管道（pip）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15970226751276.html">三分钟上手java多线程控制技术</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15864793262262.html">14/24 设计模式之状态模式 State Pattern</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15880004262195.html">python高性能之路:使用C/C++编写扩展</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.
+<span id="busuanzi_container_site_uv">访问<span id="busuanzi_value_site_uv"></span>人</span>/
+        <span id="busuanzi_container_site_pv"><span id="busuanzi_value_site_pv"></span>次</span>
+    </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138141150-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138141150-1');
+</script>
+
+<canvas class="fireworks" 
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999999; pointer-events: none; width: 1158px; height: 916px;" 
+        width="2316" 
+        height="1832">
+</canvas>
+    <script src="asset/js/anime.min.js"></script>
+    <script src="asset/js/fireworks.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </body>
+</html>

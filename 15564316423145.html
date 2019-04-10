@@ -1,0 +1,888 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  在spring boot中集成微服务网关系统Spring Cloud Zuul - xiaolin's blog
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="xiaolin's blog" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:neatlifecoco.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">about</a></li>
+        
+        <li id=""><a target="_self" href="all.html">blog</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">archive</a></li>
+        
+        <li id=""><a target="_self" href="tools.html">tools</a></li>
+        
+        <li id=""><a target="_self" href="pro.html">pros</a></li>
+        
+        <li id=""><a target="_self" href="pub.html">press</a></li>
+        
+        <li id=""><a target="_self" href="paper.html">paper</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; xiaolin's blog</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">about</a></li>
+        
+        <li><a target="_self" href="all.html">blog</a></li>
+        
+        <li><a target="_self" href="archives.html">archive</a></li>
+        
+        <li><a target="_self" href="tools.html">tools</a></li>
+        
+        <li><a target="_self" href="pro.html">pros</a></li>
+        
+        <li><a target="_self" href="pub.html">press</a></li>
+        
+        <li><a target="_self" href="paper.html">paper</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="macios.html">mac&ios</a></li>
+        
+            <li><a href="lc.html">leetcode</a></li>
+        
+            <li><a href="security.html">安全</a></li>
+        
+            <li><a href="business.html">业务</a></li>
+        
+            <li><a href="source-code.html">源码分析</a></li>
+        
+            <li><a href="redis.html">Redis</a></li>
+        
+            <li><a href="apache-nginx.html">Apache/Nginx</a></li>
+        
+            <li><a href="spring-boot.html">Spring Boot</a></li>
+        
+            <li><a href="pm.html">项目管理</a></li>
+        
+            <li><a href="sql.html">SQL</a></li>
+        
+            <li><a href="job-scheduler.html">任务调度</a></li>
+        
+            <li><a href="design-pattern.html">设计模式</a></li>
+        
+            <li><a href="mq.html">消息队列</a></li>
+        
+            <li><a href="rpc.html">RPC</a></li>
+        
+            <li><a href="laravel.html">LARAVEL</a></li>
+        
+            <li><a href="tcp-ip.html">TCP/IP</a></li>
+        
+            <li><a href="uml.html">UML</a></li>
+        
+            <li><a href="service-mesh.html">SERVICE MESH</a></li>
+        
+            <li><a href="ci-cd.html">CI/CD</a></li>
+        
+            <li><a href="ops.html">OPS</a></li>
+        
+            <li><a href="linux.html">LINUX</a></li>
+        
+            <li><a href="system-programming.html">系统编程</a></li>
+        
+            <li><a href="aws.html">AWS</a></li>
+        
+            <li><a href="lua.html">LUA</a></li>
+        
+            <li><a href="git.html">GIT</a></li>
+        
+            <li><a href="js.html">js</a></li>
+        
+            <li><a href="java.html">JAVA</a></li>
+        
+            <li><a href="monitor.html">监控</a></li>
+        
+            <li><a href="vim.html">VIM</a></li>
+        
+            <li><a href="php.html">PHP</a></li>
+        
+            <li><a href="openresty.html">OpenResty</a></li>
+        
+            <li><a href="swoole.html">SWOOLE</a></li>
+        
+            <li><a href="ons.html">消息队列</a></li>
+        
+            <li><a href="gdb.html">GDB</a></li>
+        
+            <li><a href="specification.html">规范</a></li>
+        
+            <li><a href="3-minutes.html">三分钟系列</a></li>
+        
+            <li><a href="1-pic.html">一图胜千言</a></li>
+        
+            <li><a href="account-system.html">帐号系统</a></li>
+        
+            <li><a href="interview.html">面试题</a></li>
+        
+            <li><a href="yii.html">Yii/Yii2</a></li>
+        
+            <li><a href="python.html">python</a></li>
+        
+            <li><a href="go.html">GO</a></li>
+        
+            <li><a href="ml.html">机器学习</a></li>
+        
+            <li><a href="emacs.html">emacs</a></li>
+        
+            <li><a href="bi.html">商业智能</a></li>
+        
+            <li><a href="mac.html">mac</a></li>
+        
+            <li><a href="editor.html">编辑器</a></li>
+        
+            <li><a href="productive-soft.html">生产力工具</a></li>
+        
+            <li><a href="driver-license.html">驾照</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>在spring boot中集成微服务网关系统Spring Cloud Zuul</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2019/5/8</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='spring-boot.html'>Spring Boot</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>spring cloud zuul由大名鼎鼎的netflix公司开发，已经超越spring cloud gateway微服务网关系统，成为了Spring Cloud全家桶里排名第一的微服务网关系统了</p>
+
+<p>网关作为所有应用系统的最前端，可以提供以下的价值</p>
+
+<ol>
+<li>为后端微服务系统提供统一的入口</li>
+<li>为后端微服务系统提供统一的授权机制</li>
+<li>为后端微服务系统提供统一的认证机制</li>
+<li>为后端微服务系统api提供统一签名校验机制</li>
+<li>为流量入口添加日志记录</li>
+<li>qps统计</li>
+<li>限流</li>
+</ol>
+
+<p>完整代码已上传GITHUB，参考：<a href="https://github.com/neatlife/myzuul">https://github.com/neatlife/myzuul</a></p>
+
+<h3 id="toc_0">创建网关项目</h3>
+
+<p>可以在<a href="https://start.spring.io/%E5%88%9B%E5%BB%BA%E6%96%B0%E7%9A%84spring">https://start.spring.io/创建新的spring</a> boot项目作为网关的骨架，比如<br/>
+<img src="media/15564316423145/15572404530841.jpg" alt=""/></p>
+
+<p>注意需要把Zuul网关组件添加进来，也可以手动添加，pom依赖如下： </p>
+
+<pre><code class="language-markup">&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-cloud-starter-netflix-zuul&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<span id="more"></span><!-- more -->
+
+<h3 id="toc_1">代理后端服务</h3>
+
+<p>编辑Spring Boot main方法所在的主类，添加EnableZuulProxy注解，核心代码如下</p>
+
+<pre><code class="language-java">@SpringBootApplication
+@EnableZuulProxy
+public class MyzuulApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(MyzuulApplication.class, args);
+    }
+
+}
+</code></pre>
+
+<p>然后在application.properties配置文件中配置代理的后端服务，比如代理这个服务 <a href="https://jsonplaceholder.typicode.com/todos/">https://jsonplaceholder.typicode.com/todos/</a><br/>
+<img src="media/15564316423145/15572787537575.jpg" alt=""/><br/>
+这个服务可以直接访问效果如下：<a href="https://jsonplaceholder.typicode.com/todos/3">https://jsonplaceholder.typicode.com/todos/3</a><br/>
+<img src="media/15564316423145/15572787900378.jpg" alt=""/><br/>
+使用zuul代理访问效果如下<br/>
+<img src="media/15564316423145/15572788350051.jpg" alt=""/><br/>
+可以看到数据是完全一样的，网关只是起到了一个代理的作用</p>
+
+<p>可以结合apollo配置中心实现自动刷新后端路由列表，参考: <a href="https://github.com/ctripcorp/apollo-use-cases/blob/master/spring-cloud-zuul/src/main/java/com/ctrip/framework/apollo/use/cases/spring/cloud/zuul/ZuulPropertiesRefresher.java">ZuulPropertiesRefresher.java</a></p>
+
+<p>核心代码如下：</p>
+
+<pre><code class="language-java">   @ApolloConfigChangeListener(interestedKeyPrefixes = &quot;zuul.&quot;)
+  public void onChange(ConfigChangeEvent changeEvent) {
+    refreshZuulProperties(changeEvent);
+  }
+
+  private void refreshZuulProperties(ConfigChangeEvent changeEvent) {
+    logger.info(&quot;Refreshing zuul properties!&quot;);
+
+    /**
+     * rebind configuration beans, e.g. ZuulProperties
+     * @see org.springframework.cloud.context.properties.ConfigurationPropertiesRebinder#onApplicationEvent
+     */
+    this.applicationContext.publishEvent(new EnvironmentChangeEvent(changeEvent.changedKeys()));
+
+    /**
+     * refresh routes
+     * @see org.springframework.cloud.netflix.zuul.ZuulServerAutoConfiguration.ZuulRefreshListener#onApplicationEvent
+     */
+    this.applicationContext.publishEvent(new RoutesRefreshedEvent(routeLocator));
+
+    logger.info(&quot;Zuul properties refreshed!&quot;);
+  }
+</code></pre>
+
+<h3 id="toc_2">过滤器系统</h3>
+
+<table>
+<thead>
+<tr>
+<th>过滤器类型</th>
+<th>过滤器执行时机</th>
+<th>常见用法</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>PRE</td>
+<td>在请求被路由之前调用</td>
+<td>比如记录请求参数，认证</td>
+</tr>
+<tr>
+<td>ROUTING</td>
+<td>将请求路由到后端</td>
+<td>比如请求dubbo搭建的后端服务</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>在请求被路由之后调用</td>
+<td>比如记录响应数据</td>
+</tr>
+<tr>
+<td>ERROR</td>
+<td>发生错误时执行该过滤器</td>
+<td>比如给前端返回统一的报错json格式</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="toc_3">web 系统</h3>
+
+<p>这个网关系统本身也是一个完整spring boot项目<br/>
+可以编写控制器api，调用hibernate操作数据库等<br/>
+比如在网关里编写登陆功能实现统一的授权功能</p>
+
+<h3 id="toc_4">授权与认证</h3>
+
+<p>授权一般在网关里的控制器里实现授权的逻辑，授权一般可以指代登陆操作<br/>
+认证一般在网关里的前置过滤器里实现，一般是检查是否登陆来决定是否允许访问网关后面的服务</p>
+
+<h4 id="toc_5">网关登陆接口编写思路</h4>
+
+<p>流程代码如下</p>
+
+<pre><code class="language-java">@PostMapping(&quot;/login&quot;)
+public String login(@RequestParam(name = &quot;username&quot;) String username,
+                    @RequestParam(name = &quot;password&quot;) String password
+) {
+
+    String token;
+
+    // 到数据中检查用户名和密码是否合法
+    if (&quot;admin&quot;.equals(username) &amp;&amp; &quot;admin&quot;.equals(password)) {
+        // 生成token，保存到redis中
+        token = &quot;21232f297a57a5a743894a0e4a801fc3&quot;;
+    } else {
+        throw new RuntimeException(&quot;用户名或密码错误&quot;);
+    }
+
+    // 返回token给前端，用来认证使用
+    return token;
+}
+
+</code></pre>
+
+<h4 id="toc_6">认证流程</h4>
+
+<p>使用pre类型的过滤器<br/>
+流程代码如下</p>
+
+<pre><code class="language-java">/**
+ * 认证
+ */
+@Slf4j
+public class CertificationFilter extends ZuulFilter {
+
+    @Override
+    public Object run() {
+        HttpServletRequest request = RequestContext.getCurrentContext().getRequest();
+        // 到redis中检查token是否存在
+        if  (&quot;21232f297a57a5a743894a0e4a801fc3&quot;.equals(request.getParameter(&quot;token&quot;))) {
+            return null;
+        }
+        throw new ZuulRuntimeException(new ZuulException(&quot;未授权用户禁止访问&quot;, 403, &quot;token校验失败&quot;));
+    }
+
+    @Override
+    public boolean shouldFilter() {
+        return true;
+    }
+
+    @Override
+    public int filterOrder() {
+        return 0;
+    }
+
+    @Override
+    public String filterType() {
+        return FilterConstants.PRE_TYPE;
+    }
+}
+</code></pre>
+
+<p>就是普通的登陆接口，不过是把这个逻辑放到了网关里面</p>
+
+<h3 id="toc_7">将请求的参数记录到日志</h3>
+
+<p>这样做的目的是在异常时可以通过日志找到请求参数<br/>
+编写一个过滤器，获取请求参数并记录到日志中，核心代码如下</p>
+
+<pre><code class="language-java">@Override
+public Object run() {
+    HttpServletRequest request = RequestContext.getCurrentContext().getRequest();
+    Map&lt;String, Object&gt; parameters = getParametersFromRequest(request);
+    log.info(&quot;网关有新的访问, url: {}, method: {}, parameters: {}&quot;, request.getRequestURL(), request.getMethod(), parameters);
+    return null;
+}
+
+private Map&lt;String, Object&gt; getParametersFromRequest(HttpServletRequest request) {
+    Enumeration&lt;?&gt; parameterNames = request.getParameterNames();
+    Map&lt;String, Object&gt; parameters = new HashMap&lt;&gt;(16);
+    while (parameterNames.hasMoreElements()) {
+        String pName = (String) parameterNames.nextElement();
+        Object pValue = request.getParameter(pName);
+        parameters.put(pName, pValue);
+    }
+    return parameters;
+}
+</code></pre>
+
+<p>完整代码参考：</p>
+
+<h3 id="toc_8">统一错误返回格式</h3>
+
+<p>使用error过滤器可以实现<br/>
+核心代码如下</p>
+
+<pre><code class="language-java">@Slf4j
+public class CustomErrorFilter extends ZuulFilter {
+
+    @Override
+    public Object run() {
+        RequestContext ctx = RequestContext.getCurrentContext();
+        // Remove error code to prevent further error handling in follow up filters
+        ctx.remove(&quot;error.status_code&quot;);
+        // block the SendErrorFilter from running
+        ctx.set(&quot;sendErrorFilter.ran&quot;);
+
+        ctx.setSendZuulResponse(false);
+        ctx.getResponse().setContentType(&quot;application/json&quot;);
+        ctx.getResponse().setCharacterEncoding(&quot;utf-8&quot;);
+        ctx.getResponse().setHeader(&quot;Access-Control-Allow-Origin&quot;, &quot;*&quot;);
+        ctx.getResponse().setHeader(&quot;Access-Control-Allow-Methods&quot;, &quot;*&quot;);
+        ctx.getResponse().setHeader(&quot;Access-Control-Allow-Age&quot;, &quot;86400&quot;);
+        ctx.getResponse().setHeader(&quot;Access-Control-Allow-Headers&quot;, &quot;*&quot;);
+        ctx.setResponseStatusCode(200);
+        StringWriter sw = new StringWriter();
+        ctx.getThrowable().printStackTrace(new PrintWriter(sw, true));
+        try {
+            ZuulException zuulException = (ZuulException) ctx.getThrowable().getCause().getCause();
+
+            ctx.getResponse().getWriter().write(
+            &quot;{\&quot;message\&quot;: \&quot;&quot; +
+                    zuulException.getMessage() +
+                    &quot;\&quot;, \&quot;code\&quot; :&quot; +
+                    zuulException.nStatusCode
+                    + &quot;}&quot;
+            );
+        } catch (Exception e) {
+            log.error(&quot;写入异常到客户端异常, estring: {}&quot;, e.toString());
+        }
+        return null;
+    }
+
+    @Override
+    public boolean shouldFilter() {
+        return true;
+    }
+
+    @Override
+    public int filterOrder() {
+        return -1;
+    }
+
+    @Override
+    public String filterType() {
+        return FilterConstants.ERROR_TYPE;
+    }
+
+}
+</code></pre>
+
+<p>注意需要加上以下设置</p>
+
+<pre><code class="language-text">// 阻止别的错误处理过滤器再次对错误进行处理
+ctx.remove(&quot;error.status_code&quot;);
+// 阻止别的发送错误的过滤器对错误响应结果再次进行处理
+ctx.set(&quot;sendErrorFilter.ran&quot;);
+</code></pre>
+
+<p>在浏览器中查看效果<br/>
+<img src="media/15564316423145/15572782198932.jpg" alt=""/></p>
+
+<h3 id="toc_9">zuul设置与调优</h3>
+
+<p>常用的调优参数如下:</p>
+
+<p>连接池最大连接，默认是200<br/>
+zuul.host.maxTotalConnections=1000</p>
+
+<p>每个route可用的最大连接数，默认值是20<br/>
+zuul.host.maxPerRouteConnections=1000</p>
+
+<p>Hystrix最大的并发请求 默认值是100<br/>
+zuul.semaphore.maxSemaphores=1000</p>
+
+<h3 id="toc_10">hystrix熔断设置与调优</h3>
+
+<p>网关属于整个系统最前端的应用，同时又属于基础服务，和redis, mysql等基础服务一样，一般是不允许宕机的，可用性应该得到保证，保证可用性常用的技术就是使用降级熔断技术hystrix了</p>
+
+<p>Hystrix 超时时间配置<br/>
+配置默认的hystrix超时时间</p>
+
+<pre><code class="language-properties">hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds=10000
+</code></pre>
+
+<p>配置特定方法的超时时间</p>
+
+<pre><code class="language-properties">hystrix.command.&lt;hystrixcommandkey&gt;.execution.isolation.thread.timeoutInMilliseconds=10000
+</code></pre>
+
+<p><hystrixcommandkey>的format为FeignClassName#methodSignature,下面是示例配置</p>
+
+<pre><code class="language-properties">hystrix.command.PressureService#getBalance(int).execution.isolation.thread.timeoutInMilliseconds=10000
+</code></pre>
+
+<h3 id="toc_11">一些注意的点</h3>
+
+<p>可以在前置过滤器中校验接口的签名，参考：<a href="https://my.oschina.net/KelinM/blog/1925209">简单API接口签名验证</a></p>
+
+<p>网关里面登陆的用户需要和其它服务共享用户的登陆信息，可以把用户的信息存放到redis中进行共享</p>
+
+<p>如果在开发过程中遇到问题，可加作者微信探讨<br/>
+<img src="https://i.imgur.com/f5M7nt1.jpg" alt="wx"/></p>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15570122875830.html" 
+          title="Previous Post: 仿金蝶，物料库存系统设计与实现思路">&laquo; 仿金蝶，物料库存系统设计与实现思路</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15571960785272.html" 
+          title="Next Post: 三分钟把spring boot打成war包部署到tomcat中">三分钟把spring boot打成war包部署到tomcat中 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          <script src="https://utteranc.es/client.js"
+        repo="neatlife/neatlife.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>xiaolin's blog</h1>
+                <div class="site-des">core tech share blog</div>
+                <div class="social">
+                  <a target="_blank" class="juejin" href="https://juejin.im/user/5c409f86e51d4551c88027a2/posts" title="Juejin">juejin</a>
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/neatlife" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="macios.html"><strong>mac&ios</strong></a>
+        
+            <a href="lc.html"><strong>leetcode</strong></a>
+        
+            <a href="security.html"><strong>安全</strong></a>
+        
+            <a href="business.html"><strong>业务</strong></a>
+        
+            <a href="source-code.html"><strong>源码分析</strong></a>
+        
+            <a href="redis.html"><strong>Redis</strong></a>
+        
+            <a href="apache-nginx.html"><strong>Apache/Nginx</strong></a>
+        
+            <a href="spring-boot.html"><strong>Spring Boot</strong></a>
+        
+            <a href="pm.html"><strong>项目管理</strong></a>
+        
+            <a href="sql.html"><strong>SQL</strong></a>
+        
+            <a href="job-scheduler.html"><strong>任务调度</strong></a>
+        
+            <a href="design-pattern.html"><strong>设计模式</strong></a>
+        
+            <a href="mq.html"><strong>消息队列</strong></a>
+        
+            <a href="rpc.html"><strong>RPC</strong></a>
+        
+            <a href="laravel.html"><strong>LARAVEL</strong></a>
+        
+            <a href="tcp-ip.html"><strong>TCP/IP</strong></a>
+        
+            <a href="uml.html"><strong>UML</strong></a>
+        
+            <a href="service-mesh.html"><strong>SERVICE MESH</strong></a>
+        
+            <a href="ci-cd.html"><strong>CI/CD</strong></a>
+        
+            <a href="ops.html"><strong>OPS</strong></a>
+        
+            <a href="linux.html"><strong>LINUX</strong></a>
+        
+            <a href="system-programming.html"><strong>系统编程</strong></a>
+        
+            <a href="aws.html"><strong>AWS</strong></a>
+        
+            <a href="lua.html"><strong>LUA</strong></a>
+        
+            <a href="git.html"><strong>GIT</strong></a>
+        
+            <a href="js.html"><strong>js</strong></a>
+        
+            <a href="java.html"><strong>JAVA</strong></a>
+        
+            <a href="monitor.html"><strong>监控</strong></a>
+        
+            <a href="vim.html"><strong>VIM</strong></a>
+        
+            <a href="php.html"><strong>PHP</strong></a>
+        
+            <a href="openresty.html"><strong>OpenResty</strong></a>
+        
+            <a href="swoole.html"><strong>SWOOLE</strong></a>
+        
+            <a href="ons.html"><strong>消息队列</strong></a>
+        
+            <a href="gdb.html"><strong>GDB</strong></a>
+        
+            <a href="specification.html"><strong>规范</strong></a>
+        
+            <a href="3-minutes.html"><strong>三分钟系列</strong></a>
+        
+            <a href="1-pic.html"><strong>一图胜千言</strong></a>
+        
+            <a href="account-system.html"><strong>帐号系统</strong></a>
+        
+            <a href="interview.html"><strong>面试题</strong></a>
+        
+            <a href="yii.html"><strong>Yii/Yii2</strong></a>
+        
+            <a href="python.html"><strong>python</strong></a>
+        
+            <a href="go.html"><strong>GO</strong></a>
+        
+            <a href="ml.html"><strong>机器学习</strong></a>
+        
+            <a href="emacs.html"><strong>emacs</strong></a>
+        
+            <a href="bi.html"><strong>商业智能</strong></a>
+        
+            <a href="mac.html"><strong>mac</strong></a>
+        
+            <a href="editor.html"><strong>编辑器</strong></a>
+        
+            <a href="productive-soft.html"><strong>生产力工具</strong></a>
+        
+            <a href="driver-license.html"><strong>驾照</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="16081898834624.html">OSX使用代码代替storyboard构建项目，并添加NSSplitView组件</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16005640944829.html">linux系统编程之多进程和管道（pip）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15970226751276.html">三分钟上手java多线程控制技术</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15864793262262.html">14/24 设计模式之状态模式 State Pattern</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15880004262195.html">python高性能之路:使用C/C++编写扩展</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.
+<span id="busuanzi_container_site_uv">访问<span id="busuanzi_value_site_uv"></span>人</span>/
+        <span id="busuanzi_container_site_pv"><span id="busuanzi_value_site_pv"></span>次</span>
+    </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138141150-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138141150-1');
+</script>
+
+<canvas class="fireworks" 
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999999; pointer-events: none; width: 1158px; height: 916px;" 
+        width="2316" 
+        height="1832">
+</canvas>
+    <script src="asset/js/anime.min.js"></script>
+    <script src="asset/js/fireworks.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </body>
+</html>

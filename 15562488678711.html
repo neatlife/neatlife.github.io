@@ -1,0 +1,958 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  基于顺丰同城接口编写sdk，java三方sdk编写思路 - xiaolin's blog
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="xiaolin's blog" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:neatlifecoco.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">about</a></li>
+        
+        <li id=""><a target="_self" href="all.html">blog</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">archive</a></li>
+        
+        <li id=""><a target="_self" href="tools.html">tools</a></li>
+        
+        <li id=""><a target="_self" href="pro.html">pros</a></li>
+        
+        <li id=""><a target="_self" href="pub.html">press</a></li>
+        
+        <li id=""><a target="_self" href="paper.html">paper</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; xiaolin's blog</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">about</a></li>
+        
+        <li><a target="_self" href="all.html">blog</a></li>
+        
+        <li><a target="_self" href="archives.html">archive</a></li>
+        
+        <li><a target="_self" href="tools.html">tools</a></li>
+        
+        <li><a target="_self" href="pro.html">pros</a></li>
+        
+        <li><a target="_self" href="pub.html">press</a></li>
+        
+        <li><a target="_self" href="paper.html">paper</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="macios.html">mac&ios</a></li>
+        
+            <li><a href="lc.html">leetcode</a></li>
+        
+            <li><a href="security.html">安全</a></li>
+        
+            <li><a href="business.html">业务</a></li>
+        
+            <li><a href="source-code.html">源码分析</a></li>
+        
+            <li><a href="redis.html">Redis</a></li>
+        
+            <li><a href="apache-nginx.html">Apache/Nginx</a></li>
+        
+            <li><a href="spring-boot.html">Spring Boot</a></li>
+        
+            <li><a href="pm.html">项目管理</a></li>
+        
+            <li><a href="sql.html">SQL</a></li>
+        
+            <li><a href="job-scheduler.html">任务调度</a></li>
+        
+            <li><a href="design-pattern.html">设计模式</a></li>
+        
+            <li><a href="mq.html">消息队列</a></li>
+        
+            <li><a href="rpc.html">RPC</a></li>
+        
+            <li><a href="laravel.html">LARAVEL</a></li>
+        
+            <li><a href="tcp-ip.html">TCP/IP</a></li>
+        
+            <li><a href="uml.html">UML</a></li>
+        
+            <li><a href="service-mesh.html">SERVICE MESH</a></li>
+        
+            <li><a href="ci-cd.html">CI/CD</a></li>
+        
+            <li><a href="ops.html">OPS</a></li>
+        
+            <li><a href="linux.html">LINUX</a></li>
+        
+            <li><a href="system-programming.html">系统编程</a></li>
+        
+            <li><a href="aws.html">AWS</a></li>
+        
+            <li><a href="lua.html">LUA</a></li>
+        
+            <li><a href="git.html">GIT</a></li>
+        
+            <li><a href="js.html">js</a></li>
+        
+            <li><a href="java.html">JAVA</a></li>
+        
+            <li><a href="monitor.html">监控</a></li>
+        
+            <li><a href="vim.html">VIM</a></li>
+        
+            <li><a href="php.html">PHP</a></li>
+        
+            <li><a href="openresty.html">OpenResty</a></li>
+        
+            <li><a href="swoole.html">SWOOLE</a></li>
+        
+            <li><a href="ons.html">消息队列</a></li>
+        
+            <li><a href="gdb.html">GDB</a></li>
+        
+            <li><a href="specification.html">规范</a></li>
+        
+            <li><a href="3-minutes.html">三分钟系列</a></li>
+        
+            <li><a href="1-pic.html">一图胜千言</a></li>
+        
+            <li><a href="account-system.html">帐号系统</a></li>
+        
+            <li><a href="interview.html">面试题</a></li>
+        
+            <li><a href="yii.html">Yii/Yii2</a></li>
+        
+            <li><a href="python.html">python</a></li>
+        
+            <li><a href="go.html">GO</a></li>
+        
+            <li><a href="ml.html">机器学习</a></li>
+        
+            <li><a href="emacs.html">emacs</a></li>
+        
+            <li><a href="bi.html">商业智能</a></li>
+        
+            <li><a href="mac.html">mac</a></li>
+        
+            <li><a href="editor.html">编辑器</a></li>
+        
+            <li><a href="productive-soft.html">生产力工具</a></li>
+        
+            <li><a href="driver-license.html">驾照</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>基于顺丰同城接口编写sdk，java三方sdk编写思路</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2019/4/26</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='spring-boot.html'>Spring Boot</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>由于公司外卖业务需要用到顺丰的配送体系，技术上需要对接顺丰<br/>
+个人比较感兴趣，但是顺丰没有提供sdk，所以研究下自己写了一个</p>
+
+<p>完整代码已上传github 🎉：<a href="https://github.com/neatlife/spring-boot-sfcity">https://github.com/neatlife/spring-boot-sfcity</a></p>
+
+<h3 id="toc_0">技术选型</h3>
+
+<p>三方sdk编写有两种实现方式</p>
+
+<ol>
+<li>不依赖框架，更通用，但是集成成本较高</li>
+<li>依赖框架，比如spring boot，这样使用起来效率更高</li>
+</ol>
+
+<p>为了提高使用效率，这里选择基于spring boot框架进行编写</p>
+
+<h3 id="toc_1">前期准备</h3>
+
+<p>有很多基于spring boot的sdk了，骨架就不需要自行搭建了，找了下面几个进行参考</p>
+
+<ol>
+<li><a href="https://github.com/jibaole/spring-boot-starter-alimq">https://github.com/jibaole/spring-boot-starter-alimq</a></li>
+<li><a href="https://github.com/spring-projects/spring-data-redis">https://github.com/spring-projects/spring-data-redis</a></li>
+</ol>
+
+<h3 id="toc_2">研究api文档</h3>
+
+<p>顺丰同城api文档地址：<a href="http://commit-openic.sf-express.com/open/api/docs/index#/apidoc">http://commit-openic.sf-express.com/open/api/docs/index#/apidoc</a></p>
+
+<p>目前顺丰同城的开发者api个人可以注册，注册后可以设置回调地址<br/>
+<img src="media/15562488678711/image-20190425171710542.png" alt="image-20190425171710542"/></p>
+
+<span id="more"></span><!-- more -->
+
+<h4 id="toc_3">找出文档中的关键点</h4>
+
+<p>在后续设计sdk上，考虑下这些点，可以让sdk更好用</p>
+
+<p>顺丰状态回调可能会失败，通过定时调用查询订单状态接口可以补齐状态<br/>
+<img src="media/15562488678711/image-20190426111354187.png" alt="image-20190426111354187"/></p>
+
+<p>可以实时获取配送员的坐标，这个可用在app上实时显示配送员位置功能<br/>
+<img src="media/15562488678711/image-20190426111502513.png" alt="image-20190426111502513"/></p>
+
+<h3 id="toc_4">创建项目</h3>
+
+<p>虽然项目是作为和spring boot一起使用的，但是我们并不需要依赖完整的spring boot框架，所以创建一个maven项目就是ok的<br/>
+<img src="media/15562488678711/15562503490572.jpg" alt=""/></p>
+
+<p>指定groupId, ArtifactId<br/>
+<img src="media/15562488678711/15562504841194.jpg" alt=""/></p>
+
+<p>为了享受spring boot的自动配置，需要pom.xml里面加上spring-boot-autoconfigure库依赖</p>
+
+<pre><code class="language-markup">&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-autoconfigure&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<p>加上常用的http，lombok等库，最终pom文件内容如下</p>
+
+<pre><code class="language-markup">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;
+         xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+         xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+
+    &lt;groupId&gt;com.github.neatlife&lt;/groupId&gt;
+    &lt;artifactId&gt;sfcity&lt;/artifactId&gt;
+    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+    &lt;build&gt;
+        &lt;plugins&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+                &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+                &lt;configuration&gt;
+                    &lt;source&gt;8&lt;/source&gt;
+                    &lt;target&gt;8&lt;/target&gt;
+                &lt;/configuration&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+    &lt;/build&gt;
+
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-autoconfigure&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+            &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+            &lt;version&gt;1.18.0&lt;/version&gt;
+            &lt;scope&gt;provided&lt;/scope&gt;
+        &lt;/dependency&gt;
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt;
+            &lt;artifactId&gt;jackson-core&lt;/artifactId&gt;
+            &lt;version&gt;2.9.8&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt;
+            &lt;artifactId&gt;jackson-databind&lt;/artifactId&gt;
+            &lt;version&gt;2.9.8&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt;
+            &lt;artifactId&gt;jackson-annotations&lt;/artifactId&gt;
+            &lt;version&gt;2.9.8&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+
+    &lt;dependencyManagement&gt;
+        &lt;dependencies&gt;
+            &lt;dependency&gt;
+                &lt;!-- Import dependency management from Spring Boot --&gt;
+                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+                &lt;artifactId&gt;spring-boot-dependencies&lt;/artifactId&gt;
+                &lt;version&gt;2.0.2.RELEASE&lt;/version&gt;
+                &lt;type&gt;pom&lt;/type&gt;
+                &lt;scope&gt;import&lt;/scope&gt;
+            &lt;/dependency&gt;
+        &lt;/dependencies&gt;
+    &lt;/dependencyManagement&gt;
+&lt;/project&gt;
+</code></pre>
+
+<h3 id="toc_5">自动配置api的密钥</h3>
+
+<p>把从顺丰api后台获取的配置信息写入配置文件：src/main/resources/application.properties<br/>
+所有配置如下</p>
+
+<pre><code class="language-properties">sfcity.developer-id= xxx
+sfcity.developer-key= xxx
+sfcity.shop-id= xxx
+sfcity.api-url= https://commit-openic.sf-express.com
+</code></pre>
+
+<p>使用spring boot的自动配置机制，能够很方便的从配置文件中读取配置<br/>
+核心代码如下</p>
+
+<pre><code class="language-java">@ConfigurationProperties(prefix = &quot;sfcity&quot;)
+@Data
+public class Properties {
+
+    private Integer developerId;
+
+    private String developerKey;
+
+    private String shopId;
+
+    private String apiUrl;
+
+}
+</code></pre>
+
+<p>参考：</p>
+
+<ol>
+<li>src/main/java/com/github/neatlife/AutoConfiguration.java</li>
+<li>src/main/java/com/github/neatlife/Properties.java</li>
+</ol>
+
+<h3 id="toc_6">映射请求参数和响应参数</h3>
+
+<p>因为要做一个通用的sdk库，那么所有的请求参数和响应参数都需要映射，方便使用</p>
+
+<p>这里为了演示就拿创建订单接口举例了<br/>
+<img src="media/15562488678711/15562645070924.jpg" alt=""/></p>
+
+<p>创建订单请求实体<br/>
+<img src="media/15562488678711/15562645408124.jpg" alt=""/></p>
+
+<p>响应实体<br/>
+<img src="media/15562488678711/15562645651349.jpg" alt=""/></p>
+
+<p>还有一些关联的实体一并创建，最终实体效果如下：<br/>
+<img src="media/15562488678711/15562646190116.jpg" alt=""/></p>
+
+<h3 id="toc_7">http处理工具类</h3>
+
+<p>使用resetTemplate进行请求，参考：<a href="https://juejin.im/post/5b88b1dbf265da435743accf">https://juejin.im/post/5b88b1dbf265da435743accf</a><br/>
+核心代码如下：</p>
+
+<pre><code class="language-java">public static Response post(Integer appId, String appSecret, String url, Request request) {
+    String content = JsonUtil.toJsonString(request);
+    String sign = SignUtil.sign(appId.toString(), appSecret, content);
+
+    url = url + &quot;?sign=&quot; + sign;
+
+    RestTemplate restTemplate = new RestTemplate();
+    HttpHeaders headers = new HttpHeaders();
+    headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+
+    HttpEntity&lt;String&gt; httpEntity = new HttpEntity&lt;&gt;(content, headers);
+    ResponseEntity&lt;String&gt; httpResponse = restTemplate.postForEntity(url, httpEntity, String.class);
+
+    Response response = JsonUtil.toObject(httpResponse.getBody(), Response.class);
+
+    if (response.getErrorCode() != 0) {
+        log.error(&quot;errorData: {}&quot;, response.getErrorData());
+        throw new RuntimeException(response.getErrorMsg());
+    }
+
+    return response;
+}
+</code></pre>
+
+<h3 id="toc_8">json处理工具类</h3>
+
+<p>json处理工具类直接从自己编写的框架里拿，参考：<a href="https://github.com/neatlife/jframework/blob/master/src/main/java/com/github/neatlife/jframework/util/HttpUtil.java">https://github.com/neatlife/jframework/blob/master/src/main/java/com/github/neatlife/jframework/util/HttpUtil.java</a></p>
+
+<h3 id="toc_9">签名工具类</h3>
+
+<p>顺丰提供了java的签名示例代码<br/>
+<img src="media/15562488678711/15562650644879.jpg" alt=""/></p>
+
+<p>在其基础上修改即可，核心代码如下</p>
+
+<pre><code class="language-java">public static String sign(String appId, String appSecret, String content) {
+    // 假设原始内容JSON为 {&quot;hello&quot;:&quot;kitty&quot;}
+    // content : &quot;{\&quot;hello\&quot;:\&quot;kitty\&quot;}&quot;
+
+    String toSign = content + &quot;&amp;&quot; + appId + &quot;&amp;&quot; + appSecret;
+    // toSign : &quot;{\&quot;hello\&quot;:\&quot;kitty\&quot;}&amp;1234567890&amp;0123456789abcdef0123456789abcdef&quot;;
+
+    String md5Result = md5(toSign.getBytes(StandardCharsets.UTF_8));
+    // md5Result : &quot;ef3435b1480e553480e19e3e162fb0be&quot;
+
+    // signResult : &quot;ZWYzNDM1YjE0ODBlNTUzNDgwZTE5ZTNlMTYyZmIwYmU=&quot;
+
+    return base64Encode(md5Result.getBytes(StandardCharsets.UTF_8));
+}
+</code></pre>
+
+<p>完整代码参考：src/main/java/com/github/neatlife/util/SignUtil.java</p>
+
+<h3 id="toc_10">定义接口常量</h3>
+
+<p>把需要调用的接口地址放到统一的常量文件中，方便管理<br/>
+核心代码如下：</p>
+
+<pre><code class="language-java">public class ApiUrlConstant {
+
+    private static final String CREATE_ORDER_URL = &quot;/open/api/external/createorder&quot;;
+    private static String sfCityHost;
+
+    public static String getCreateOrderUrl() {
+        return sfCityHost + CREATE_ORDER_URL;
+    }
+
+    public static void setSfCityHost(String sfCityHost) {
+        ApiUrlConstant.sfCityHost = sfCityHost;
+    }
+}
+</code></pre>
+
+<h3 id="toc_11">调用顺丰创建订单接口</h3>
+
+<p>上面步骤都准备完成后，进行到最重要的调用环节了，有了上面的准备，这一步也比较容易了<br/>
+核心代码如下</p>
+
+<pre><code class="language-java">public CreateOrderResponse createOrder(CreateOrderRequest createOrderRequest) {
+    createOrderRequest.setDevId(developerId);
+    createOrderRequest.setShopId(shopId);
+    Response response = HttpUtil.post(
+            developerId,
+            developerKey,
+            ApiUrlConstant.getCreateOrderUrl(),
+            createOrderRequest
+    );
+    return JsonUtil.toObject(response.getResult(), CreateOrderResponse.class);
+}
+</code></pre>
+
+<h3 id="toc_12">编写自动测试</h3>
+
+<p>创建测试文件：src/test/java/com/github/neatlife/SfClientTest.java<br/>
+填充测试数据<br/>
+调用创建订单方法</p>
+
+<pre><code class="language-java">@Test
+public void createOrder() {
+    CreateOrderResponse createOrderResponse = sfClient.createOrder(createOrderRequest());
+
+    Assert.assertNotNull(createOrderResponse.getSfOrderId());
+}
+
+private CreateOrderRequest createOrderRequest() {
+    CreateOrderRequest createOrderRequest = new CreateOrderRequest();
+    createOrderRequest.setShopOrderId(System.currentTimeMillis() + &quot;&quot;);
+    createOrderRequest.setOrderSource(&quot;测试&quot;);
+    createOrderRequest.setPayType(1);
+    createOrderRequest.setOrderTime(DateUtil.currentSecond().intValue());
+    createOrderRequest.setIsAppoint(0);
+    createOrderRequest.setIsInsured(0);
+    createOrderRequest.setRiderPickMethod(1);
+    createOrderRequest.setPushTime(DateUtil.currentSecond().intValue());
+    createOrderRequest.setVersion(17);
+    createOrderRequest.setShop(
+            Shop.builder()
+                    .shopName(&quot;店铺名&quot;)
+                    .shopPhone(&quot;13266666666&quot;)
+                    .shopAddress(&quot;朝阳区高碑店镇四惠大厦F1-008&quot;)
+                    .shopLng(&quot;116.514236&quot;)
+                    .shopLat(&quot;39.905328&quot;)
+                    .build()
+    );
+    createOrderRequest.setReceive(
+            Receive.builder()
+                    .userName(&quot;小明&quot;)
+                    .userPhone(&quot;13288888888&quot;)
+                    .userPhone(&quot;北京&quot;)
+                    .userLng(&quot;116.3534196&quot;)
+                    .userLat(&quot;40.0159778&quot;)
+                    .userAddress(&quot;朝阳区高碑店镇四惠大厦F1-008&quot;)
+                    .cityName(&quot;北京市&quot;)
+                    .build()
+    );
+    createOrderRequest.setOrderDetail(
+            OrderDetail.builder()
+                    .totalPrice(100)
+                    .productType(1)
+                    .weightGram(500)
+                    .productNum(1)
+                    .productTypeNum(1)
+                    .productDetail(
+                            Stream.of(
+                                    ProductDetail.builder()
+                                            .productName(&quot;小炒肉&quot;)
+                                            .productNum(1)
+                                            .build()
+                            ).collect(Collectors.toList())
+                    )
+                    .build()
+    );
+    return createOrderRequest;
+}
+</code></pre>
+
+<p>填充测试数据时注释对照顺丰文档，保证必填字段都有值</p>
+
+<p>查看运行效果：<br/>
+<img src="media/15562488678711/15562656329134.jpg" alt=""/></p>
+
+<p>顺丰返回了创建订单成功的响应😄</p>
+
+<h3 id="toc_13">一些注意的点</h3>
+
+<p>自动配置时，把api地址注入接口常量文件中，方便读取<br/>
+<img src="media/15562488678711/15562652939586.jpg" alt=""/></p>
+
+<p>http调用会有失败的可能，需要考虑进行请求补偿，一般有下面两种重试方式</p>
+
+<ol>
+<li>定时任务，定时进行补偿</li>
+<li>使用消息队列的补偿机制</li>
+</ol>
+
+<p>创建外卖订单前，可以先调用顺丰预创建订单核查顺丰是否会接单</p>
+
+<h3 id="toc_14">打包</h3>
+
+<p>mvn clean package -Dmaven.test.skip=true</p>
+
+<p>查看效果<br/>
+<img src="media/15562488678711/15562676314009.jpg" alt=""/><br/>
+然后把jar包拷到需要的项目就可以使用了</p>
+
+<p>后续传到了maven中央仓库，也可以直接使用maven下载</p>
+
+<h3 id="toc_15">在spring boot项目中使用jar包</h3>
+
+<p>用idea打开spring boot项目，在项目设置的库依赖里引用jar包<br/>
+<img src="media/15562488678711/15562688616564.jpg" alt=""/></p>
+
+<p>然后在启动类中让spring boot扫到这个库，就可以自动配置加载了<br/>
+<img src="media/15562488678711/15562689147340.jpg" alt=""/></p>
+
+<h3 id="toc_16">其它接口</h3>
+
+<p><img src="media/15562488678711/15562658884417.jpg" alt=""/></p>
+
+<p>按照上面创建订单的步骤编写+测试即可</p>
+
+<h3 id="toc_17">上传maven中央仓库</h3>
+
+<p>参考： <a href="https://blog.csdn.net/ljbmxsm/article/details/78009268">https://blog.csdn.net/ljbmxsm/article/details/78009268</a></p>
+
+<p>持续更新...</p>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15563441271495.html" 
+          title="Previous Post: 项目排期工具OmniPlan实用指南">&laquo; 项目排期工具OmniPlan实用指南</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15560721425149.html" 
+          title="Next Post: 订单系统设计，消息队列幂等处理思路">订单系统设计，消息队列幂等处理思路 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          <script src="https://utteranc.es/client.js"
+        repo="neatlife/neatlife.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>xiaolin's blog</h1>
+                <div class="site-des">core tech share blog</div>
+                <div class="social">
+                  <a target="_blank" class="juejin" href="https://juejin.im/user/5c409f86e51d4551c88027a2/posts" title="Juejin">juejin</a>
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/neatlife" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="macios.html"><strong>mac&ios</strong></a>
+        
+            <a href="lc.html"><strong>leetcode</strong></a>
+        
+            <a href="security.html"><strong>安全</strong></a>
+        
+            <a href="business.html"><strong>业务</strong></a>
+        
+            <a href="source-code.html"><strong>源码分析</strong></a>
+        
+            <a href="redis.html"><strong>Redis</strong></a>
+        
+            <a href="apache-nginx.html"><strong>Apache/Nginx</strong></a>
+        
+            <a href="spring-boot.html"><strong>Spring Boot</strong></a>
+        
+            <a href="pm.html"><strong>项目管理</strong></a>
+        
+            <a href="sql.html"><strong>SQL</strong></a>
+        
+            <a href="job-scheduler.html"><strong>任务调度</strong></a>
+        
+            <a href="design-pattern.html"><strong>设计模式</strong></a>
+        
+            <a href="mq.html"><strong>消息队列</strong></a>
+        
+            <a href="rpc.html"><strong>RPC</strong></a>
+        
+            <a href="laravel.html"><strong>LARAVEL</strong></a>
+        
+            <a href="tcp-ip.html"><strong>TCP/IP</strong></a>
+        
+            <a href="uml.html"><strong>UML</strong></a>
+        
+            <a href="service-mesh.html"><strong>SERVICE MESH</strong></a>
+        
+            <a href="ci-cd.html"><strong>CI/CD</strong></a>
+        
+            <a href="ops.html"><strong>OPS</strong></a>
+        
+            <a href="linux.html"><strong>LINUX</strong></a>
+        
+            <a href="system-programming.html"><strong>系统编程</strong></a>
+        
+            <a href="aws.html"><strong>AWS</strong></a>
+        
+            <a href="lua.html"><strong>LUA</strong></a>
+        
+            <a href="git.html"><strong>GIT</strong></a>
+        
+            <a href="js.html"><strong>js</strong></a>
+        
+            <a href="java.html"><strong>JAVA</strong></a>
+        
+            <a href="monitor.html"><strong>监控</strong></a>
+        
+            <a href="vim.html"><strong>VIM</strong></a>
+        
+            <a href="php.html"><strong>PHP</strong></a>
+        
+            <a href="openresty.html"><strong>OpenResty</strong></a>
+        
+            <a href="swoole.html"><strong>SWOOLE</strong></a>
+        
+            <a href="ons.html"><strong>消息队列</strong></a>
+        
+            <a href="gdb.html"><strong>GDB</strong></a>
+        
+            <a href="specification.html"><strong>规范</strong></a>
+        
+            <a href="3-minutes.html"><strong>三分钟系列</strong></a>
+        
+            <a href="1-pic.html"><strong>一图胜千言</strong></a>
+        
+            <a href="account-system.html"><strong>帐号系统</strong></a>
+        
+            <a href="interview.html"><strong>面试题</strong></a>
+        
+            <a href="yii.html"><strong>Yii/Yii2</strong></a>
+        
+            <a href="python.html"><strong>python</strong></a>
+        
+            <a href="go.html"><strong>GO</strong></a>
+        
+            <a href="ml.html"><strong>机器学习</strong></a>
+        
+            <a href="emacs.html"><strong>emacs</strong></a>
+        
+            <a href="bi.html"><strong>商业智能</strong></a>
+        
+            <a href="mac.html"><strong>mac</strong></a>
+        
+            <a href="editor.html"><strong>编辑器</strong></a>
+        
+            <a href="productive-soft.html"><strong>生产力工具</strong></a>
+        
+            <a href="driver-license.html"><strong>驾照</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="16081898834624.html">OSX使用代码代替storyboard构建项目，并添加NSSplitView组件</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16005640944829.html">linux系统编程之多进程和管道（pip）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15970226751276.html">三分钟上手java多线程控制技术</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15864793262262.html">14/24 设计模式之状态模式 State Pattern</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15880004262195.html">python高性能之路:使用C/C++编写扩展</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.
+<span id="busuanzi_container_site_uv">访问<span id="busuanzi_value_site_uv"></span>人</span>/
+        <span id="busuanzi_container_site_pv"><span id="busuanzi_value_site_pv"></span>次</span>
+    </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138141150-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138141150-1');
+</script>
+
+<canvas class="fireworks" 
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999999; pointer-events: none; width: 1158px; height: 916px;" 
+        width="2316" 
+        height="1832">
+</canvas>
+    <script src="asset/js/anime.min.js"></script>
+    <script src="asset/js/fireworks.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </body>
+</html>

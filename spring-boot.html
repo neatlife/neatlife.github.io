@@ -1,0 +1,1085 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  Spring Boot - xiaolin's blog
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="xiaolin's blog" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:neatlifecoco.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">about</a></li>
+        
+        <li id=""><a target="_self" href="all.html">blog</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">archive</a></li>
+        
+        <li id=""><a target="_self" href="tools.html">tools</a></li>
+        
+        <li id=""><a target="_self" href="pro.html">pros</a></li>
+        
+        <li id=""><a target="_self" href="pub.html">press</a></li>
+        
+        <li id=""><a target="_self" href="paper.html">paper</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; xiaolin's blog</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">about</a></li>
+        
+        <li><a target="_self" href="all.html">blog</a></li>
+        
+        <li><a target="_self" href="archives.html">archive</a></li>
+        
+        <li><a target="_self" href="tools.html">tools</a></li>
+        
+        <li><a target="_self" href="pro.html">pros</a></li>
+        
+        <li><a target="_self" href="pub.html">press</a></li>
+        
+        <li><a target="_self" href="paper.html">paper</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="macios.html">mac&ios</a></li>
+        
+            <li><a href="lc.html">leetcode</a></li>
+        
+            <li><a href="security.html">安全</a></li>
+        
+            <li><a href="business.html">业务</a></li>
+        
+            <li><a href="source-code.html">源码分析</a></li>
+        
+            <li><a href="redis.html">Redis</a></li>
+        
+            <li><a href="apache-nginx.html">Apache/Nginx</a></li>
+        
+            <li><a href="spring-boot.html">Spring Boot</a></li>
+        
+            <li><a href="pm.html">项目管理</a></li>
+        
+            <li><a href="sql.html">SQL</a></li>
+        
+            <li><a href="job-scheduler.html">任务调度</a></li>
+        
+            <li><a href="design-pattern.html">设计模式</a></li>
+        
+            <li><a href="mq.html">消息队列</a></li>
+        
+            <li><a href="rpc.html">RPC</a></li>
+        
+            <li><a href="laravel.html">LARAVEL</a></li>
+        
+            <li><a href="tcp-ip.html">TCP/IP</a></li>
+        
+            <li><a href="uml.html">UML</a></li>
+        
+            <li><a href="service-mesh.html">SERVICE MESH</a></li>
+        
+            <li><a href="ci-cd.html">CI/CD</a></li>
+        
+            <li><a href="ops.html">OPS</a></li>
+        
+            <li><a href="linux.html">LINUX</a></li>
+        
+            <li><a href="system-programming.html">系统编程</a></li>
+        
+            <li><a href="aws.html">AWS</a></li>
+        
+            <li><a href="lua.html">LUA</a></li>
+        
+            <li><a href="git.html">GIT</a></li>
+        
+            <li><a href="js.html">js</a></li>
+        
+            <li><a href="java.html">JAVA</a></li>
+        
+            <li><a href="monitor.html">监控</a></li>
+        
+            <li><a href="vim.html">VIM</a></li>
+        
+            <li><a href="php.html">PHP</a></li>
+        
+            <li><a href="openresty.html">OpenResty</a></li>
+        
+            <li><a href="swoole.html">SWOOLE</a></li>
+        
+            <li><a href="ons.html">消息队列</a></li>
+        
+            <li><a href="gdb.html">GDB</a></li>
+        
+            <li><a href="specification.html">规范</a></li>
+        
+            <li><a href="3-minutes.html">三分钟系列</a></li>
+        
+            <li><a href="1-pic.html">一图胜千言</a></li>
+        
+            <li><a href="account-system.html">帐号系统</a></li>
+        
+            <li><a href="interview.html">面试题</a></li>
+        
+            <li><a href="yii.html">Yii/Yii2</a></li>
+        
+            <li><a href="python.html">python</a></li>
+        
+            <li><a href="go.html">GO</a></li>
+        
+            <li><a href="ml.html">机器学习</a></li>
+        
+            <li><a href="emacs.html">emacs</a></li>
+        
+            <li><a href="bi.html">商业智能</a></li>
+        
+            <li><a href="mac.html">mac</a></li>
+        
+            <li><a href="editor.html">编辑器</a></li>
+        
+            <li><a href="productive-soft.html">生产力工具</a></li>
+        
+            <li><a href="driver-license.html">驾照</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+	$(function(){
+		$('#menu_item_index').addClass('is_active');
+	});
+</script>
+<div class="row">
+	<div class="large-8 medium-8 columns">
+		<div class="markdown-body home-categories">
+		
+			<div class="article">
+                <a class="clearlink" href="15617056254485.html">
+                
+                  <h1>在spring boot三分钟上手无界流处理系统Spark Streaming，并实现流式点赞统计</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>在页面上每次点赞，把这个被点赞的文章id发送到kafka，然后通过spark streaming读取kafka里的数据，统计出点赞的数量，更新回mysql中<br/>
+<img src="media/15617056254485/15625868039886.jpg" alt=""/></p>
+
+<p>完整案例代码已上传github：<a href="https://github.com/neatlife/mySparkLikes">https://github.com/neatlife/mySparkLikes</a></p>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="15617056254485.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2019/7/8</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='3-minutes.html'>三分钟系列</a></span>
+          				  
+          					    <span class="posted-in"><a href='spring-boot.html'>Spring Boot</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15589619730811.html">
+                
+                  <h1>在spring boot中三分钟上手阿里云日志服务Log Service</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>虽然可以自行搭建elk等日志系统，但是日志系统特别耗费系统资源，相对于阿里云提供日志服务，自行搭建的机器成本和运维成本较高，一般可以直接选择使用阿里云的日志服务</p>
+
+<p>先来看一张阿里云日志服务的架构图<br/>
+<img src="media/15589619730811/15589627993275.jpg" alt=""/><br/>
+从上面这张图可以看到这个阿里云的日志服务不仅支持多个数据源，同时在日志服务的基础上衍生出不少数据二次加工的功能，比如MacCompute、Spark Streaming等</p>
+
+<h2 id="toc_0">创建案例项目</h2>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="15589619730811.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2019/5/27</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='3-minutes.html'>三分钟系列</a></span>
+          				  
+          					    <span class="posted-in"><a href='spring-boot.html'>Spring Boot</a></span>
+          				  
+          					    <span class="posted-in"><a href='php.html'>PHP</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15576402200280.html">
+                
+                  <h1>在idea中三分钟搭建spring boot框架源码阅读环境</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>spring boot是基于spring framework封装的，所以spring boot框架的源码主要就是spring framework框架</p>
+
+<h2 id="toc_0">下载源码</h2>
+
+<p>执行命令</p>
+
+<pre><code class="language-shell">git clone https://github.com/spring-projects/spring-framework.git
+</code></pre>
+
+<p>下载源码，效果如下：<br/>
+<img src="media/15576402200280/15576402226611.jpg" alt=""/></p>
+
+<h2 id="toc_1">导入idea</h2>
+
+<p>在idea中打开项目，然后gradle会自动完成依赖下载<br/>
+<img src="media/15576402200280/15576428835546.jpg" alt=""/></p>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="15576402200280.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2019/5/12</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='spring-boot.html'>Spring Boot</a></span>
+          				  
+          					    <span class="posted-in"><a href='3-minutes.html'>三分钟系列</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15564316423145.html">
+                
+                  <h1>在spring boot中集成微服务网关系统Spring Cloud Zuul</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>spring cloud zuul由大名鼎鼎的netflix公司开发，已经超越spring cloud gateway微服务网关系统，成为了Spring Cloud全家桶里排名第一的微服务网关系统了</p>
+
+<p>网关作为所有应用系统的最前端，可以提供以下的价值</p>
+
+<ol>
+<li>为后端微服务系统提供统一的入口</li>
+<li>为后端微服务系统提供统一的授权机制</li>
+<li>为后端微服务系统提供统一的认证机制</li>
+<li>为后端微服务系统api提供统一签名校验机制</li>
+<li>为流量入口添加日志记录</li>
+<li>qps统计</li>
+<li>限流</li>
+</ol>
+
+<p>完整代码已上传GITHUB，参考：<a href="https://github.com/neatlife/myzuul">https://github.com/neatlife/myzuul</a></p>
+
+<h3 id="toc_0">创建网关项目</h3>
+
+<p>可以在<a href="https://start.spring.io/%E5%88%9B%E5%BB%BA%E6%96%B0%E7%9A%84spring">https://start.spring.io/创建新的spring</a> boot项目作为网关的骨架，比如<br/>
+<img src="media/15564316423145/15572404530841.jpg" alt=""/></p>
+
+<p>注意需要把Zuul网关组件添加进来，也可以手动添加，pom依赖如下： </p>
+
+<pre><code class="language-markup">&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-cloud-starter-netflix-zuul&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="15564316423145.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2019/5/8</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='spring-boot.html'>Spring Boot</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15565867069204.html">
+                
+                  <h1>在spring boot中3分钟上手阿里巴巴服务熔断系统sentinel</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>一直在用hystrix做熔断降级，但是无奈hystrix官方已经不再维护了，sentinel背后是阿里巴巴公司，并且一直在维护sentinel，所以先了解下，hystrix不够用时，可以换成sentinel</p>
+
+<p>并且特性丰富，这里就使用如下两个核心功能</p>
+
+<ol>
+<li>熔断</li>
+<li>流控</li>
+</ol>
+
+<h3 id="toc_0">启动Sentinel控制台</h3>
+
+<p>sentinel的控制台是由spring boot开发，特殊需求可以修改源码定制，源码参考：<a href="https://github.com/alibaba/Sentinel/blob/master/sentinel-dashboard/README.md">sentinel-dashboard</a><br/>
+可以使用docker一键启动控制台<br/>
+编写sentinel-dashboard的Dockerfile</p>
+
+<pre><code class="language-text">FROM openjdk:8-jdk-alpine
+
+ADD https://github.com/alibaba/Sentinel/releases/download/1.6.0/sentinel-dashboard-1.6.0.jar /sentinel-dashboard-1.6.0.jar
+ENTRYPOINT [&quot;java&quot;, &quot;-Dserver.port=8080&quot;, &quot;-Dcsp.sentinel.dashboard.server=localhost:8080&quot;, &quot;-Dproject.name=sentinel-dashboard&quot;, &quot;-jar&quot;, &quot;/sentinel-dashboard-1.6.0.jar&quot;, &quot;-Dfile.encoding=utf-8&quot;]
+</code></pre>
+
+<p>构建sentinel-dashboard镜像：<code>docker build -t sentinel-dashboard .</code> 然后启动</p>
+
+<pre><code class="language-shell">docker run --name sentinel-dashboard \
+    -it --rm -p 8719:8719 -p 8780:8080 sentinel-dashboard
+</code></pre>
+
+<p>其中8080是sentinel web控制界面端口，8719是sentinel应用端和控制台通信端口，参考<a href="https://github.com/spring-cloud-incubator/spring-cloud-alibaba/wiki/Sentinel#%E9%85%8D%E7%BD%AE%E6%8E%A7%E5%88%B6%E5%8F%B0%E4%BF%A1%E6%81%AF">配置控制台信息<br/>
+</a></p>
+
+<p>打开 本机ip:8780 查看效果，默认的用户名密码都是 sentinel<br/>
+<img src="media/15565867069204/15565881781567.jpg" alt=""/></p>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="15565867069204.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2019/4/30</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='spring-boot.html'>Spring Boot</a></span>
+          				  
+          					    <span class="posted-in"><a href='3-minutes.html'>三分钟系列</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15562488678711.html">
+                
+                  <h1>基于顺丰同城接口编写sdk，java三方sdk编写思路</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>由于公司外卖业务需要用到顺丰的配送体系，技术上需要对接顺丰<br/>
+个人比较感兴趣，但是顺丰没有提供sdk，所以研究下自己写了一个</p>
+
+<p>完整代码已上传github 🎉：<a href="https://github.com/neatlife/spring-boot-sfcity">https://github.com/neatlife/spring-boot-sfcity</a></p>
+
+<h3 id="toc_0">技术选型</h3>
+
+<p>三方sdk编写有两种实现方式</p>
+
+<ol>
+<li>不依赖框架，更通用，但是集成成本较高</li>
+<li>依赖框架，比如spring boot，这样使用起来效率更高</li>
+</ol>
+
+<p>为了提高使用效率，这里选择基于spring boot框架进行编写</p>
+
+<h3 id="toc_1">前期准备</h3>
+
+<p>有很多基于spring boot的sdk了，骨架就不需要自行搭建了，找了下面几个进行参考</p>
+
+<ol>
+<li><a href="https://github.com/jibaole/spring-boot-starter-alimq">https://github.com/jibaole/spring-boot-starter-alimq</a></li>
+<li><a href="https://github.com/spring-projects/spring-data-redis">https://github.com/spring-projects/spring-data-redis</a></li>
+</ol>
+
+<h3 id="toc_2">研究api文档</h3>
+
+<p>顺丰同城api文档地址：<a href="http://commit-openic.sf-express.com/open/api/docs/index#/apidoc">http://commit-openic.sf-express.com/open/api/docs/index#/apidoc</a></p>
+
+<p>目前顺丰同城的开发者api个人可以注册，注册后可以设置回调地址<br/>
+<img src="media/15562488678711/image-20190425171710542.png" alt="image-20190425171710542"/></p>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="15562488678711.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2019/4/26</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='spring-boot.html'>Spring Boot</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15560066123638.html">
+                
+                  <h1>基于spring boot框架进行二次封装，微型框架编写思路</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>目标：减少重复代码，提高开发效率，项目地址：<a href="https://github.com/neatlife/jframework">https://github.com/neatlife/jframework</a></p>
+
+<p><strong>欢迎star，欢迎pr(求star, 求star, 求star)</strong></p>
+
+<p>可封装功能列表</p>
+
+<table>
+<thead>
+<tr>
+<th>E文</th>
+<th>功能</th>
+<th>目前作用</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>controller</td>
+<td>控制器父类</td>
+<td>简化控制器里的常见操作</td>
+</tr>
+<tr>
+<td>exception</td>
+<td>异常</td>
+<td>统一全局业务异常操作</td>
+</tr>
+<tr>
+<td>handler</td>
+<td>异常拦截</td>
+<td>全局异常拦截到日志里</td>
+</tr>
+<tr>
+<td>http</td>
+<td>请求响应实体</td>
+<td>统一全局响应实体</td>
+</tr>
+<tr>
+<td>hystrix</td>
+<td>hystrix事件拦截</td>
+<td>熔断时发送报警邮件</td>
+</tr>
+<tr>
+<td>jpa</td>
+<td>jpa非业务重复代码封装</td>
+<td>自动给deleted_at, updated_at, created_at赋值</td>
+</tr>
+<tr>
+<td>json</td>
+<td>响应json数据的二次处理</td>
+<td>自动格式化金额小数位数</td>
+</tr>
+<tr>
+<td>listener</td>
+<td>spring boot框架事件</td>
+<td>在框架启动时给util注入service实例</td>
+</tr>
+<tr>
+<td>logback</td>
+<td>自定义logback日志输出</td>
+<td>将日志输出到elk的redis，方便elk统一进行日志处理</td>
+</tr>
+<tr>
+<td>model</td>
+<td>基础jpa实体</td>
+<td>包含deleted_at, updated_at, created_at字段的实体</td>
+</tr>
+<tr>
+<td>redis</td>
+<td>自定义redis序列化和反序列化操作</td>
+<td>使用GenericJackson2JsonRedisSerializer序列化redis值，提高可读性</td>
+</tr>
+<tr>
+<td>request</td>
+<td>自定请求数据的解析</td>
+<td>处理json请求</td>
+</tr>
+<tr>
+<td>springfox</td>
+<td>自定义springfox文档解析</td>
+<td>ApiClass支持文档描述引用</td>
+</tr>
+<tr>
+<td>util</td>
+<td>常用工具收集</td>
+<td>比如json, http请求等常用工具类</td>
+</tr>
+<tr>
+<td>validator</td>
+<td>请求参数自定义校验</td>
+<td>检查参数长度</td>
+</tr>
+<tr>
+<td>apiversion</td>
+<td>支持不同的api的版本到不同的控制器逻辑</td>
+<td>参考 <a href="https://github.com/xdd-organ/xdd-nasa/blob/master/src/main/java/com/java/xdd/nasa/main/controller/MainController.java">MainController</a></td>
+</tr>
+</tbody>
+</table>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="15560066123638.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2019/4/24</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='spring-boot.html'>Spring Boot</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15563579194983.html">
+                
+                  <h1>参数调优</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>参考：<a href="https://github.com/gudaoxuri/dew/blob/spring-boot-1.x/docs/src/main/asciidoc/_chapter/best-practices.adoc">https://github.com/gudaoxuri/dew/blob/spring-boot-1.x/docs/src/main/asciidoc/_chapter/best-practices.adoc</a></p>
+
+<p>谨防被删，以下做了备份</p>
+
+<h2 id="toc_0">最佳实践</h2>
+
+<h3 id="toc_1">JDBC框架的选择</h3>
+
+<p>主流JDBC框架有Hibernate、MyBatis、Spring JDBC Template、Ebean、DBUtils等，Dew基于Spring Boot，所以对于这些框架都提供了很好的兼容。那么如何选择呢？</p>
+
+<ul>
+<li>先说Hibernate，如果你的数据表结构与对象模型基本吻合，那么使用JPA会带来很大的便捷，推荐Hibernate</li>
+<li>如果你的数据表结构与对象模型严重不吻合或是你希望对SQL有更多主动权（SQL优化、复杂查询等），那JPA就没什么优势了，这时：
+<ul>
+<li>如果你追求极简、不需要ORMPPING，那么DBUtils会是最佳选择</li>
+<li>如果你喜欢敏捷开发，推崇充血模型，那么尝试一下Ebean吧，与Play!结合最合适不过</li>
+<li>如果你既要有一定的ORMPPING能力，又希望自己写SQL，那么MyBatis会是不错的选择</li>
+<li>如果你使用了Spring，希望框架简单些，可以接受自己写ORMPPING，未来无切换关系型数据库的计划，那么Spring JDBC Template将是个很好的选择</li>
+</ul></li>
+</ul>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="15563579194983.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2018/10/27</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='spring-boot.html'>Spring Boot</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15582851867881.html">
+                
+                  <h1>shell脚本启动springboot</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<pre><code class="language-shell">mrun() {
+    port=&quot;-Dserver.port=$1&quot;
+    env=&quot;-Denv=local&quot;
+    memory=&quot;-Xms64m -Xmx128m&quot;
+    yourkit=&quot;-agentpath:/Applications/YourKit-Java-Profiler-2018.04.app/Contents/Resources/bin/mac/libyjpagent.jnilib&quot;
+    xrebel=&quot;-javaagent:/Users/suxiaolin/develop/xrebel/xrebel.jar&quot;
+    command=&quot;mvn spring-boot:run -Dspring-boot.run.jvmArguments=\&quot;$memory $env $port $yourkit $xrebel\&quot;&quot;
+    echo &quot;command: $command&quot;
+    sh -c $command
+}
+
+brun() {
+    port=&quot;8080&quot;
+    if [ $1 = &quot;order&quot; ]                                                                                                                                                                                                                                                                    
+    then
+        port=8035
+    elif [ $1 = &quot;gateway&quot; ]
+    then
+        port=8041
+    fi  
+    mrun $port
+}
+</code></pre>
+
+<pre><code class="language-shell">mntfs() {
+    deviceNode=`diskutil info /Volumes/$1 | grep -oh &quot;/dev/.*&quot;`
+    hdiutil eject &quot;/Volumes/$1&quot;
+    sudo mkdir /Volumes/$1
+    sudo mount_ntfs -o rw,nobrowse /dev/$deviceNode /Volumes/$1/
+}
+
+dattr() {
+    xattr -l $1
+    xattr -d com.apple.FinderInfo $1
+}
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/5/20</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='spring-boot.html'>Spring Boot</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+              
+
+
+			<div class="row">
+			  <div class="large-6 columns">
+			  <p class="text-left" style="padding-top:25px;">
+			   
+			  </p>
+			  </div>
+			  <div class="large-6 columns">
+			<p class="text-right" style="padding-top:25px;">
+			
+			</p>
+			  </div>
+			</div>
+		</div>
+	</div><!-- large 8 -->
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>xiaolin's blog</h1>
+                <div class="site-des">core tech share blog</div>
+                <div class="social">
+                  <a target="_blank" class="juejin" href="https://juejin.im/user/5c409f86e51d4551c88027a2/posts" title="Juejin">juejin</a>
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/neatlife" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="macios.html"><strong>mac&ios</strong></a>
+        
+            <a href="lc.html"><strong>leetcode</strong></a>
+        
+            <a href="security.html"><strong>安全</strong></a>
+        
+            <a href="business.html"><strong>业务</strong></a>
+        
+            <a href="source-code.html"><strong>源码分析</strong></a>
+        
+            <a href="redis.html"><strong>Redis</strong></a>
+        
+            <a href="apache-nginx.html"><strong>Apache/Nginx</strong></a>
+        
+            <a href="spring-boot.html"><strong>Spring Boot</strong></a>
+        
+            <a href="pm.html"><strong>项目管理</strong></a>
+        
+            <a href="sql.html"><strong>SQL</strong></a>
+        
+            <a href="job-scheduler.html"><strong>任务调度</strong></a>
+        
+            <a href="design-pattern.html"><strong>设计模式</strong></a>
+        
+            <a href="mq.html"><strong>消息队列</strong></a>
+        
+            <a href="rpc.html"><strong>RPC</strong></a>
+        
+            <a href="laravel.html"><strong>LARAVEL</strong></a>
+        
+            <a href="tcp-ip.html"><strong>TCP/IP</strong></a>
+        
+            <a href="uml.html"><strong>UML</strong></a>
+        
+            <a href="service-mesh.html"><strong>SERVICE MESH</strong></a>
+        
+            <a href="ci-cd.html"><strong>CI/CD</strong></a>
+        
+            <a href="ops.html"><strong>OPS</strong></a>
+        
+            <a href="linux.html"><strong>LINUX</strong></a>
+        
+            <a href="system-programming.html"><strong>系统编程</strong></a>
+        
+            <a href="aws.html"><strong>AWS</strong></a>
+        
+            <a href="lua.html"><strong>LUA</strong></a>
+        
+            <a href="git.html"><strong>GIT</strong></a>
+        
+            <a href="js.html"><strong>js</strong></a>
+        
+            <a href="java.html"><strong>JAVA</strong></a>
+        
+            <a href="monitor.html"><strong>监控</strong></a>
+        
+            <a href="vim.html"><strong>VIM</strong></a>
+        
+            <a href="php.html"><strong>PHP</strong></a>
+        
+            <a href="openresty.html"><strong>OpenResty</strong></a>
+        
+            <a href="swoole.html"><strong>SWOOLE</strong></a>
+        
+            <a href="ons.html"><strong>消息队列</strong></a>
+        
+            <a href="gdb.html"><strong>GDB</strong></a>
+        
+            <a href="specification.html"><strong>规范</strong></a>
+        
+            <a href="3-minutes.html"><strong>三分钟系列</strong></a>
+        
+            <a href="1-pic.html"><strong>一图胜千言</strong></a>
+        
+            <a href="account-system.html"><strong>帐号系统</strong></a>
+        
+            <a href="interview.html"><strong>面试题</strong></a>
+        
+            <a href="yii.html"><strong>Yii/Yii2</strong></a>
+        
+            <a href="python.html"><strong>python</strong></a>
+        
+            <a href="go.html"><strong>GO</strong></a>
+        
+            <a href="ml.html"><strong>机器学习</strong></a>
+        
+            <a href="emacs.html"><strong>emacs</strong></a>
+        
+            <a href="bi.html"><strong>商业智能</strong></a>
+        
+            <a href="mac.html"><strong>mac</strong></a>
+        
+            <a href="editor.html"><strong>编辑器</strong></a>
+        
+            <a href="productive-soft.html"><strong>生产力工具</strong></a>
+        
+            <a href="driver-license.html"><strong>驾照</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="16081898834624.html">OSX使用代码代替storyboard构建项目，并添加NSSplitView组件</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16005640944829.html">linux系统编程之多进程和管道（pip）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15970226751276.html">三分钟上手java多线程控制技术</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15864793262262.html">14/24 设计模式之状态模式 State Pattern</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15880004262195.html">python高性能之路:使用C/C++编写扩展</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.
+<span id="busuanzi_container_site_uv">访问<span id="busuanzi_value_site_uv"></span>人</span>/
+        <span id="busuanzi_container_site_pv"><span id="busuanzi_value_site_pv"></span>次</span>
+    </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138141150-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138141150-1');
+</script>
+
+<canvas class="fireworks" 
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999999; pointer-events: none; width: 1158px; height: 916px;" 
+        width="2316" 
+        height="1832">
+</canvas>
+    <script src="asset/js/anime.min.js"></script>
+    <script src="asset/js/fireworks.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </body>
+</html>

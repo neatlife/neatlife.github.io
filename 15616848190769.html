@@ -1,0 +1,723 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  在spring boot中三分钟上手日志堆积系统kafka - xiaolin's blog
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="xiaolin's blog" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:neatlifecoco.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">about</a></li>
+        
+        <li id=""><a target="_self" href="all.html">blog</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">archive</a></li>
+        
+        <li id=""><a target="_self" href="tools.html">tools</a></li>
+        
+        <li id=""><a target="_self" href="pro.html">pros</a></li>
+        
+        <li id=""><a target="_self" href="pub.html">press</a></li>
+        
+        <li id=""><a target="_self" href="paper.html">paper</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; xiaolin's blog</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">about</a></li>
+        
+        <li><a target="_self" href="all.html">blog</a></li>
+        
+        <li><a target="_self" href="archives.html">archive</a></li>
+        
+        <li><a target="_self" href="tools.html">tools</a></li>
+        
+        <li><a target="_self" href="pro.html">pros</a></li>
+        
+        <li><a target="_self" href="pub.html">press</a></li>
+        
+        <li><a target="_self" href="paper.html">paper</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="macios.html">mac&ios</a></li>
+        
+            <li><a href="lc.html">leetcode</a></li>
+        
+            <li><a href="security.html">安全</a></li>
+        
+            <li><a href="business.html">业务</a></li>
+        
+            <li><a href="source-code.html">源码分析</a></li>
+        
+            <li><a href="redis.html">Redis</a></li>
+        
+            <li><a href="apache-nginx.html">Apache/Nginx</a></li>
+        
+            <li><a href="spring-boot.html">Spring Boot</a></li>
+        
+            <li><a href="pm.html">项目管理</a></li>
+        
+            <li><a href="sql.html">SQL</a></li>
+        
+            <li><a href="job-scheduler.html">任务调度</a></li>
+        
+            <li><a href="design-pattern.html">设计模式</a></li>
+        
+            <li><a href="mq.html">消息队列</a></li>
+        
+            <li><a href="rpc.html">RPC</a></li>
+        
+            <li><a href="laravel.html">LARAVEL</a></li>
+        
+            <li><a href="tcp-ip.html">TCP/IP</a></li>
+        
+            <li><a href="uml.html">UML</a></li>
+        
+            <li><a href="service-mesh.html">SERVICE MESH</a></li>
+        
+            <li><a href="ci-cd.html">CI/CD</a></li>
+        
+            <li><a href="ops.html">OPS</a></li>
+        
+            <li><a href="linux.html">LINUX</a></li>
+        
+            <li><a href="system-programming.html">系统编程</a></li>
+        
+            <li><a href="aws.html">AWS</a></li>
+        
+            <li><a href="lua.html">LUA</a></li>
+        
+            <li><a href="git.html">GIT</a></li>
+        
+            <li><a href="js.html">js</a></li>
+        
+            <li><a href="java.html">JAVA</a></li>
+        
+            <li><a href="monitor.html">监控</a></li>
+        
+            <li><a href="vim.html">VIM</a></li>
+        
+            <li><a href="php.html">PHP</a></li>
+        
+            <li><a href="openresty.html">OpenResty</a></li>
+        
+            <li><a href="swoole.html">SWOOLE</a></li>
+        
+            <li><a href="ons.html">消息队列</a></li>
+        
+            <li><a href="gdb.html">GDB</a></li>
+        
+            <li><a href="specification.html">规范</a></li>
+        
+            <li><a href="3-minutes.html">三分钟系列</a></li>
+        
+            <li><a href="1-pic.html">一图胜千言</a></li>
+        
+            <li><a href="account-system.html">帐号系统</a></li>
+        
+            <li><a href="interview.html">面试题</a></li>
+        
+            <li><a href="yii.html">Yii/Yii2</a></li>
+        
+            <li><a href="python.html">python</a></li>
+        
+            <li><a href="go.html">GO</a></li>
+        
+            <li><a href="ml.html">机器学习</a></li>
+        
+            <li><a href="emacs.html">emacs</a></li>
+        
+            <li><a href="bi.html">商业智能</a></li>
+        
+            <li><a href="mac.html">mac</a></li>
+        
+            <li><a href="editor.html">编辑器</a></li>
+        
+            <li><a href="productive-soft.html">生产力工具</a></li>
+        
+            <li><a href="driver-license.html">驾照</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>在spring boot中三分钟上手日志堆积系统kafka</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2019/6/28</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='3-minutes.html'>三分钟系列</a></span>
+          
+              <span class="posted-in"><a href='ons.html'>消息队列</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>kafka消息堆积能力比较强，可以堆积上亿的消息，特别适合日志处理这种实时性要求不太高的场景，同时支持集群部署，相比redis堆积能力和可靠性更高</p>
+
+<p>完整项目代码已上传github：<a href="https://github.com/neatlife/mykafka">https://github.com/neatlife/mykafka</a></p>
+
+<p>可以通过下面的步骤快速上手这个kafka</p>
+
+<h2 id="toc_0">获取一个可用的kafka实例</h2>
+
+<p>可以使用docker一键启动一个kafka集群，参考：<a href="https://github.com/simplesteph/kafka-stack-docker-compose">https://github.com/simplesteph/kafka-stack-docker-compose</a></p>
+
+<pre><code class="language-shell">git clone https://github.com/simplesteph/kafka-stack-docker-compose.git
+cd kafka-stack-docker-compose
+docker-compose -f full-stack.yml up -d
+</code></pre>
+
+<p>操作效果如下<br/>
+<img src="media/15616848190769/15616956931810.jpg" alt=""/></p>
+
+<p>使用命令<code>docker-compose -f full-stack.yml ps</code>获取可以kafka监听的端口</p>
+
+<span id="more"></span><!-- more -->
+
+<p><img src="media/15616848190769/15616957430401.jpg" alt=""/></p>
+
+<p>记下kafka监听的地址9092，这个后面会用到</p>
+
+<p>8000端口是这个kafka的topic的ui界面，这个界面可以查看当前的topic列表，效果如下<br/>
+<img src="media/15616848190769/15616958645931.jpg" alt=""/></p>
+
+<p>这里也看到topic里保存的数据</p>
+
+<h2 id="toc_1">准备案例项目</h2>
+
+<p>可以在<a href="https://start.spring.io/%E5%88%9B%E5%BB%BA%E6%B5%8B%E8%AF%95%E9%A1%B9%E7%9B%AE">https://start.spring.io/创建测试项目</a></p>
+
+<p><img src="media/15616848190769/15616961349842.jpg" alt=""/><br/>
+需要加上下面这三个包</p>
+
+<ol>
+<li>spring-boot-starter-web</li>
+<li>spring-kafka</li>
+<li>lombok</li>
+</ol>
+
+<p>在<code>appliation.properties</code>中配置kafka的地址和使用的group-id，这个group-id名称可以自行定义，比如：myconsumergroup</p>
+
+<pre><code class="language-properties">spring.kafka.bootstrap-servers=127.0.0.1:9092
+spring.kafka.consumer.group-id=myconsumergroup
+</code></pre>
+
+<h2 id="toc_2">创建topic</h2>
+
+<p>创建topic可以使用kafka-topics命令</p>
+
+<pre><code class="language-shell">docker-compose -f full-stack.yml exec kafka1 bash
+
+kafka-topics --create --topic mylikes --replication-factor 1 --partitions 1 --zookeeper zoo1:2181
+</code></pre>
+
+<h2 id="toc_3">删除topic</h2>
+
+<pre><code class="language-shell">kafka-topics --delete --topic mylikes --zookeeper zoo1:2181
+</code></pre>
+
+<h2 id="toc_4">用kafka客户端发送消息</h2>
+
+<p>使用一个spring boot的service封装kafka发送消息的代码，核心代码如下</p>
+
+<pre><code class="language-java">package mykafka.service;
+
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.stereotype.Service;
+
+@Service
+public class Producer {
+
+    private final KafkaTemplate&lt;String, String&gt; kafkaTemplate;
+
+
+    private String topic = &quot;自行定义的topic&quot;;
+
+    Producer(KafkaTemplate&lt;String, String&gt; kafkaTemplate) {
+        this.kafkaTemplate = kafkaTemplate;
+    }
+
+    public void send(String message) {
+        this.kafkaTemplate.send(topic, message);
+        System.out.println(&quot;Sent sample message [&quot; + message + &quot;] to &quot; + topic);
+    }
+
+}
+</code></pre>
+
+<p>然后编写一个接口调用这个发送kafka消息的service，核心代码如下：</p>
+
+<pre><code class="language-java">@RestController
+@RequestMapping(&quot;/&quot;)
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+public class MyController {
+
+    private final Producer producer;
+
+    @RequestMapping(&quot;/test1&quot;)
+    public String test1() {
+        producer.send(String.format(&quot;my message currentTimeMillis: %d&quot;, System.currentTimeMillis()));
+        return &quot;test1&quot;;
+    }
+}
+</code></pre>
+
+<p>注意：上面代码里使用的kafka的topic可以自行定义，比如mytopic</p>
+
+<p>然后在浏览器中访问这个接口 ip:8080/test1<br/>
+<img src="media/15616848190769/15616968287526.jpg" alt=""/><br/>
+可以在这个kafka的topic的ui看到发送到kafka的消息<br/>
+<img src="media/15616848190769/15616969419737.jpg" alt=""/></p>
+
+<p>可以看到这个消息已经发送到kafka了</p>
+
+<h2 id="toc_5">消费消息</h2>
+
+<p>消费消息只需要在方法上加上KafkaListener，并指定topic和groupId即可</p>
+
+<p>核心代码如下</p>
+
+<pre><code class="language-java">@KafkaListener(topics = &quot;mytopic&quot;, groupId = &quot;myconsumergroup&quot;)
+public void processMessage(String message,
+                           @Header(KafkaHeaders.RECEIVED_PARTITION_ID) List&lt;Integer&gt; partitions,
+                           @Header(KafkaHeaders.RECEIVED_TOPIC) List&lt;String&gt; topics,
+                           @Header(KafkaHeaders.OFFSET) List&lt;Long&gt; offsets) {
+    log.info(
+            &quot;received message, topic: {}, partition: {}, offset: {}, message: {}&quot;,
+            topics.get(0),
+            partitions.get(0),
+            offsets.get(0),
+            message
+    );
+}
+</code></pre>
+
+<p>操作效果如下：<br/>
+<img src="media/15616848190769/15616971738836.jpg" alt=""/><br/>
+可以看到已经成功收到了kafka里的消息</p>
+
+<h2 id="toc_6">其它客户端</h2>
+
+<p>php发送和消费客户端参考：<a href="https://github.com/arnaud-lb/php-rdkafka">https://github.com/arnaud-lb/php-rdkafka</a></p>
+
+<p>go客户端参考：<a href="https://github.com/confluentinc/confluent-kafka-go/">https://github.com/confluentinc/confluent-kafka-go/</a></p>
+
+<h2 id="toc_7">一些注意的点</h2>
+
+<p>发送消息和消费消息需要确保topic一致</p>
+
+<p>日志可以先发送到kafka做缓冲，然后通过kafka的客户端把消息取出来放到elk等日志存储系统中分析和可视化</p>
+
+<p>因为kafka客户端发送消息和服务端把消息保存到磁盘都是异步操作，所以存在服务器宕机后消息可能丢失，如果可靠性要求更高，可以使用改进版的kafka：rocketmq</p>
+
+<h2 id="toc_8">参考链接</h2>
+
+<ol>
+<li><a href="https://www.baeldung.com/spring-kafka">https://www.baeldung.com/spring-kafka</a></li>
+<li><a href="https://www.baeldung.com/spring-injection-lombok">https://www.baeldung.com/spring-injection-lombok</a></li>
+<li><a href="https://docs.confluent.io/current/clients/index.html">https://docs.confluent.io/current/clients/index.html</a></li>
+</ol>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15618891575018.html" 
+          title="Previous Post: PHP微服务在k8s上落地实战">&laquo; PHP微服务在k8s上落地实战</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15613492349471.html" 
+          title="Next Post: 三分钟上手git管理工具tower">三分钟上手git管理工具tower &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          <script src="https://utteranc.es/client.js"
+        repo="neatlife/neatlife.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>xiaolin's blog</h1>
+                <div class="site-des">core tech share blog</div>
+                <div class="social">
+                  <a target="_blank" class="juejin" href="https://juejin.im/user/5c409f86e51d4551c88027a2/posts" title="Juejin">juejin</a>
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/neatlife" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="macios.html"><strong>mac&ios</strong></a>
+        
+            <a href="lc.html"><strong>leetcode</strong></a>
+        
+            <a href="security.html"><strong>安全</strong></a>
+        
+            <a href="business.html"><strong>业务</strong></a>
+        
+            <a href="source-code.html"><strong>源码分析</strong></a>
+        
+            <a href="redis.html"><strong>Redis</strong></a>
+        
+            <a href="apache-nginx.html"><strong>Apache/Nginx</strong></a>
+        
+            <a href="spring-boot.html"><strong>Spring Boot</strong></a>
+        
+            <a href="pm.html"><strong>项目管理</strong></a>
+        
+            <a href="sql.html"><strong>SQL</strong></a>
+        
+            <a href="job-scheduler.html"><strong>任务调度</strong></a>
+        
+            <a href="design-pattern.html"><strong>设计模式</strong></a>
+        
+            <a href="mq.html"><strong>消息队列</strong></a>
+        
+            <a href="rpc.html"><strong>RPC</strong></a>
+        
+            <a href="laravel.html"><strong>LARAVEL</strong></a>
+        
+            <a href="tcp-ip.html"><strong>TCP/IP</strong></a>
+        
+            <a href="uml.html"><strong>UML</strong></a>
+        
+            <a href="service-mesh.html"><strong>SERVICE MESH</strong></a>
+        
+            <a href="ci-cd.html"><strong>CI/CD</strong></a>
+        
+            <a href="ops.html"><strong>OPS</strong></a>
+        
+            <a href="linux.html"><strong>LINUX</strong></a>
+        
+            <a href="system-programming.html"><strong>系统编程</strong></a>
+        
+            <a href="aws.html"><strong>AWS</strong></a>
+        
+            <a href="lua.html"><strong>LUA</strong></a>
+        
+            <a href="git.html"><strong>GIT</strong></a>
+        
+            <a href="js.html"><strong>js</strong></a>
+        
+            <a href="java.html"><strong>JAVA</strong></a>
+        
+            <a href="monitor.html"><strong>监控</strong></a>
+        
+            <a href="vim.html"><strong>VIM</strong></a>
+        
+            <a href="php.html"><strong>PHP</strong></a>
+        
+            <a href="openresty.html"><strong>OpenResty</strong></a>
+        
+            <a href="swoole.html"><strong>SWOOLE</strong></a>
+        
+            <a href="ons.html"><strong>消息队列</strong></a>
+        
+            <a href="gdb.html"><strong>GDB</strong></a>
+        
+            <a href="specification.html"><strong>规范</strong></a>
+        
+            <a href="3-minutes.html"><strong>三分钟系列</strong></a>
+        
+            <a href="1-pic.html"><strong>一图胜千言</strong></a>
+        
+            <a href="account-system.html"><strong>帐号系统</strong></a>
+        
+            <a href="interview.html"><strong>面试题</strong></a>
+        
+            <a href="yii.html"><strong>Yii/Yii2</strong></a>
+        
+            <a href="python.html"><strong>python</strong></a>
+        
+            <a href="go.html"><strong>GO</strong></a>
+        
+            <a href="ml.html"><strong>机器学习</strong></a>
+        
+            <a href="emacs.html"><strong>emacs</strong></a>
+        
+            <a href="bi.html"><strong>商业智能</strong></a>
+        
+            <a href="mac.html"><strong>mac</strong></a>
+        
+            <a href="editor.html"><strong>编辑器</strong></a>
+        
+            <a href="productive-soft.html"><strong>生产力工具</strong></a>
+        
+            <a href="driver-license.html"><strong>驾照</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="16081898834624.html">OSX使用代码代替storyboard构建项目，并添加NSSplitView组件</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16005640944829.html">linux系统编程之多进程和管道（pip）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15970226751276.html">三分钟上手java多线程控制技术</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15864793262262.html">14/24 设计模式之状态模式 State Pattern</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15880004262195.html">python高性能之路:使用C/C++编写扩展</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.
+<span id="busuanzi_container_site_uv">访问<span id="busuanzi_value_site_uv"></span>人</span>/
+        <span id="busuanzi_container_site_pv"><span id="busuanzi_value_site_pv"></span>次</span>
+    </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138141150-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138141150-1');
+</script>
+
+<canvas class="fireworks" 
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999999; pointer-events: none; width: 1158px; height: 916px;" 
+        width="2316" 
+        height="1832">
+</canvas>
+    <script src="asset/js/anime.min.js"></script>
+    <script src="asset/js/fireworks.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </body>
+</html>

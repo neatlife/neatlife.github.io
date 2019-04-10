@@ -1,0 +1,735 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  使用go解析二进制tcp数据包 - xiaolin's blog
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="xiaolin's blog" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:neatlifecoco.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">about</a></li>
+        
+        <li id=""><a target="_self" href="all.html">blog</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">archive</a></li>
+        
+        <li id=""><a target="_self" href="tools.html">tools</a></li>
+        
+        <li id=""><a target="_self" href="pro.html">pros</a></li>
+        
+        <li id=""><a target="_self" href="pub.html">press</a></li>
+        
+        <li id=""><a target="_self" href="paper.html">paper</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; xiaolin's blog</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">about</a></li>
+        
+        <li><a target="_self" href="all.html">blog</a></li>
+        
+        <li><a target="_self" href="archives.html">archive</a></li>
+        
+        <li><a target="_self" href="tools.html">tools</a></li>
+        
+        <li><a target="_self" href="pro.html">pros</a></li>
+        
+        <li><a target="_self" href="pub.html">press</a></li>
+        
+        <li><a target="_self" href="paper.html">paper</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="macios.html">mac&ios</a></li>
+        
+            <li><a href="lc.html">leetcode</a></li>
+        
+            <li><a href="security.html">安全</a></li>
+        
+            <li><a href="business.html">业务</a></li>
+        
+            <li><a href="source-code.html">源码分析</a></li>
+        
+            <li><a href="redis.html">Redis</a></li>
+        
+            <li><a href="apache-nginx.html">Apache/Nginx</a></li>
+        
+            <li><a href="spring-boot.html">Spring Boot</a></li>
+        
+            <li><a href="pm.html">项目管理</a></li>
+        
+            <li><a href="sql.html">SQL</a></li>
+        
+            <li><a href="job-scheduler.html">任务调度</a></li>
+        
+            <li><a href="design-pattern.html">设计模式</a></li>
+        
+            <li><a href="mq.html">消息队列</a></li>
+        
+            <li><a href="rpc.html">RPC</a></li>
+        
+            <li><a href="laravel.html">LARAVEL</a></li>
+        
+            <li><a href="tcp-ip.html">TCP/IP</a></li>
+        
+            <li><a href="uml.html">UML</a></li>
+        
+            <li><a href="service-mesh.html">SERVICE MESH</a></li>
+        
+            <li><a href="ci-cd.html">CI/CD</a></li>
+        
+            <li><a href="ops.html">OPS</a></li>
+        
+            <li><a href="linux.html">LINUX</a></li>
+        
+            <li><a href="system-programming.html">系统编程</a></li>
+        
+            <li><a href="aws.html">AWS</a></li>
+        
+            <li><a href="lua.html">LUA</a></li>
+        
+            <li><a href="git.html">GIT</a></li>
+        
+            <li><a href="js.html">js</a></li>
+        
+            <li><a href="java.html">JAVA</a></li>
+        
+            <li><a href="monitor.html">监控</a></li>
+        
+            <li><a href="vim.html">VIM</a></li>
+        
+            <li><a href="php.html">PHP</a></li>
+        
+            <li><a href="openresty.html">OpenResty</a></li>
+        
+            <li><a href="swoole.html">SWOOLE</a></li>
+        
+            <li><a href="ons.html">消息队列</a></li>
+        
+            <li><a href="gdb.html">GDB</a></li>
+        
+            <li><a href="specification.html">规范</a></li>
+        
+            <li><a href="3-minutes.html">三分钟系列</a></li>
+        
+            <li><a href="1-pic.html">一图胜千言</a></li>
+        
+            <li><a href="account-system.html">帐号系统</a></li>
+        
+            <li><a href="interview.html">面试题</a></li>
+        
+            <li><a href="yii.html">Yii/Yii2</a></li>
+        
+            <li><a href="python.html">python</a></li>
+        
+            <li><a href="go.html">GO</a></li>
+        
+            <li><a href="ml.html">机器学习</a></li>
+        
+            <li><a href="emacs.html">emacs</a></li>
+        
+            <li><a href="bi.html">商业智能</a></li>
+        
+            <li><a href="mac.html">mac</a></li>
+        
+            <li><a href="editor.html">编辑器</a></li>
+        
+            <li><a href="productive-soft.html">生产力工具</a></li>
+        
+            <li><a href="driver-license.html">驾照</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>使用go解析二进制tcp数据包</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2019/12/27</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='tcp-ip.html'>TCP/IP</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>tcp全名是传输控制协议，tcp协议在ip协议基础上增加了数据包完整性检查等保证传输完整性的机制，使其在现在的数据领域得到了广泛的应用</p>
+
+<p>按照下面的步骤可以快速了解tcp数据包中包含的信息</p>
+
+<h2 id="toc_0">tcp协议rfc文档解读</h2>
+
+<p>rfc参考：<a href="https://tools.ietf.org/html/rfc793">https://tools.ietf.org/html/rfc793</a></p>
+
+<p>核心tcp数据包结构如下<br/>
+<img src="media/15774397602319/15775514293616.jpg" alt=""/><br/>
+可以看到tcp报文由十余个字段组成，最后一个data字段代表了本次tcp数据报文承载的数据，这个数据一般是应用层的数据，比如http报文数据就是在这个tcp包的data字段中</p>
+
+<p>其中常用字段如下</p>
+
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>作用</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Source Port</td>
+<td>发包机器的端口号</td>
+</tr>
+<tr>
+<td>Destination Port</td>
+<td>收包机器的端口号</td>
+</tr>
+<tr>
+<td>Sequence Number</td>
+<td>包编号</td>
+</tr>
+<tr>
+<td>Acknowledgment Number</td>
+<td>确认包号</td>
+</tr>
+<tr>
+<td>urg/ack/psh/rst/syn/fin</td>
+<td>标志位,设置是/否的操作标志</td>
+</tr>
+<tr>
+<td>Window</td>
+<td>流量控制窗口</td>
+</tr>
+<tr>
+<td>Checksum</td>
+<td>包完整性校验</td>
+</tr>
+</tbody>
+</table>
+
+<p>注意：客户端和服务端使用独立的包编号计数器器<br/>
+    checksum服务端和客户端会分别计算，客户端依靠这个值判断tcp包在传输过程中是否被异常改变/篡改</p>
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_1">获取案例数据包</h2>
+
+<p>可以使用wireshark获取一个tcp数据包，在tcp层单击右键-&gt;复制-&gt;as a Hex Stream即可<br/>
+<img src="media/15774397602319/15776234016904.jpg" alt=""/></p>
+
+<p>这里得到的tcp层包数据如下</p>
+
+<pre><code class="language-text">1f90f04f3747d146dcae23f3801831bf14ef00000101080a3176450b31764503
+</code></pre>
+
+<p>下面就可以编写程序从这个tcp的16进制中解析出报文的具体数据了</p>
+
+<h2 id="toc_2">解析tcp数据报文</h2>
+
+<p>二进制数字位数和16进制位数换算关系：1个16进制数可以表示4个二进制数<br/>
+比如二进制：00011111 10010000 可以使用16进制表示为：1f90</p>
+
+<p>可以使用下面的代码将16进制转成二进制字符串</p>
+
+<pre><code class="language-go">func hex2bin(hex string) string {
+    var bin string
+
+    for i := 0; i &lt; len(hex); i++ {
+        hex2int, _ := strconv.ParseInt(string(hex[i]), 16, 64)
+        bin = bin + fmt.Sprintf(&quot;%04b&quot;, hex2int)
+    }
+
+    return bin
+}
+</code></pre>
+
+<p>然后就可以按二进制位读取tcp数据报信息了，参考代码如下</p>
+
+<pre><code class="language-go">func main() {
+    atcp := &quot;1f90f04f3747d146dcae23f3801831bf14ef00000101080a3176450b31764503&quot;
+    bintcp := hex2bin(atcp)
+
+    sourcePort, _  := strconv.ParseInt(bintcp[0:16], 2, 64)
+    fmt.Printf(&quot;sourcePort is %d \n&quot;, sourcePort)
+
+    destinationPort, _  := strconv.ParseInt(bintcp[16:32], 2, 64)
+    fmt.Printf(&quot;destinationPort is %d \n&quot;, destinationPort)
+
+    sequenceNumber, _  := strconv.ParseInt(bintcp[32:64], 2, 64)
+    fmt.Printf(&quot;sequenceNumber is %d \n&quot;, sequenceNumber)
+
+    acknowledgmentNumber, _  := strconv.ParseInt(bintcp[64:96], 2, 64)
+    fmt.Printf(&quot;acknowledgmentNumber is %d \n&quot;, acknowledgmentNumber)
+
+    dataOffset, _  := strconv.ParseInt(bintcp[96:100], 2, 64)
+    fmt.Printf(&quot;dataOffset is %d \n&quot;, dataOffset)
+
+    reserved, _  := strconv.ParseInt(bintcp[100:106], 2, 64)
+    fmt.Printf(&quot;reserved is %d \n&quot;, reserved)
+
+    // Control Bits 控制位，从106-1012共有6位，每位表示一个控制位的开关
+    urg, _ := strconv.ParseInt(bintcp[106:107], 2, 64)
+    ack, _ := strconv.ParseInt(bintcp[107:108], 2, 64)
+    psh, _ := strconv.ParseInt(bintcp[108:109], 2, 64)
+    rst, _ := strconv.ParseInt(bintcp[109:110], 2, 64)
+    syn, _ := strconv.ParseInt(bintcp[110:111], 2, 64)
+    fin, _ := strconv.ParseInt(bintcp[111:112], 2, 64)
+    fmt.Printf(&quot;控制位标识如下:\n&quot;)
+    fmt.Printf(&quot;    urg: %d\n&quot;, urg)
+    fmt.Printf(&quot;    ack: %d\n&quot;, ack)
+    fmt.Printf(&quot;    psh: %d\n&quot;, psh)
+    fmt.Printf(&quot;    rst: %d\n&quot;, rst)
+    fmt.Printf(&quot;    syn: %d\n&quot;, syn)
+    fmt.Printf(&quot;    fin: %d\n&quot;, fin)
+
+    // 数据窗口 16位
+    window, _  := strconv.ParseInt(bintcp[112:128], 2, 64)
+    fmt.Printf(&quot;window is %d \n&quot;, window)
+
+    // checksum 16位
+    checksum, _  := strconv.ParseInt(bintcp[128:144], 2, 64)
+    fmt.Printf(&quot;checksum is %d \n&quot;, checksum)
+
+    // urgentPointer
+    urgentPointer, _ := strconv.ParseInt(bintcp[144:160], 2, 64)
+    fmt.Printf(&quot;urgentPointer is %d \n&quot;, urgentPointer)
+
+    // options and padding
+    optionsAndPaddings := bintcp[160:]
+    fmt.Printf(&quot;optionsAndPaddings is %s \n&quot;, optionsAndPaddings)
+
+    fmt.Printf(&quot;tcp raw data is %s \n&quot;, atcp)
+    fmt.Printf(&quot;tcp bin data is %s \n&quot;, bintcp)
+    fmt.Printf(&quot;tcp bin data length is %d\n&quot;, len(bintcp))
+}
+</code></pre>
+
+<p>执行效果如下<br/>
+<img src="media/15774397602319/15776236411217.jpg" alt=""/></p>
+
+<p>wireshark解析结果如下<br/>
+<img src="media/15774397602319/15776237096945.jpg" alt=""/></p>
+
+<p>可以看到解析是ok的</p>
+
+<h2 id="toc_3">一些注意的点</h2>
+
+<p>wireshark中复制的tcp包数据是16进制的，但是tcp协议中，部分字段仅占用一位，16进制是2进制的4的整数倍，直接解析16进制会导致tcp中的某些字段无法获取，需要先转成二进制进行处理</p>
+
+<p>tcp包数据最终会进行32位对齐，整个tcp数据包大小如果不是正好是32位长度的整数倍，会用0在末尾填充到32位整数倍</p>
+
+<p>tcp协议在rfc3168中新增了cwr和ece标志位，可以参考：<a href="https://tools.ietf.org/html/rfc3168#section-6.1">https://tools.ietf.org/html/rfc3168#section-6.1</a></p>
+
+<p>抓包可以使用tcpdump: tcpdump -n -XX -i lo0 -s0 &#39;tcp port 8080&#39;</p>
+
+<h2 id="toc_4">参考资料</h2>
+
+<ol>
+<li><a href="https://github.com/google/packetdrill">https://github.com/google/packetdrill</a></li>
+<li><a href="http://klamath.stanford.edu/%7Enickm/papers/ancs48-gibb.pdf">http://klamath.stanford.edu/~nickm/papers/ancs48-gibb.pdf</a></li>
+<li><a href="https://pcapplusplus.github.io/docs/tutorials/packet-parsing">https://pcapplusplus.github.io/docs/tutorials/packet-parsing</a></li>
+<li><a href="https://tools.ietf.org/html/rfc793#section-3.1">https://tools.ietf.org/html/rfc793#section-3.1</a></li>
+<li><a href="https://forums.ni.com/t5/LabVIEW/what-is-the-best-way-to-parse-TCP-data-packets/td-p/3193705?profile.language=zh-CN">https://forums.ni.com/t5/LabVIEW/what-is-the-best-way-to-parse-TCP-data-packets/td-p/3193705?profile.language=zh-CN</a></li>
+<li><a href="https://sites.google.com/site/jimmyxu101/testing/use-tcpdump-to-monitor-http-traffic">https://sites.google.com/site/jimmyxu101/testing/use-tcpdump-to-monitor-http-traffic</a></li>
+</ol>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15777670811036.html" 
+          title="Previous Post: 三分钟搭建大数据sql开发平台">&laquo; 三分钟搭建大数据sql开发平台</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15713231348652.html" 
+          title="Next Post: twitter公司redis&memcached中间件twemproxy源码分析（一）">twitter公司redis&memcached中间件twemproxy源码分析（一） &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          <script src="https://utteranc.es/client.js"
+        repo="neatlife/neatlife.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>xiaolin's blog</h1>
+                <div class="site-des">core tech share blog</div>
+                <div class="social">
+                  <a target="_blank" class="juejin" href="https://juejin.im/user/5c409f86e51d4551c88027a2/posts" title="Juejin">juejin</a>
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/neatlife" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="macios.html"><strong>mac&ios</strong></a>
+        
+            <a href="lc.html"><strong>leetcode</strong></a>
+        
+            <a href="security.html"><strong>安全</strong></a>
+        
+            <a href="business.html"><strong>业务</strong></a>
+        
+            <a href="source-code.html"><strong>源码分析</strong></a>
+        
+            <a href="redis.html"><strong>Redis</strong></a>
+        
+            <a href="apache-nginx.html"><strong>Apache/Nginx</strong></a>
+        
+            <a href="spring-boot.html"><strong>Spring Boot</strong></a>
+        
+            <a href="pm.html"><strong>项目管理</strong></a>
+        
+            <a href="sql.html"><strong>SQL</strong></a>
+        
+            <a href="job-scheduler.html"><strong>任务调度</strong></a>
+        
+            <a href="design-pattern.html"><strong>设计模式</strong></a>
+        
+            <a href="mq.html"><strong>消息队列</strong></a>
+        
+            <a href="rpc.html"><strong>RPC</strong></a>
+        
+            <a href="laravel.html"><strong>LARAVEL</strong></a>
+        
+            <a href="tcp-ip.html"><strong>TCP/IP</strong></a>
+        
+            <a href="uml.html"><strong>UML</strong></a>
+        
+            <a href="service-mesh.html"><strong>SERVICE MESH</strong></a>
+        
+            <a href="ci-cd.html"><strong>CI/CD</strong></a>
+        
+            <a href="ops.html"><strong>OPS</strong></a>
+        
+            <a href="linux.html"><strong>LINUX</strong></a>
+        
+            <a href="system-programming.html"><strong>系统编程</strong></a>
+        
+            <a href="aws.html"><strong>AWS</strong></a>
+        
+            <a href="lua.html"><strong>LUA</strong></a>
+        
+            <a href="git.html"><strong>GIT</strong></a>
+        
+            <a href="js.html"><strong>js</strong></a>
+        
+            <a href="java.html"><strong>JAVA</strong></a>
+        
+            <a href="monitor.html"><strong>监控</strong></a>
+        
+            <a href="vim.html"><strong>VIM</strong></a>
+        
+            <a href="php.html"><strong>PHP</strong></a>
+        
+            <a href="openresty.html"><strong>OpenResty</strong></a>
+        
+            <a href="swoole.html"><strong>SWOOLE</strong></a>
+        
+            <a href="ons.html"><strong>消息队列</strong></a>
+        
+            <a href="gdb.html"><strong>GDB</strong></a>
+        
+            <a href="specification.html"><strong>规范</strong></a>
+        
+            <a href="3-minutes.html"><strong>三分钟系列</strong></a>
+        
+            <a href="1-pic.html"><strong>一图胜千言</strong></a>
+        
+            <a href="account-system.html"><strong>帐号系统</strong></a>
+        
+            <a href="interview.html"><strong>面试题</strong></a>
+        
+            <a href="yii.html"><strong>Yii/Yii2</strong></a>
+        
+            <a href="python.html"><strong>python</strong></a>
+        
+            <a href="go.html"><strong>GO</strong></a>
+        
+            <a href="ml.html"><strong>机器学习</strong></a>
+        
+            <a href="emacs.html"><strong>emacs</strong></a>
+        
+            <a href="bi.html"><strong>商业智能</strong></a>
+        
+            <a href="mac.html"><strong>mac</strong></a>
+        
+            <a href="editor.html"><strong>编辑器</strong></a>
+        
+            <a href="productive-soft.html"><strong>生产力工具</strong></a>
+        
+            <a href="driver-license.html"><strong>驾照</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="16081898834624.html">OSX使用代码代替storyboard构建项目，并添加NSSplitView组件</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16005640944829.html">linux系统编程之多进程和管道（pip）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15970226751276.html">三分钟上手java多线程控制技术</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15864793262262.html">14/24 设计模式之状态模式 State Pattern</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15880004262195.html">python高性能之路:使用C/C++编写扩展</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.
+<span id="busuanzi_container_site_uv">访问<span id="busuanzi_value_site_uv"></span>人</span>/
+        <span id="busuanzi_container_site_pv"><span id="busuanzi_value_site_pv"></span>次</span>
+    </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138141150-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138141150-1');
+</script>
+
+<canvas class="fireworks" 
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999999; pointer-events: none; width: 1158px; height: 916px;" 
+        width="2316" 
+        height="1832">
+</canvas>
+    <script src="asset/js/anime.min.js"></script>
+    <script src="asset/js/fireworks.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </body>
+</html>

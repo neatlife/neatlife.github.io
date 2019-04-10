@@ -1,0 +1,1073 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  java微服务 k8s生产环境搭建 - xiaolin's blog
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="xiaolin's blog" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:neatlifecoco.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">about</a></li>
+        
+        <li id=""><a target="_self" href="all.html">blog</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">archive</a></li>
+        
+        <li id=""><a target="_self" href="tools.html">tools</a></li>
+        
+        <li id=""><a target="_self" href="pro.html">pros</a></li>
+        
+        <li id=""><a target="_self" href="pub.html">press</a></li>
+        
+        <li id=""><a target="_self" href="paper.html">paper</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; xiaolin's blog</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">about</a></li>
+        
+        <li><a target="_self" href="all.html">blog</a></li>
+        
+        <li><a target="_self" href="archives.html">archive</a></li>
+        
+        <li><a target="_self" href="tools.html">tools</a></li>
+        
+        <li><a target="_self" href="pro.html">pros</a></li>
+        
+        <li><a target="_self" href="pub.html">press</a></li>
+        
+        <li><a target="_self" href="paper.html">paper</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="macios.html">mac&ios</a></li>
+        
+            <li><a href="lc.html">leetcode</a></li>
+        
+            <li><a href="security.html">安全</a></li>
+        
+            <li><a href="business.html">业务</a></li>
+        
+            <li><a href="source-code.html">源码分析</a></li>
+        
+            <li><a href="redis.html">Redis</a></li>
+        
+            <li><a href="apache-nginx.html">Apache/Nginx</a></li>
+        
+            <li><a href="spring-boot.html">Spring Boot</a></li>
+        
+            <li><a href="pm.html">项目管理</a></li>
+        
+            <li><a href="sql.html">SQL</a></li>
+        
+            <li><a href="job-scheduler.html">任务调度</a></li>
+        
+            <li><a href="design-pattern.html">设计模式</a></li>
+        
+            <li><a href="mq.html">消息队列</a></li>
+        
+            <li><a href="rpc.html">RPC</a></li>
+        
+            <li><a href="laravel.html">LARAVEL</a></li>
+        
+            <li><a href="tcp-ip.html">TCP/IP</a></li>
+        
+            <li><a href="uml.html">UML</a></li>
+        
+            <li><a href="service-mesh.html">SERVICE MESH</a></li>
+        
+            <li><a href="ci-cd.html">CI/CD</a></li>
+        
+            <li><a href="ops.html">OPS</a></li>
+        
+            <li><a href="linux.html">LINUX</a></li>
+        
+            <li><a href="system-programming.html">系统编程</a></li>
+        
+            <li><a href="aws.html">AWS</a></li>
+        
+            <li><a href="lua.html">LUA</a></li>
+        
+            <li><a href="git.html">GIT</a></li>
+        
+            <li><a href="js.html">js</a></li>
+        
+            <li><a href="java.html">JAVA</a></li>
+        
+            <li><a href="monitor.html">监控</a></li>
+        
+            <li><a href="vim.html">VIM</a></li>
+        
+            <li><a href="php.html">PHP</a></li>
+        
+            <li><a href="openresty.html">OpenResty</a></li>
+        
+            <li><a href="swoole.html">SWOOLE</a></li>
+        
+            <li><a href="ons.html">消息队列</a></li>
+        
+            <li><a href="gdb.html">GDB</a></li>
+        
+            <li><a href="specification.html">规范</a></li>
+        
+            <li><a href="3-minutes.html">三分钟系列</a></li>
+        
+            <li><a href="1-pic.html">一图胜千言</a></li>
+        
+            <li><a href="account-system.html">帐号系统</a></li>
+        
+            <li><a href="interview.html">面试题</a></li>
+        
+            <li><a href="yii.html">Yii/Yii2</a></li>
+        
+            <li><a href="python.html">python</a></li>
+        
+            <li><a href="go.html">GO</a></li>
+        
+            <li><a href="ml.html">机器学习</a></li>
+        
+            <li><a href="emacs.html">emacs</a></li>
+        
+            <li><a href="bi.html">商业智能</a></li>
+        
+            <li><a href="mac.html">mac</a></li>
+        
+            <li><a href="editor.html">编辑器</a></li>
+        
+            <li><a href="productive-soft.html">生产力工具</a></li>
+        
+            <li><a href="driver-license.html">驾照</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>java微服务 k8s生产环境搭建</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2019/4/12</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='java.html'>JAVA</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>整理了好久，来一波干货😄🎉</p>
+
+<h5 id="toc_0">准备k8s集群机器</h5>
+
+<p>一台k8s部署机（堡垒机) 1G以上<br/>
+3台k8s master节点机器 2c4G以上<br/>
+3台k8s node节点机器   2c4G以上</p>
+
+<p>为以上7台机器全部分配固定ip</p>
+
+<table>
+<thead>
+<tr>
+<th>机器</th>
+<th>ip</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>K8s-ha-master1</td>
+<td>172.16.67.130</td>
+</tr>
+<tr>
+<td>K8s-ha-master2</td>
+<td>172.16.67.131</td>
+</tr>
+<tr>
+<td>K8s-ha-master3</td>
+<td>172.16.67.132</td>
+</tr>
+<tr>
+<td>K8s-ha-node1</td>
+<td>172.16.67.135</td>
+</tr>
+<tr>
+<td>K8s-ha-node2</td>
+<td>172.16.67.136</td>
+</tr>
+<tr>
+<td>K8s-ha-node3</td>
+<td>172.16.67.137</td>
+</tr>
+<tr>
+<td>K8s-ha-deploy</td>
+<td>172.16.67.140</td>
+</tr>
+</tbody>
+</table>
+
+<h5 id="toc_1">安装k8s集群</h5>
+
+<span id="more"></span><!-- more -->
+
+<p>登陆部署机<br/>
+生成ssh key: ssh-keygen -t rsa -b 4096 -C &quot;<a href="mailto:your_email@example.com">your_email@example.com</a>&quot;<br/>
+将公钥拷贝到k8s所有的机器上</p>
+
+<pre><code class="language-shell">ssh-copy-id 172.16.67.130
+ssh-copy-id 172.16.67.131
+ssh-copy-id 172.16.67.132
+ssh-copy-id 172.16.67.135
+ssh-copy-id 172.16.67.136
+ssh-copy-id 172.16.67.137
+ssh-copy-id 172.16.67.140
+</code></pre>
+
+<p>下载k8s docker安装工具包</p>
+
+<pre><code class="language-shell">git clone https://github.com/gjmzj/kubeasz.git
+mkdir -p /etc/ansible
+mv kubeasz/* /etc/ansible
+</code></pre>
+
+<p>参考这个文档<a href="https://github.com/gjmzj/kubeasz/blob/master/docs/setup/quickStart.md">https://github.com/gjmzj/kubeasz/blob/master/docs/setup/quickStart.md</a> 下载k8s集群需要的二进制文件和离线docker镜像并解压</p>
+
+<ul>
+<li><a href="https://pan.baidu.com/s/1c4RFaA">https://pan.baidu.com/s/1c4RFaA</a></li>
+</ul>
+
+<p>把以上的机器配置到ansible里</p>
+
+<pre><code class="language-shell">cd /etc/ansible &amp;&amp; cp example/hosts.m-masters.example hosts
+</code></pre>
+
+<pre><code class="language-ini"># 集群部署节点：一般为运行ansible 脚本的节点
+# 变量 NTP_ENABLED (=yes/no) 设置集群是否安装 chrony 时间同步
+[deploy]
+127.0.0.1 NTP_ENABLED=no
+
+# etcd集群请提供如下NODE_NAME，注意etcd集群必须是1,3,5,7...奇数个节点
+[etcd]
+172.16.67.130 NODE_NAME=etcd1
+172.16.67.131 NODE_NAME=etcd2
+172.16.67.132 NODE_NAME=etcd3
+
+[new-etcd] # 预留组，后续添加etcd节点使用
+#192.168.1.x NODE_NAME=etcdx
+
+[kube-master]
+172.16.67.130
+172.16.67.131
+172.16.67.132
+
+[new-master] # 预留组，后续添加master节点使用
+#192.168.1.5
+
+[kube-node]
+172.16.67.137 NEW_NODE=yes
+172.16.67.136 NEW_NODE=yes
+172.16.67.135
+
+[new-node] # 预留组，后续添加node节点使用
+#192.168.1.xx
+
+# 参数 NEW_INSTALL：yes表示新建，no表示使用已有harbor服务器
+# 如果不使用域名，可以设置 HARBOR_DOMAIN=&quot;&quot;
+[harbor]
+#192.168.1.8 HARBOR_DOMAIN=&quot;harbor.yourdomain.com&quot; NEW_INSTALL=no
+
+# 负载均衡(目前已支持多于2节点，一般2节点就够了) 安装 haproxy+keepalived
+[lb]
+172.16.67.130 LB_ROLE=backup
+172.16.67.131 LB_ROLE=master
+
+#【可选】外部负载均衡，用于自有环境负载转发 NodePort 暴露的服务等
+[ex-lb]
+#192.168.1.6 LB_ROLE=backup EX_VIP=192.168.1.250
+#192.168.1.7 LB_ROLE=master EX_VIP=192.168.1.250
+
+[all:vars]
+# ---------集群主要参数---------------
+#集群部署模式：allinone, single-master, multi-master
+DEPLOY_MODE=multi-master
+
+#集群主版本号，目前支持: v1.8, v1.9, v1.10，v1.11, v1.12, v1.13
+K8S_VER=&quot;v1.13&quot;
+
+# 集群 MASTER IP即 LB节点VIP地址，为区别与默认apiserver端口，设置VIP监听的服务端口8443
+# 公有云上请使用云负载均衡内网地址和监听端口
+MASTER_IP=&quot;172.16.67.165&quot;
+KUBE_APISERVER=&quot;https://{{ MASTER_IP }}:8443&quot;
+
+# 集群网络插件，目前支持calico, flannel, kube-router, cilium
+CLUSTER_NETWORK=&quot;flannel&quot;
+
+# 服务网段 (Service CIDR），注意不要与内网已有网段冲突
+SERVICE_CIDR=&quot;10.68.0.0/16&quot;
+
+# POD 网段 (Cluster CIDR），注意不要与内网已有网段冲突
+CLUSTER_CIDR=&quot;172.20.0.0/16&quot;
+
+# 服务端口范围 (NodePort Range)
+NODE_PORT_RANGE=&quot;20000-40000&quot;
+
+# kubernetes 服务 IP (预分配，一般是 SERVICE_CIDR 中第一个IP)
+CLUSTER_KUBERNETES_SVC_IP=&quot;10.68.0.1&quot;
+
+# 集群 DNS 服务 IP (从 SERVICE_CIDR 中预分配)
+CLUSTER_DNS_SVC_IP=&quot;10.68.0.2&quot;
+
+# 集群 DNS 域名
+CLUSTER_DNS_DOMAIN=&quot;cluster.local.&quot;
+
+# 集群basic auth 使用的用户名和密码
+BASIC_AUTH_USER=&quot;admin&quot;
+BASIC_AUTH_PASS=&quot;test1234&quot;
+
+# ---------附加参数--------------------
+#默认二进制文件目录
+bin_dir=&quot;/opt/kube/bin&quot;
+
+#证书目录
+ca_dir=&quot;/etc/kubernetes/ssl&quot;
+
+#部署目录，即 ansible 工作目录，建议不要修改
+base_dir=&quot;/etc/ansible&quot;
+</code></pre>
+
+<p>运行ansible安装集群</p>
+
+<pre><code class="language-shell">ansible-playbook 01.prepare.yml
+ansible-playbook 02.etcd.yml
+ansible-playbook 03.docker.yml
+ansible-playbook 04.kube-master.yml
+ansible-playbook 05.kube-node.yml
+ansible-playbook 06.network.yml
+ansible-playbook 07.cluster-addon.yml 
+</code></pre>
+
+<h5 id="toc_2">安装rancher，导入k8s集群</h5>
+
+<p>使用rancher镜像启动rancher</p>
+
+<pre><code class="language-shell">docker run -d --name=rancher --restart=unless-stopped \
+  -p 8880:80 -p 8843:443 \
+  -v ~/rancher:/var/lib/rancher \
+  rancher/rancher:stable
+</code></pre>
+
+<p>登陆 ip:8843查看效果<br/>
+<img src="media/15550432633789/15550447600877.jpg" alt=""/></p>
+
+<p>导入k8s集群<br/>
+<img src="media/15550432633789/15550672086002.jpg" alt=""/></p>
+
+<p>生成配置<br/>
+<img src="media/15550432633789/15550671689053.jpg" alt=""/></p>
+
+<p>获取生成的配置，在k8s的部署机上执行</p>
+
+<pre><code class="language-shell">curl --insecure -sfL https://172.16.123.1:8843/v3/import/7gtwrh84nlpgkn48pj26lrzv4c8bt4mjl9f7r5w2sfprbt82tkdk6f.yaml | kubectl apply -f -
+</code></pre>
+
+<p>在rancher上查看导入的集群<br/>
+<img src="media/15550432633789/15550452257987.jpg" alt=""/></p>
+
+<h5 id="toc_3">网关和项目镜像推送阿里云</h5>
+
+<p>将java镜像打包推送到阿里云，参考:<a href="https://github.com/neatlife/jframework">https://github.com/neatlife/jframework</a></p>
+
+<pre><code class="language-shell">docker build -t jframework .
+docker tag jframework:latest registry.cn-hangzhou.aliyuncs.com/suxiaolin/jframework:latest
+docker push registry.cn-hangzhou.aliyuncs.com/suxiaolin/jframework:latest
+</code></pre>
+
+<p>准备网关k8s配置文件</p>
+
+<pre><code class="language-yml">{
+  &quot;kind&quot;: &quot;DaemonSet&quot;,
+  &quot;apiVersion&quot;: &quot;extensions/v1beta1&quot;,
+  &quot;metadata&quot;: {
+    &quot;name&quot;: &quot;gateway&quot;,
+    &quot;namespace&quot;: &quot;default&quot;,
+    &quot;labels&quot;: {
+      &quot;k8s-app&quot;: &quot;gateway&quot;
+    },
+    &quot;annotations&quot;: {
+      &quot;deployment.kubernetes.io/revision&quot;: &quot;2&quot;
+    }
+  },
+  &quot;spec&quot;: {
+    &quot;selector&quot;: {
+      &quot;matchLabels&quot;: {
+        &quot;k8s-app&quot;: &quot;gateway&quot;
+      }
+    },
+    &quot;template&quot;: {
+      &quot;metadata&quot;: {
+        &quot;name&quot;: &quot;gateway&quot;,
+        &quot;labels&quot;: {
+          &quot;k8s-app&quot;: &quot;gateway&quot;
+        }
+      },
+      &quot;spec&quot;: {
+        &quot;containers&quot;: [
+        {
+          &quot;name&quot;: &quot;gateway&quot;,
+          &quot;ports&quot;: [
+            {
+              &quot;containerPort&quot;: 8080,
+              &quot;hostPort&quot;: 8080,
+              &quot;name&quot;: &quot;8080tcp80800&quot;,
+              &quot;protocol&quot;: &quot;TCP&quot;
+            }
+          ],
+          &quot;image&quot;: &quot;registry.cn-hangzhou.aliyuncs.com/suxiaolin/gateway:latest&quot;,
+          &quot;readinessProbe&quot;: {
+            &quot;httpGet&quot;: {
+              &quot;scheme&quot;: &quot;HTTP&quot;,
+              &quot;path&quot;: &quot;/actuator/info&quot;,
+              &quot;port&quot;: 8080
+            },
+            &quot;initialDelaySeconds&quot;: 10,
+            &quot;periodSeconds&quot;: 5
+          },
+          &quot;resources&quot;: {
+
+          },
+          &quot;terminationMessagePath&quot;: &quot;/dev/termination-log&quot;,
+          &quot;terminationMessagePolicy&quot;: &quot;File&quot;,
+          &quot;imagePullPolicy&quot;: &quot;Always&quot;,
+          &quot;securityContext&quot;: {
+            &quot;privileged&quot;: false,
+            &quot;procMount&quot;: &quot;Default&quot;
+          }
+        }
+        ],
+        &quot;restartPolicy&quot;: &quot;Always&quot;,
+        &quot;terminationGracePeriodSeconds&quot;: 30,
+        &quot;dnsPolicy&quot;: &quot;ClusterFirst&quot;,
+        &quot;securityContext&quot;: {
+
+        },
+        &quot;schedulerName&quot;: &quot;default-scheduler&quot;
+      }
+    },
+    &quot;revisionHistoryLimit&quot;: 10
+  }
+}
+</code></pre>
+
+<p>准备项目k8s配置文件</p>
+
+<pre><code class="language-yml">{
+  &quot;kind&quot;: &quot;Deployment&quot;,
+  &quot;apiVersion&quot;: &quot;extensions/v1beta1&quot;,
+  &quot;metadata&quot;: {
+    &quot;name&quot;: &quot;jframework&quot;,
+    &quot;namespace&quot;: &quot;default&quot;,
+    &quot;labels&quot;: {
+      &quot;k8s-app&quot;: &quot;jframework&quot;
+    },
+    &quot;annotations&quot;: {
+      &quot;deployment.kubernetes.io/revision&quot;: &quot;2&quot;
+    }
+  },
+  &quot;spec&quot;: {
+    &quot;replicas&quot;: 1,
+    &quot;selector&quot;: {
+      &quot;matchLabels&quot;: {
+        &quot;k8s-app&quot;: &quot;jframework&quot;
+      }
+    },
+    &quot;template&quot;: {
+      &quot;metadata&quot;: {
+        &quot;name&quot;: &quot;jframework&quot;,
+        &quot;labels&quot;: {
+          &quot;k8s-app&quot;: &quot;jframework&quot;
+        }
+      },
+      &quot;spec&quot;: {
+        &quot;containers&quot;: [
+          {
+            &quot;name&quot;: &quot;jframework&quot;,
+            &quot;image&quot;: &quot;registry.cn-hangzhou.aliyuncs.com/suxiaolin/jframework:latest&quot;,
+            &quot;readinessProbe&quot;: {
+              &quot;httpGet&quot;: {
+                &quot;scheme&quot;: &quot;HTTP&quot;,
+                &quot;path&quot;: &quot;/heartbeat&quot;,
+                &quot;port&quot;: 8080
+              },
+              &quot;initialDelaySeconds&quot;: 10,
+              &quot;periodSeconds&quot;: 5
+            },
+            &quot;resources&quot;: {
+              
+            },
+            &quot;terminationMessagePath&quot;: &quot;/dev/termination-log&quot;,
+            &quot;terminationMessagePolicy&quot;: &quot;File&quot;,
+            &quot;imagePullPolicy&quot;: &quot;Always&quot;,
+            &quot;securityContext&quot;: {
+              &quot;privileged&quot;: false,
+              &quot;procMount&quot;: &quot;Default&quot;
+            }
+          }
+        ],
+        &quot;restartPolicy&quot;: &quot;Always&quot;,
+        &quot;terminationGracePeriodSeconds&quot;: 30,
+        &quot;dnsPolicy&quot;: &quot;ClusterFirst&quot;,
+        &quot;securityContext&quot;: {
+          
+        },
+        &quot;schedulerName&quot;: &quot;default-scheduler&quot;
+      }
+    },
+    &quot;strategy&quot;: {
+      &quot;type&quot;: &quot;RollingUpdate&quot;,
+      &quot;rollingUpdate&quot;: {
+        &quot;maxUnavailable&quot;: &quot;25%&quot;,
+        &quot;maxSurge&quot;: &quot;25%&quot;
+      }
+    },
+    &quot;revisionHistoryLimit&quot;: 10,
+    &quot;progressDeadlineSeconds&quot;: 600
+  }
+}
+</code></pre>
+
+<p>将项目在rancher上导入，并查看效果<br/>
+<img src="media/15550432633789/15550490850919.jpg" alt=""/></p>
+
+<p>网关访问应用集群可使用k8s内置的dns域名访问<br/>
+比如：<a href="http://jframework.default:8080">http://jframework.default:8080</a></p>
+
+<p>k8s内置的dns已自带etcd负载均衡</p>
+
+<h5 id="toc_4">安装配置中心</h5>
+
+<p>下载apollo docker工具包并启动</p>
+
+<pre><code class="language-shell">git clone https://github.com/ctripcorp/apollo.git
+cd apollo/scripts/docker-quick-start/
+docker-compose up -d
+</code></pre>
+
+<p>查看效果<br/>
+<img src="media/15550432633789/15550492240446.jpg" alt=""/></p>
+
+<h5 id="toc_5">安装elk</h5>
+
+<p>下载elk docker工具包 <a href="https://github.com/deviantony/docker-elk.git">https://github.com/deviantony/docker-elk.git</a> 并启动</p>
+
+<pre><code class="language-shell">git clone https://github.com/deviantony/docker-elk.git
+cd docker-elk
+docker-compose up -d
+</code></pre>
+
+<p>访问ip:5601查看效果<br/>
+<img src="media/15550432633789/15550495406702.jpg" alt=""/></p>
+
+<h5 id="toc_6">安装pinpoint</h5>
+
+<p>下载pinpont docker工具包并启动</p>
+
+<pre><code class="language-shell">git clone https://github.com/naver/pinpoint-docker.git
+cd pinpoint-docker
+docker-compose up -d pinpoint-hbase pinpoint-mysql pinpoint-web pinpoint-collector pinpoint-agent zoo1 zoo2 zoo3 jobmanager taskmanager
+</code></pre>
+
+<p>访问ip:8079查看效果<br/>
+<img src="media/15550432633789/15550497148773.jpg" alt=""/></p>
+
+<h5 id="toc_7">配置jenkins项目发布</h5>
+
+<p>在jenkins上创建maven构建项目，然后使用rancher启动集群</p>
+
+<pre><code class="language-shell">/opt/rancher/rancher kubectl apply -f k8s.yml
+</code></pre>
+
+<h5 id="toc_8">配置阿里云lsb负载均衡</h5>
+
+<p>在阿里云slbs上 <a href="https://slb.console.aliyun.com/slb/cn-hangzhou/slbs">https://slb.console.aliyun.com/slb/cn-hangzhou/slbs</a></p>
+
+<p>创建负载均衡，指向网关的ip</p>
+
+<h5 id="toc_9">工具集合</h5>
+
+<p>和 <a href="15549592849509.html">java ci/cd环境搭建</a> 一文使用的工具列表</p>
+
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>作用</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Nexus</td>
+<td>maven私服</td>
+</tr>
+<tr>
+<td>jenkins</td>
+<td>自动打包/发布</td>
+</tr>
+<tr>
+<td>docker</td>
+<td>应用虚拟机</td>
+</tr>
+<tr>
+<td>gitlab</td>
+<td>源码管理</td>
+</tr>
+<tr>
+<td>yearning</td>
+<td>sql审核</td>
+</tr>
+<tr>
+<td>Sonarqube</td>
+<td>代码质量审核</td>
+</tr>
+<tr>
+<td>maven&amp;&amp;gradle</td>
+<td>项目打包工具</td>
+</tr>
+<tr>
+<td>kubectl</td>
+<td>k8s集群操控工具</td>
+</tr>
+<tr>
+<td>K8s</td>
+<td>项目运行环境</td>
+</tr>
+<tr>
+<td>rancher</td>
+<td>简化k8s管理工具</td>
+</tr>
+<tr>
+<td>apollo配置中心</td>
+<td>管理项目集群配置</td>
+</tr>
+<tr>
+<td>pinpoint</td>
+<td>项目异常运行监控</td>
+</tr>
+<tr>
+<td>elk</td>
+<td>应用日志收集工具</td>
+</tr>
+<tr>
+<td>阿里云slbs</td>
+<td>负载均衡</td>
+</tr>
+<tr>
+<td>ansible</td>
+<td>linux命令自动化工具</td>
+</tr>
+<tr>
+<td>showdoc</td>
+<td>项目文档管理</td>
+</tr>
+</tbody>
+</table>
+
+<p>持续更新...</p>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15551794584745.html" 
+          title="Previous Post: docker-elk配置sentinl插件发送钉钉告警">&laquo; docker-elk配置sentinl插件发送钉钉告警</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15549592849509.html" 
+          title="Next Post: java ci/cd环境搭建">java ci/cd环境搭建 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          <script src="https://utteranc.es/client.js"
+        repo="neatlife/neatlife.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>xiaolin's blog</h1>
+                <div class="site-des">core tech share blog</div>
+                <div class="social">
+                  <a target="_blank" class="juejin" href="https://juejin.im/user/5c409f86e51d4551c88027a2/posts" title="Juejin">juejin</a>
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/neatlife" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="macios.html"><strong>mac&ios</strong></a>
+        
+            <a href="lc.html"><strong>leetcode</strong></a>
+        
+            <a href="security.html"><strong>安全</strong></a>
+        
+            <a href="business.html"><strong>业务</strong></a>
+        
+            <a href="source-code.html"><strong>源码分析</strong></a>
+        
+            <a href="redis.html"><strong>Redis</strong></a>
+        
+            <a href="apache-nginx.html"><strong>Apache/Nginx</strong></a>
+        
+            <a href="spring-boot.html"><strong>Spring Boot</strong></a>
+        
+            <a href="pm.html"><strong>项目管理</strong></a>
+        
+            <a href="sql.html"><strong>SQL</strong></a>
+        
+            <a href="job-scheduler.html"><strong>任务调度</strong></a>
+        
+            <a href="design-pattern.html"><strong>设计模式</strong></a>
+        
+            <a href="mq.html"><strong>消息队列</strong></a>
+        
+            <a href="rpc.html"><strong>RPC</strong></a>
+        
+            <a href="laravel.html"><strong>LARAVEL</strong></a>
+        
+            <a href="tcp-ip.html"><strong>TCP/IP</strong></a>
+        
+            <a href="uml.html"><strong>UML</strong></a>
+        
+            <a href="service-mesh.html"><strong>SERVICE MESH</strong></a>
+        
+            <a href="ci-cd.html"><strong>CI/CD</strong></a>
+        
+            <a href="ops.html"><strong>OPS</strong></a>
+        
+            <a href="linux.html"><strong>LINUX</strong></a>
+        
+            <a href="system-programming.html"><strong>系统编程</strong></a>
+        
+            <a href="aws.html"><strong>AWS</strong></a>
+        
+            <a href="lua.html"><strong>LUA</strong></a>
+        
+            <a href="git.html"><strong>GIT</strong></a>
+        
+            <a href="js.html"><strong>js</strong></a>
+        
+            <a href="java.html"><strong>JAVA</strong></a>
+        
+            <a href="monitor.html"><strong>监控</strong></a>
+        
+            <a href="vim.html"><strong>VIM</strong></a>
+        
+            <a href="php.html"><strong>PHP</strong></a>
+        
+            <a href="openresty.html"><strong>OpenResty</strong></a>
+        
+            <a href="swoole.html"><strong>SWOOLE</strong></a>
+        
+            <a href="ons.html"><strong>消息队列</strong></a>
+        
+            <a href="gdb.html"><strong>GDB</strong></a>
+        
+            <a href="specification.html"><strong>规范</strong></a>
+        
+            <a href="3-minutes.html"><strong>三分钟系列</strong></a>
+        
+            <a href="1-pic.html"><strong>一图胜千言</strong></a>
+        
+            <a href="account-system.html"><strong>帐号系统</strong></a>
+        
+            <a href="interview.html"><strong>面试题</strong></a>
+        
+            <a href="yii.html"><strong>Yii/Yii2</strong></a>
+        
+            <a href="python.html"><strong>python</strong></a>
+        
+            <a href="go.html"><strong>GO</strong></a>
+        
+            <a href="ml.html"><strong>机器学习</strong></a>
+        
+            <a href="emacs.html"><strong>emacs</strong></a>
+        
+            <a href="bi.html"><strong>商业智能</strong></a>
+        
+            <a href="mac.html"><strong>mac</strong></a>
+        
+            <a href="editor.html"><strong>编辑器</strong></a>
+        
+            <a href="productive-soft.html"><strong>生产力工具</strong></a>
+        
+            <a href="driver-license.html"><strong>驾照</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="16081898834624.html">OSX使用代码代替storyboard构建项目，并添加NSSplitView组件</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16005640944829.html">linux系统编程之多进程和管道（pip）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15970226751276.html">三分钟上手java多线程控制技术</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15864793262262.html">14/24 设计模式之状态模式 State Pattern</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15880004262195.html">python高性能之路:使用C/C++编写扩展</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.
+<span id="busuanzi_container_site_uv">访问<span id="busuanzi_value_site_uv"></span>人</span>/
+        <span id="busuanzi_container_site_pv"><span id="busuanzi_value_site_pv"></span>次</span>
+    </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138141150-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138141150-1');
+</script>
+
+<canvas class="fireworks" 
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999999; pointer-events: none; width: 1158px; height: 916px;" 
+        width="2316" 
+        height="1832">
+</canvas>
+    <script src="asset/js/anime.min.js"></script>
+    <script src="asset/js/fireworks.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </body>
+</html>

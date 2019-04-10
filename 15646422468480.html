@@ -1,0 +1,968 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  lnmp一键安装包源码分析 - xiaolin's blog
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="xiaolin's blog" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:neatlifecoco.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">about</a></li>
+        
+        <li id=""><a target="_self" href="all.html">blog</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">archive</a></li>
+        
+        <li id=""><a target="_self" href="tools.html">tools</a></li>
+        
+        <li id=""><a target="_self" href="pro.html">pros</a></li>
+        
+        <li id=""><a target="_self" href="pub.html">press</a></li>
+        
+        <li id=""><a target="_self" href="paper.html">paper</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; xiaolin's blog</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">about</a></li>
+        
+        <li><a target="_self" href="all.html">blog</a></li>
+        
+        <li><a target="_self" href="archives.html">archive</a></li>
+        
+        <li><a target="_self" href="tools.html">tools</a></li>
+        
+        <li><a target="_self" href="pro.html">pros</a></li>
+        
+        <li><a target="_self" href="pub.html">press</a></li>
+        
+        <li><a target="_self" href="paper.html">paper</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="macios.html">mac&ios</a></li>
+        
+            <li><a href="lc.html">leetcode</a></li>
+        
+            <li><a href="security.html">安全</a></li>
+        
+            <li><a href="business.html">业务</a></li>
+        
+            <li><a href="source-code.html">源码分析</a></li>
+        
+            <li><a href="redis.html">Redis</a></li>
+        
+            <li><a href="apache-nginx.html">Apache/Nginx</a></li>
+        
+            <li><a href="spring-boot.html">Spring Boot</a></li>
+        
+            <li><a href="pm.html">项目管理</a></li>
+        
+            <li><a href="sql.html">SQL</a></li>
+        
+            <li><a href="job-scheduler.html">任务调度</a></li>
+        
+            <li><a href="design-pattern.html">设计模式</a></li>
+        
+            <li><a href="mq.html">消息队列</a></li>
+        
+            <li><a href="rpc.html">RPC</a></li>
+        
+            <li><a href="laravel.html">LARAVEL</a></li>
+        
+            <li><a href="tcp-ip.html">TCP/IP</a></li>
+        
+            <li><a href="uml.html">UML</a></li>
+        
+            <li><a href="service-mesh.html">SERVICE MESH</a></li>
+        
+            <li><a href="ci-cd.html">CI/CD</a></li>
+        
+            <li><a href="ops.html">OPS</a></li>
+        
+            <li><a href="linux.html">LINUX</a></li>
+        
+            <li><a href="system-programming.html">系统编程</a></li>
+        
+            <li><a href="aws.html">AWS</a></li>
+        
+            <li><a href="lua.html">LUA</a></li>
+        
+            <li><a href="git.html">GIT</a></li>
+        
+            <li><a href="js.html">js</a></li>
+        
+            <li><a href="java.html">JAVA</a></li>
+        
+            <li><a href="monitor.html">监控</a></li>
+        
+            <li><a href="vim.html">VIM</a></li>
+        
+            <li><a href="php.html">PHP</a></li>
+        
+            <li><a href="openresty.html">OpenResty</a></li>
+        
+            <li><a href="swoole.html">SWOOLE</a></li>
+        
+            <li><a href="ons.html">消息队列</a></li>
+        
+            <li><a href="gdb.html">GDB</a></li>
+        
+            <li><a href="specification.html">规范</a></li>
+        
+            <li><a href="3-minutes.html">三分钟系列</a></li>
+        
+            <li><a href="1-pic.html">一图胜千言</a></li>
+        
+            <li><a href="account-system.html">帐号系统</a></li>
+        
+            <li><a href="interview.html">面试题</a></li>
+        
+            <li><a href="yii.html">Yii/Yii2</a></li>
+        
+            <li><a href="python.html">python</a></li>
+        
+            <li><a href="go.html">GO</a></li>
+        
+            <li><a href="ml.html">机器学习</a></li>
+        
+            <li><a href="emacs.html">emacs</a></li>
+        
+            <li><a href="bi.html">商业智能</a></li>
+        
+            <li><a href="mac.html">mac</a></li>
+        
+            <li><a href="editor.html">编辑器</a></li>
+        
+            <li><a href="productive-soft.html">生产力工具</a></li>
+        
+            <li><a href="driver-license.html">驾照</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>lnmp一键安装包源码分析</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2019/8/1</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='ops.html'>OPS</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>通过分析这个lnmp一键安装包的shell脚本，可以了解下shell语言如何有条理的组织大量的代码</p>
+
+<p>项目地址：<a href="https://github.com/oneinstack/lnmp">https://github.com/oneinstack/lnmp</a></p>
+
+<p>shell脚本在执行运维和自动化任务时经常用到，在解决服务器问题时非常有用</p>
+
+<h2 id="toc_0">目录结构</h2>
+
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>作用</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>config</td>
+<td>nginx服务器里的预定义配置文件</td>
+</tr>
+<tr>
+<td>include</td>
+<td>执行实际安装任务的函数定义</td>
+</tr>
+<tr>
+<td>src</td>
+<td>下载的源码存放的目录</td>
+</tr>
+<tr>
+<td>tools</td>
+<td>执行数据库备份等任务的小工具合集</td>
+</tr>
+<tr>
+<td>根目录</td>
+<td>入口文件存放目录、安装入口文件install.sh、卸载入口文件uninstall.sh等</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="toc_1">初始化过程分析</h2>
+
+<pre><code class="language-shell">export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
+clear
+printf &quot;
+#######################################################################
+#       OneinStack for CentOS/RedHat 6+ Debian 8+ and Ubuntu 14+      #
+#       For more information please visit https://oneinstack.com      #
+#######################################################################
+&quot;
+# Check if user is root
+[ $(id -u) != &quot;0&quot; ] &amp;&amp; { echo &quot;${CFAILURE}Error: You must be root to run this script${CEND}&quot;; exit 1; }
+
+oneinstack_dir=$(dirname &quot;`readlink -f $0`&quot;)
+pushd ${oneinstack_dir} &gt; /dev/null
+. ./versions.txt
+. ./options.conf
+. ./include/color.sh
+. ./include/check_os.sh
+. ./include/check_dir.sh
+. ./include/download.sh
+. ./include/get_char.sh
+</code></pre>
+
+<span id="more"></span><!-- more -->
+
+<ol>
+<li>先使用export将系统常用的系统命令目录加入PATH，确保PATH的稳定</li>
+<li>使用$(id -u)要求执行命令的用户需要是root用户，root的id为0</li>
+<li>使用pushd把当前工作目录压入目录栈，方便进行目录切换</li>
+<li>从versions.txt中加载软件版本的别名，比如：php73_ver=7.3.7，使用变量php73_ver就可以代表7.3.7这个详细的版本号了</li>
+<li>加载安装的配置信息，比如php安装的位置：php_install_dir=/usr/local/php，可以按需修改</li>
+<li>./include/color.sh为输出的文字着色，比如：<code>echo -e &quot;\t${CMSG}1${CEND}. Localhost&quot;</code></li>
+<li>./include/check_os.sh检查操作系统类型和版本，比如Centos、Ubuntu、Debian</li>
+<li>./include/check_dir.sh检查mysql和nginx安装目录</li>
+<li>./include/download.sh下载文件工具函数</li>
+<li>./include/get_char.sh定义get_char函数，用来接收一个字符的输入</li>
+</ol>
+
+<h3 id="toc_2"><code>echo -e &quot;\t${CMSG}1${CEND}. Localhost&quot;</code> 效果如下</h3>
+
+<p><img src="media/15646422468480/15646562234327.jpg" alt=""/></p>
+
+<h3 id="toc_3">get_char效果如下</h3>
+
+<p><img src="media/15646422468480/15646574499171.jpg" alt=""/></p>
+
+<h2 id="toc_4">启动流程分析</h2>
+
+<h3 id="toc_5">解析命令行参数</h3>
+
+<pre><code class="language-shell">TEMP=`getopt -o hvV --long help,version,nginx_option:,apache_option:,apache_mode_option:,apache_mpm_option:,php_option:,mphp_ver:,mphp_addons,phpcache_option:,php_extensions:,tomcat_option:,jdk_option:,db_option:,dbrootpwd:,dbinstallmethod:,pureftpd,redis,memcached,phpmyadmin,hhvm,python,ssh_port:,iptables,reboot -- &quot;$@&quot; 2&gt;/dev/null`
+[ $? != 0 ] &amp;&amp; echo &quot;${CWARNING}ERROR: unknown argument! ${CEND}&quot; &amp;&amp; Show_Help &amp;&amp; exit 1
+eval set -- &quot;${TEMP}&quot;
+while :; do
+  [ -z &quot;$1&quot; ] &amp;&amp; break;
+  case &quot;$1&quot; in
+    -h|--help)
+      Show_Help; exit 0
+      ;;
+    -v|-V|--version)
+      version; exit 0
+      ;;
+    --python)
+      python_flag=y; shift 1
+      ;;
+      ...
+      ...
+    --ssh_port)
+      ssh_port=$2; shift 2
+      ;;
+    --iptables)
+      iptables_flag=y; shift 1
+      ;;
+    --reboot)
+      reboot_flag=y; shift 1
+      ;;
+    --)
+      shift
+      ;;
+    *)
+      echo &quot;${CWARNING}ERROR: unknown argument! ${CEND}&quot; &amp;&amp; Show_Help &amp;&amp; exit 1
+      ;;
+  esac
+done
+</code></pre>
+
+<p>这样解析后，比如执行&quot;install.sh --version&quot;后就可以直接查看lnmp的版本了</p>
+
+<h2 id="toc_6">获取安装选项</h2>
+
+<p>比如安装php的选项获取如下</p>
+
+<pre><code class="language-shell">  # choice php
+  while :; do echo
+    read -e -p &quot;Do you want to install PHP? [y/n]: &quot; php_flag
+    if [[ ! ${php_flag} =~ ^[y,n]$ ]]; then
+      echo &quot;${CWARNING}input error! Please only input &#39;y&#39; or &#39;n&#39;${CEND}&quot;
+    else
+      if [ &quot;${php_flag}&quot; == &#39;y&#39; ]; then
+        [ -e &quot;${php_install_dir}/bin/phpize&quot; ] &amp;&amp; { echo &quot;${CWARNING}PHP already installed! ${CEND}&quot;; unset php_option; break; }
+        while :; do echo
+          echo &#39;Please select a version of the PHP:&#39;
+          echo -e &quot;\t${CMSG}1${CEND}. Install php-5.3&quot;
+          echo -e &quot;\t${CMSG}2${CEND}. Install php-5.4&quot;
+          echo -e &quot;\t${CMSG}3${CEND}. Install php-5.5&quot;
+          echo -e &quot;\t${CMSG}4${CEND}. Install php-5.6&quot;
+          echo -e &quot;\t${CMSG}5${CEND}. Install php-7.0&quot;
+          echo -e &quot;\t${CMSG}6${CEND}. Install php-7.1&quot;
+          echo -e &quot;\t${CMSG}7${CEND}. Install php-7.2&quot;
+          echo -e &quot;\t${CMSG}8${CEND}. Install php-7.3&quot;
+          read -e -p &quot;Please input a number:(Default 5 press Enter) &quot; php_option
+          php_option=${php_option:-5}
+          if [[ ! ${php_option} =~ ^[1-8]$ ]]; then
+            echo &quot;${CWARNING}input error! Please only input number 1~8${CEND}&quot;
+          else
+            break
+          fi
+        done
+      fi
+      break
+    fi
+  done
+</code></pre>
+
+<p>然后保存到变量中</p>
+
+<h2 id="toc_7">安装三方包</h2>
+
+<pre><code class="language-shell">if [ ! -e ~/.oneinstack ]; then
+  # Check binary dependencies packages
+  . ./include/check_sw.sh
+  case &quot;${OS}&quot; in
+    &quot;CentOS&quot;)
+      installDepsCentOS 2&gt;&amp;1 | tee ${oneinstack_dir}/install.log
+      . include/init_CentOS.sh 2&gt;&amp;1 | tee -a ${oneinstack_dir}/install.log
+      ;;
+    &quot;Debian&quot;)
+      installDepsDebian 2&gt;&amp;1 | tee ${oneinstack_dir}/install.log
+      . include/init_Debian.sh 2&gt;&amp;1 | tee -a ${oneinstack_dir}/install.log
+      ;;
+    &quot;Ubuntu&quot;)
+      installDepsUbuntu 2&gt;&amp;1 | tee ${oneinstack_dir}/install.log
+      . include/init_Ubuntu.sh 2&gt;&amp;1 | tee -a ${oneinstack_dir}/install.log
+      ;;
+  esac
+  # Install dependencies from source package
+  installDepsBySrc 2&gt;&amp;1 | tee -a ${oneinstack_dir}/install.log
+fi
+</code></pre>
+
+<p>可以看到通过OS变量进行了系统类型的判断</p>
+
+<h2 id="toc_8">安装软件</h2>
+
+<p>比如安装apache</p>
+
+<pre><code class="language-shell"># Apache
+if [ &quot;${apache_option}&quot; == &#39;1&#39; ]; then
+  . include/apache-2.4.sh
+  Install_Apache24 2&gt;&amp;1 | tee -a ${oneinstack_dir}/install.log
+elif [ &quot;${apache_option}&quot; == &#39;2&#39; ]; then
+  . include/apache-2.2.sh
+  Install_Apache22 2&gt;&amp;1 | tee -a ${oneinstack_dir}/install.log
+fi
+</code></pre>
+
+<p>先从include目录中加载安装apache的函数，然后执行这个函数</p>
+
+<h2 id="toc_9">具体安装逻辑</h2>
+
+<pre><code class="language-shell">Install_Apache24() {
+  pushd ${oneinstack_dir}/src &gt; /dev/null
+  tar xzf pcre-${pcre_ver}.tar.gz
+  pushd pcre-${pcre_ver} &gt; /dev/null
+  ./configure
+  make -j ${THREAD} &amp;&amp; make install
+  popd &gt; /dev/null
+  id -u ${run_user} &gt;/dev/null 2&gt;&amp;1
+  [ $? -ne 0 ] &amp;&amp; useradd -M -s /sbin/nologin ${run_user}
+  tar xzf httpd-${apache24_ver}.tar.gz
+  tar xzf apr-${apr_ver}.tar.gz
+  tar xzf apr-util-${apr_util_ver}.tar.gz
+
+  # install nghttp2
+  if [ ! -e &quot;/usr/local/lib/libnghttp2.so&quot; ]; then
+    tar xzf nghttp2-${nghttp2_ver}.tar.gz
+    pushd nghttp2-${nghttp2_ver} &gt; /dev/null
+    ./configure
+    make -j ${THREAD} &amp;&amp; make install
+    popd &gt; /dev/null
+    [ -z &quot;`grep /usr/local/lib /etc/ld.so.conf.d/*.conf`&quot; ] &amp;&amp; echo &#39;/usr/local/lib&#39; &gt; /etc/ld.so.conf.d/local.conf
+    ldconfig
+    rm -rf nghttp2-${nghttp2_ver}
+  fi
+
+  pushd httpd-${apache24_ver} &gt; /dev/null
+  [ ! -d &quot;${apache_install_dir}&quot; ] &amp;&amp; mkdir -p ${apache_install_dir}
+  /bin/cp -R ../apr-${apr_ver} ./srclib/apr
+  /bin/cp -R ../apr-util-${apr_util_ver} ./srclib/apr-util
+  LDFLAGS=-ldl ./configure --prefix=${apache_install_dir} --enable-mpms-shared=all --with-pcre --with-included-apr --enable-headers --enable-mime-magic --enable-deflate --enable-proxy --enable-so --enable-dav --enable-rewrite --enable-remoteip --enable-expires --enable-static-support --enable-suexec --enable-mods-shared=most --enable-nonportable-atomics=yes --enable-ssl --with-ssl=${openssl_install_dir} --enable-http2 --with-nghttp2=/usr/local
+  make -j ${THREAD} &amp;&amp; make install
+  popd &gt; /dev/null
+  unset LDFLAGS
+  if [ -e &quot;${apache_install_dir}/bin/httpd&quot; ]; then
+    echo &quot;${CSUCCESS}Apache installed successfully! ${CEND}&quot;
+    rm -rf httpd-${apache24_ver} pcre-${pcre_ver} apr-${apr_ver} apr-util-${apr_util_ver}
+  else
+    rm -rf ${apache_install_dir}
+    echo &quot;${CFAILURE}Apache install failed, Please contact the author! ${CEND}&quot;
+    kill -9 $$
+  fi
+
+  [ -z &quot;`grep ^&#39;export PATH=&#39; /etc/profile`&quot; ] &amp;&amp; echo &quot;export PATH=${apache_install_dir}/bin:\$PATH&quot; &gt;&gt; /etc/profile
+  [ -n &quot;`grep ^&#39;export PATH=&#39; /etc/profile`&quot; -a -z &quot;`grep ${apache_install_dir} /etc/profile`&quot; ] &amp;&amp; sed -i &quot;s@^export PATH=\(.*\)@export PATH=${apache_install_dir}/bin:\1@&quot; /etc/profile
+  . /etc/profile
+
+  if [ -e /bin/systemctl ]; then
+    /bin/cp ../init.d/httpd.service /lib/systemd/system/
+    sed -i &quot;s@/usr/local/apache@${apache_install_dir}@g&quot; /lib/systemd/system/httpd.service
+    systemctl enable httpd
+  else
+    /bin/cp ${apache_install_dir}/bin/apachectl /etc/init.d/httpd
+    sed -i &#39;2a # chkconfig: - 85 15&#39; /etc/init.d/httpd
+    sed -i &#39;3a # description: Apache is a World Wide Web server. It is used to serve&#39; /etc/init.d/httpd
+    chmod +x /etc/init.d/httpd
+    [ &quot;${PM}&quot; == &#39;yum&#39; ] &amp;&amp; { chkconfig --add httpd; chkconfig httpd on; }
+    [ &quot;${PM}&quot; == &#39;apt-get&#39; ] &amp;&amp; update-rc.d httpd defaults
+  fi
+
+  sed -i &quot;s@^User daemon@User ${run_user}@&quot; ${apache_install_dir}/conf/httpd.conf
+  sed -i &quot;s@^Group daemon@Group ${run_user}@&quot; ${apache_install_dir}/conf/httpd.conf
+  if [[ ! ${nginx_option} =~ ^[1-3]$ ]] &amp;&amp; [ ! -e &quot;${web_install_dir}/sbin/nginx&quot; ]; then
+    sed -i &#39;s/^#ServerName www.example.com:80/ServerName 0.0.0.0:80/&#39; ${apache_install_dir}/conf/httpd.conf
+    TMP_PORT=80
+  elif [[ ${nginx_option} =~ ^[1-3]$ ]] || [ -e &quot;${web_install_dir}/sbin/nginx&quot; ]; then
+    sed -i &#39;s/^#ServerName www.example.com:80/ServerName 127.0.0.1:88/&#39; ${apache_install_dir}/conf/httpd.conf
+    sed -i &#39;s@^Listen.*@Listen 127.0.0.1:88@&#39; ${apache_install_dir}/conf/httpd.conf
+    TMP_PORT=88
+  fi
+  sed -i &quot;s@AddType\(.*\)Z@AddType\1Z\n    AddType application/x-httpd-php .php .phtml\n    AddType application/x-httpd-php-source .phps@&quot; ${apache_install_dir}/conf/httpd.conf
+  sed -i &quot;s@#AddHandler cgi-script .cgi@AddHandler cgi-script .cgi .pl@&quot; ${apache_install_dir}/conf/httpd.conf
+  sed -ri &#39;s@^#(LoadModule.*mod_proxy.so)@\1@&#39; ${apache_install_dir}/conf/httpd.conf
+  sed -ri &#39;s@^#(LoadModule.*mod_proxy_fcgi.so)@\1@&#39; ${apache_install_dir}/conf/httpd.conf
+  sed -ri &#39;s@^#(LoadModule.*mod_suexec.so)@\1@&#39; ${apache_install_dir}/conf/httpd.conf
+  sed -ri &#39;s@^#(LoadModule.*mod_vhost_alias.so)@\1@&#39; ${apache_install_dir}/conf/httpd.conf
+  sed -ri &#39;s@^#(LoadModule.*mod_rewrite.so)@\1@&#39; ${apache_install_dir}/conf/httpd.conf
+  sed -ri &#39;s@^#(LoadModule.*mod_deflate.so)@\1@&#39; ${apache_install_dir}/conf/httpd.conf
+  sed -ri &#39;s@^#(LoadModule.*mod_expires.so)@\1@&#39; ${apache_install_dir}/conf/httpd.conf
+  sed -ri &#39;s@^#(LoadModule.*mod_ssl.so)@\1@&#39; ${apache_install_dir}/conf/httpd.conf
+  sed -ri &#39;s@^#(LoadModule.*mod_http2.so)@\1@&#39; ${apache_install_dir}/conf/httpd.conf
+  sed -i &#39;s@DirectoryIndex index.html@DirectoryIndex index.html index.php@&#39; ${apache_install_dir}/conf/httpd.conf
+  sed -i &quot;s@^DocumentRoot.*@DocumentRoot \&quot;${wwwroot_dir}/default\&quot;@&quot; ${apache_install_dir}/conf/httpd.conf
+  sed -i &quot;s@^&lt;Directory \&quot;${apache_install_dir}/htdocs\&quot;&gt;@&lt;Directory \&quot;${wwwroot_dir}/default\&quot;&gt;@&quot; ${apache_install_dir}/conf/httpd.conf
+  sed -i &quot;s@^#Include conf/extra/httpd-mpm.conf@Include conf/extra/httpd-mpm.conf@&quot; ${apache_install_dir}/conf/httpd.conf
+  if [ &quot;${apache_mpm_option}&quot; == &#39;2&#39; ]; then 
+    sed -ri &#39;s@^(LoadModule.*mod_mpm_event.so)@#\1@&#39; ${apache_install_dir}/conf/httpd.conf
+    sed -i &#39;s@^#LoadModule mpm_prefork_module@LoadModule mpm_prefork_module@&#39; ${apache_install_dir}/conf/httpd.conf
+  elif [ &quot;${apache_mpm_option}&quot; == &#39;3&#39; ]; then 
+    sed -ri &#39;s@^(LoadModule.*mod_mpm_event.so)@#\1@&#39; ${apache_install_dir}/conf/httpd.conf
+    sed -i &#39;s@^#LoadModule mpm_worker_module@LoadModule mpm_worker_module@&#39; ${apache_install_dir}/conf/httpd.conf
+  fi
+
+  #logrotate apache log
+  cat &gt; /etc/logrotate.d/apache &lt;&lt; EOF
+${wwwlogs_dir}/*apache.log {
+  daily
+  rotate 5
+  missingok
+  dateext
+  compress
+  notifempty
+  sharedscripts
+  postrotate
+    [ -e /var/run/httpd.pid ] &amp;&amp; kill -USR1 \`cat /var/run/httpd.pid\`
+  endscript
+}
+EOF
+
+  mkdir ${apache_install_dir}/conf/vhost
+  [ &quot;${apache_mode_option}&quot; != &#39;2&#39; ] &amp;&amp; Apache_fcgi=$(echo -e &quot;&lt;Files ~ (\\.user.ini|\\.htaccess|\\.git|\\.svn|\\.project|LICENSE|README.md)\$&gt;\n    Order allow,deny\n    Deny from all\n  &lt;/Files&gt;\n  &lt;FilesMatch \\.php\$&gt;\n    SetHandler \&quot;proxy:unix:/dev/shm/php-cgi.sock|fcgi://localhost\&quot;\n  &lt;/FilesMatch&gt;&quot;)
+  cat &gt; ${apache_install_dir}/conf/vhost/0.conf &lt;&lt; EOF
+&lt;VirtualHost *:$TMP_PORT&gt;
+  ServerAdmin admin@example.com
+  DocumentRoot &quot;${wwwroot_dir}/default&quot;
+  ServerName 127.0.0.1
+  ErrorLog &quot;${wwwlogs_dir}/error_apache.log&quot;
+  CustomLog &quot;${wwwlogs_dir}/access_apache.log&quot; common
+  &lt;Files ~ (\.user.ini|\.htaccess|\.git|\.svn|\.project|LICENSE|README.md)\$&gt;
+    Order allow,deny
+    Deny from all
+  &lt;/Files&gt;
+  ${Apache_fcgi}
+&lt;Directory &quot;${wwwroot_dir}/default&quot;&gt;
+  SetOutputFilter DEFLATE
+  Options FollowSymLinks ExecCGI
+  Require all granted
+  AllowOverride All
+  Order allow,deny
+  Allow from all
+  DirectoryIndex index.html index.php
+&lt;/Directory&gt;
+&lt;Location /server-status&gt;
+  SetHandler server-status
+  Order Deny,Allow
+  Deny from all
+  Allow from 127.0.0.1
+&lt;/Location&gt;
+&lt;/VirtualHost&gt;
+EOF
+
+  cat &gt;&gt; ${apache_install_dir}/conf/httpd.conf &lt;&lt;EOF
+&lt;IfModule mod_headers.c&gt;
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml text/javascript
+  &lt;FilesMatch &quot;\.(js|css|html|htm|png|jpg|swf|pdf|shtml|xml|flv|gif|ico|jpeg)\$&quot;&gt;
+    RequestHeader edit &quot;If-None-Match&quot; &quot;^(.*)-gzip(.*)\$&quot; &quot;\$1\$2&quot;
+    Header edit &quot;ETag&quot; &quot;^(.*)-gzip(.*)\$&quot; &quot;\$1\$2&quot;
+  &lt;/FilesMatch&gt;
+  DeflateCompressionLevel 6
+  SetOutputFilter DEFLATE
+&lt;/IfModule&gt;
+
+ProtocolsHonorOrder On
+PidFile /var/run/httpd.pid
+ServerTokens ProductOnly
+ServerSignature Off
+Include conf/vhost/*.conf
+EOF
+  [ &quot;${nginx_option}&quot; == &#39;4&#39; -a ! -e &quot;${web_install_dir}/sbin/nginx&quot; ] &amp;&amp; echo &#39;Protocols h2 http/1.1&#39; &gt;&gt; ${apache_install_dir}/conf/httpd.conf
+  if [ &quot;${nginx_option}&quot; != &#39;4&#39; -o -e &quot;${web_install_dir}/sbin/nginx&quot; ]; then
+    cat &gt; ${apache_install_dir}/conf/extra/httpd-remoteip.conf &lt;&lt; EOF
+LoadModule remoteip_module modules/mod_remoteip.so
+RemoteIPHeader X-Forwarded-For
+RemoteIPInternalProxy 127.0.0.1
+EOF
+    sed -i &quot;s@Include conf/extra/httpd-mpm.conf@Include conf/extra/httpd-mpm.conf\nInclude conf/extra/httpd-remoteip.conf@&quot; ${apache_install_dir}/conf/httpd.conf
+    sed -i &quot;s@LogFormat \&quot;%h %l@LogFormat \&quot;%h %a %l@g&quot; ${apache_install_dir}/conf/httpd.conf
+  fi
+  ldconfig
+  service httpd start
+  popd &gt; /dev/null
+}
+</code></pre>
+
+<p>主要步骤如下</p>
+
+<ol>
+<li>安装依赖库比如pcre等</li>
+<li>新建运行的user并分配login为nologin</li>
+<li>安装apache主体程序</li>
+<li>环境变量PATH中添加apache软件的bin目录</li>
+<li>安装service，优先使用systemd的service，其次传统的service</li>
+<li>修改apache默认的运行配置文件，做适当的优化</li>
+<li>apache相关软件的配置，比如lograte日志轮转的配置等</li>
+<li>刷新动态连接库<code>ldconfig</code></li>
+<li>启动apache服务service httpd start</li>
+</ol>
+
+<p>整体流程如上，可以看到还是非常清晰的</p>
+
+<h2 id="toc_10">横向对比：lanmp_v3</h2>
+
+<p>下载地址：<a href="http://dl.wdlinux.cn/files/lanmp_v3.tar.gz">http://dl.wdlinux.cn/files/lanmp_v3.tar.gz</a><br/>
+<img src="media/15646422468480/15649236424584.jpg" alt=""/><br/>
+可以看到lanmp_v3结构更简单，conf目录包含service和nginx的配置模板，lib包含执行安装任务的函数，lanmp.sh入口文件</p>
+
+<h2 id="toc_11">参考资料</h2>
+
+<ol>
+<li><a href="https://github.com/oneinstack/lnmp">https://github.com/oneinstack/lnmp</a></li>
+<li><a href="https://oneinstack.com/">https://oneinstack.com/</a></li>
+</ol>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15647965155693.html" 
+          title="Previous Post: 三分钟上手安全渗透系统Kali Linux">&laquo; 三分钟上手安全渗透系统Kali Linux</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15640180016533.html" 
+          title="Next Post: 聚合支付系统架构设计和商业模型分析">聚合支付系统架构设计和商业模型分析 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          <script src="https://utteranc.es/client.js"
+        repo="neatlife/neatlife.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>xiaolin's blog</h1>
+                <div class="site-des">core tech share blog</div>
+                <div class="social">
+                  <a target="_blank" class="juejin" href="https://juejin.im/user/5c409f86e51d4551c88027a2/posts" title="Juejin">juejin</a>
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/neatlife" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="macios.html"><strong>mac&ios</strong></a>
+        
+            <a href="lc.html"><strong>leetcode</strong></a>
+        
+            <a href="security.html"><strong>安全</strong></a>
+        
+            <a href="business.html"><strong>业务</strong></a>
+        
+            <a href="source-code.html"><strong>源码分析</strong></a>
+        
+            <a href="redis.html"><strong>Redis</strong></a>
+        
+            <a href="apache-nginx.html"><strong>Apache/Nginx</strong></a>
+        
+            <a href="spring-boot.html"><strong>Spring Boot</strong></a>
+        
+            <a href="pm.html"><strong>项目管理</strong></a>
+        
+            <a href="sql.html"><strong>SQL</strong></a>
+        
+            <a href="job-scheduler.html"><strong>任务调度</strong></a>
+        
+            <a href="design-pattern.html"><strong>设计模式</strong></a>
+        
+            <a href="mq.html"><strong>消息队列</strong></a>
+        
+            <a href="rpc.html"><strong>RPC</strong></a>
+        
+            <a href="laravel.html"><strong>LARAVEL</strong></a>
+        
+            <a href="tcp-ip.html"><strong>TCP/IP</strong></a>
+        
+            <a href="uml.html"><strong>UML</strong></a>
+        
+            <a href="service-mesh.html"><strong>SERVICE MESH</strong></a>
+        
+            <a href="ci-cd.html"><strong>CI/CD</strong></a>
+        
+            <a href="ops.html"><strong>OPS</strong></a>
+        
+            <a href="linux.html"><strong>LINUX</strong></a>
+        
+            <a href="system-programming.html"><strong>系统编程</strong></a>
+        
+            <a href="aws.html"><strong>AWS</strong></a>
+        
+            <a href="lua.html"><strong>LUA</strong></a>
+        
+            <a href="git.html"><strong>GIT</strong></a>
+        
+            <a href="js.html"><strong>js</strong></a>
+        
+            <a href="java.html"><strong>JAVA</strong></a>
+        
+            <a href="monitor.html"><strong>监控</strong></a>
+        
+            <a href="vim.html"><strong>VIM</strong></a>
+        
+            <a href="php.html"><strong>PHP</strong></a>
+        
+            <a href="openresty.html"><strong>OpenResty</strong></a>
+        
+            <a href="swoole.html"><strong>SWOOLE</strong></a>
+        
+            <a href="ons.html"><strong>消息队列</strong></a>
+        
+            <a href="gdb.html"><strong>GDB</strong></a>
+        
+            <a href="specification.html"><strong>规范</strong></a>
+        
+            <a href="3-minutes.html"><strong>三分钟系列</strong></a>
+        
+            <a href="1-pic.html"><strong>一图胜千言</strong></a>
+        
+            <a href="account-system.html"><strong>帐号系统</strong></a>
+        
+            <a href="interview.html"><strong>面试题</strong></a>
+        
+            <a href="yii.html"><strong>Yii/Yii2</strong></a>
+        
+            <a href="python.html"><strong>python</strong></a>
+        
+            <a href="go.html"><strong>GO</strong></a>
+        
+            <a href="ml.html"><strong>机器学习</strong></a>
+        
+            <a href="emacs.html"><strong>emacs</strong></a>
+        
+            <a href="bi.html"><strong>商业智能</strong></a>
+        
+            <a href="mac.html"><strong>mac</strong></a>
+        
+            <a href="editor.html"><strong>编辑器</strong></a>
+        
+            <a href="productive-soft.html"><strong>生产力工具</strong></a>
+        
+            <a href="driver-license.html"><strong>驾照</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="16081898834624.html">OSX使用代码代替storyboard构建项目，并添加NSSplitView组件</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16005640944829.html">linux系统编程之多进程和管道（pip）</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15970226751276.html">三分钟上手java多线程控制技术</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15864793262262.html">14/24 设计模式之状态模式 State Pattern</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15880004262195.html">python高性能之路:使用C/C++编写扩展</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.
+<span id="busuanzi_container_site_uv">访问<span id="busuanzi_value_site_uv"></span>人</span>/
+        <span id="busuanzi_container_site_pv"><span id="busuanzi_value_site_pv"></span>次</span>
+    </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138141150-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138141150-1');
+</script>
+
+<canvas class="fireworks" 
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999999; pointer-events: none; width: 1158px; height: 916px;" 
+        width="2316" 
+        height="1832">
+</canvas>
+    <script src="asset/js/anime.min.js"></script>
+    <script src="asset/js/fireworks.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </body>
+</html>
