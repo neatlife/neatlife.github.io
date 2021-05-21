@@ -116,6 +116,8 @@
         
             <li><a href="pm.html">项目管理</a></li>
         
+            <li><a href="sketch.html">sketch</a></li>
+        
             <li><a href="sql.html">SQL</a></li>
         
             <li><a href="job-scheduler.html">任务调度</a></li>
@@ -125,6 +127,10 @@
             <li><a href="mq.html">消息队列</a></li>
         
             <li><a href="rpc.html">RPC</a></li>
+        
+            <li><a href="bigfrontend.html">大前端</a></li>
+        
+            <li><a href="iOS.html">iOS</a></li>
         
             <li><a href="laravel.html">LARAVEL</a></li>
         
@@ -216,6 +222,226 @@
 	<div class="large-8 medium-8 columns">
 		<div class="markdown-body home-categories">
 		
+			<div class="article">
+                <a class="clearlink" href="15826879760281.html">
+                
+                  <h1>1/24 设计模式之策略设计模式 Strategy Pattern</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>类别：行为型设计模式</p>
+
+<p>目的：把同类的代码进行单独封装、使得需要使用这部分代码的用户可以按需使用</p>
+
+<h2 id="toc_0">典型场景</h2>
+
+<p>对用户上传的图片应用<strong>不同</strong>的压缩算法和滤镜</p>
+
+<p>压缩算法：</p>
+
+<ol>
+<li>jpeg格式</li>
+<li>png格式</li>
+</ol>
+
+<p>滤镜：</p>
+
+<ol>
+<li>blackAndWhite滤镜</li>
+<li>backgroundBlur滤镜</li>
+</ol>
+
+<h2 id="toc_1">硬编码</h2>
+
+<pre><code class="language-java">public class HardCode {
+    public static void main(String[] args) {
+        var fileName = &quot;test.jpg&quot;;
+        var compressor = &quot;jpeg&quot;;
+        var filter = &quot;blackAndWhite&quot;;
+
+        handleUpload(fileName, compressor, filter);
+    }
+
+    public static void handleUpload(String fileName, String compressor, String filter)
+    {
+        if (compressor.equals(&quot;jpeg&quot;)) {
+            System.out.println(&quot;应用jpeg压缩算法...&quot;);
+        } else if (compressor.equals(&quot;png&quot;)) {
+            System.out.println(&quot;应用png压缩算法...&quot;);
+        }
+
+        if (filter.equals(&quot;blackAndWhite&quot;)) {
+            System.out.println(&quot;应用blackAndWhite滤镜&quot;);
+        } else if (filter.equals(&quot;backgroundBlur&quot;)) {
+            System.out.println(&quot;应用blackAndBlur滤镜&quot;);
+        }
+    }
+}
+</code></pre>
+
+<h2 id="toc_2">模式实现</h2>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="15826879760281.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2020/2/26</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='design-pattern.html'>设计模式</a></span>
+          				  
+          					    <span class="posted-in"><a href='java.html'>JAVA</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15788897422486.html">
+                
+                  <h1>三分钟上手arch linux操作系统&openbox图形界面初始化</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>arch linux是高度可定制的极简版操作系统，加上号称最快的linux图形系统openbox，搭配起来是工作和生活得力的工具</p>
+
+<h2 id="toc_0">获取arch linux</h2>
+
+<p>地址列表：<a href="https://www.archlinux.org/download/">https://www.archlinux.org/download/</a></p>
+
+<p>可以使用163的镜像直接下载，参考：<a href="https://mirrors.163.com/archlinux/iso/2020.01.01/archlinux-2020.01.01-x86_64.iso">https://mirrors.163.com/archlinux/iso/2020.01.01/archlinux-2020.01.01-x86_64.iso</a></p>
+
+<h2 id="toc_1">获取可用的计算机</h2>
+
+<p>可以使用真机（笔记本或者台式机），这里使用vmware fusion创建一个2c4g的虚拟机。</p>
+
+<p>规划磁盘空间: 15.5G</p>
+
+<table>
+<thead>
+<tr>
+<th>空间大小</th>
+<th>作用</th>
+<th>类型</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>13GB</td>
+<td>系统盘</td>
+<td>ext4</td>
+</tr>
+<tr>
+<td>2GB</td>
+<td>交换空间</td>
+<td>swap</td>
+</tr>
+<tr>
+<td>0.5GB</td>
+<td>uefi引导文件</td>
+<td>fat32</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="toc_2">同步时间</h2>
+
+<p>系统时间不对可能造成ssl连接失败导致后续安装出错</p>
+
+<pre><code class="language-shell">timedatectl set-ntp true
+timedatectl status
+</code></pre>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="15788897422486.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2020/1/13</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='linux.html'>LINUX</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15777670811036.html">
+                
+                  <h1>三分钟搭建大数据sql开发平台</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>目前工作内容中包含比较多的sql需求，但是公司目前的sql开发平台hue系统最近越来越慢了，一般在开发过程中会验证一些小sql是否符合预期，某些大sql也可能会拆成数个/数十个子sql进行分步验证，如果每个小sql需要等待数分钟才能查看结果，无疑会导致sql开发效率变得低下</p>
+
+<p>所以在本地搭建一个大数据sql开发平台就十分必要了</p>
+
+<p>cloudera公司提供了方便的一键启动的虚拟机，参考：<a href="https://www.cloudera.com/downloads/quickstart_vms/5-13.html">https://www.cloudera.com/downloads/quickstart_vms/5-13.html</a><br/>
+<img src="media/15777670811036/15777768855511.jpg" alt=""/></p>
+
+<p>平时一般使用vmware虚拟机，这里就用vmware举例了，可以看到cloudera官方还支持virtual box, kvm, docker image等虚拟机系统，可以自行选择</p>
+
+<h2 id="toc_0">获取hue虚拟机</h2>
+
+<p><img src="media/15777670811036/15777770666449.jpg" alt=""/><br/>
+单击&quot;GET IT NOW&quot;，然后填一个问卷单就可以下载了，下载完成后可以检查下文件大小，约5.76GB是下载ok的</p>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="15777670811036.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2019/12/31</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='java.html'>JAVA</a></span>
+          				  
+          					    <span class="posted-in"><a href='3-minutes.html'>三分钟系列</a></span>
+          				  
+          					    <span class="posted-in"><a href='bi.html'>商业智能</a></span>
+          				  
+          					    <span class="posted-in"><a href='sql.html'>SQL</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
 			<div class="article">
                 <a class="clearlink" href="15774397602319.html">
                 
@@ -718,171 +944,6 @@ int main()
                 </div>
               </div><!-- article -->
         
-			<div class="article">
-                <a class="clearlink" href="15696848025979.html">
-                
-                  <h1>3分钟做5道leetcode题上手leetcode刷题之路</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p>官网地址：<a href="https://leetcode-cn.com">https://leetcode-cn.com</a></p>
-
-<p>在官网注册后，点击题库页面就可以看到所有可以刷的题目了<br/>
-<img src="media/15696848025979/15697354064873.jpg" alt=""/><br/>
-可以按照难度进行筛选、建议从简单难度的题上手</p>
-
-<h2 id="toc_0">两数之和: <a href="https://leetcode-cn.com/problems/two-sum/">https://leetcode-cn.com/problems/two-sum/</a></h2>
-
-<p>问题描述<br/>
-<img src="media/15696848025979/15697348200248.jpg" alt=""/></p>
-
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                   <a href="15696848025979.html">Read more</a>&nbsp;&nbsp; 
-                    <span class="date">2019/9/28</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='lc.html'>leetcode</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="15686120237174.html">
-                
-                  <h1>三分钟上手数据结构作图工具graphviz</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p>graphviz数据结构作图工具应用比较广泛了，很多数据结构都可以使用gv画出来，比如常见的c语言的结构体、指针、链表等。也可以用来画流程图等常规图示，好用。</p>
-
-<h2 id="toc_0">安装graphviz</h2>
-
-<p>mac os系统可以通过brew进行安装</p>
-
-<pre><code class="language-shell">brew install graphviz
-</code></pre>
-
-<p>然后就可以使用dot命令行工具了，这个工具就是用来生成图片的<br/>
-<img src="media/15686120237174/15686123123891.jpg" alt=""/></p>
-
-<h2 id="toc_1">dot语言</h2>
-
-<p>graphviz从dot语言生成图形，这个dot语言的语法十分简单，没有复杂的分支判断语句，官方文档参考：<a href="https://graphviz.gitlab.io/_pages/doc/info/lang.html">https://graphviz.gitlab.io/_pages/doc/info/lang.html</a></p>
-
-<h3 id="toc_2">声明一个图形</h3>
-
-<p>比如4.gv, 包含一个&quot;hello&quot;的图形</p>
-
-<pre><code class="language-text">digraph {
-    hello
-}
-</code></pre>
-
-<p>然后执行<code>dot 4.gv -Tpng -o 4.png &amp;&amp; open 4.png</code>生成图片，效果如下</p>
-
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                   <a href="15686120237174.html">Read more</a>&nbsp;&nbsp; 
-                    <span class="date">2019/9/16</span>
-                    
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="15685261364999.html">
-                
-                  <h1>nginx网络通信模块设计与实现分析</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p>nginx作为后端程序不可缺少的中间件，凭借其优异的性能和稳定性，获得了大量的用户</p>
-
-<h2 id="toc_0">目录结构</h2>
-
-<p><img src="media/15685261364999/15685623855548.jpg" alt=""/><br/>
-nginx的文件目录非常清晰，虽然有6个目录，但是可以归成两类，core目录存放<strong>nginx生命周期</strong>相关的函数，比如master、worker进程的创建，模块构造函数调用，核心数据结构和算法实现</p>
-
-<p>其它目录主要就是存放nginx功能的扩展了、nginx几乎所有的功能都是通过扩展实现的</p>
-
-<h2 id="toc_1">入口程序</h2>
-
-<p>src/core/nginx.c::main()</p>
-
-<p>在入口程序中，nginx主要是处理了命令行参数，如果没有带参数运行nginx，则启动nginx服务器<code>ngx_master_process_cycle(cycle</code></p>
-
-<p>核心调用如下</p>
-
-<ol>
-<li>ngx_strerror_init() 初始化错误码存放链表</li>
-<li>ngx_get_options(argc, argv) 将命令行参数解析到全局变量</li>
-<li>初始化日志系统: ngx_log_init(ngx_prefix)</li>
-<li>ngx_save_argv(&amp;init_cycle, argc, argv) 保存所有命令行参数到全局变量</li>
-<li>ngx_process_options(&amp;init_cycle)</li>
-</ol>
-
-<p>给启用的nginx模块进行编号</p>
-
-<pre><code class="language-c">ngx_max_module = 0;
-for (i = 0; ngx_modules[i]; i++) {
-    ngx_modules[i]-&gt;index = ngx_max_module++;
-}
-</code></pre>
-
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                   <a href="15685261364999.html">Read more</a>&nbsp;&nbsp; 
-                    <span class="date">2019/9/15</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='source-code.html'>源码分析</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
               
 
 
@@ -954,6 +1015,8 @@ for (i = 0; ngx_modules[i]; i++) {
         
             <a href="pm.html"><strong>项目管理</strong></a>
         
+            <a href="sketch.html"><strong>sketch</strong></a>
+        
             <a href="sql.html"><strong>SQL</strong></a>
         
             <a href="job-scheduler.html"><strong>任务调度</strong></a>
@@ -963,6 +1026,10 @@ for (i = 0; ngx_modules[i]; i++) {
             <a href="mq.html"><strong>消息队列</strong></a>
         
             <a href="rpc.html"><strong>RPC</strong></a>
+        
+            <a href="bigfrontend.html"><strong>大前端</strong></a>
+        
+            <a href="iOS.html"><strong>iOS</strong></a>
         
             <a href="laravel.html"><strong>LARAVEL</strong></a>
         
@@ -1049,6 +1116,24 @@ for (i = 0; ngx_modules[i]; i++) {
 	      
 		      
 			      <li class="post">
+			        <a href="16256216793335.html">html还原设计图开发心历路程</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16226333235156.html">用sketch原型工具3秒制作一个按钮</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16215677290066.html">三分钟制作一个iOS全局弹窗</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
 			        <a href="16081898834624.html">OSX使用代码代替storyboard构建项目，并添加NSSplitView组件</a>
 			      </li>
 		     
@@ -1056,24 +1141,6 @@ for (i = 0; ngx_modules[i]; i++) {
 		      
 			      <li class="post">
 			        <a href="16005640944829.html">linux系统编程之多进程和管道（pip）</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15970226751276.html">三分钟上手java多线程控制技术</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15864793262262.html">14/24 设计模式之状态模式 State Pattern</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15880004262195.html">python高性能之路:使用C/C++编写扩展</a>
 			      </li>
 		     
 		  

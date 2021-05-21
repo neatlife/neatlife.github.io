@@ -116,6 +116,8 @@
         
             <li><a href="pm.html">项目管理</a></li>
         
+            <li><a href="sketch.html">sketch</a></li>
+        
             <li><a href="sql.html">SQL</a></li>
         
             <li><a href="job-scheduler.html">任务调度</a></li>
@@ -125,6 +127,10 @@
             <li><a href="mq.html">消息队列</a></li>
         
             <li><a href="rpc.html">RPC</a></li>
+        
+            <li><a href="bigfrontend.html">大前端</a></li>
+        
+            <li><a href="iOS.html">iOS</a></li>
         
             <li><a href="laravel.html">LARAVEL</a></li>
         
@@ -216,6 +222,202 @@
 	<div class="large-8 medium-8 columns">
 		<div class="markdown-body home-categories">
 		
+			<div class="article">
+                <a class="clearlink" href="15582826206789.html">
+                
+                  <h1>FFMPEG获取视频播放时长</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<pre><code class="language-php">function video_info($file,$ffmpeg) {
+    ob_start();
+    passthru(sprintf($ffmpeg.&#39; -i &quot;%s&quot; 2&gt;&amp;1&#39;, $file));
+    $info = ob_get_contents();
+    ob_end_clean();
+  // 通过使用输出缓冲，获取到ffmpeg所有输出的内容。
+   $ret = array();
+    // Duration: 01:24:12.73, start: 0.000000, bitrate: 456 kb/s
+    if (preg_match(&quot;/Duration: (.*?), start: (.*?), bitrate: (\d*) kb\/s/&quot;, $info, $match)) {
+        $ret[&#39;duration&#39;] = $match[1]; // 提取出播放时间
+        $da = explode(&#39;:&#39;, $match[1]); 
+        $ret[&#39;seconds&#39;] = $da[0] * 3600 + $da[1] * 60 + $da[2]; // 转换为秒
+        $ret[&#39;start&#39;] = $match[2]; // 开始时间
+        $ret[&#39;bitrate&#39;] = $match[3]; // bitrate 码率 单位 kb
+    }
+
+    // Stream #0.1: Video: rv40, yuv420p, 512x384, 355 kb/s, 12.05 fps, 12 tbr, 1k tbn, 12 tbc
+    if (preg_match(&quot;/Video: (.*?), (.*?), (.*?)[,\s]/&quot;, $info, $match)) {
+        $ret[&#39;vcodec&#39;] = $match[1]; // 编码格式
+        $ret[&#39;vformat&#39;] = $match[2]; // 视频格式 
+        $ret[&#39;resolution&#39;] = $match[3]; // 分辨率
+        $a = explode(&#39;x&#39;, $match[3]);
+        $ret[&#39;width&#39;] = $a[0];
+        $ret[&#39;height&#39;] = $a[1];
+    }
+
+    // Stream #0.0: Audio: cook, 44100 Hz, stereo, s16, 96 kb/s
+    if (preg_match(&quot;/Audio: (\w*), (\d*) Hz/&quot;, $info, $match)) {
+        $ret[&#39;acodec&#39;] = $match[1];       // 音频编码
+        $ret[&#39;asamplerate&#39;] = $match[2];  // 音频采样频率
+    }
+
+    if (isset($ret[&#39;seconds&#39;]) &amp;&amp; isset($ret[&#39;start&#39;])) {
+        $ret[&#39;play_time&#39;] = $ret[&#39;seconds&#39;] + $ret[&#39;start&#39;]; // 实际播放时间
+    }
+
+    $ret[&#39;size&#39;] = filesize($file); // 文件大小
+    return $ret;
+}
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/3/7</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='php.html'>PHP</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15582825719147.html">
+                
+                  <h1>Yii提交表单出现bad request错误解决方案</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>在表单提交按钮之前添加如下代码：</p>
+
+<pre><code class="language-php">&lt;?php echo \yii\helpers\Html::hiddenInput(Yii::$app-&gt;request-&gt;csrfParam, Yii::$app-&gt;request-&gt;getCsrfToken()) ?&gt;
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/3/1</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='yii.html'>Yii/Yii2</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15582824773265.html">
+                
+                  <h1>apache和nginx虚拟主机配置文件示例</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">apache虚拟主机配置文件示例</h2>
+
+<pre><code class="language-conf">&lt;VirtualHost *:80&gt;
+ ServerName  test.com
+ DocumentRoot  &quot;d:\www\test&quot;  
+ DirectoryIndex   index.php
+ &lt;Directory &quot;d:\www\qlmall&quot;&gt;
+     Options +FollowSymLinks
+     Order Allow,Deny
+     allow from all
+     AllowOverride All
+ &lt;/Directory&gt;
+&lt;/VirtualHost&gt;
+</code></pre>
+
+<h2 id="toc_1">nginx配置文件示例</h2>
+
+<pre><code class="language-conf">server {
+    server_name test.com;
+    listen 80;
+    root /data/webroot/test;
+
+        location = /favicon.ico {
+                log_not_found off;
+                access_log off;
+        }
+
+        location = /robots.txt {
+                allow all;
+                log_not_found off;
+                access_log off;
+        }
+
+        location / {
+            index index.php index.html index.htm;
+                # This is cool because no php is touched for static content.
+                # include the &quot;?$args&quot; part so non-default permalinks doesn&#39;t break when using query string
+                try_files $uri $uri/ /index.php?$args;
+        }
+
+        location ~ \.php$ {
+                #NOTE: You should have &quot;cgi.fix_pathinfo = 0;&quot; in php.ini
+                include fastcgi.conf;
+                fastcgi_intercept_errors on;
+            fastcgi_pass 127.0.0.1:9000;
+        }
+
+        location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
+                expires max;
+                log_not_found off;
+        }
+
+    error_log /var/log/nginx/test.com.error.log;
+    access_log /var/log/nginx/test.com.access.log;
+}
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/2/28</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='apache-nginx.html'>Apache/Nginx</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
 			<div class="article">
                 <a class="clearlink" href="15582822912471.html">
                 
@@ -1139,192 +1341,6 @@ var_dump(minimum2($idNodeMap, &#39;T&#39;, &#39;A&#39;));
                 </div>
               </div><!-- article -->
         
-			<div class="article">
-                <a class="clearlink" href="15702482921316.html">
-                
-                  <h1>grep和find命令使用报告</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p>grep用来查找<strong>文件内容中包含指定内容</strong>(正则表达式)的文件，并输出匹配内容在文件那一行</p>
-
-<p>find用来查找<strong>文件名中包含指定内容</strong>(正则表达式)的文件，并输出匹配的文件名</p>
-
-<h2 id="toc_0">一些注意的点</h2>
-
-<p>awk用来对文件内容进行编辑，输出指定文件内容等</p>
-
-<h2 id="toc_1">参考资料</h2>
-
-<ol>
-<li><a href="https://explainshell.com/explain/grep">https://explainshell.com/explain/grep</a></li>
-<li><a href="https://explainshell.com/explain/find">https://explainshell.com/explain/find</a></li>
-<li><a href="http://manpages.ubuntu.com/manpages/precise/en/man1/plan9-awk.1.html">http://manpages.ubuntu.com/manpages/precise/en/man1/plan9-awk.1.html</a></li>
-<li><a href="https://explainshell.com/explain/awk">https://explainshell.com/explain/awk</a></li>
-</ol>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2016/10/5</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='ops.html'>OPS</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="16004232674405.html">
-                
-                  <h1>仪表叫法</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p><img src="media/16004232674405/16004232693526.jpg" alt=""/></p>
-
-<p><img src="media/16004232674405/16004806729398.jpg" alt=""/><br/>
-<img src="media/16004232674405/16004808033912.jpg" alt=""/></p>
-
-<p><img src="media/16004232674405/16004806874381.jpg" alt=""/></p>
-
-<p><img src="media/16004232674405/16004808413454.jpg" alt=""/><br/>
-<img src="media/16004232674405/16004808472861.jpg" alt=""/></p>
-
-<p><img src="media/16004232674405/16004808709357.jpg" alt=""/><br/>
-<img src="media/16004232674405/16004815119105.jpg" alt=""/></p>
-
-<p><img src="media/16004232674405/16004815907204.jpg" alt=""/></p>
-
-<p><img src="media/16004232674405/16004816634713.jpg" alt=""/><br/>
-<img src="media/16004232674405/16004816714865.jpg" alt=""/></p>
-
-<p><img src="media/16004232674405/16004817037289.jpg" alt=""/></p>
-
-<p><img src="media/16004232674405/16004817180228.jpg" alt=""/></p>
-
-<p><img src="media/16004232674405/16004820437606.jpg" alt=""/></p>
-
-<p><img src="media/16004232674405/16004845822537.jpg" alt=""/><br/>
-<img src="media/16004232674405/16004845908778.jpg" alt=""/><br/>
-<img src="media/16004232674405/16004846017739.jpg" alt=""/></p>
-
-<p><img src="media/16004232674405/16004848563188.jpg" alt=""/><br/>
-<img src="media/16004232674405/16004848653283.jpg" alt=""/></p>
-
-<p><img src="media/16004232674405/16004849111132.jpg" alt=""/><br/>
-<img src="media/16004232674405/16004849191218.jpg" alt=""/></p>
-
-<p><img src="media/16004232674405/16004849689947.jpg" alt=""/></p>
-
-<p><img src="media/16004232674405/16004850936898.jpg" alt=""/></p>
-
-<p><img src="media/16004232674405/16004851745315.jpg" alt=""/></p>
-
-<p><img src="media/16004232674405/16004890223948.jpg" alt=""/></p>
-
-<p><img src="media/16004232674405/16004891174177.jpg" alt=""/></p>
-
-<p><img src="media/16004232674405/16004891542405.jpg" alt=""/></p>
-
-<p><img src="media/16004232674405/16004891857752.jpg" alt=""/><br/>
-<img src="media/16004232674405/16004891919257.jpg" alt=""/></p>
-
-<p><img src="media/16004232674405/16004893217398.jpg" alt=""/></p>
-
-<p><img src="media/16004232674405/16004893843008.jpg" alt=""/><br/>
-<img src="media/16004232674405/16004894034463.jpg" alt=""/></p>
-
-<p><img src="media/16004232674405/16004894248162.jpg" alt=""/></p>
-
-<p><img src="media/16004232674405/16004894597687.jpg" alt=""/></p>
-
-<p><img src="media/16004232674405/16004895037778.jpg" alt=""/><br/>
-<img src="media/16004232674405/16004895161263.jpg" alt=""/></p>
-
-<p><img src="media/16004232674405/16004895947673.jpg" alt=""/></p>
-
-<p><img src="media/16004232674405/16004896154071.jpg" alt=""/></p>
-
-<p><img src="media/16004232674405/16004896997078.jpg" alt=""/><br/>
-<img src="media/16004232674405/16004897124718.jpg" alt=""/><br/>
-<img src="media/16004232674405/16004897178255.jpg" alt=""/></p>
-
-<p><img src="media/16004232674405/16004897729544.jpg" alt=""/></p>
-
-<p><img src="media/16004232674405/16004897922947.jpg" alt=""/></p>
-
-<p><img src="media/16004232674405/16004900103440.jpg" alt=""/></p>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2016/9/18</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='driver-license.html'>驾照</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="16003911796825.html">
-                
-                  <h1>C1驾照科目一错题集锦-机动车驾驶操作相关基础知识（一）</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2016/9/18</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='driver-license.html'>驾照</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
               
 
 
@@ -1396,6 +1412,8 @@ var_dump(minimum2($idNodeMap, &#39;T&#39;, &#39;A&#39;));
         
             <a href="pm.html"><strong>项目管理</strong></a>
         
+            <a href="sketch.html"><strong>sketch</strong></a>
+        
             <a href="sql.html"><strong>SQL</strong></a>
         
             <a href="job-scheduler.html"><strong>任务调度</strong></a>
@@ -1405,6 +1423,10 @@ var_dump(minimum2($idNodeMap, &#39;T&#39;, &#39;A&#39;));
             <a href="mq.html"><strong>消息队列</strong></a>
         
             <a href="rpc.html"><strong>RPC</strong></a>
+        
+            <a href="bigfrontend.html"><strong>大前端</strong></a>
+        
+            <a href="iOS.html"><strong>iOS</strong></a>
         
             <a href="laravel.html"><strong>LARAVEL</strong></a>
         
@@ -1491,6 +1513,24 @@ var_dump(minimum2($idNodeMap, &#39;T&#39;, &#39;A&#39;));
 	      
 		      
 			      <li class="post">
+			        <a href="16256216793335.html">html还原设计图开发心历路程</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16226333235156.html">用sketch原型工具3秒制作一个按钮</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16215677290066.html">三分钟制作一个iOS全局弹窗</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
 			        <a href="16081898834624.html">OSX使用代码代替storyboard构建项目，并添加NSSplitView组件</a>
 			      </li>
 		     
@@ -1498,24 +1538,6 @@ var_dump(minimum2($idNodeMap, &#39;T&#39;, &#39;A&#39;));
 		      
 			      <li class="post">
 			        <a href="16005640944829.html">linux系统编程之多进程和管道（pip）</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15970226751276.html">三分钟上手java多线程控制技术</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15864793262262.html">14/24 设计模式之状态模式 State Pattern</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15880004262195.html">python高性能之路:使用C/C++编写扩展</a>
 			      </li>
 		     
 		  

@@ -116,6 +116,8 @@
         
             <li><a href="pm.html">项目管理</a></li>
         
+            <li><a href="sketch.html">sketch</a></li>
+        
             <li><a href="sql.html">SQL</a></li>
         
             <li><a href="job-scheduler.html">任务调度</a></li>
@@ -125,6 +127,10 @@
             <li><a href="mq.html">消息队列</a></li>
         
             <li><a href="rpc.html">RPC</a></li>
+        
+            <li><a href="bigfrontend.html">大前端</a></li>
+        
+            <li><a href="iOS.html">iOS</a></li>
         
             <li><a href="laravel.html">LARAVEL</a></li>
         
@@ -216,6 +222,176 @@
 	<div class="large-8 medium-8 columns">
 		<div class="markdown-body home-categories">
 		
+			<div class="article">
+                <a class="clearlink" href="15577055818897.html">
+                
+                  <h1>在phpstorm中三分钟搭建laravel框架源码阅读环境</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>laravel框架作为php语言排名第一的框架，源码也是非常值得研究的</p>
+
+<p>作者在phpstorm里搭建了一套源码阅读环境，研究搭建这套环境花了些时间，作者对这个搭建步骤进行优化总结，使用下面的步骤就可以快速完成搭建了</p>
+
+<h2 id="toc_0">下载源代码</h2>
+
+<p>github源码地址：<a href="https://github.com/laravel/framework">https://github.com/laravel/framework</a></p>
+
+<p>使用git下载源码</p>
+
+<pre><code class="language-shell">git clone https://github.com/laravel/framework.git
+</code></pre>
+
+<p>效果如下<br/>
+<img src="media/15577055818897/15577496441043.jpg" alt=""/></p>
+
+<h2 id="toc_1">下载依赖</h2>
+
+<p>laravel框架使用composer管理依赖，进入到framework目录，使用composer install命令下载依赖就可以了，命令如下</p>
+
+<pre><code class="language-text">cd framework
+composer install
+</code></pre>
+
+<p>查看执行效果：<br/>
+<img src="media/15577055818897/15577498052003.jpg" alt=""/></p>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="15577055818897.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2018/5/13</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='laravel.html'>LARAVEL</a></span>
+          				  
+          					    <span class="posted-in"><a href='source-code.html'>源码分析</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15564434375336.html">
+                
+                  <h1>上线流程</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h3 id="toc_0">dev</h3>
+
+<p>准备迭代分支，需要联调时合并到dev分支进行联调</p>
+
+<p>dev 为了开发效率可以随意一些，但是为了改表/配置等在test, stage, production环境可以复用，可以走系统，比如配置系统nacos/apollo，sql审核平台yearling</p>
+
+<p>开发完成后，跑冒烟测试，这个环境非常重要，直接决定提测的质量</p>
+
+<h3 id="toc_1">test</h3>
+
+<p>代码合并到test分支</p>
+
+<p>给测试、产品验收</p>
+
+<h3 id="toc_2">stage</h3>
+
+<h3 id="toc_3">production</h3>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/4/28</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='pm.html'>项目管理</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15559984036767.html">
+                
+                  <h1>整理现行规范中没有明确的规范</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h3 id="toc_0">sonarqube 检测3A以上</h3>
+
+<p>可以使用docker搭建sonarqube检测服务器: <a href="https://github.com/SonarSource/docker-sonarqube">https://github.com/SonarSource/docker-sonarqube</a></p>
+
+<h3 id="toc_1">java</h3>
+
+<p>遵守阿里巴巴的p3c规范：<a href="https://github.com/alibaba/p3c">https://github.com/alibaba/p3c</a></p>
+
+<h3 id="toc_2">php</h3>
+
+<p>遵守psr规范: <a href="https://psr.phphub.org/">https://psr.phphub.org/</a></p>
+
+<h3 id="toc_3"><code>c#</code></h3>
+
+<p>无官方，暂行：<a href="https://gist.github.com/zhuqling/a2700703d088b8746f0c">https://gist.github.com/zhuqling/a2700703d088b8746f0c</a></p>
+
+<h3 id="toc_4">数据库</h3>
+
+<ol>
+<li>字段长度尽量使用2的次幂，做计算机字节长度对齐，比如 varchar(16)</li>
+</ol>
+
+<h3 id="toc_5">redis</h3>
+
+<ol>
+<li>通用的redis key不用加项目前缀</li>
+<li>多个单词或者值之间使用:进行分割，符合阿里云Redis开发规范，同时在rdm等客户端中可以显示层级</li>
+</ol>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/4/13</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='specification.html'>规范</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
 			<div class="article">
                 <a class="clearlink" href="15559977539716.html">
                 
@@ -707,208 +883,6 @@ NETMASK=255.255.255.0
                 </div>
               </div><!-- article -->
         
-			<div class="article">
-                <a class="clearlink" href="15582833071020.html">
-                
-                  <h1>socket和socket通信与socket和websocket通信的区别</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<ol>
-<li>socket和socket通信的数据没有经过编码，所以在socket服务端无需对接收的数据解码，和对返回的数据编码</li>
-<li>socket和socket建立连接时就使用的socket协议进行通信，而websocket建立连接时使用的HTTP协议，必须提升通信协议为websocket</li>
-<li>socket和socket通信没有握手过程，socket和websocket时，socket必须给websocket返回握手响应</li>
-</ol>
-
-<p>附socket与socket通信参考代码</p>
-
-<p>server</p>
-
-<pre><code class="language-php">&lt;?php
-
-$host = &#39;0.0.0.0&#39;;
-$port = 12345;
-
-$master = socket_create(AF_INET, SOCK_STREAM, SOL_TCP)      or die(&quot;socket_create()函数调用失败。&quot;);
-socket_set_option($master, SOL_SOCKET, SO_REUSEADDR, 1)     or die(&quot;socket_option() failed&quot;);// 设置重用
-socket_bind($master, $host, $port)                          or die(&quot;socket_bind() 函数调用失败。&quot;);
-socket_listen($master, 20);
-$sockets = [];
-$sockets[] = $master;
-while(true) {
-    $activeSockets = $sockets;
-    $write = $except = null;
-    $status = socket_select($activeSockets, $write, $except, null);
-    if ($status === 0) {
-        continue;
-    }
-    if ($status === false) {
-        echo socket_last_error() . &quot;\r\n&quot;;
-        continue;
-    }
-    if (in_array($master, $activeSockets)) {
-        $newSocket = socket_accept($master);
-        if (!$newSocket) {
-            continue;
-        }
-        $sockets[] = $newSocket;
-        $activeSockets[] = $newSocket;
-        $index = array_search($master, $activeSockets);
-        unset($activeSockets[$index]);
-    }
-    foreach($activeSockets as $activeSocket) {
-        $socketId = (int) $activeSocket;
-        $requestDataLength = socket_recv($activeSocket, $requestData, 2048, 0);
-        if ($requestDataLength == 0) {
-            socket_close($activeSocket);
-            $index = array_search($activeSocket, $sockets);
-            unset($sockets[$index]);
-            continue;
-        }
-        $response = &quot;&quot;;
-        $data = json_decode($requestData, true);
-        if ($data) {
-            switch($data[&#39;operator&#39;]) {
-                case &#39;add&#39;:
-                    $response = $data[&#39;firstNum&#39;] + $data[&#39;secondNum&#39;];
-                    break;
-                case &#39;sub&#39;:
-                    $response = $data[&#39;firstNum&#39;] - $data[&#39;secondNum&#39;];
-                    break;
-                case &#39;multi&#39;:
-                    $response = $data[&#39;firstNum&#39;] * $data[&#39;secondNum&#39;];
-                    break;
-                case &#39;div&#39;:
-                    $response = $data[&#39;firstNum&#39;] / $data[&#39;secondNum&#39;];
-                    break;
-            }
-        } else {
-            $response = $requestData;
-        }
-        socket_write($activeSocket, $response, strlen($response));
-    }
-
-};
-</code></pre>
-
-<p>client</p>
-
-<pre><code class="language-php">&lt;?php
-
-$socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-$result = socket_connect($socket, &#39;127.0.0.1&#39;, &#39;12345&#39;);
-$raw = json_encode([
-    &#39;firstNum&#39; =&gt; 10,
-    &#39;secondNum&#39; =&gt; 20,
-    &#39;operator&#39; =&gt; &#39;add&#39;,
-]);
-socket_write($socket, $raw, strlen($raw));
-$result = socket_read($socket, 2048);
-echo $result;
-socket_close($socket);
-</code></pre>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2017/6/19</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='php.html'>PHP</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="15582866200038.html">
-                
-                  <h1>技术开发顺序</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<ol>
-<li>理解业务为王</li>
-<li>业务实现技术方案第二</li>
-<li>技术选型第三</li>
-<li>具体实现代码第四</li>
-</ol>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2017/5/20</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='business.html'>业务</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="15582850884559.html">
-                
-                  <h1>java程序cpu过高查看快速解决问题</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<pre><code class="language-text">top //查看cpu占用过高的进程 获取进程id
-ps -mp pid -o THREAD,tid,time // 得到cpu占用过高的线程 获取其id
-
-or 通过命令：top -Hp 15970
-printf &quot;%x\n&quot; pid // 会得到一个16进制字符串
-jstack pid | grep [上一步得到16进制] -A 60 //定位代码问题处
-</code></pre>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2017/5/20</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='java.html'>JAVA</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
               
 
 
@@ -980,6 +954,8 @@ jstack pid | grep [上一步得到16进制] -A 60 //定位代码问题处
         
             <a href="pm.html"><strong>项目管理</strong></a>
         
+            <a href="sketch.html"><strong>sketch</strong></a>
+        
             <a href="sql.html"><strong>SQL</strong></a>
         
             <a href="job-scheduler.html"><strong>任务调度</strong></a>
@@ -989,6 +965,10 @@ jstack pid | grep [上一步得到16进制] -A 60 //定位代码问题处
             <a href="mq.html"><strong>消息队列</strong></a>
         
             <a href="rpc.html"><strong>RPC</strong></a>
+        
+            <a href="bigfrontend.html"><strong>大前端</strong></a>
+        
+            <a href="iOS.html"><strong>iOS</strong></a>
         
             <a href="laravel.html"><strong>LARAVEL</strong></a>
         
@@ -1075,6 +1055,24 @@ jstack pid | grep [上一步得到16进制] -A 60 //定位代码问题处
 	      
 		      
 			      <li class="post">
+			        <a href="16256216793335.html">html还原设计图开发心历路程</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16226333235156.html">用sketch原型工具3秒制作一个按钮</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16215677290066.html">三分钟制作一个iOS全局弹窗</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
 			        <a href="16081898834624.html">OSX使用代码代替storyboard构建项目，并添加NSSplitView组件</a>
 			      </li>
 		     
@@ -1082,24 +1080,6 @@ jstack pid | grep [上一步得到16进制] -A 60 //定位代码问题处
 		      
 			      <li class="post">
 			        <a href="16005640944829.html">linux系统编程之多进程和管道（pip）</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15970226751276.html">三分钟上手java多线程控制技术</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15864793262262.html">14/24 设计模式之状态模式 State Pattern</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15880004262195.html">python高性能之路:使用C/C++编写扩展</a>
 			      </li>
 		     
 		  

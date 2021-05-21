@@ -4,13 +4,1098 @@
   <title><![CDATA[xiaolin's blog]]></title>
   <link href="https://neatlifecoco.com/atom.xml" rel="self"/>
   <link href="https://neatlifecoco.com/"/>
-  <updated>2020-12-17T16:21:47+08:00</updated>
+  <updated>2021-06-02T19:47:35+08:00</updated>
   <id>https://neatlifecoco.com/</id>
   <author>
     <name><![CDATA[小林的博客]]></name>
 
   </author>
   <generator uri="http://www.mweb.im/">MWeb</generator>
+  
+  <entry>
+    <title type="html"><![CDATA[html还原设计图开发心历路程]]></title>
+    <link href="https://neatlifecoco.com/16256216793335.html"/>
+    <updated>2021-07-07T09:34:39+08:00</updated>
+    <id>https://neatlifecoco.com/16256216793335.html</id>
+    <content type="html"><![CDATA[
+<h2 id="toc_0">准备开发环境</h2>
+
+<p>开发工具: vscode<br/>
+插件<br/>
+<img src="media/16256216793335/16256217908711.jpg" alt=""/></p>
+
+<p>photoshop: 用于查看设计图稿字体，字体大小，间距</p>
+
+<h2 id="toc_1">从设计图稿入手，寻找组件</h2>
+
+<p>横向列表:<br/>
+<img src="media/16256216793335/16256220103440.jpg" alt=""/></p>
+
+<span id="more"></span><!-- more -->
+
+<p>纵向列表<br/>
+<img src="media/16256216793335/16256220289035.jpg" alt=""/></p>
+
+<p>卡片<br/>
+<img src="media/16256216793335/16256220456333.jpg" alt=""/></p>
+
+<p>徽标<br/>
+<img src="media/16256216793335/16256220553987.jpg" alt=""/></p>
+
+<p>输入框<br/>
+<img src="media/16256216793335/16256220689031.jpg" alt=""/></p>
+
+<p>按钮<br/>
+<img src="media/16256216793335/16256220788868.jpg" alt=""/></p>
+
+<p>区块<br/>
+<img src="media/16256216793335/16256221049271.jpg" alt=""/></p>
+
+<p>标题<br/>
+<img src="media/16256216793335/16256221819425.jpg" alt=""/><br/>
+媒体<br/>
+<img src="media/16256216793335/16256221979334.jpg" alt=""/></p>
+
+<h2 id="toc_2">定义主颜色集</h2>
+
+<pre><code class="language-css">:root {
+  --color-primary: #2584ff;
+  --color-secondary: #00d9ff;
+  --color-accent: #ff3400;
+  --color-headings: #1b0760;
+  --color-body: #918ca4;
+  --color-body-darker: #5c5577;
+  --color-border: #ccc;
+  --border-radius: 30px;
+}
+</code></pre>
+
+<p>使用方式: <code>background: var(--color-primary);</code><br/>
+方便统一管理页面配色</p>
+
+<h2 id="toc_3">盒子模型</h2>
+
+<pre><code class="language-css">*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+</code></pre>
+
+<p>统一盒子模型</p>
+
+<h2 id="toc_4">排版</h2>
+
+<pre><code class="language-markup">&lt;link rel=&quot;stylesheet&quot; href=&quot;css/normalize.css&quot;&gt;
+</code></pre>
+
+<pre><code class="language-css">
+/* Typography */
+::selection {
+  background: var(--color-primary);
+  color: #fff;
+}
+html {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+
+  /* 62.6 of 16px = 10px */
+  font-size: 62.5%;
+}
+
+body {
+  color: var(--color-body);
+  font-size: 2.4rem;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--color-headings);
+  margin-bottom: 1rem;
+  line-height: 1.1;
+}
+
+h1 {
+  font-size: 7rem;
+}
+
+h2 {
+  font-size: 4rem;
+  font-weight: 500;
+}
+
+h3 {
+  font-size: 3rem;
+}
+
+p {
+  margin-top: 0px;
+}
+
+@media screen and (min-width: 1024px) {
+  body {
+    font-size: 1.8rem;
+  }
+
+  h1 {
+    font-size: 8rem;
+  }
+
+  h2 {
+    font-size: 4rem;
+  }
+
+  h3 {
+    font-size: 2rem;
+  }
+}
+</code></pre>
+
+<h2 id="toc_5">link组件</h2>
+
+<pre><code class="language-css">/* Links */
+a {
+  text-decoration: none;
+}
+
+.link-arrow {
+  color: var(--color-accent);
+  text-transform: uppercase;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.link-arrow::after {
+  content: &quot;--&gt;&quot;;
+  margin-left: 5px;
+  transition: margin 0.15s;
+}
+
+.link-arrow:hover::after {
+  margin-left: 10px;
+}
+
+@media screen and (min-width: 1024px) {
+  .link-arrow {
+    font-size: 1.5rem;
+  }
+}
+
+</code></pre>
+
+<h2 id="toc_6">Badges组件</h2>
+
+<pre><code class="language-css">
+/* Badges */
+.badge {
+  border-radius: 20px;
+  padding: 0.5rem 2rem;
+  font-weight: 600;
+  white-space: nowrap;
+  font-size: 2rem;
+}
+
+.badge--primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.badge--secondary {
+  background: var(--color-secondary);
+  color: white;
+}
+
+.badge--small {
+  font-size: 1.6rem;
+  padding: 0.5rem 1.5rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .badge {
+    font-size: 1.5rem;
+  }
+
+  .badge--small {
+    font-size: 1.2rem;
+  }
+}
+</code></pre>
+
+<h2 id="toc_7">Lists组件</h2>
+
+<pre><code class="language-css">/* Lists */
+.list {
+  list-style: none;
+  padding-left: 0;
+  font-size: bold;
+}
+
+.list--inline .list__item {
+  display: inline-block;
+  margin-right: 2rem;
+}
+
+.list--tick {
+  list-style-image: url(../icons/tick.svg);
+  padding-left: 3rem;
+  color: var(--color-headings);
+}
+
+.list--tick .list__item {
+  padding-left: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .list--tick .list__item {
+    padding-left: 0;
+  }
+}
+</code></pre>
+
+<h2 id="toc_8">Icons组件</h2>
+
+<pre><code class="language-css">/* Icons */
+.icon {
+  width: 40px;
+  height: 40px;
+}
+
+.icon--small {
+  width: 30px;
+  height: 30px;
+}
+
+.icon--primary {
+  fill: var(--color-primary);
+}
+
+.icon--white {
+  fill: #fff;
+}
+
+.icon-container {
+  background: #f3f9fa;
+  width: 64px;
+  height: 64px;
+  border-radius: 100%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-container--accent {
+  background: var(--color-accent);
+}
+</code></pre>
+
+<h2 id="toc_9">Buttons 组件</h2>
+
+<pre><code class="language-css">/* Buttons */
+.btn {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 1rem 0;
+  text-transform: uppercase;
+  padding: 2rem 3rem;
+  border: 0;
+  border-radius: 40px;
+  cursor: pointer;
+  white-space: nowrap;
+  text-align: center;
+  outline: 0;
+}
+
+.btn .icon {
+  width: 2rem;
+  height: 2rem;
+  margin-right: 1rem;
+  vertical-align: middle;
+}
+
+.btn--primary {
+  background: var(--color-primary);
+  color: white;
+}
+
+.btn--primary:hover {
+  background: #3a8ffd;
+}
+
+.btn--secondary {
+  background: var(--color-secondary);
+  color: #fff;
+}
+
+.btn--secondary:hover {
+  background: #05cdf0;
+}
+
+.btn--accent {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.btn--accent:hover {
+  background: #ec3000;
+}
+
+.btn-block {
+  width: 100%;
+  display: inline-block;
+}
+
+.btn--outline {
+  background: #fff;
+  color: var(--color-headings);
+  border: 2px solid var(--color-headings);
+}
+
+.btn--stretched {
+  padding-left: 6rem;
+  padding-right: 6rem;
+}
+
+.btn--outline:hover {
+  background: var(--color-headings);
+  color: #fff;
+}
+
+@media screen and (min-width: 1024px) {
+  .btn {
+    font-size: 1.5rem;
+  }
+}
+</code></pre>
+
+<h2 id="toc_10">Inputs组件</h2>
+
+<pre><code class="language-css">/* Inputs */
+
+.input {
+  padding: 1.5rem 3.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  outline: 0;
+  color: var(--color-headings);
+  font-size: 2rem;
+}
+
+::placeholder {
+  color: #cdcdd7;
+}
+
+.input-group {
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  display: flex;
+}
+
+.input-group .input {
+  border: 0;
+  flex-grow: 1;
+  padding: 1.5rem 2rem;
+}
+
+.input-group .btn {
+  margin: 4px;
+}
+
+@media screen and (min-width: 1024px) {
+  .input {
+    font-size: 1.5rem;
+  }
+}
+</code></pre>
+
+<h2 id="toc_11">Cards组件</h2>
+
+<pre><code class="language-css">/* Cards */
+.card {
+  border-radius: 7px;
+  box-shadow: 0 0 20px 10px #f3f3f3;
+  overflow: hidden;
+}
+
+.card__header,
+.card__body {
+  padding: 2rem 3rem;
+}
+
+.card--primary .card__header {
+  background: var(--color-primary);
+  color: white;
+}
+
+.card--secondary .card__header {
+  background: var(--color-secondary);
+  color: white;
+}
+
+.card--primary .badge--primary {
+  background: #126de4;
+}
+.card--secondary .badge--secondary {
+  background: #02cdf1;
+}
+</code></pre>
+
+<h2 id="toc_12">Plans组件</h2>
+
+<pre><code class="language-css">
+/* Plans */
+.plan {
+  transition: transform 0.2s ease-out;
+}
+
+.plan__name {
+  color: #fff;
+  margin: 0;
+  font-weight: 500;
+  font-size: 2.4rem;
+}
+
+.plan__price {
+  font-size: 6rem;
+}
+
+.plan__billing-cycle {
+  font-size: 2.4rem;
+  font-weight: 300;
+  opacity: 0.8;
+  margin-right: 1rem;
+}
+
+.plan__description {
+  opacity: 0.8;
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+  display: block;
+}
+
+.plan .list__item {
+  margin-bottom: 2rem;
+}
+
+.plan--popular {
+  transform: scale(1.1);
+}
+
+.plan--popular .card__header {
+  position: relative;
+}
+
+.plan--popular .card__header::before {
+  content: url(../images/popular.svg);
+  width: 40px;
+  display: inline-block;
+  position: absolute;
+  top: -6px;
+  right: 5%;
+}
+
+.plan:hover {
+  transform: scale(1.05);
+}
+
+.plan--popular:hover {
+  transform: scale(1.15);
+}
+
+@media screen and (min-width: 1024px) {
+  .plan__name {
+    font-size: 1.4rem;
+  }
+
+  .plan__price {
+    font-size: 5rem;
+  }
+
+  .plan__billing-cycle {
+    font-size: 1.6rem;
+  }
+
+  .plan__description {
+    font-size: 1.7rem;
+  }
+}
+</code></pre>
+
+<h2 id="toc_13">Media组件</h2>
+
+<pre><code class="language-css">/* Media */
+.media {
+  display: flex;
+  margin-bottom: 4rem;
+}
+
+.media__title {
+  margin-top: 0;
+}
+
+.media__body {
+  margin: 0 2rem;
+}
+
+.media__image {
+  margin-top: 1rem;
+}
+</code></pre>
+
+<h2 id="toc_14">Quotes组件</h2>
+
+<pre><code class="language-css">/* Quotes */
+.quote {
+  font-size: 3rem;
+  font-style: italic;
+  color: var(--color-body-darker);
+  line-height: 1.3;
+}
+
+.quote__text::before {
+  content: open-quote;
+}
+
+.quote__text::after {
+  content: close-quote;
+}
+
+.quote__author {
+  font-size: 3rem;
+  font-weight: 500;
+  font-style: normal;
+  margin-bottom: 0;
+}
+
+.quote__organization {
+  color: var(--color-headings);
+  opacity: 0.4;
+  font-size: 2rem;
+  font-style: normal;
+}
+
+.quote__line {
+  position: relative;
+  bottom: 10px;
+}
+
+@media screen and (min-width: 1024px) {
+  .quote {
+    font-size: 2rem;
+  }
+
+  .quote__author {
+    font-size: 2.4rem;
+  }
+
+  .quote__organization {
+    font-size: 1.6rem;
+  }
+}
+</code></pre>
+
+<h2 id="toc_15">Grid组件</h2>
+
+<pre><code class="language-css">/* Grids */
+.grid {
+  display: grid;
+}
+
+@media screen and (min-width: 768px) {
+  .grid--1x2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .grid--1x3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+</code></pre>
+
+<h2 id="toc_16">Testimonials组件</h2>
+
+<pre><code class="language-css">/* Testimonials */
+.testimonial {
+  padding: 3rem;
+}
+
+.testimonial__image {
+  position: relative;
+}
+
+.testimonial__image &gt; img {
+  width: 100%;
+}
+
+.testimonial__image &gt; .icon-container {
+  position: absolute;
+  top: 3rem;
+  right: -32px;
+}
+
+@media screen and (min-width: 768px) {
+  .testimonial .quote,
+  .testimonial .quote__author {
+    font-size: 2.4rem;
+  }
+
+  .testimonial .quote {
+    margin-left: 6rem;
+  }
+}
+</code></pre>
+
+<h2 id="toc_17">Callouts组件</h2>
+
+<pre><code class="language-css">/* Callouts */
+.callout {
+  padding: 4rem;
+  border-radius: 5px;
+}
+
+.callout--primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.callout__heading {
+  color: #fff;
+  margin-top: 0;
+  font-size: 3rem;
+}
+
+.callout .btn {
+  justify-self: center;
+  align-self: center;
+}
+
+.callout__content {
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .callout .grid--1x2 {
+    grid-template-columns: 1fr auto;
+  }
+
+  .callout__content {
+    text-align: left;
+  }
+
+  .callout .btn {
+    justify-self: start;
+    margin: 0 2rem;
+  }
+}
+</code></pre>
+
+<h2 id="toc_18">Collapsible组件</h2>
+
+<pre><code class="language-css">/* Collapsible */
+.collapsible__header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.collapsible__heading {
+  margin-top: 0;
+  font-size: 3rem;
+}
+
+.collapsible__chevron {
+  transform: rotate(-90deg);
+  transition: transform 0.3s;
+}
+
+.collapsible__content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.collapsible--expanded .collapsible__chevron {
+  transform: rotate(0);
+}
+
+.collapsible--expanded .collapsible__content {
+  max-height: 100vh;
+  opacity: 1;
+}
+</code></pre>
+
+<h2 id="toc_19">Blocks组件</h2>
+
+<pre><code class="language-css">/* Blocks */
+.block {
+  --padding-vertical: 6rem;
+  padding: var(--padding-vertical) 2rem;
+}
+
+.block__header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.block__heading {
+  margin-top: 0;
+}
+
+.block--dark {
+  background: #000;
+  color: #7b858b;
+}
+
+.block--dark h1,
+.block--dark h2,
+.block--dark h3 {
+  color: #fff;
+}
+
+.block--dark .block__heading {
+  color: #fff;
+}
+
+.block--skewed-right {
+  padding-bottom: calc(var(--padding-vertical) + 4rem);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 90%);
+}
+
+.block--skewed-left {
+  padding-bottom: calc(var(--padding-vertical) + 4rem);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 0% 100%);
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+</code></pre>
+
+<h2 id="toc_20">尺寸</h2>
+
+<p>css中元素的大小由字体大小，内容大小决定，而不仅仅是width, height属性决定</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[用sketch原型工具3秒制作一个按钮]]></title>
+    <link href="https://neatlifecoco.com/16226333235156.html"/>
+    <updated>2021-06-02T19:28:43+08:00</updated>
+    <id>https://neatlifecoco.com/16226333235156.html</id>
+    <content type="html"><![CDATA[
+<p>效果参考如下<br/>
+<img src="media/16226333235156/16226333583399.jpg" alt=""/></p>
+
+<h2 id="toc_0">第一秒：画一个矩形，填充圆角和绿色</h2>
+
+<p>矩形<br/>
+<img src="media/16226333235156/16226334452439.jpg" alt=""/></p>
+
+<p>圆角和绿色<br/>
+<img src="media/16226333235156/16226334877195.jpg" alt=""/></p>
+
+<p>取消掉边框</p>
+
+<h2 id="toc_1">第二秒：填充文字，注意参考线居中对齐</h2>
+
+<p><img src="media/16226333235156/16226335332520.jpg" alt=""/></p>
+
+<h2 id="toc_2">第三秒：欣赏成果</h2>
+
+<p><img src="media/16226333235156/16226335747796.jpg" alt=""/></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[三分钟制作一个iOS全局弹窗]]></title>
+    <link href="https://neatlifecoco.com/16215677290066.html"/>
+    <updated>2021-05-21T11:28:49+08:00</updated>
+    <id>https://neatlifecoco.com/16215677290066.html</id>
+    <content type="html"><![CDATA[
+<p>效果图如下：<br/>
+<img src="media/16215677290066/16215841655237.jpg" alt=""/></p>
+
+<h2 id="toc_0">分析所需的ui元素</h2>
+
+<table>
+<thead>
+<tr>
+<th>元素</th>
+<th>样式</th>
+<th>控件</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>弹窗标题</td>
+<td>黑色加粗</td>
+<td>UILabel</td>
+</tr>
+<tr>
+<td>弹窗内容</td>
+<td>灰色正常</td>
+<td>UILabel</td>
+</tr>
+<tr>
+<td>关闭按钮</td>
+<td>红底白字圆角</td>
+<td>UIButton</td>
+</tr>
+<tr>
+<td>弹窗白底</td>
+<td>白底圆角</td>
+<td>UIView</td>
+</tr>
+<tr>
+<td>弹窗半透明背景</td>
+<td>黑色半透明</td>
+<td>UIController&gt;UIView</td>
+</tr>
+</tbody>
+</table>
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_1">弹窗标题ui实现</h2>
+
+<pre><code class="language-swift">class MyTitleLabel: UILabel {
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configure()
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        fatalError(&quot;init(coder:) has not been implemented&quot;)
+    }
+    
+    
+    init(textAlignment: NSTextAlignment, fontSize: CGFloat) {
+        super.init(frame: .zero)
+        self.textAlignment = textAlignment
+        self.font = UIFont.systemFont(ofSize: fontSize, weight: .bold)
+        configure()
+    }
+    
+    
+    private func configure() {
+        textColor                   = .label
+        adjustsFontSizeToFitWidth   = true
+        minimumScaleFactor          = 0.9
+        lineBreakMode               = .byTruncatingTail
+        translatesAutoresizingMaskIntoConstraints = false
+    }
+}
+</code></pre>
+
+<h2 id="toc_2">弹窗内容ui实现</h2>
+
+<pre><code class="language-swift">class MyBodyLabel: UILabel {
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configure()
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        fatalError(&quot;init(coder:) has not been implemented&quot;)
+    }
+    
+    
+    init(textAlignment: NSTextAlignment) {
+        super.init(frame: .zero)
+        self.textAlignment = textAlignment
+        configure()
+    }
+    
+    
+    private func configure() {
+        textColor                   = .secondaryLabel
+        font                        = UIFont.preferredFont(forTextStyle: .body)
+        adjustsFontSizeToFitWidth   = true
+        minimumScaleFactor          = 0.75
+        lineBreakMode               = .byWordWrapping
+        translatesAutoresizingMaskIntoConstraints = false
+    }
+}
+</code></pre>
+
+<h2 id="toc_3">关闭按钮ui实现</h2>
+
+<pre><code class="language-swift">class MyButton: UIButton {
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configure()
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        fatalError(&quot;init(coder:) has not been implemented&quot;)
+    }
+    
+    
+    init(backgroundColor: UIColor, title: String) {
+        super.init(frame: .zero)
+        self.backgroundColor = backgroundColor
+        self.setTitle(title, for: .normal)
+        configure()
+    }
+    
+    
+    private func configure() {
+        layer.cornerRadius      = 10
+        setTitleColor(.white, for: .normal)
+        titleLabel?.font        = UIFont.preferredFont(forTextStyle: .headline)
+        translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    
+    func set(backgroundColor: UIColor, title: String) {
+        self.backgroundColor = backgroundColor
+        setTitle(title, for: .normal)
+    }
+}
+</code></pre>
+
+<h2 id="toc_4">半透明背景controller，内置一个圆角UIView盛放标题、内容、关闭按钮ui空间和用auto layout布局按钮位置</h2>
+
+<p>关闭按钮被点击后需要关闭这个controller<br/>
+关闭当前controller：<code>dismiss(animated: true)</code></p>
+
+<pre><code class="language-swift">class MyAlertVC: UIViewController {
+    
+    let containerView   = UIView()
+    let titleLabel      = MyTitleLabel(textAlignment: .center, fontSize: 20)
+    let messageLabel    = MyBodyLabel(textAlignment: .center)
+    let actionButton    = MyButton(backgroundColor: .systemPink, title: &quot;Ok&quot;)
+    
+    var alertTitle: String?
+    var message: String?
+    var buttonTitle: String?
+    
+    let padding: CGFloat = 20
+    
+    
+    init(title: String, message: String, buttonTitle: String) {
+        super.init(nibName: nil, bundle: nil)
+        self.alertTitle     = title
+        self.message        = message
+        self.buttonTitle    = buttonTitle
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        fatalError(&quot;init(coder:) has not been implemented&quot;)
+    }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.75)
+        configureContainerView()
+        configureTitleLabel()
+        configureActionButton()
+        configureMessageLabel()
+    }
+    
+    
+    func configureContainerView() {
+        view.addSubview(containerView)
+        containerView.backgroundColor       = .systemBackground
+        containerView.layer.cornerRadius    = 16
+        containerView.layer.borderWidth     = 2
+        containerView.layer.borderColor     = UIColor.white.cgColor
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            containerView.widthAnchor.constraint(equalToConstant: 280),
+            containerView.heightAnchor.constraint(equalToConstant: 220)
+        ])
+    }
+    
+    
+    func configureTitleLabel() {
+        containerView.addSubview(titleLabel)
+        titleLabel.text = alertTitle ?? &quot;Something went wrong&quot;
+        
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: padding),
+            titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: padding),
+            titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -padding),
+            titleLabel.heightAnchor.constraint(equalToConstant: 28)
+        ])
+    }
+    
+    
+    func configureActionButton() {
+        containerView.addSubview(actionButton)
+        actionButton.setTitle(buttonTitle ?? &quot;Ok&quot;, for: .normal)
+        actionButton.addTarget(self, action: #selector(dismissVC), for: .touchUpInside)
+        
+        NSLayoutConstraint.activate([
+            actionButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -padding),
+            actionButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: padding),
+            actionButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -padding),
+            actionButton.heightAnchor.constraint(equalToConstant: 44)
+        ])
+    }
+    
+    
+    func configureMessageLabel() {
+        containerView.addSubview(messageLabel)
+        messageLabel.text           = message ?? &quot;Unable to complete request&quot;
+        messageLabel.numberOfLines  = 4
+        
+        NSLayoutConstraint.activate([
+            messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
+            messageLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: padding),
+            messageLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -padding),
+            messageLabel.bottomAnchor.constraint(equalTo: actionButton.topAnchor, constant: -12)
+        ])
+    }
+    
+    
+    @objc func dismissVC() {
+        dismiss(animated: true)
+    }
+}
+</code></pre>
+
+<h2 id="toc_5">创建controller实例使用这个弹窗</h2>
+
+<pre><code class="language-swift">let alertVC = MyAlertVC(title: title, message: message, buttonTitle: buttonTitle)
+alertVC.modalPresentationStyle  = .overFullScreen
+alertVC.modalTransitionStyle    = .crossDissolve
+self.present(alertVC, animated: true)
+</code></pre>
+
+<h2 id="toc_6">一些注意的点</h2>
+
+<ol>
+<li>在异步请求中使用这个弹窗需要DispatchQueue.main.async确保在主线程中</li>
+</ol>
+
+<h2 id="toc_7">参考资料</h2>
+
+<ol>
+<li><a href="https://stackoverflow.com/questions/38874517/how-to-make-a-simple-rounded-button-in-storyboard">https://stackoverflow.com/questions/38874517/how-to-make-a-simple-rounded-button-in-storyboard</a></li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[OSX使用代码代替storyboard构建项目，并添加NSSplitView组件]]></title>
@@ -3420,555 +4505,6 @@ public static void businessLogic(Group group) {
 
 <ol>
 <li><a href="https://www.geeksforgeeks.org/composite-design-pattern/">https://www.geeksforgeeks.org/composite-design-pattern/</a></li>
-</ol>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[4/24 设计模式之命令设计模式 Command Pattern]]></title>
-    <link href="https://neatlifecoco.com/15834720479826.html"/>
-    <updated>2020-03-06T13:20:47+08:00</updated>
-    <id>https://neatlifecoco.com/15834720479826.html</id>
-    <content type="html"><![CDATA[
-<p>类别：行为型设计模式</p>
-
-<p>目的：解耦行为的接收方和行为的实际处理逻辑</p>
-
-<p>完整代码参考：<a href="https://1drv.ms/u/s!AquRvPzqx59Ri3MMlUz2cbydE0Eu?e=X6DGEG">https://1drv.ms/u/s!AquRvPzqx59Ri3MMlUz2cbydE0Eu?e=X6DGEG</a></p>
-
-<h2 id="toc_0">典型场景</h2>
-
-<p>gui窗口界面上的一个按钮对象，点击后执行一断逻辑处理代码</p>
-
-<h2 id="toc_1">硬编码</h2>
-
-<p>构造一个按钮类，并在点击（click）时执行业务逻辑代码，参考代码如下：</p>
-
-<pre><code class="language-java">public class Button {
-    private String label;
-
-    public void click() {
-        // doBusinessLogic(); 逻辑处理代码
-    }
-
-    public String getLabel() {
-        return label;
-    }
-
-    public void setLabel(String label) {
-        this.label = label;
-    }
-}
-</code></pre>
-
-<p>核心问题</p>
-
-<p>按钮和按钮点后的业务逻辑代码耦合在一起</p>
-
-<ol>
-<li>button的复用变得困难</li>
-<li>逻辑代码的复用变得困难</li>
-</ol>
-
-<span id="more"></span><!-- more -->
-
-<p>解决方式：命令模式，将业务逻辑代码和按钮分开，使得button和逻辑代码都变得比较容易复用</p>
-
-<h2 id="toc_2">模式实现</h2>
-
-<p>将逻辑代码单独进行封装，这部分封装就是命令模式中的<strong>命令</strong></p>
-
-<p>单独封装业务逻辑</p>
-
-<pre><code class="language-java">public interface Command {
-    void execute();
-}
-
-public class BusinessLogicCommand implements Command {
-    @Override
-    public void execute() {
-        System.out.println(&quot;business logic here...&quot;);
-    }
-}
-</code></pre>
-
-<p>按钮中持有对业务逻辑的引用</p>
-
-<pre><code class="language-java">public class Button {
-    private String label;
-    private Command command;
-
-    public Button(Command command) {
-        this.command = command;
-    }
-
-    public void click() {
-        command.execute();
-    }
-
-    public String getLabel() {
-        return label;
-    }
-
-    public void setLabel(String label) {
-        this.label = label;
-    }
-}
-</code></pre>
-
-<p>使用方式</p>
-
-<pre><code class="language-java">var command = new BusinessLogicCommand();
-var button = new Button(command);
-button.click();
-</code></pre>
-
-<p><img src="media/15834720479826/15836443284590.jpg" alt="" style="width:486px;"/></p>
-
-<p>可以看到命令使用了接口、可以方便的进行业务逻辑的扩展</p>
-
-<h2 id="toc_3">一些注意的点</h2>
-
-<p>命令模式中的Command对象特性</p>
-
-<ol>
-<li>可被持久化、比如从关键状态中恢复以前的状态</li>
-<li>可被撤销、比如执行删除命令时，先保存被删除的内容，可在需要时恢复被删除的内容</li>
-</ol>
-
-<p>java 持久化参考代码如下(stat为需要持久化的对象)</p>
-
-<pre><code class="language-java">// 持久化对象到文件
-var fileStream = new FileOutputStream(&quot;stat.txt&quot;);
-var objectStream = new ObjectOutputStream(fileStream);
-objectStream.writeObject(stat);
-objectStream.close();
-
-// 从文件恢复对象
-var fileStream = new FileInputStream(&quot;history.txt&quot;);
-var objectStream = new ObjectInputStream(fileStream);
-var stat = (Stat) objectStream.readObject();
-</code></pre>
-
-<h2 id="toc_4">为什么命令模式更好</h2>
-
-<ol>
-<li>避免大量的耦合</li>
-<li>减少基础组件的重复、比如界面上许多的按钮，大部分可以重用</li>
-</ol>
-
-<h2 id="toc_5">参考资料</h2>
-
-<ol>
-<li><a href="https://www.geeksforgeeks.org/command-pattern/">https://www.geeksforgeeks.org/command-pattern/</a></li>
-</ol>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[3/24 设计模式之责任链设计模式 Chain Of Responsibility Pattern]]></title>
-    <link href="https://neatlifecoco.com/15830361322402.html"/>
-    <updated>2020-03-01T12:15:32+08:00</updated>
-    <id>https://neatlifecoco.com/15830361322402.html</id>
-    <content type="html"><![CDATA[
-<p>类别：行为型设计模式</p>
-
-<p>目的：将为了达成共同目标的一系列具有逻辑顺序的操作进行解耦</p>
-
-<p>完整代码参考：<a href="https://1drv.ms/u/s!AquRvPzqx59Ri3IZYwf83oLFp6Pu?e=i6yxH7">https://1drv.ms/u/s!AquRvPzqx59Ri3IZYwf83oLFp6Pu?e=i6yxH7</a></p>
-
-<h2 id="toc_0">典型场景</h2>
-
-<p>为一个web请求定义的一些列操作，比如</p>
-
-<ol>
-<li>用户登陆验证</li>
-<li>处理业务逻辑</li>
-<li>压缩响应数据</li>
-</ol>
-
-<p>注意以上3个操作是顺序的，需要登陆成功后再执行业务逻辑，业务逻辑生成响应数据后，才需要压缩响应数据</p>
-
-<p>构造一个简单的http请求对象备用，参考：</p>
-
-<pre><code class="language-java">public class HttpRequest {
-    private String username;
-    private String password;
-
-    public HttpRequest(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-}
-</code></pre>
-
-<span id="more"></span><!-- more -->
-
-<h2 id="toc_1">硬编码</h2>
-
-<p>1 . 用户登陆认证</p>
-
-<pre><code class="language-java">public class Authenticator {
-    public boolean doHandle(HttpRequest request) {
-        var isValid = (request.getUsername() == &quot;admin&quot; &amp;&amp;
-                request.getPassword() == &quot;1234&quot;);
-
-        System.out.println(&quot;Authentication&quot;);
-
-        return !isValid;
-    }
-}
-</code></pre>
-
-<p>2 . 处理业务逻辑</p>
-
-<pre><code class="language-java">public class BusinessLogic {
-    public boolean doHandle(HttpRequest request) {
-        System.out.println(&quot;Log&quot;);
-
-        return false;
-    }
-}
-</code></pre>
-
-<p>3 . 压缩响应数据</p>
-
-<pre><code class="language-java">public class Compressor {
-    public boolean doHandle(HttpRequest request) {
-        System.out.println(&quot;Compress&quot;);
-
-        return false;
-    }
-}
-</code></pre>
-
-<p>很容易写出下面的流程处理代码: </p>
-
-<pre><code class="language-java">var request = new HttpRequest(&quot;root&quot;, &quot;root&quot;);
-var auth = new Authenticator();
-var businessLogic = new BusinessLogic();
-var compressor = new Compressor();
-if (!auth.doHandle(request)) {
-    if (!businessLogic.doHandle(request)) {
-        compressor.doHandle(request);
-    } else {
-        // 处理结束
-    }
-} else {
-    // 处理结束
-}
-</code></pre>
-
-<p>可以看到随着处理步骤的增加，上面代码的混乱程度会越来越验证，特别是对于处理http请求这种步骤可能多达2、30个的复杂流程来说，这块代码将变得很难维护</p>
-
-<h2 id="toc_2">模式实现</h2>
-
-<p>责任链的解决方式是，在每个流程处理class中<strong>持有</strong>下个处理流程的引用，通过判断当前流程是否成功，来决定是否调用下个处理流程</p>
-
-<h3 id="toc_3">代码</h3>
-
-<p>每个流程持有的下个流程的引用、以及判断是否调用下个流程的代码实现可以放到处理流程的父类中，参考 Handler.java</p>
-
-<pre><code class="language-java">public abstract class Handler {
-    private Handler next;
-
-    public Handler(Handler next) {
-        this.next = next;
-    }
-
-    public void handle(HttpRequest request) {
-        if (doHandle(request))
-            return;
-
-        if (next != null)
-            next.handle(request);
-    }
-
-    public abstract boolean doHandle(HttpRequest request);
-}
-</code></pre>
-
-<p>对下个流程的引用通过构造函数传递进来，通过调用hand()方法间接调用当前流程doHandle方法进行流程处理</p>
-
-<p>所有的流程处理类继承这个Handler即可，拿BusinessLogic举例，参考：</p>
-
-<pre><code class="language-java">public class BusinessLogic extends Handler {
-    public BusinessLogic(Handler next) {
-        super(next);
-    }
-
-    @Override
-    public boolean doHandle(HttpRequest request) {
-        System.out.println(&quot;Log&quot;);
-
-        return false;
-    }
-}
-</code></pre>
-
-<p>然后依次处理Authenticator.java、Compressor.java</p>
-
-<p>然后创建和使用这些流程</p>
-
-<pre><code class="language-java">var compressor = new Compressor(null);
-var businessLogic = new BusinessLogic(compressor);
-var authenticator = new Authenticator(businessLogic);
-
-var httpRequest = new HttpRequest(&quot;root&quot;, &quot;root&quot;);
-authenticator.handle(httpRequest);
-</code></pre>
-
-<p>可以看到把if判断的逻辑代码分散到了各自的流程处理类中，主流程更清晰了</p>
-
-<h3 id="toc_4">UML</h3>
-
-<p><img src="media/15830361322402/15832136553375.jpg" alt=""/></p>
-
-<h2 id="toc_5">为什么责任链模式更好</h2>
-
-<p><img src="media/15830361322402/15832202059984.jpg" alt=""/></p>
-
-<ol>
-<li>分解逻辑判断的复杂度</li>
-<li>使用者可以灵活选择不同的处理流程、调整处理顺序</li>
-<li>新流程非常容易加入（集成Handler类即可）</li>
-</ol>
-
-<h2 id="toc_6">一些注意的点</h2>
-
-<p>流程处理方法doHandle中返回值表示流程处理是否结束，true表示结束，false表示未结束，返回true后就不需要再执行下面的流程了</p>
-
-<h2 id="toc_7">参考资料</h2>
-
-<ol>
-<li><a href="https://www.geeksforgeeks.org/chain-responsibility-design-pattern/">https://www.geeksforgeeks.org/chain-responsibility-design-pattern/</a></li>
-</ol>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[2/24 设计模式之访问者设计模式 Visitor Pattern]]></title>
-    <link href="https://neatlifecoco.com/15827975641715.html"/>
-    <updated>2020-02-27T17:59:24+08:00</updated>
-    <id>https://neatlifecoco.com/15827975641715.html</id>
-    <content type="html"><![CDATA[
-<p>类别：行为型设计模式</p>
-
-<p>目的：不改变类的定义的约束下，为类的对象应用/添加新的行为</p>
-
-<h2 id="toc_0">典型场景</h2>
-
-<p>现存一系列对象，比如由很多html标签对象组成了一个html页面，这里拿几个html标签举例</p>
-
-<table>
-<thead>
-<tr>
-<th>标签</th>
-<th>当前状态</th>
-<th>目标状态</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>a</td>
-<td><code>&lt;a href=“#”&gt;link&lt;/a&gt;</code></td>
-<td>添加class=“underlinea&quot;</td>
-</tr>
-<tr>
-<td>p</td>
-<td><code>&lt;p&gt;this is a paragraph&lt;/p&gt;</code></td>
-<td>添加style=“font: bold&quot;</td>
-</tr>
-<tr>
-<td>h1</td>
-<td><code>&lt;h1&gt;new title&lt;/h1&gt;</code></td>
-<td>添加id=“h1-highlight&quot;</td>
-</tr>
-</tbody>
-</table>
-
-<p>当前代码状态如下，注意需要修改的部分</p>
-
-<span id="more"></span><!-- more -->
-
-<pre><code class="language-java">// a标签
-public class AnchorNode implements HtmlNode {
-    public String cssClass = &quot;&quot;; // 注意此处需要修改
-    public String text = &quot;link&quot;;
-
-    public String getContent()
-    {
-        return String.format(&quot;&lt;a class=&#39;%s&#39;&gt;%s&lt;/a&gt;&quot;, cssClass, cssClass, text);
-    }
-}
-
-// p标签
-public class ParagraphNode implements HtmlNode {
-    public String style = &quot;&quot;; // 注意此处需要修改
-    public String text = &quot;this is a paragraph&quot;;
-
-    public String getContent()
-    {
-        return String.format(&quot;&lt;p style=&#39;&#39;&gt;&lt;/p&gt;&quot;, style, text);
-    }
-}
-
-// h1标签
-public class HeadingNode implements HtmlNode {
-    public String id = &quot;&quot;; // 注意此处需要修改
-    public String text = &quot;this is a paragraph&quot;;
-
-    public String getContent()
-    {
-        return String.format(&quot;&lt;h1 id=&#39;%s&#39;&gt;%s&lt;/a&gt;&quot;, id, text);
-    }
-}
-</code></pre>
-
-<h2 id="toc_1">硬编码</h2>
-
-<p>要达到目标状态、需要修改的内容如下</p>
-
-<ol>
-<li>AnchorNode的cssNode属性需要赋值为underlinea</li>
-<li>ParagraphNode的style属性需要赋值为font: bold</li>
-<li>HeadingNode的id属性需要赋值为h1-highlight</li>
-</ol>
-
-<p>要实现以上功能，很容易想到直接修改类定义，参考如下</p>
-
-<pre><code class="language-java">// a标签
-public class AnchorNode implements HtmlNode {
-    public String cssClass = &quot;underlinea&quot;; // 按照需求进行修改
-    public String text = &quot;link&quot;;
-
-    public String getContent()
-    {
-        return String.format(&quot;&lt;a class=&#39;%s&#39;&gt;%s&lt;/a&gt;&quot;, cssClass, cssClass, text);
-    }
-}
-
-// p标签
-public class ParagraphNode implements HtmlNode {
-    public String style = &quot;font: bold&quot;; // 按照需求进行修改
-    public String text = &quot;this is a paragraph&quot;;
-
-    public String getContent()
-    {
-        return String.format(&quot;&lt;p style=&#39;&#39;&gt;&lt;/p&gt;&quot;, style, text);
-    }
-}
-
-// h1标签
-public class HeadingNode implements HtmlNode {
-    public String id = &quot;h1-highlight&quot;; // 按照需求进行修改
-    public String text = &quot;this is a paragraph&quot;;
-
-    public String getContent()
-    {
-        return String.format(&quot;&lt;h1 id=&#39;%s&#39;&gt;%s&lt;/a&gt;&quot;, id, text);
-    }
-}
-</code></pre>
-
-<p>虽然修改成功达到了目的，但在需要修改的class数量比较多时(比如30个类)， 会导致修改大量的文件，同时因为修改的代码都分散很多不同的文件中，非常不利于新增的修改代码的维护，这时就可以使用访问者设计模式了</p>
-
-<h2 id="toc_2">模式实现</h2>
-
-<p>在所有同类的潜在会被修改的class内设计一个接收访问者的方法，交由访问者对自身进行修改</p>
-
-<h3 id="toc_3">代码</h3>
-
-<p>访问者接口定义如下</p>
-
-<pre><code class="language-java">public interface Visitor {
-    void apply(HeadingNode heading);
-
-    void apply(AnchorNode anchor);
-
-    void apply(ParagraphNode paragraph);
-}
-</code></pre>
-
-<p>定义一个进行目标修改的访问者</p>
-
-<pre><code class="language-java">public class AddCssVisitor implements Visitor {
-    @Override
-    public void apply(HeadingNode heading) {
-        heading.id = &quot;h1-highlight&quot;;
-    }
-
-    @Override
-    public void apply(AnchorNode anchor) {
-        anchor.cssClass=&quot;underlinea&quot;;
-    }
-
-    @Override
-    public void apply(ParagraphNode paragraph) {
-        paragraph.style = &quot;font: bold&quot;;
-    }
-}
-</code></pre>
-
-<p>在需要应用这些修改的对象对应的class内部，设计一个接收并应用访问者的方法，参考如下</p>
-
-<p><strong>接口</strong></p>
-
-<pre><code class="language-java">public interface HtmlNode {
-    void acceptVisitor(Visitor visitor);
-}
-</code></pre>
-
-<p>具体实现，拿AnchorNode举例</p>
-
-<pre><code class="language-java">public class AnchorNode implements HtmlNode {
-    public String cssClass = &quot;underlinea&quot;;
-    public String text = &quot;link&quot;;
-
-    public String getContent()
-    {
-        return String.format(&quot;&lt;a class=&#39;%s&#39;&gt;%s&lt;/a&gt;&quot;, cssClass, cssClass, text);
-    }
-
-    @Override
-    public void acceptVisitor(Visitor visitor) {
-        visitor.apply(this);
-    }
-}
-</code></pre>
-
-<p>这样通过调用AnchorNode的acceptVisitor方法就可以在不修改AnchorNode类定义的限定下，通过vistor对AnchorNode对象进行目标修改</p>
-
-<p>同时可以定义多个Vistor，各调用一次目标对象的acceptVisitor方法可以实现多个/多种修改目的</p>
-
-<h3 id="toc_4">UML</h3>
-
-<p><img src="media/15827975641715/15828863130882.jpg" alt=""/></p>
-
-<h2 id="toc_5">为什么访问者模式更好</h2>
-
-<p>存在大量同类对象需求修改时，可以将修改内容集中到一处（一个访问者内），降低直接修改大量目标类产生的漏改/错改，或者使得修改后的类行为不再符合某些依赖方预期。降低改动大量类文件的风险，同时将修改集中到一处，方便后期进行维护，同时对于新的迭代，也可以使用一个新的访问者实现，将迭代的风险集中管理</p>
-
-<h2 id="toc_6">一些注意的点</h2>
-
-<p>可以将接纳访问者的acceptVisitor方法写到父类中</p>
-
-<h2 id="toc_7">参考资料</h2>
-
-<ol>
-<li><a href="https://www.geeksforgeeks.org/visitor-design-pattern/">https://www.geeksforgeeks.org/visitor-design-pattern/</a></li>
 </ol>
 
 ]]></content>

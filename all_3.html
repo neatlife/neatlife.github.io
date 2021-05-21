@@ -116,6 +116,8 @@
         
             <li><a href="pm.html">项目管理</a></li>
         
+            <li><a href="sketch.html">sketch</a></li>
+        
             <li><a href="sql.html">SQL</a></li>
         
             <li><a href="job-scheduler.html">任务调度</a></li>
@@ -125,6 +127,10 @@
             <li><a href="mq.html">消息队列</a></li>
         
             <li><a href="rpc.html">RPC</a></li>
+        
+            <li><a href="bigfrontend.html">大前端</a></li>
+        
+            <li><a href="iOS.html">iOS</a></li>
         
             <li><a href="laravel.html">LARAVEL</a></li>
         
@@ -216,6 +222,171 @@
 	<div class="large-8 medium-8 columns">
 		<div class="markdown-body home-categories">
 		
+			<div class="article">
+                <a class="clearlink" href="15696848025979.html">
+                
+                  <h1>3分钟做5道leetcode题上手leetcode刷题之路</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>官网地址：<a href="https://leetcode-cn.com">https://leetcode-cn.com</a></p>
+
+<p>在官网注册后，点击题库页面就可以看到所有可以刷的题目了<br/>
+<img src="media/15696848025979/15697354064873.jpg" alt=""/><br/>
+可以按照难度进行筛选、建议从简单难度的题上手</p>
+
+<h2 id="toc_0">两数之和: <a href="https://leetcode-cn.com/problems/two-sum/">https://leetcode-cn.com/problems/two-sum/</a></h2>
+
+<p>问题描述<br/>
+<img src="media/15696848025979/15697348200248.jpg" alt=""/></p>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="15696848025979.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2019/9/28</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='lc.html'>leetcode</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15686120237174.html">
+                
+                  <h1>三分钟上手数据结构作图工具graphviz</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>graphviz数据结构作图工具应用比较广泛了，很多数据结构都可以使用gv画出来，比如常见的c语言的结构体、指针、链表等。也可以用来画流程图等常规图示，好用。</p>
+
+<h2 id="toc_0">安装graphviz</h2>
+
+<p>mac os系统可以通过brew进行安装</p>
+
+<pre><code class="language-shell">brew install graphviz
+</code></pre>
+
+<p>然后就可以使用dot命令行工具了，这个工具就是用来生成图片的<br/>
+<img src="media/15686120237174/15686123123891.jpg" alt=""/></p>
+
+<h2 id="toc_1">dot语言</h2>
+
+<p>graphviz从dot语言生成图形，这个dot语言的语法十分简单，没有复杂的分支判断语句，官方文档参考：<a href="https://graphviz.gitlab.io/_pages/doc/info/lang.html">https://graphviz.gitlab.io/_pages/doc/info/lang.html</a></p>
+
+<h3 id="toc_2">声明一个图形</h3>
+
+<p>比如4.gv, 包含一个&quot;hello&quot;的图形</p>
+
+<pre><code class="language-text">digraph {
+    hello
+}
+</code></pre>
+
+<p>然后执行<code>dot 4.gv -Tpng -o 4.png &amp;&amp; open 4.png</code>生成图片，效果如下</p>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="15686120237174.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2019/9/16</span>
+                    
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15685261364999.html">
+                
+                  <h1>nginx网络通信模块设计与实现分析</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>nginx作为后端程序不可缺少的中间件，凭借其优异的性能和稳定性，获得了大量的用户</p>
+
+<h2 id="toc_0">目录结构</h2>
+
+<p><img src="media/15685261364999/15685623855548.jpg" alt=""/><br/>
+nginx的文件目录非常清晰，虽然有6个目录，但是可以归成两类，core目录存放<strong>nginx生命周期</strong>相关的函数，比如master、worker进程的创建，模块构造函数调用，核心数据结构和算法实现</p>
+
+<p>其它目录主要就是存放nginx功能的扩展了、nginx几乎所有的功能都是通过扩展实现的</p>
+
+<h2 id="toc_1">入口程序</h2>
+
+<p>src/core/nginx.c::main()</p>
+
+<p>在入口程序中，nginx主要是处理了命令行参数，如果没有带参数运行nginx，则启动nginx服务器<code>ngx_master_process_cycle(cycle</code></p>
+
+<p>核心调用如下</p>
+
+<ol>
+<li>ngx_strerror_init() 初始化错误码存放链表</li>
+<li>ngx_get_options(argc, argv) 将命令行参数解析到全局变量</li>
+<li>初始化日志系统: ngx_log_init(ngx_prefix)</li>
+<li>ngx_save_argv(&amp;init_cycle, argc, argv) 保存所有命令行参数到全局变量</li>
+<li>ngx_process_options(&amp;init_cycle)</li>
+</ol>
+
+<p>给启用的nginx模块进行编号</p>
+
+<pre><code class="language-c">ngx_max_module = 0;
+for (i = 0; ngx_modules[i]; i++) {
+    ngx_modules[i]-&gt;index = ngx_max_module++;
+}
+</code></pre>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="15685261364999.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2019/9/15</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='source-code.html'>源码分析</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
 			<div class="article">
                 <a class="clearlink" href="15673324141271.html">
                 
@@ -826,228 +997,6 @@ docker-compose up -d
                 </div>
               </div><!-- article -->
         
-			<div class="article">
-                <a class="clearlink" href="15646422468480.html">
-                
-                  <h1>lnmp一键安装包源码分析</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p>通过分析这个lnmp一键安装包的shell脚本，可以了解下shell语言如何有条理的组织大量的代码</p>
-
-<p>项目地址：<a href="https://github.com/oneinstack/lnmp">https://github.com/oneinstack/lnmp</a></p>
-
-<p>shell脚本在执行运维和自动化任务时经常用到，在解决服务器问题时非常有用</p>
-
-<h2 id="toc_0">目录结构</h2>
-
-<table>
-<thead>
-<tr>
-<th>目录</th>
-<th>作用</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>config</td>
-<td>nginx服务器里的预定义配置文件</td>
-</tr>
-<tr>
-<td>include</td>
-<td>执行实际安装任务的函数定义</td>
-</tr>
-<tr>
-<td>src</td>
-<td>下载的源码存放的目录</td>
-</tr>
-<tr>
-<td>tools</td>
-<td>执行数据库备份等任务的小工具合集</td>
-</tr>
-<tr>
-<td>根目录</td>
-<td>入口文件存放目录、安装入口文件install.sh、卸载入口文件uninstall.sh等</td>
-</tr>
-</tbody>
-</table>
-
-<h2 id="toc_1">初始化过程分析</h2>
-
-<pre><code class="language-shell">export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
-clear
-printf &quot;
-#######################################################################
-#       OneinStack for CentOS/RedHat 6+ Debian 8+ and Ubuntu 14+      #
-#       For more information please visit https://oneinstack.com      #
-#######################################################################
-&quot;
-# Check if user is root
-[ $(id -u) != &quot;0&quot; ] &amp;&amp; { echo &quot;${CFAILURE}Error: You must be root to run this script${CEND}&quot;; exit 1; }
-
-oneinstack_dir=$(dirname &quot;`readlink -f $0`&quot;)
-pushd ${oneinstack_dir} &gt; /dev/null
-. ./versions.txt
-. ./options.conf
-. ./include/color.sh
-. ./include/check_os.sh
-. ./include/check_dir.sh
-. ./include/download.sh
-. ./include/get_char.sh
-</code></pre>
-
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                   <a href="15646422468480.html">Read more</a>&nbsp;&nbsp; 
-                    <span class="date">2019/8/1</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='ops.html'>OPS</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="15640180016533.html">
-                
-                  <h1>聚合支付系统架构设计和商业模型分析</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p>参与了聚合支付业务系统的开发，总结一下</p>
-
-<h2 id="toc_0">技术栈</h2>
-
-<ol>
-<li>使用ansible发布代码和配置</li>
-<li>使用kong作为前端网关</li>
-<li>使用jenkins做自动化测试</li>
-<li>使用sonarqube做代码规范检查</li>
-<li>使用gogs做代码版本管理</li>
-<li>开发githook系统作为git事件的订阅器，自动化git事件的处理，比如发送钉钉通知</li>
-<li>开发自己的框架系统，对源码比较了解，方便持续开发</li>
-<li>使用xxl-job做定时任务管理系统</li>
-<li>使用graphite, statsd, grafana做监控可视化系统</li>
-<li>使用阿里云日志平台做日志存储，以后对日志的数据分析</li>
-<li>使用阿里云MaxCompute大数据处理系统</li>
-<li>使用supervisor管理持久运行的进程</li>
-<li>使用ssh tunnel转发内网端口，使用内网服务器，可以减少云服务器花费</li>
-<li>使用airflow作为任务编排系统</li>
-<li>使用terraform管理kong网关配置</li>
-<li>使用consul作为服务注册中心</li>
-<li>使用钉钉做异常报警</li>
-<li>使用beanstalk做消息队列</li>
-<li>订单表使用程序进行分库分表</li>
-<li>使用ldap做开发系统的用户中心，集成jenkins、gogos、grafana等系统</li>
-<li>使用gitlab的issue做用户反馈的问题管理系统</li>
-<li>使用mkdocs作为文档管理系统</li>
-<li>使用gitbook生成开发平台文档</li>
-<li>开发yum的server存放和安装自定义的rpm包</li>
-</ol>
-
-<p>其中githook系统可能比较有特色，一般不会单独开发hook系统</p>
-
-<h2 id="toc_1">核心交互流程图如下：</h2>
-
-<p><img src="media/15640180016533/15640322212903.jpg" alt=""/></p>
-
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                   <a href="15640180016533.html">Read more</a>&nbsp;&nbsp; 
-                    <span class="date">2019/7/31</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='1-pic.html'>一图胜千言</a></span>
-          				  
-          					    <span class="posted-in"><a href='business.html'>业务</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="15642990899802.html">
-                
-                  <h1>gogs，jenkins配置通过openldap用户系统进行登录</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p>持续集成的工具链非常多(比如jenkins, gogs, jira, confluence, sonarqube等)，每个系统管理一份用户密码显然是工作量巨大的，配置通过openldap进行登录可以显著减少帐号管理的工作量</p>
-
-<p>下面拿gogs，jenkins举例，配置通过openldap进行联合登录</p>
-
-<h2 id="toc_0">启动openldap服务器</h2>
-
-<p>使用docker工具进行启动，openldap镜像参考：<a href="https://github.com/nickstenning/docker-slapd">https://github.com/nickstenning/docker-slapd</a></p>
-
-<pre><code class="language-shell">git clone https://github.com/nickstenning/docker-slapd.git
-</code></pre>
-
-<h2 id="toc_1">然后进行docker镜像构建</h2>
-
-<pre><code class="language-shell">docker build -t slapd .
-</code></pre>
-
-<p>操作效果如下<br/>
-<img src="media/15642990899802/15643002145739.jpg" alt=""/></p>
-
-<h2 id="toc_2">编写docker-compose.yml进行容器管理</h2>
-
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                   <a href="15642990899802.html">Read more</a>&nbsp;&nbsp; 
-                    <span class="date">2019/7/28</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='ci-cd.html'>CI/CD</a></span>
-          				  
-          					    <span class="posted-in"><a href='ops.html'>OPS</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
               
 
 
@@ -1119,6 +1068,8 @@ pushd ${oneinstack_dir} &gt; /dev/null
         
             <a href="pm.html"><strong>项目管理</strong></a>
         
+            <a href="sketch.html"><strong>sketch</strong></a>
+        
             <a href="sql.html"><strong>SQL</strong></a>
         
             <a href="job-scheduler.html"><strong>任务调度</strong></a>
@@ -1128,6 +1079,10 @@ pushd ${oneinstack_dir} &gt; /dev/null
             <a href="mq.html"><strong>消息队列</strong></a>
         
             <a href="rpc.html"><strong>RPC</strong></a>
+        
+            <a href="bigfrontend.html"><strong>大前端</strong></a>
+        
+            <a href="iOS.html"><strong>iOS</strong></a>
         
             <a href="laravel.html"><strong>LARAVEL</strong></a>
         
@@ -1214,6 +1169,24 @@ pushd ${oneinstack_dir} &gt; /dev/null
 	      
 		      
 			      <li class="post">
+			        <a href="16256216793335.html">html还原设计图开发心历路程</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16226333235156.html">用sketch原型工具3秒制作一个按钮</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16215677290066.html">三分钟制作一个iOS全局弹窗</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
 			        <a href="16081898834624.html">OSX使用代码代替storyboard构建项目，并添加NSSplitView组件</a>
 			      </li>
 		     
@@ -1221,24 +1194,6 @@ pushd ${oneinstack_dir} &gt; /dev/null
 		      
 			      <li class="post">
 			        <a href="16005640944829.html">linux系统编程之多进程和管道（pip）</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15970226751276.html">三分钟上手java多线程控制技术</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15864793262262.html">14/24 设计模式之状态模式 State Pattern</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15880004262195.html">python高性能之路:使用C/C++编写扩展</a>
 			      </li>
 		     
 		  

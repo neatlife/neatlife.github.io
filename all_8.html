@@ -116,6 +116,8 @@
         
             <li><a href="pm.html">项目管理</a></li>
         
+            <li><a href="sketch.html">sketch</a></li>
+        
             <li><a href="sql.html">SQL</a></li>
         
             <li><a href="job-scheduler.html">任务调度</a></li>
@@ -125,6 +127,10 @@
             <li><a href="mq.html">消息队列</a></li>
         
             <li><a href="rpc.html">RPC</a></li>
+        
+            <li><a href="bigfrontend.html">大前端</a></li>
+        
+            <li><a href="iOS.html">iOS</a></li>
         
             <li><a href="laravel.html">LARAVEL</a></li>
         
@@ -216,6 +222,173 @@
 	<div class="large-8 medium-8 columns">
 		<div class="markdown-body home-categories">
 		
+			<div class="article">
+                <a class="clearlink" href="15592947393033.html">
+                
+                  <h1>emacs常用快捷键</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>M =&gt; command<br/>
+C =&gt; ctrl</p>
+
+<p>Cxb: 切换buffer<br/>
+Cg: 全局退出<br/>
+Mx: 列出所有可用命令列表<br/>
+CxCf: 文件查找<br/>
+Cd: 删除一个字符<br/>
+Cx0: 退出当前窗口<br/>
+Cxk0: 删除当前窗口<br/>
+Cx1: 删除其它窗口<br/>
+Cx2: 水平分割窗口<br/>
+Cx3: 垂直分割窗口<br/>
+Cxo: 在窗口中切换激活的窗口<br/>
+CxCc: 退出emacs</p>
+
+<h2 id="toc_0">shell</h2>
+
+<p>Mx shell: 打开shell<br/>
+CuMx shell: 打开新的shell</p>
+
+<h2 id="toc_1">移动</h2>
+
+<p>Cf: 向前移动一个字符<br/>
+Cb: 向后移动一个字符<br/>
+Cp: 向下移动一个字符<br/>
+Cn: 向上移动一个字符</p>
+
+<h2 id="toc_2">重新载入配置文件~/.emacs</h2>
+
+<p>在emacs中使用cxcf打开~/.emacs文件，然后执行命令<code>M-x eval-buffer</code>重新载入配置文件</p>
+
+<h2 id="toc_3">杂项</h2>
+
+<p>快捷键 + Ch:列出所有以这个快捷键开始的快捷键 </p>
+
+<h2 id="toc_4">自定义evail快捷键</h2>
+
+<pre><code class="language-text">(evil-leader/set-leader &quot;,&quot;)
+(evil-leader/set-key
+  &quot;s&quot; &#39;save-buffer
+  &quot;e&quot; &#39;dired
+  &quot;f&quot; &#39;fzf
+  &quot;c&quot; &#39;noh
+  &quot;m&quot; &#39;ibuffer
+  &quot;g&quot; &#39;frog-jump-buffer
+  &quot;q&quot; &#39;kill-this-buffer)
+</code></pre>
+
+<h2 id="toc_5">一些注意的点</h2>
+
+<ol>
+<li>大多数操作命令都使用Cx作为命令开头</li>
+<li>全屏使用<code>toggle-frame-fullscreen</code>命令, 对应的快捷键是<code>&lt;f11&gt;</code></li>
+<li>窗口最大化使用 <code>toggle-frame-maximized</code>命令, 对应的快捷键是<code>M-&lt;f10&gt;</code></li>
+<li>竖直/水平分屏：split-window-right/below</li>
+</ol>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2019/3/30</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='emacs.html'>emacs</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15581003876212.html">
+                
+                  <h1>一图胜千言-订单业务系统架构图</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p><strong>右键新窗口打开可查看大图</strong></p>
+
+<p><img src="media/15581003876212/%E8%AE%A2%E5%8D%95%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%9B%BE.png" alt="订单业务系统架构图"/></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2019/3/17</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='business.html'>业务</a></span>
+          				  
+          					    <span class="posted-in"><a href='1-pic.html'>一图胜千言</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15548919605486.html">
+                
+                  <h1>pinpoint-docker开启邮件报警和集成钉钉报警推送</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h3 id="toc_0">配置.env文件</h3>
+
+<p>下载pinpoint-docker项目 <a href="https://github.com/naver/pinpoint-docker.git">https://github.com/naver/pinpoint-docker.git</a></p>
+
+<p>编辑.env文件, 找到batch块，开启定时任务<br/>
+<img src="https://user-gold-cdn.xitu.io/2019/4/3/169e34704a8a4704?w=1164&amp;h=188&amp;f=png&amp;s=41297" alt=""/></p>
+
+<p>找到mail块，配置smtp邮件服务器地址</p>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="15548919605486.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2018/12/3</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='monitor.html'>监控</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
 			<div class="article">
                 <a class="clearlink" href="15563579194983.html">
                 
@@ -706,207 +879,6 @@ FROM `COLUMNS` where table_schema like &quot;supply_chain2&quot;
                 </div>
               </div><!-- article -->
         
-			<div class="article">
-                <a class="clearlink" href="15582854786960.html">
-                
-                  <h1>性能监控</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p>添加jprofiler监控参数</p>
-
-<pre><code class="language-text">-agentpath:/Applications/JProfiler.app/Contents/Resources/app/bin/macos/libjprofilerti.jnilib=port=8849
-</code></pre>
-
-<p>添加perfino监控参数</p>
-
-<pre><code class="language-text">-javaagent:/Applications/perfino/agent/perfino.jar=name=order-jvm
-</code></pre>
-
-<p>username: suxiaolin<br/>
-password: 123456</p>
-
-<p>限制jvm内存参数</p>
-
-<pre><code class="language-text">-Xmx256m -Xms128m
-</code></pre>
-
-<p><img src="media/15582854786960/image-20181208093638625-4232998.png" alt="image-20181208093638625-4232998"/></p>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2018/5/20</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='java.html'>JAVA</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="15582853782160.html">
-                
-                  <h1>mvn 私有仓库认证配置</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<h2 id="toc_0">settings.xml</h2>
-
-<pre><code class="language-markup">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;settings xmlns=&quot;http://maven.apache.org/SETTINGS/1.0.0&quot;
-          xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-          xsi:schemaLocation=&quot;http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd&quot;&gt;
-  &lt;interactiveMode&gt;true&lt;/interactiveMode&gt;
-  &lt;offline&gt;false&lt;/offline&gt;
-  &lt;pluginGroups&gt;
-  &lt;/pluginGroups&gt;
- 
-  &lt;servers&gt;
-    &lt;server&gt;
-      &lt;id&gt;oss&lt;/id&gt;
-      &lt;username&gt;suxiaolin&lt;/username&gt;
-      &lt;password&gt;123456&lt;/password&gt;
-    &lt;/server&gt;
-  &lt;/servers&gt;
-&lt;/settings&gt;
-</code></pre>
-
-<h2 id="toc_1">mvn 私有仓库配置</h2>
-
-<pre><code class="language-markup">&lt;repositories&gt;
-    &lt;repository&gt;
-        &lt;id&gt;oss-snapshot&lt;/id&gt;
-        &lt;name&gt;Nexus Snapshot Repository&lt;/name&gt;
-        &lt;url&gt;http://127.0.0.1:8081/repository/myrepo-SNAPSHOT/&lt;/url&gt;
-        &lt;snapshots&gt;
-            &lt;enabled&gt;true&lt;/enabled&gt;
-        &lt;/snapshots&gt;
-        &lt;releases&gt;
-            &lt;enabled&gt;false&lt;/enabled&gt;
-        &lt;/releases&gt;
-    &lt;/repository&gt;
-    &lt;!-- 配置nexus远程仓库 --&gt;
-    &lt;repository&gt;
-        &lt;id&gt;myrepo-2&lt;/id&gt;
-        &lt;name&gt;Nexus Snapshot Repository&lt;/name&gt;
-        &lt;url&gt;http://127.0.0.1:8081/repository/myrepo/&lt;/url&gt;
-        &lt;releases&gt;
-            &lt;enabled&gt;true&lt;/enabled&gt;
-        &lt;/releases&gt;
-        &lt;snapshots&gt;
-            &lt;enabled&gt;false&lt;/enabled&gt;
-        &lt;/snapshots&gt;
-    &lt;/repository&gt;
-&lt;/repositories&gt;
-</code></pre>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2018/5/20</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='java.html'>JAVA</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="15582852207262.html">
-                
-                  <h1>rancher</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p><img src="media/15582852207262/30531939036831699.png" alt="30531939036831699"/></p>
-
-<pre><code class="language-shell">docker run -d --name=rancher --restart=unless-stopped \
-  -p 8080:80 -p 8443:443 \
-  -v ~/rancher:/var/lib/rancher
-  rancher/rancher:latest
-  
-docker run -d --name=rancher --restart=unless-stopped \
-  -p 8080:80 -p 8443:443 \
-  rancher/rancher:latest
-  
-docker run -d --name=rancher --restart=unless-stopped \
-  -p 8080:80 -p 8443:443 \
-  -v ~/rancher:/var/lib/rancher \
-  rancher/rancher:stable
-  
-docker run -d --name=rancher --restart=unless-stopped \
-  -p 8880:80 -p 8843:443 \
-  -v ~/rancher:/var/lib/rancher \
-  rancher/rancher:stable
-  
-https://172.16.123.1:8843/v3/import/v2d7znsxv8vvjzfl6gcwkglvkvnm759f98zt227h9plzm9vdwlh56g.yaml
-</code></pre>
-
-<p><img src="media/15582852207262/image-20181127123429327-3293269.png" alt="image-20181127123429327-3293269"/></p>
-
-<pre><code class="language-shell">curl --insecure -sfL https://172.16.123.1:8443/v3/import/kpb77vt4zl64bdxgz4jpxt2s2x8h94ng2tdlfqcmntv762vc4bf987.yaml | kubectl apply -f -
-</code></pre>
-
-<p><img src="media/15582852207262/image-20181127125127117-3294287.png" alt="image-20181127125127117-3294287"/></p>
-
-<pre><code class="language-shell">curl -X &quot;POST&quot; &quot;http://127.0.0.1:8080/order/get-list&quot; \
-     -H &#39;Content-Type: application/x-www-form-urlencoded&#39; \
-     --data-urlencode &quot;user_id=9&quot; \
-     --data-urlencode &quot;status=1,2,3,4,5,6&quot; \
-     --data-urlencode &quot;order_type=1&quot;
-</code></pre>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2018/5/20</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='ops.html'>OPS</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
               
 
 
@@ -978,6 +950,8 @@ https://172.16.123.1:8843/v3/import/v2d7znsxv8vvjzfl6gcwkglvkvnm759f98zt227h9plz
         
             <a href="pm.html"><strong>项目管理</strong></a>
         
+            <a href="sketch.html"><strong>sketch</strong></a>
+        
             <a href="sql.html"><strong>SQL</strong></a>
         
             <a href="job-scheduler.html"><strong>任务调度</strong></a>
@@ -987,6 +961,10 @@ https://172.16.123.1:8843/v3/import/v2d7znsxv8vvjzfl6gcwkglvkvnm759f98zt227h9plz
             <a href="mq.html"><strong>消息队列</strong></a>
         
             <a href="rpc.html"><strong>RPC</strong></a>
+        
+            <a href="bigfrontend.html"><strong>大前端</strong></a>
+        
+            <a href="iOS.html"><strong>iOS</strong></a>
         
             <a href="laravel.html"><strong>LARAVEL</strong></a>
         
@@ -1073,6 +1051,24 @@ https://172.16.123.1:8843/v3/import/v2d7znsxv8vvjzfl6gcwkglvkvnm759f98zt227h9plz
 	      
 		      
 			      <li class="post">
+			        <a href="16256216793335.html">html还原设计图开发心历路程</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16226333235156.html">用sketch原型工具3秒制作一个按钮</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16215677290066.html">三分钟制作一个iOS全局弹窗</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
 			        <a href="16081898834624.html">OSX使用代码代替storyboard构建项目，并添加NSSplitView组件</a>
 			      </li>
 		     
@@ -1080,24 +1076,6 @@ https://172.16.123.1:8843/v3/import/v2d7znsxv8vvjzfl6gcwkglvkvnm759f98zt227h9plz
 		      
 			      <li class="post">
 			        <a href="16005640944829.html">linux系统编程之多进程和管道（pip）</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15970226751276.html">三分钟上手java多线程控制技术</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15864793262262.html">14/24 设计模式之状态模式 State Pattern</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15880004262195.html">python高性能之路:使用C/C++编写扩展</a>
 			      </li>
 		     
 		  

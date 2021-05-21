@@ -116,6 +116,8 @@
         
             <li><a href="pm.html">项目管理</a></li>
         
+            <li><a href="sketch.html">sketch</a></li>
+        
             <li><a href="sql.html">SQL</a></li>
         
             <li><a href="job-scheduler.html">任务调度</a></li>
@@ -125,6 +127,10 @@
             <li><a href="mq.html">消息队列</a></li>
         
             <li><a href="rpc.html">RPC</a></li>
+        
+            <li><a href="bigfrontend.html">大前端</a></li>
+        
+            <li><a href="iOS.html">iOS</a></li>
         
             <li><a href="laravel.html">LARAVEL</a></li>
         
@@ -216,6 +222,175 @@
 	<div class="large-8 medium-8 columns">
 		<div class="markdown-body home-categories">
 		
+			<div class="article">
+                <a class="clearlink" href="15613492349471.html">
+                
+                  <h1>三分钟上手git管理工具tower</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>虽然命令行git也很好用，但是gui的tower操作更直观，两者搭配使用可以提高效率</p>
+
+<h2 id="toc_0">打开git仓库</h2>
+
+<p>File -&gt; Open然后选择项目目录<br/>
+<img src="media/15613492349471/15613602053733.jpg" alt=""/></p>
+
+<h2 id="toc_1">查看分支历史</h2>
+
+<p>tower相比命令行git可以更方便的查看分支历史</p>
+
+<p>单机左边栏的分支名称就可以查看这个分支的历史了，比如查看master分支历史，操作效果如下<br/>
+<img src="media/15613492349471/15613604876193.jpg" alt=""/></p>
+
+<p>右侧可以看到完整的修改细节</p>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="15613492349471.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2019/6/24</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='git.html'>GIT</a></span>
+          				  
+          					    <span class="posted-in"><a href='3-minutes.html'>三分钟系列</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15610918959976.html">
+                
+                  <h1>使用staruml画uml图</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">staruml图表类型</h2>
+
+<p><img src="media/15610918959976/15610920728654.jpg" alt=""/></p>
+
+<p>可以看到staruml支持的图的类型，一般下面两种类型比较常用</p>
+
+<ol>
+<li>Class Diagram: 类图</li>
+<li>Sequence Diagram: 时序图</li>
+</ol>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="15610918959976.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2019/6/21</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='uml.html'>UML</a></span>
+          				  
+          					    <span class="posted-in"><a href='1-pic.html'>一图胜千言</a></span>
+          				  
+          					    <span class="posted-in"><a href='design-pattern.html'>设计模式</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15610043911296.html">
+                
+                  <h1>xaop源码分析</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>项目地址：<a href="https://github.com/liqiongfan/xaop">https://github.com/liqiongfan/xaop</a></p>
+
+<p>思路: hook掉php执行函数的方法(zend_execute_ex)，然后使用call_user_function调用自定义的回调函数</p>
+
+<h2 id="toc_0">文件和作用</h2>
+
+<p>Xaop操作类的所有方法：kernel/xaop.c</p>
+
+<p>Xaop操作类会使用的宏，比如解析和检查方法的参数：kernel/xaop.h</p>
+
+<p>扩展调用php函数的函数：kernel/helper.c 和 kernel/helper.h</p>
+
+<p>替换php的zend_execution_ex: kernel/exec.c 和 kernel/exec.c</p>
+
+<p>解析用户编写的annotation的相关逻辑：kernel/parsing.c 和 kernel/parsing.h</p>
+
+<p>全局变量定义在: php_xaop.h</p>
+
+<p>全局工具类zend_class_entry的声明*annotation_ce, *doc_ce, *xaop_ce：kernel/classes.c</p>
+
+<h2 id="toc_1">检查参数是否合法</h2>
+
+<pre><code class="language-c">#define CHECK_PARAM() do {\
+    if ( Z_TYPE_P(class_name) != IS_STRING &amp;&amp; Z_TYPE_P(class_name) != IS_NULL ) { \
+        php_error_docref(NULL, E_ERROR, &quot;First argument need to be a valid class name or NULL&quot;);\
+        return ;\
+    }\
+    if ( ZSTR_LEN(function_name) &amp;&amp; &#39;*&#39; == ZSTR_VAL(function_name)[0] ) { \
+        php_error_docref(NULL, E_ERROR, &quot;Function name mustn&#39;t be `*`.&quot;);\
+        return ;\
+    }\
+    if ( !zend_is_callable(aop, IS_CALLABLE_CHECK_NO_ACCESS, NULL) ) {\
+        php_error_docref(NULL, E_ERROR, &quot;Third argument is expected to be a valid callback&quot;);\
+        return ;\
+    }\
+} while(0)
+</code></pre>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="15610043911296.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2019/6/20</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='source-code.html'>源码分析</a></span>
+          				  
+          					    <span class="posted-in"><a href='php.html'>PHP</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
 			<div class="article">
                 <a class="clearlink" href="15607626333341.html">
                 
@@ -704,206 +879,6 @@ docker-compose up -d
                 </div>
               </div><!-- article -->
         
-			<div class="article">
-                <a class="clearlink" href="15579172164870.html">
-                
-                  <h1>三分钟上手ssh命令批量执行工具ansible</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p>ansible作为目前批量linux机器远控工具的老大、其易用性、管理成本低等远远超过了同类的<a href="http://www.fabfile.org/">Fabric</a>等工具。</p>
-
-<p>准备测试机器，这里就拿已有的kubernetes的机器做测试，机器和ip分配参考：<a href="https://juejin.im/post/5cb07038e51d456e7e297ba6">java微服务 k8s生产环境搭建</a>, 注意下面案例中的k8s机器的ip段已经改成 192.168.10，机器列表如下</p>
-
-<table>
-<thead>
-<tr>
-<th>机器</th>
-<th>ip</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>K8s-ha-deploy</td>
-<td>192.168.10.140</td>
-</tr>
-<tr>
-<td>K8s-ha-master1</td>
-<td>192.168.10.130</td>
-</tr>
-<tr>
-<td>K8s-ha-master2</td>
-<td>192.168.10.131</td>
-</tr>
-<tr>
-<td>K8s-ha-master3</td>
-<td>192.168.10.132</td>
-</tr>
-<tr>
-<td>K8s-ha-node1</td>
-<td>192.168.10.135</td>
-</tr>
-<tr>
-<td>K8s-ha-node2</td>
-<td>192.168.10.136</td>
-</tr>
-<tr>
-<td>K8s-ha-node3</td>
-<td>192.168.10.137</td>
-</tr>
-</tbody>
-</table>
-
-<h2 id="toc_0">安装ansible</h2>
-
-<p>执行下面的命令在部署机上安装ansible</p>
-
-<pre><code class="language-shell">pip install pip --upgrade -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
-pip install --no-cache-dir ansible -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
-</code></pre>
-
-<p>也可以使用docker一键启动</p>
-
-<pre><code class="language-shell">alias ansible=&quot;docker run --rm --name ansible -v ${HOME}/.ssh/config:/home/ansible/.ssh/config:ro -v ${HOME}/.ssh/known_hosts:/home/ansible/.ssh/known_hosts:ro -it williamyeh/ansible:alpine3 ansible&quot;
-ansible --version
-</code></pre>
-
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                   <a href="15579172164870.html">Read more</a>&nbsp;&nbsp; 
-                    <span class="date">2019/5/16</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='3-minutes.html'>三分钟系列</a></span>
-          				  
-          					    <span class="posted-in"><a href='ops.html'>OPS</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="15578960214403.html">
-                
-                  <h1>使用wireshark抓包读懂tcp三次握手，四次挥手</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p>tcp三次握手和四次挥手的描述很多，但是感觉大部分文章看下来很难具象化这个过程，下面使用这个wireshark抓包工具，通过抓取到的数据包来理解一下，能够从另一个角度理解tcp三次握手了</p>
-
-<p>完整案例代码已上传github: <a href="https://github.com/neatlife/mytcp">https://github.com/neatlife/mytcp</a></p>
-
-<p>wireshark下载地址：<a href="https://www.wireshark.org/download.html">https://www.wireshark.org/download.html</a></p>
-
-<h2 id="toc_0">创建案例项目</h2>
-
-<p>可以在idea中创建一个maven项目，创建用来测试3次握手和4次挥手的两个模块，创建模块在idea右键菜单里就有：<br/>
-<img src="media/15578960214403/15579111886588.jpg" alt=""/></p>
-
-<p>把握手和挥手分开测试是为了防止客户端在发送过程中，服务端就提前关闭了，然后挥手的部分包可能会丢掉，这个丢包的效果可以自行尝试</p>
-
-<h2 id="toc_1">编写握手客户端和服务端</h2>
-
-<h3 id="toc_2">服务端</h3>
-
-<p>建立一个socket服务器，并在8881端口上监听，核心代码如下：</p>
-
-<pre><code class="language-java">ServerSocket socket = new ServerSocket(8881);
-socket.accept();
-TimeUnit.SECONDS.sleep(2);
-socket.close();
-</code></pre>
-
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                   <a href="15578960214403.html">Read more</a>&nbsp;&nbsp; 
-                    <span class="date">2019/5/15</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='tcp-ip.html'>TCP/IP</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="15576402200280.html">
-                
-                  <h1>在idea中三分钟搭建spring boot框架源码阅读环境</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p>spring boot是基于spring framework封装的，所以spring boot框架的源码主要就是spring framework框架</p>
-
-<h2 id="toc_0">下载源码</h2>
-
-<p>执行命令</p>
-
-<pre><code class="language-shell">git clone https://github.com/spring-projects/spring-framework.git
-</code></pre>
-
-<p>下载源码，效果如下：<br/>
-<img src="media/15576402200280/15576402226611.jpg" alt=""/></p>
-
-<h2 id="toc_1">导入idea</h2>
-
-<p>在idea中打开项目，然后gradle会自动完成依赖下载<br/>
-<img src="media/15576402200280/15576428835546.jpg" alt=""/></p>
-
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                   <a href="15576402200280.html">Read more</a>&nbsp;&nbsp; 
-                    <span class="date">2019/5/12</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='spring-boot.html'>Spring Boot</a></span>
-          				  
-          					    <span class="posted-in"><a href='3-minutes.html'>三分钟系列</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
               
 
 
@@ -975,6 +950,8 @@ socket.close();
         
             <a href="pm.html"><strong>项目管理</strong></a>
         
+            <a href="sketch.html"><strong>sketch</strong></a>
+        
             <a href="sql.html"><strong>SQL</strong></a>
         
             <a href="job-scheduler.html"><strong>任务调度</strong></a>
@@ -984,6 +961,10 @@ socket.close();
             <a href="mq.html"><strong>消息队列</strong></a>
         
             <a href="rpc.html"><strong>RPC</strong></a>
+        
+            <a href="bigfrontend.html"><strong>大前端</strong></a>
+        
+            <a href="iOS.html"><strong>iOS</strong></a>
         
             <a href="laravel.html"><strong>LARAVEL</strong></a>
         
@@ -1070,6 +1051,24 @@ socket.close();
 	      
 		      
 			      <li class="post">
+			        <a href="16256216793335.html">html还原设计图开发心历路程</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16226333235156.html">用sketch原型工具3秒制作一个按钮</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16215677290066.html">三分钟制作一个iOS全局弹窗</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
 			        <a href="16081898834624.html">OSX使用代码代替storyboard构建项目，并添加NSSplitView组件</a>
 			      </li>
 		     
@@ -1077,24 +1076,6 @@ socket.close();
 		      
 			      <li class="post">
 			        <a href="16005640944829.html">linux系统编程之多进程和管道（pip）</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15970226751276.html">三分钟上手java多线程控制技术</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15864793262262.html">14/24 设计模式之状态模式 State Pattern</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15880004262195.html">python高性能之路:使用C/C++编写扩展</a>
 			      </li>
 		     
 		  

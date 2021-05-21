@@ -116,6 +116,8 @@
         
             <li><a href="pm.html">项目管理</a></li>
         
+            <li><a href="sketch.html">sketch</a></li>
+        
             <li><a href="sql.html">SQL</a></li>
         
             <li><a href="job-scheduler.html">任务调度</a></li>
@@ -125,6 +127,10 @@
             <li><a href="mq.html">消息队列</a></li>
         
             <li><a href="rpc.html">RPC</a></li>
+        
+            <li><a href="bigfrontend.html">大前端</a></li>
+        
+            <li><a href="iOS.html">iOS</a></li>
         
             <li><a href="laravel.html">LARAVEL</a></li>
         
@@ -216,6 +222,207 @@
 	<div class="large-8 medium-8 columns">
 		<div class="markdown-body home-categories">
 		
+			<div class="article">
+                <a class="clearlink" href="15582854786960.html">
+                
+                  <h1>性能监控</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>添加jprofiler监控参数</p>
+
+<pre><code class="language-text">-agentpath:/Applications/JProfiler.app/Contents/Resources/app/bin/macos/libjprofilerti.jnilib=port=8849
+</code></pre>
+
+<p>添加perfino监控参数</p>
+
+<pre><code class="language-text">-javaagent:/Applications/perfino/agent/perfino.jar=name=order-jvm
+</code></pre>
+
+<p>username: suxiaolin<br/>
+password: 123456</p>
+
+<p>限制jvm内存参数</p>
+
+<pre><code class="language-text">-Xmx256m -Xms128m
+</code></pre>
+
+<p><img src="media/15582854786960/image-20181208093638625-4232998.png" alt="image-20181208093638625-4232998"/></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/5/20</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='java.html'>JAVA</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15582853782160.html">
+                
+                  <h1>mvn 私有仓库认证配置</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2 id="toc_0">settings.xml</h2>
+
+<pre><code class="language-markup">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;settings xmlns=&quot;http://maven.apache.org/SETTINGS/1.0.0&quot;
+          xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+          xsi:schemaLocation=&quot;http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd&quot;&gt;
+  &lt;interactiveMode&gt;true&lt;/interactiveMode&gt;
+  &lt;offline&gt;false&lt;/offline&gt;
+  &lt;pluginGroups&gt;
+  &lt;/pluginGroups&gt;
+ 
+  &lt;servers&gt;
+    &lt;server&gt;
+      &lt;id&gt;oss&lt;/id&gt;
+      &lt;username&gt;suxiaolin&lt;/username&gt;
+      &lt;password&gt;123456&lt;/password&gt;
+    &lt;/server&gt;
+  &lt;/servers&gt;
+&lt;/settings&gt;
+</code></pre>
+
+<h2 id="toc_1">mvn 私有仓库配置</h2>
+
+<pre><code class="language-markup">&lt;repositories&gt;
+    &lt;repository&gt;
+        &lt;id&gt;oss-snapshot&lt;/id&gt;
+        &lt;name&gt;Nexus Snapshot Repository&lt;/name&gt;
+        &lt;url&gt;http://127.0.0.1:8081/repository/myrepo-SNAPSHOT/&lt;/url&gt;
+        &lt;snapshots&gt;
+            &lt;enabled&gt;true&lt;/enabled&gt;
+        &lt;/snapshots&gt;
+        &lt;releases&gt;
+            &lt;enabled&gt;false&lt;/enabled&gt;
+        &lt;/releases&gt;
+    &lt;/repository&gt;
+    &lt;!-- 配置nexus远程仓库 --&gt;
+    &lt;repository&gt;
+        &lt;id&gt;myrepo-2&lt;/id&gt;
+        &lt;name&gt;Nexus Snapshot Repository&lt;/name&gt;
+        &lt;url&gt;http://127.0.0.1:8081/repository/myrepo/&lt;/url&gt;
+        &lt;releases&gt;
+            &lt;enabled&gt;true&lt;/enabled&gt;
+        &lt;/releases&gt;
+        &lt;snapshots&gt;
+            &lt;enabled&gt;false&lt;/enabled&gt;
+        &lt;/snapshots&gt;
+    &lt;/repository&gt;
+&lt;/repositories&gt;
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/5/20</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='java.html'>JAVA</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15582852207262.html">
+                
+                  <h1>rancher</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p><img src="media/15582852207262/30531939036831699.png" alt="30531939036831699"/></p>
+
+<pre><code class="language-shell">docker run -d --name=rancher --restart=unless-stopped \
+  -p 8080:80 -p 8443:443 \
+  -v ~/rancher:/var/lib/rancher
+  rancher/rancher:latest
+  
+docker run -d --name=rancher --restart=unless-stopped \
+  -p 8080:80 -p 8443:443 \
+  rancher/rancher:latest
+  
+docker run -d --name=rancher --restart=unless-stopped \
+  -p 8080:80 -p 8443:443 \
+  -v ~/rancher:/var/lib/rancher \
+  rancher/rancher:stable
+  
+docker run -d --name=rancher --restart=unless-stopped \
+  -p 8880:80 -p 8843:443 \
+  -v ~/rancher:/var/lib/rancher \
+  rancher/rancher:stable
+  
+https://172.16.123.1:8843/v3/import/v2d7znsxv8vvjzfl6gcwkglvkvnm759f98zt227h9plzm9vdwlh56g.yaml
+</code></pre>
+
+<p><img src="media/15582852207262/image-20181127123429327-3293269.png" alt="image-20181127123429327-3293269"/></p>
+
+<pre><code class="language-shell">curl --insecure -sfL https://172.16.123.1:8443/v3/import/kpb77vt4zl64bdxgz4jpxt2s2x8h94ng2tdlfqcmntv762vc4bf987.yaml | kubectl apply -f -
+</code></pre>
+
+<p><img src="media/15582852207262/image-20181127125127117-3294287.png" alt="image-20181127125127117-3294287"/></p>
+
+<pre><code class="language-shell">curl -X &quot;POST&quot; &quot;http://127.0.0.1:8080/order/get-list&quot; \
+     -H &#39;Content-Type: application/x-www-form-urlencoded&#39; \
+     --data-urlencode &quot;user_id=9&quot; \
+     --data-urlencode &quot;status=1,2,3,4,5,6&quot; \
+     --data-urlencode &quot;order_type=1&quot;
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/5/20</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='ops.html'>OPS</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
 			<div class="article">
                 <a class="clearlink" href="15582851867881.html">
                 
@@ -777,176 +984,6 @@ rxmcst/s：每秒钟接收的多播数据包
                 </div>
               </div><!-- article -->
         
-			<div class="article">
-                <a class="clearlink" href="15577055818897.html">
-                
-                  <h1>在phpstorm中三分钟搭建laravel框架源码阅读环境</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p>laravel框架作为php语言排名第一的框架，源码也是非常值得研究的</p>
-
-<p>作者在phpstorm里搭建了一套源码阅读环境，研究搭建这套环境花了些时间，作者对这个搭建步骤进行优化总结，使用下面的步骤就可以快速完成搭建了</p>
-
-<h2 id="toc_0">下载源代码</h2>
-
-<p>github源码地址：<a href="https://github.com/laravel/framework">https://github.com/laravel/framework</a></p>
-
-<p>使用git下载源码</p>
-
-<pre><code class="language-shell">git clone https://github.com/laravel/framework.git
-</code></pre>
-
-<p>效果如下<br/>
-<img src="media/15577055818897/15577496441043.jpg" alt=""/></p>
-
-<h2 id="toc_1">下载依赖</h2>
-
-<p>laravel框架使用composer管理依赖，进入到framework目录，使用composer install命令下载依赖就可以了，命令如下</p>
-
-<pre><code class="language-text">cd framework
-composer install
-</code></pre>
-
-<p>查看执行效果：<br/>
-<img src="media/15577055818897/15577498052003.jpg" alt=""/></p>
-
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                   <a href="15577055818897.html">Read more</a>&nbsp;&nbsp; 
-                    <span class="date">2018/5/13</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='laravel.html'>LARAVEL</a></span>
-          				  
-          					    <span class="posted-in"><a href='source-code.html'>源码分析</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="15564434375336.html">
-                
-                  <h1>上线流程</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<h3 id="toc_0">dev</h3>
-
-<p>准备迭代分支，需要联调时合并到dev分支进行联调</p>
-
-<p>dev 为了开发效率可以随意一些，但是为了改表/配置等在test, stage, production环境可以复用，可以走系统，比如配置系统nacos/apollo，sql审核平台yearling</p>
-
-<p>开发完成后，跑冒烟测试，这个环境非常重要，直接决定提测的质量</p>
-
-<h3 id="toc_1">test</h3>
-
-<p>代码合并到test分支</p>
-
-<p>给测试、产品验收</p>
-
-<h3 id="toc_2">stage</h3>
-
-<h3 id="toc_3">production</h3>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2018/4/28</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='pm.html'>项目管理</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="15559984036767.html">
-                
-                  <h1>整理现行规范中没有明确的规范</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<h3 id="toc_0">sonarqube 检测3A以上</h3>
-
-<p>可以使用docker搭建sonarqube检测服务器: <a href="https://github.com/SonarSource/docker-sonarqube">https://github.com/SonarSource/docker-sonarqube</a></p>
-
-<h3 id="toc_1">java</h3>
-
-<p>遵守阿里巴巴的p3c规范：<a href="https://github.com/alibaba/p3c">https://github.com/alibaba/p3c</a></p>
-
-<h3 id="toc_2">php</h3>
-
-<p>遵守psr规范: <a href="https://psr.phphub.org/">https://psr.phphub.org/</a></p>
-
-<h3 id="toc_3"><code>c#</code></h3>
-
-<p>无官方，暂行：<a href="https://gist.github.com/zhuqling/a2700703d088b8746f0c">https://gist.github.com/zhuqling/a2700703d088b8746f0c</a></p>
-
-<h3 id="toc_4">数据库</h3>
-
-<ol>
-<li>字段长度尽量使用2的次幂，做计算机字节长度对齐，比如 varchar(16)</li>
-</ol>
-
-<h3 id="toc_5">redis</h3>
-
-<ol>
-<li>通用的redis key不用加项目前缀</li>
-<li>多个单词或者值之间使用:进行分割，符合阿里云Redis开发规范，同时在rdm等客户端中可以显示层级</li>
-</ol>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2018/4/13</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='specification.html'>规范</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
               
 
 
@@ -1018,6 +1055,8 @@ composer install
         
             <a href="pm.html"><strong>项目管理</strong></a>
         
+            <a href="sketch.html"><strong>sketch</strong></a>
+        
             <a href="sql.html"><strong>SQL</strong></a>
         
             <a href="job-scheduler.html"><strong>任务调度</strong></a>
@@ -1027,6 +1066,10 @@ composer install
             <a href="mq.html"><strong>消息队列</strong></a>
         
             <a href="rpc.html"><strong>RPC</strong></a>
+        
+            <a href="bigfrontend.html"><strong>大前端</strong></a>
+        
+            <a href="iOS.html"><strong>iOS</strong></a>
         
             <a href="laravel.html"><strong>LARAVEL</strong></a>
         
@@ -1113,6 +1156,24 @@ composer install
 	      
 		      
 			      <li class="post">
+			        <a href="16256216793335.html">html还原设计图开发心历路程</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16226333235156.html">用sketch原型工具3秒制作一个按钮</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16215677290066.html">三分钟制作一个iOS全局弹窗</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
 			        <a href="16081898834624.html">OSX使用代码代替storyboard构建项目，并添加NSSplitView组件</a>
 			      </li>
 		     
@@ -1120,24 +1181,6 @@ composer install
 		      
 			      <li class="post">
 			        <a href="16005640944829.html">linux系统编程之多进程和管道（pip）</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15970226751276.html">三分钟上手java多线程控制技术</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15864793262262.html">14/24 设计模式之状态模式 State Pattern</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15880004262195.html">python高性能之路:使用C/C++编写扩展</a>
 			      </li>
 		     
 		  

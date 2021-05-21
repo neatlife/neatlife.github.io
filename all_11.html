@@ -116,6 +116,8 @@
         
             <li><a href="pm.html">项目管理</a></li>
         
+            <li><a href="sketch.html">sketch</a></li>
+        
             <li><a href="sql.html">SQL</a></li>
         
             <li><a href="job-scheduler.html">任务调度</a></li>
@@ -125,6 +127,10 @@
             <li><a href="mq.html">消息队列</a></li>
         
             <li><a href="rpc.html">RPC</a></li>
+        
+            <li><a href="bigfrontend.html">大前端</a></li>
+        
+            <li><a href="iOS.html">iOS</a></li>
         
             <li><a href="laravel.html">LARAVEL</a></li>
         
@@ -216,6 +222,208 @@
 	<div class="large-8 medium-8 columns">
 		<div class="markdown-body home-categories">
 		
+			<div class="article">
+                <a class="clearlink" href="15582833071020.html">
+                
+                  <h1>socket和socket通信与socket和websocket通信的区别</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<ol>
+<li>socket和socket通信的数据没有经过编码，所以在socket服务端无需对接收的数据解码，和对返回的数据编码</li>
+<li>socket和socket建立连接时就使用的socket协议进行通信，而websocket建立连接时使用的HTTP协议，必须提升通信协议为websocket</li>
+<li>socket和socket通信没有握手过程，socket和websocket时，socket必须给websocket返回握手响应</li>
+</ol>
+
+<p>附socket与socket通信参考代码</p>
+
+<p>server</p>
+
+<pre><code class="language-php">&lt;?php
+
+$host = &#39;0.0.0.0&#39;;
+$port = 12345;
+
+$master = socket_create(AF_INET, SOCK_STREAM, SOL_TCP)      or die(&quot;socket_create()函数调用失败。&quot;);
+socket_set_option($master, SOL_SOCKET, SO_REUSEADDR, 1)     or die(&quot;socket_option() failed&quot;);// 设置重用
+socket_bind($master, $host, $port)                          or die(&quot;socket_bind() 函数调用失败。&quot;);
+socket_listen($master, 20);
+$sockets = [];
+$sockets[] = $master;
+while(true) {
+    $activeSockets = $sockets;
+    $write = $except = null;
+    $status = socket_select($activeSockets, $write, $except, null);
+    if ($status === 0) {
+        continue;
+    }
+    if ($status === false) {
+        echo socket_last_error() . &quot;\r\n&quot;;
+        continue;
+    }
+    if (in_array($master, $activeSockets)) {
+        $newSocket = socket_accept($master);
+        if (!$newSocket) {
+            continue;
+        }
+        $sockets[] = $newSocket;
+        $activeSockets[] = $newSocket;
+        $index = array_search($master, $activeSockets);
+        unset($activeSockets[$index]);
+    }
+    foreach($activeSockets as $activeSocket) {
+        $socketId = (int) $activeSocket;
+        $requestDataLength = socket_recv($activeSocket, $requestData, 2048, 0);
+        if ($requestDataLength == 0) {
+            socket_close($activeSocket);
+            $index = array_search($activeSocket, $sockets);
+            unset($sockets[$index]);
+            continue;
+        }
+        $response = &quot;&quot;;
+        $data = json_decode($requestData, true);
+        if ($data) {
+            switch($data[&#39;operator&#39;]) {
+                case &#39;add&#39;:
+                    $response = $data[&#39;firstNum&#39;] + $data[&#39;secondNum&#39;];
+                    break;
+                case &#39;sub&#39;:
+                    $response = $data[&#39;firstNum&#39;] - $data[&#39;secondNum&#39;];
+                    break;
+                case &#39;multi&#39;:
+                    $response = $data[&#39;firstNum&#39;] * $data[&#39;secondNum&#39;];
+                    break;
+                case &#39;div&#39;:
+                    $response = $data[&#39;firstNum&#39;] / $data[&#39;secondNum&#39;];
+                    break;
+            }
+        } else {
+            $response = $requestData;
+        }
+        socket_write($activeSocket, $response, strlen($response));
+    }
+
+};
+</code></pre>
+
+<p>client</p>
+
+<pre><code class="language-php">&lt;?php
+
+$socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+$result = socket_connect($socket, &#39;127.0.0.1&#39;, &#39;12345&#39;);
+$raw = json_encode([
+    &#39;firstNum&#39; =&gt; 10,
+    &#39;secondNum&#39; =&gt; 20,
+    &#39;operator&#39; =&gt; &#39;add&#39;,
+]);
+socket_write($socket, $raw, strlen($raw));
+$result = socket_read($socket, 2048);
+echo $result;
+socket_close($socket);
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/6/19</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='php.html'>PHP</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15582866200038.html">
+                
+                  <h1>技术开发顺序</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<ol>
+<li>理解业务为王</li>
+<li>业务实现技术方案第二</li>
+<li>技术选型第三</li>
+<li>具体实现代码第四</li>
+</ol>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/5/20</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='business.html'>业务</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15582850884559.html">
+                
+                  <h1>java程序cpu过高查看快速解决问题</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<pre><code class="language-text">top //查看cpu占用过高的进程 获取进程id
+ps -mp pid -o THREAD,tid,time // 得到cpu占用过高的线程 获取其id
+
+or 通过命令：top -Hp 15970
+printf &quot;%x\n&quot; pid // 会得到一个16进制字符串
+jstack pid | grep [上一步得到16进制] -A 60 //定位代码问题处
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2017/5/20</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='java.html'>JAVA</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
 			<div class="article">
                 <a class="clearlink" href="15582747911822.html">
                 
@@ -1147,202 +1355,6 @@ FROM
                 </div>
               </div><!-- article -->
         
-			<div class="article">
-                <a class="clearlink" href="15582826206789.html">
-                
-                  <h1>FFMPEG获取视频播放时长</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<pre><code class="language-php">function video_info($file,$ffmpeg) {
-    ob_start();
-    passthru(sprintf($ffmpeg.&#39; -i &quot;%s&quot; 2&gt;&amp;1&#39;, $file));
-    $info = ob_get_contents();
-    ob_end_clean();
-  // 通过使用输出缓冲，获取到ffmpeg所有输出的内容。
-   $ret = array();
-    // Duration: 01:24:12.73, start: 0.000000, bitrate: 456 kb/s
-    if (preg_match(&quot;/Duration: (.*?), start: (.*?), bitrate: (\d*) kb\/s/&quot;, $info, $match)) {
-        $ret[&#39;duration&#39;] = $match[1]; // 提取出播放时间
-        $da = explode(&#39;:&#39;, $match[1]); 
-        $ret[&#39;seconds&#39;] = $da[0] * 3600 + $da[1] * 60 + $da[2]; // 转换为秒
-        $ret[&#39;start&#39;] = $match[2]; // 开始时间
-        $ret[&#39;bitrate&#39;] = $match[3]; // bitrate 码率 单位 kb
-    }
-
-    // Stream #0.1: Video: rv40, yuv420p, 512x384, 355 kb/s, 12.05 fps, 12 tbr, 1k tbn, 12 tbc
-    if (preg_match(&quot;/Video: (.*?), (.*?), (.*?)[,\s]/&quot;, $info, $match)) {
-        $ret[&#39;vcodec&#39;] = $match[1]; // 编码格式
-        $ret[&#39;vformat&#39;] = $match[2]; // 视频格式 
-        $ret[&#39;resolution&#39;] = $match[3]; // 分辨率
-        $a = explode(&#39;x&#39;, $match[3]);
-        $ret[&#39;width&#39;] = $a[0];
-        $ret[&#39;height&#39;] = $a[1];
-    }
-
-    // Stream #0.0: Audio: cook, 44100 Hz, stereo, s16, 96 kb/s
-    if (preg_match(&quot;/Audio: (\w*), (\d*) Hz/&quot;, $info, $match)) {
-        $ret[&#39;acodec&#39;] = $match[1];       // 音频编码
-        $ret[&#39;asamplerate&#39;] = $match[2];  // 音频采样频率
-    }
-
-    if (isset($ret[&#39;seconds&#39;]) &amp;&amp; isset($ret[&#39;start&#39;])) {
-        $ret[&#39;play_time&#39;] = $ret[&#39;seconds&#39;] + $ret[&#39;start&#39;]; // 实际播放时间
-    }
-
-    $ret[&#39;size&#39;] = filesize($file); // 文件大小
-    return $ret;
-}
-</code></pre>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2017/3/7</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='php.html'>PHP</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="15582825719147.html">
-                
-                  <h1>Yii提交表单出现bad request错误解决方案</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p>在表单提交按钮之前添加如下代码：</p>
-
-<pre><code class="language-php">&lt;?php echo \yii\helpers\Html::hiddenInput(Yii::$app-&gt;request-&gt;csrfParam, Yii::$app-&gt;request-&gt;getCsrfToken()) ?&gt;
-</code></pre>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2017/3/1</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='yii.html'>Yii/Yii2</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="15582824773265.html">
-                
-                  <h1>apache和nginx虚拟主机配置文件示例</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<h2 id="toc_0">apache虚拟主机配置文件示例</h2>
-
-<pre><code class="language-conf">&lt;VirtualHost *:80&gt;
- ServerName  test.com
- DocumentRoot  &quot;d:\www\test&quot;  
- DirectoryIndex   index.php
- &lt;Directory &quot;d:\www\qlmall&quot;&gt;
-     Options +FollowSymLinks
-     Order Allow,Deny
-     allow from all
-     AllowOverride All
- &lt;/Directory&gt;
-&lt;/VirtualHost&gt;
-</code></pre>
-
-<h2 id="toc_1">nginx配置文件示例</h2>
-
-<pre><code class="language-conf">server {
-    server_name test.com;
-    listen 80;
-    root /data/webroot/test;
-
-        location = /favicon.ico {
-                log_not_found off;
-                access_log off;
-        }
-
-        location = /robots.txt {
-                allow all;
-                log_not_found off;
-                access_log off;
-        }
-
-        location / {
-            index index.php index.html index.htm;
-                # This is cool because no php is touched for static content.
-                # include the &quot;?$args&quot; part so non-default permalinks doesn&#39;t break when using query string
-                try_files $uri $uri/ /index.php?$args;
-        }
-
-        location ~ \.php$ {
-                #NOTE: You should have &quot;cgi.fix_pathinfo = 0;&quot; in php.ini
-                include fastcgi.conf;
-                fastcgi_intercept_errors on;
-            fastcgi_pass 127.0.0.1:9000;
-        }
-
-        location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
-                expires max;
-                log_not_found off;
-        }
-
-    error_log /var/log/nginx/test.com.error.log;
-    access_log /var/log/nginx/test.com.access.log;
-}
-</code></pre>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2017/2/28</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='apache-nginx.html'>Apache/Nginx</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
               
 
 
@@ -1414,6 +1426,8 @@ FROM
         
             <a href="pm.html"><strong>项目管理</strong></a>
         
+            <a href="sketch.html"><strong>sketch</strong></a>
+        
             <a href="sql.html"><strong>SQL</strong></a>
         
             <a href="job-scheduler.html"><strong>任务调度</strong></a>
@@ -1423,6 +1437,10 @@ FROM
             <a href="mq.html"><strong>消息队列</strong></a>
         
             <a href="rpc.html"><strong>RPC</strong></a>
+        
+            <a href="bigfrontend.html"><strong>大前端</strong></a>
+        
+            <a href="iOS.html"><strong>iOS</strong></a>
         
             <a href="laravel.html"><strong>LARAVEL</strong></a>
         
@@ -1509,6 +1527,24 @@ FROM
 	      
 		      
 			      <li class="post">
+			        <a href="16256216793335.html">html还原设计图开发心历路程</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16226333235156.html">用sketch原型工具3秒制作一个按钮</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="16215677290066.html">三分钟制作一个iOS全局弹窗</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
 			        <a href="16081898834624.html">OSX使用代码代替storyboard构建项目，并添加NSSplitView组件</a>
 			      </li>
 		     
@@ -1516,24 +1552,6 @@ FROM
 		      
 			      <li class="post">
 			        <a href="16005640944829.html">linux系统编程之多进程和管道（pip）</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15970226751276.html">三分钟上手java多线程控制技术</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15864793262262.html">14/24 设计模式之状态模式 State Pattern</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15880004262195.html">python高性能之路:使用C/C++编写扩展</a>
 			      </li>
 		     
 		  
